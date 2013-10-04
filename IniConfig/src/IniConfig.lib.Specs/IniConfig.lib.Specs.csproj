@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="IniElementSpecs.cs" />
     <Compile Include="IniFileSpecs.cs" />
+    <Compile Include="IniLineSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

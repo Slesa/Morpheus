@@ -46,6 +46,7 @@
     </Compile>
     <Compile Include="IniElement.cs" />
     <Compile Include="IniFile.cs" />
+    <Compile Include="IniLine.cs" />
     <Compile Include="IniSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

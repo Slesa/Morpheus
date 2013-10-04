@@ -21,6 +21,7 @@ namespace IniConfig.lib
             IniSection currentSection = null;
             foreach (var line in buffer.Split('\n'))
             {
+
             }
         }
     }
