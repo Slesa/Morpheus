@@ -104,10 +104,17 @@
     <Compile Include="..\Properties\Version.cs">
       <Link>Properties\Version.cs</Link>
     </Compile>
+    <Resource Include="Resources\add.png" />
+    <Resource Include="Resources\delete.png" />
+    <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\exit.png" />
     <Resource Include="Resources\IniConfig.jpg" />
     <DesignTimeOnly Include="SampleData\SectionsDataSource\SectionsDataSource.xsd" />
     <DesignTimeOnly Include="SampleData\RecentFilesDataSource\RecentFilesDataSource.xsd" />
     <DesignTimeOnly Include="SampleData\ElementsDataSource\ElementsDataSource.xsd" />
+    <Resource Include="Resources\load.png" />
+    <Resource Include="Resources\save.png" />
+    <Resource Include="Resources\saveas.png" />
     <Resource Include="Sketch.Flow" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />

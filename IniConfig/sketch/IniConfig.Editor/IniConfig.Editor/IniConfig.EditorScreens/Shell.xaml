@@ -29,10 +29,18 @@
 	        <Image HorizontalAlignment="Left" Height="100" Width="100" Margin="10" Source="Resources/IniConfig.jpg"/>
             <TextBlock Text="INI-Editor" VerticalAlignment="Center" Style="{DynamicResource TextBlock-Sketch}" Margin="20,0,20,0" FontSize="32" />
           	<ComboBox Width="160" Height="40" Style="{DynamicResource ComboBox-Sketch}" ItemsSource="{Binding RecentFiles}" ItemTemplate="{DynamicResource RecentFileDataTemplate}"/>
-            <Button Content="Load..." Style="{DynamicResource Button-Sketch}" Height="40"/>
-            <Button Content="Save" Style="{DynamicResource Button-Sketch}" Height="40"/>
-            <Button Content="Save as..." Style="{DynamicResource Button-Sketch}" Height="40"/>
-            <Button Content="Quit" Style="{DynamicResource Button-Sketch}" Height="40"/>
+            <Button Style="{DynamicResource Button-Sketch}" Height="40">
+            	<Image Source="Resources/load.png" />
+            </Button>
+            <Button Style="{DynamicResource Button-Sketch}" Height="40">
+            	<Image Source="Resources/save.png" Stretch="Fill" />
+            </Button>
+            <Button Style="{DynamicResource Button-Sketch}" Height="40">
+            	<Image Source="Resources/saveas.png" Stretch="Fill"/>
+            </Button>
+            <Button Style="{DynamicResource Button-Sketch}" Height="40">
+            	<Image Source="Resources/exit.png" Stretch="Fill" />
+            </Button>
         </StackPanel> 
         <GroupBox Background="Beige" DockPanel.Dock="Bottom">
             <TextBlock Text="Statusline" Style="{DynamicResource TextBlock-Sketch}" />
@@ -60,9 +68,15 @@
 
             <DockPanel LastChildFill="True" Grid.Column="0" Grid.Row="1" DataContext="{Binding Source={StaticResource SectionsDataSource}}">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                    <Button Content="Add" />
-                    <Button Content="Edit" />
-                    <Button Content="Remove"/>
+                    <Button Width="28" Height="28">
+                    	<Image Source="Resources/add.png" />
+                    </Button>
+                    <Button  Width="28" Height="28">
+                    	<Image Source="Resources/edit.png" />
+                    </Button>
+                    <Button Width="28" Height="28">
+                    	<Image Source="Resources/delete.png" />
+                    </Button>
                 </StackPanel>
                 <ListBox x:Name="SectionList" SelectedIndex="0" Style="{DynamicResource ListBox-Sketch}" ItemsSource="{Binding Sections}" ItemTemplate="{DynamicResource SectionDataTemplate}" SelectionMode="Extended" />
             </DockPanel>
@@ -71,9 +85,15 @@
 
             <DockPanel LastChildFill="True" Grid.Column="2" Grid.Row="1" >
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                    <Button Content="Add" />
-                    <Button Content="Edit" />
-                    <Button Content="Remove"/>
+                    <Button Width="28" Height="28" >
+                    	<Image Source="Resources/add.png" />
+                    </Button>
+                    <Button Width="28" Height="28" >
+                    	<Image Source="Resources/edit.png" />
+                    </Button>
+                    <Button Width="28" Height="28">
+                    	<Image Source="Resources/delete.png" />
+                    </Button>
                 </StackPanel>
                 <ListBox x:Name="ElementList" SelectedIndex="0" Style="{DynamicResource ListBox-Sketch}" ItemsSource="{Binding Elements}" ItemTemplate="{DynamicResource ElementDataTemplate}" />
             </DockPanel>
