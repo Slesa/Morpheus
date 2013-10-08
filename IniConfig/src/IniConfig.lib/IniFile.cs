@@ -13,15 +13,35 @@ namespace IniConfig.lib
             return iniFile;
         }
 
+        List<IniSection> _sections;
+        public List<IniSection> Sections
+        {
+            get { return _sections ?? (_sections = new List<IniSection>()); }
+        }
+
+
         void Load(string fileName)
         {
             var buffer = File.ReadAllText(fileName, Encoding.UTF8);
-            var remarks = new List<string>();
+            LoadFromText(buffer);
+        }
 
-            IniSection currentSection = null;
+        internal void LoadFromText(string buffer)
+        {
+            var currentSection = new IniSection();
+
             foreach (var line in buffer.Split('\n'))
             {
-
+                var iniLine = new IniLine(line);
+                if (iniLine.IsComment)
+                {
+                    currentSection.Remarks.Add(line);
+                    continue;
+                }
+                if (iniLine.IsSection)
+                {
+                    
+                }
             }
         }
     }

@@ -13,4 +13,12 @@ namespace IniConfig.lib.Specs
 
         static object _error;
     }
+
+    [Subject(typeof(IniFile))]
+    internal class When_loading_empty_text : WithSubject<IniFile>
+    {
+        Because of = () => Subject.LoadFromText("");
+
+        It should_not_contain_sections = () => Subject.Sections.ShouldBeEmpty();
+    }
 }
