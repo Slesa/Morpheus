@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IniConfig.Editor.lib", "Ini
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IniConfig.Editor.specs", "IniConfig.Editor.specs\IniConfig.Editor.specs.csproj", "{1C4F5D53-8CE2-4F0A-B479-A42F88A97CC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IniConfig.Editor.Theme", "IniConfig.Editor.Theme\IniConfig.Editor.Theme.csproj", "{AB9FAE75-CF5B-44AF-B037-3EA7E02DD4DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{1C4F5D53-8CE2-4F0A-B479-A42F88A97CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C4F5D53-8CE2-4F0A-B479-A42F88A97CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C4F5D53-8CE2-4F0A-B479-A42F88A97CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB9FAE75-CF5B-44AF-B037-3EA7E02DD4DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB9FAE75-CF5B-44AF-B037-3EA7E02DD4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB9FAE75-CF5B-44AF-B037-3EA7E02DD4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB9FAE75-CF5B-44AF-B037-3EA7E02DD4DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

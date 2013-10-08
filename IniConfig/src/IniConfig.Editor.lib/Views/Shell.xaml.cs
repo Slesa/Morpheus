@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace IniConfig.Editor
+namespace IniConfig.Editor.lib.Views
 {
     public partial class Shell : Window
     {

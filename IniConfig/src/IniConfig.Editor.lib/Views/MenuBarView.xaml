@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="IniConfig.Editor.lib.Views.MenuBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:IniConfig.Editor.lib.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.DataContext>
+        <local:MenuBarViewModel />
+    </UserControl.DataContext>
+    
+    <UserControl.InputBindings>
+        <KeyBinding Key="X" Modifiers="Control" Command="{Binding QuitCommand}"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"/>
+        <!--<KeyBinding Key="S" Modifiers="Control,Shift" Command="{Binding SaveCommand}"/>-->
+        <KeyBinding Key="O" Modifiers="Control" Command="{Binding LoadCommand}"/>
+    </UserControl.InputBindings>
+
+    <StackPanel Background="Beige" DockPanel.Dock="Top" Orientation="Horizontal">
+        <Image HorizontalAlignment="Left" Height="100" Width="100" Margin="10" Source="../Resources/IniConfig.jpg"/>
+        <TextBlock Text="INI-Editor" VerticalAlignment="Center" Style="{DynamicResource TextBlock-Sketch}" Margin="20,0,20,0" FontSize="32" />
+        <ComboBox Width="160" Height="40" Style="{DynamicResource ComboBox-Sketch}" ItemsSource="{Binding RecentFiles}" ItemTemplate="{DynamicResource RecentFileDataTemplate}"/>
+        <Button Style="{DynamicResource Button-Sketch}" Height="40">
+            <Image Source="../Resources/load.png" />
+        </Button>
+        <Button Style="{DynamicResource Button-Sketch}" Height="40">
+            <Image Source="../Resources/save.png"  />
+        </Button>
+        <Button Style="{DynamicResource Button-Sketch}" Height="40">
+            <Image Source="../Resources/saveas.png" />
+        </Button>
+        <Button Style="{DynamicResource Button-Sketch}" Height="40">
+            <Image Source="../Resources/exit.png" />
+        </Button>
+    </StackPanel>
+
+</UserControl>

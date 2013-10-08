@@ -1,7 +1,11 @@
 ﻿using System.Windows;
+using IniConfig.Editor.lib;
+using IniConfig.Editor.lib.ViewModels;
+using IniConfig.Editor.lib.Views;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.UnityExtensions;
 using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity;
 
 namespace IniConfig.Editor
 {
@@ -15,6 +19,10 @@ namespace IniConfig.Editor
         protected override void InitializeShell()
         {
             base.InitializeShell();
+
+            var regionManager = (IRegionManager)Container.Resolve(typeof(IRegionManager));
+            regionManager.RegisterViewWithRegion(Regions.StatusBarRegion, typeof(StatusBarView));
+            regionManager.RegisterViewWithRegion(Regions.MenuBarRegion, typeof(MenuBarView));
 
             Application.Current.MainWindow = (Window) Shell;
             Application.Current.MainWindow.Show();

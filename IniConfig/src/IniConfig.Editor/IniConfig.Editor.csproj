@@ -73,20 +73,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ShellViewModel.cs" />
-    <Page Include="Shell.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Shell.xaml.cs">
-      <DependentUpon>Shell.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -115,6 +106,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IniConfig.Editor.lib\IniConfig.Editor.lib.csproj">
+      <Project>{607f34e3-3425-4c36-947f-483ba479920a}</Project>
+      <Name>IniConfig.Editor.lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IniConfig.Editor.Theme\IniConfig.Editor.Theme.csproj">
+      <Project>{ab9fae75-cf5b-44af-b037-3ea7e02dd4de}</Project>
+      <Name>IniConfig.Editor.Theme</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

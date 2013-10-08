@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="IniConfig.Editor.lib.Views.StatusBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:design="clr-namespace:IniConfig.Editor.lib.DesignTime"
+             xmlns:local="clr-namespace:IniConfig.Editor.lib.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="300">
+    
+    <UserControl.DataContext>
+        <local:StatusBarViewModel />
+    </UserControl.DataContext>
+    <d:UserControl.DataContext>
+        <design:DesignTimeStatusBarViewModel />
+    </d:UserControl.DataContext>
+    
+    <Border Style="{DynamicResource Style.StatusBar.Frame}">
+        <TextBlock Text="{Binding Message}" Style="{DynamicResource Style.StatusBar.Message}"/>
+    </Border>
+</UserControl>
