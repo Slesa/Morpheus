@@ -1,0 +1,8 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.SectionsDataSource" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:SampleData1="clr-namespace:Expression.Blend.SampleData.RecentFilesDataSource" xmlns:SampleData2="clr-namespace:Expression.Blend.SampleData.ElementsDataSource" mc:Ignorable="d">
+	<SampleData2:ElementsDataSource x:Key="ElementsDataSource" d:IsDataSource="True"/>
+	<SampleData1:RecentFilesDataSource x:Key="RecentFilesDataSource" d:IsDataSource="True"/>
+<!-- Resource dictionary entries should be defined here. -->
+	<SampleData:SectionsDataSource x:Key="SectionsDataSource" d:IsDataSource="True"/>
+</ResourceDictionary>

@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IniConfig.Editor", "IniConfig.Editor\IniConfig.Editor.csproj", "{7ff3a9be-3855-4cb6-aeb6-124e1bdeebc5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IniConfig.EditorScreens", "IniConfig.Editor\IniConfig.EditorScreens\IniConfig.EditorScreens.csproj", "{bacdec95-a538-41fe-b24e-7b5ac2b20e4a}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FF3A9BE-3855-4CB6-AEB6-124E1BDEEBC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FF3A9BE-3855-4CB6-AEB6-124E1BDEEBC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FF3A9BE-3855-4CB6-AEB6-124E1BDEEBC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FF3A9BE-3855-4CB6-AEB6-124E1BDEEBC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BACDEC95-A538-41FE-B24E-7B5AC2B20E4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BACDEC95-A538-41FE-B24E-7B5AC2B20E4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BACDEC95-A538-41FE-B24E-7B5AC2B20E4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BACDEC95-A538-41FE-B24E-7B5AC2B20E4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

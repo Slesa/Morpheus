@@ -1,0 +1,123 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="IniConfig_EditorScreens_Screen_1_Name"
+	mc:Ignorable="d"
+	x:Class="IniConfig_EditorScreens.Screen_1"
+	Width="800" Height="600">
+    
+	<UserControl.Resources>
+		<DataTemplate x:Key="SectionDataTemplate">
+    	    <TextBlock Text="{Binding Name}" ToolTip="{Binding Description}" />
+		</DataTemplate>
+		<DataTemplate x:Key="RecentFileDataTemplate">
+    	    <TextBlock Text="{Binding Name}" ToolTip="{Binding FilePath}" />
+		</DataTemplate>
+		<DataTemplate x:Key="ElementDataTemplate">
+			<StackPanel Orientation="Horizontal" ToolTip="{Binding Section}">
+        	    <TextBlock Text="{Binding Name}" />
+        	    <TextBlock Text="{Binding Value}" />
+        	    <TextBlock Text="{Binding Type}" />
+        	    <TextBlock Text="{Binding Remarks}" />
+		    </StackPanel>
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<DockPanel x:Name="LayoutRoot" Background="White" LastChildFill="True" DataContext="{Binding Source={StaticResource ElementsDataSource}}">
+	    <StackPanel Background="Beige" DockPanel.Dock="Top" Orientation="Horizontal" DataContext="{Binding Source={StaticResource RecentFilesDataSource}}">
+	        <Image HorizontalAlignment="Left" Height="100" Width="100" Margin="10" Source="Resources/IniConfig.jpg"/>
+            <TextBlock Text="INI-Editor" VerticalAlignment="Center" Style="{DynamicResource TextBlock-Sketch}" Margin="20,0,20,0" FontSize="32" />
+          	<ComboBox Width="160" Height="40" Style="{DynamicResource ComboBox-Sketch}" ItemsSource="{Binding RecentFiles}" ItemTemplate="{DynamicResource RecentFileDataTemplate}"/>
+            <Button Content="Load..." Style="{DynamicResource Button-Sketch}" Height="40"/>
+            <Button Content="Save" Style="{DynamicResource Button-Sketch}" Height="40"/>
+            <Button Content="Save as..." Style="{DynamicResource Button-Sketch}" Height="40"/>
+            <Button Content="Quit" Style="{DynamicResource Button-Sketch}" Height="40"/>
+        </StackPanel> 
+        <GroupBox Background="Beige" DockPanel.Dock="Bottom">
+            <TextBlock Text="Statusline" Style="{DynamicResource TextBlock-Sketch}" />
+        </GroupBox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Search:"/>
+                <TextBox Grid.Column="1" HorizontalAlignment="Stretch" />
+            </Grid>
+
+            <DockPanel LastChildFill="True" Grid.Column="0" Grid.Row="1" DataContext="{Binding Source={StaticResource SectionsDataSource}}">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                    <Button Content="Add" />
+                    <Button Content="Edit" />
+                    <Button Content="Remove"/>
+                </StackPanel>
+                <ListBox x:Name="SectionList" SelectedIndex="0" Style="{DynamicResource ListBox-Sketch}" ItemsSource="{Binding Sections}" ItemTemplate="{DynamicResource SectionDataTemplate}" SelectionMode="Extended" />
+            </DockPanel>
+
+            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" Grid.Row="1" />
+
+            <DockPanel LastChildFill="True" Grid.Column="2" Grid.Row="1" >
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                    <Button Content="Add" />
+                    <Button Content="Edit" />
+                    <Button Content="Remove"/>
+                </StackPanel>
+                <ListBox x:Name="ElementList" SelectedIndex="0" Style="{DynamicResource ListBox-Sketch}" ItemsSource="{Binding Elements}" ItemTemplate="{DynamicResource ElementDataTemplate}" />
+            </DockPanel>
+
+
+            <!-- GridSplitter Grid.Row="2" Height="2" HorizontalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="2" />
+
+
+            <Grid Grid.Column="2" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Attribute:" Style="{DynamicResource TextBlock-Sketch}" />
+                <TextBox Grid.Column="1" Grid.Row="0" Style="{DynamicResource TextBox-Sketch}" Text="Level" />
+
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Type:" Style="{DynamicResource TextBlock-Sketch}" />
+                <ComboBox Grid.Column="1" Grid.Row="1" Style="{DynamicResource ComboBox-Sketch}" Text="Enumeration" SelectedIndex="5">
+                    <ComboBox.Items>
+                        <TextBlock Text="String" />
+                        <TextBlock Text="Boolean" />
+                        <TextBlock Text="Integer" />
+                        <TextBlock Text="Double" />
+                        <TextBlock Text="Decimal" />
+                        <TextBlock Text="Enumeration" />
+                    </ComboBox.Items>
+                </ComboBox>
+
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Value:" Style="{DynamicResource TextBlock-Sketch}" />
+                <TextBox Grid.Column="1" Grid.Row="2" Style="{DynamicResource TextBox-Sketch}" Text="Debug" />
+
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Description:" Style="{DynamicResource TextBlock-Sketch}" />
+                <TextBox Grid.Column="1" Grid.Row="3" Style="{DynamicResource TextBox-Sketch}" TextWrapping="WrapWithOverflow" >
+                    Represents the level of the log entries to output.
+                </TextBox>
+
+            </Grid -->
+        </Grid>
+	</DockPanel>
+</UserControl>
