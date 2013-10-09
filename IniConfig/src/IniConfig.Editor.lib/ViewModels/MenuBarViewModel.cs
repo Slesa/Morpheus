@@ -11,7 +11,7 @@ namespace IniConfig.Editor.lib.ViewModels
             LoadCommand = new DelegateCommand(OnLoad);
             SaveCommand = new DelegateCommand(OnSave);
             SaveAsCommand = new DelegateCommand(OnSaveAs);
-            QuitCommand = new DelegateCommand(OnQuit);
+            ExitCommand = new DelegateCommand(OnExit);
         }
 
         public ICommand LoadCommand { get; private set; }
@@ -35,9 +35,9 @@ namespace IniConfig.Editor.lib.ViewModels
 
         }
 
-        public ICommand QuitCommand { get; private set; }
+        public ICommand ExitCommand { get; private set; }
 
-        void OnQuit()
+        void OnExit()
         {
             Application.Current.Shutdown();
         }

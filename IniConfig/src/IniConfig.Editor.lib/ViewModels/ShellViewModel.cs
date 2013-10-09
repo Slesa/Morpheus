@@ -2,6 +2,5 @@
 {
     public class ShellViewModel
     {
-        public string Message { get; set; }
     }
 }

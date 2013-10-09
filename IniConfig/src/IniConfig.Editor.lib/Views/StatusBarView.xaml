@@ -11,6 +11,7 @@
     <UserControl.DataContext>
         <local:StatusBarViewModel />
     </UserControl.DataContext>
+    
     <d:UserControl.DataContext>
         <design:DesignTimeStatusBarViewModel />
     </d:UserControl.DataContext>
