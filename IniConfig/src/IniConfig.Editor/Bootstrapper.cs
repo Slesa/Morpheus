@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using IniConfig.Editor.lib;
+using IniConfig.Editor.lib.Configuration;
 using IniConfig.Editor.lib.ViewModels;
 using IniConfig.Editor.lib.Views;
 using Microsoft.Practices.Prism.Regions;
@@ -31,6 +32,11 @@ namespace IniConfig.Editor
         protected override void ConfigureContainer()
         {
             base.ConfigureContainer();
+
+            RegisterTypeIfMissing(typeof(IProvideSettings), typeof(SettingsProvider), true);
+            RegisterTypeIfMissing(typeof (IProvideRecentFiles), typeof (RecentFileHistory), true);
+            RegisterTypeIfMissing(typeof (AppConfiguration), typeof (AppConfiguration), true);
+
             RegisterTypeIfMissing(typeof(IRegionManager), typeof(RegionManager), true);
             RegisterTypeIfMissing(typeof(ShellViewModel), typeof(ShellViewModel), true);
         }

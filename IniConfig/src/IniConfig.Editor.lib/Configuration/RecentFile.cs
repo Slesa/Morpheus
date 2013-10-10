@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace IniConfig.Editor.lib.Models
+namespace IniConfig.Editor.lib.Configuration
 {
     [DebuggerDisplay("{Name}, {FilePath}")]
     public class RecentFile
