@@ -76,6 +76,17 @@ namespace IniConfig.Editor.lib.Configuration
             _recentFilesProvider.StoreHistory(_recentFiles);
         }
 
+        public void RemoveRecentFile(string fileName)
+        {
+            var element = RecentFiles.FirstOrDefault(x => x.FilePath == fileName);
+            if (element == null) return;
+
+            OnRecentFileRemoved(element);
+            _recentFiles.Remove(element);
+            _recentFilesProvider.StoreHistory(_recentFiles);
+        }
+
+
         bool MaximumRecentFilesExceeded()
         {
             var exceeded = false;
