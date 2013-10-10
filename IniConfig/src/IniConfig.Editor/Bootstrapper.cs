@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using IniConfig.Editor.lib;
 using IniConfig.Editor.lib.Configuration;
 using IniConfig.Editor.lib.ViewModels;
@@ -33,12 +34,18 @@ namespace IniConfig.Editor
         {
             base.ConfigureContainer();
 
-            RegisterTypeIfMissing(typeof(IProvideSettings), typeof(SettingsProvider), true);
+            RegisterTypeIfMissing(typeof (IRegionManager), typeof (RegionManager), true);
+            RegisterTypeIfMissing(typeof (IProvideSettings), typeof (SettingsProvider), true);
             RegisterTypeIfMissing(typeof (IProvideRecentFiles), typeof (RecentFileHistory), true);
             RegisterTypeIfMissing(typeof (AppConfiguration), typeof (AppConfiguration), true);
 
-            RegisterTypeIfMissing(typeof(IRegionManager), typeof(RegionManager), true);
+            DoViewModelRegistrations();
+        }
+
+        void DoViewModelRegistrations()
+        {
             RegisterTypeIfMissing(typeof(ShellViewModel), typeof(ShellViewModel), true);
+            RegisterTypeIfMissing(typeof(MenuBarViewModel), typeof(MenuBarViewModel), true);
         }
     }
 }
