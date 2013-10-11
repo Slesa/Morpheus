@@ -4,19 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:design="clr-namespace:IniConfig.Editor.lib.DesignTime"
-             xmlns:local="clr-namespace:IniConfig.Editor.lib.ViewModels"
+             xmlns:hlp="clr-namespace:IniConfig.Editor.lib.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="300">
-    
+
+    <UserControl.Resources>
+        <hlp:StatusBarViewModelLocator x:Key="ViewModelLocator" />
+    </UserControl.Resources>
+
     <UserControl.DataContext>
-        <local:StatusBarViewModel />
+        <Binding Path="ViewModel" Source="{StaticResource ViewModelLocator}" />
     </UserControl.DataContext>
-    
+
     <d:UserControl.DataContext>
         <design:DesignTimeStatusBarViewModel />
     </d:UserControl.DataContext>
     
-    <Border Style="{DynamicResource Style.StatusBar.Frame}">
+    <StackPanel Orientation="Horizontal">
         <TextBlock Text="{Binding Message}" Style="{DynamicResource Style.StatusBar.Message}"/>
-    </Border>
+    </StackPanel>
+    
 </UserControl>

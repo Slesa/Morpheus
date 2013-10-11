@@ -7,6 +7,7 @@ using System.Windows.Threading;
 using IniConfig.Editor.lib.Configuration;
 using IniConfig.Editor.lib.Contracts;
 using IniConfig.Editor.lib.Helpers;
+using IniConfig.Editor.lib.Models;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
 
@@ -29,33 +30,49 @@ namespace IniConfig.Editor.lib.ViewModels
 
             FillRecentFiles();
 
+            NewCommand = new DelegateCommand(OnNew, CanNew);
             LoadCommand = new DelegateCommand(OnLoad);
-            SaveCommand = new DelegateCommand(OnSave);
-            SaveAsCommand = new DelegateCommand(OnSaveAs);
-            ExitCommand = new DelegateCommand(OnExit);
+            SaveCommand = new DelegateCommand(OnSave, CanSave);
+            SaveAsCommand = new DelegateCommand(OnSaveAs, CanSaveAs);
+            QuitCommand = new DelegateCommand(OnExit);
         }
 
+        public Document Document { get; private set; }
         public ObservableCollection<RecentFile> RecentFiles { get; private set; }
 
     #region Commands
+
+        public ICommand NewCommand { get; private set; }
+
+        void OnNew()
+        {
+        }
+
+        bool CanNew()
+        {
+            return true;
+        }
 
         public ICommand LoadCommand { get; private set; }
 
         void OnLoad()
         {
             var obtainFileSettings = new ObtainFileSettings
-            {
-                LastLocation = _appConfiguration.LastOpenLocation,
-                FileFilterIndex = _appConfiguration.LastFilterIndex,
-                FileFilter = "Configuration files (*.ini)|All files (*.*)",
-                DialogTitle = "Select a configuration file...",
-            };
+                {
+                    LastLocation = _appConfiguration.LastOpenLocation,
+                    FileFilterIndex = _appConfiguration.LastFilterIndex,
+                    FileFilter = "Configuration files (*.ini)|*.ini|All files (*.*)|*.*",
+                    DialogTitle = "Select a configuration file...",
+                };
 
             var fileName = FileSourceProvider.ObtainFileName(obtainFileSettings);
             if (string.IsNullOrEmpty(fileName)) return;
 
+            Document = new Document {FilePath = fileName};
+
             _appConfiguration.LastOpenLocation = obtainFileSettings.LastLocation;
             _appConfiguration.LastFilterIndex = obtainFileSettings.FileFilterIndex;
+            _appConfiguration.UpdateRecentFiles(fileName);
 
             //CurrentInputFile = fileName;
             //_eventAggregator.GetEvent<HandleInputFileEvent>().Publish(CurrentInputFile);
@@ -67,15 +84,24 @@ namespace IniConfig.Editor.lib.ViewModels
         {
 
         }
+
+        bool CanSave()
+        {
+            return Document!=null && Document.HasChanged;
+        }
         
         public ICommand SaveAsCommand { get; private set; }
 
         void OnSaveAs()
         {
-
         }
 
-        public ICommand ExitCommand { get; private set; }
+        bool CanSaveAs()
+        {
+            return Document != null;
+        }
+
+        public ICommand QuitCommand { get; private set; }
 
         void OnExit()
         {
@@ -94,14 +120,18 @@ namespace IniConfig.Editor.lib.ViewModels
 
         void OnRecentFileAdded(object sender, RecentFileEvent e)
         {
-            Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal,
-                                                  new Action(() => RecentFiles.Insert(0, e.RecentFile)));
+            if (Application.Current == null)
+                RecentFiles.Insert(0, e.RecentFile); // For testing purposes
+            else
+                Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => RecentFiles.Insert(0, e.RecentFile)));
         }
 
         void OnRecentFileRemoved(object sender, RecentFileEvent e)
         {
-            Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal,
-                                                  new Action(() => RecentFiles.Remove(e.RecentFile)));
+            if (Application.Current == null)
+                RecentFiles.Remove(e.RecentFile); // For testing purposes
+            else
+                Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => RecentFiles.Remove(e.RecentFile)));
         }
     }
 }

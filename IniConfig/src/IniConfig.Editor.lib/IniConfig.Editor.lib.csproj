@@ -69,14 +69,17 @@
     <Compile Include="Configuration\IProvideSettings.cs" />
     <Compile Include="Configuration\SettingsProvider.cs" />
     <Compile Include="Contracts\IProvideFileSource.cs" />
+    <Compile Include="DesignTime\DesignTimeMenuBarViewModel.cs" />
     <Compile Include="DesignTime\DesignTimeStatusBarViewModel.cs" />
     <Compile Include="Configuration\IProvideRecentFiles.cs" />
     <Compile Include="Configuration\RecentFile.cs" />
     <Compile Include="Configuration\RecentFileHistory.cs" />
     <Compile Include="Contracts\IViewModel.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="Helpers\ObtainFileSettings.cs" />
     <Compile Include="Helpers\ObtainFileSource.cs" />
     <Compile Include="Helpers\VieModelLocator.cs" />
+    <Compile Include="Models\Document.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <DependentUpon>Settings.settings</DependentUpon>
@@ -124,32 +127,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\add.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\IniConfig.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\exit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\load.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\save.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\saveas.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

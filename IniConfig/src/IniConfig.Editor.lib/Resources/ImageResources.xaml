@@ -4,12 +4,4 @@
 
     <BitmapImage x:Key="Images.Title" UriSource="Images/IniConfig.jpg" />
 
-    <BitmapImage x:Key="Images.Add" UriSource="Images/add.png" />
-    <BitmapImage x:Key="Images.Remove" UriSource="Images/delete.png" />
-    <BitmapImage x:Key="Images.Edit" UriSource="Images/edit.png" />
-    <BitmapImage x:Key="Images.Exit" UriSource="Images/exit.png" />
-    <BitmapImage x:Key="Images.Load" UriSource="Images/load.png" />
-    <BitmapImage x:Key="Images.Save" UriSource="Images/save.png" />
-    <BitmapImage x:Key="Images.SaveAs" UriSource="Images/saveas.png" />
-
 </ResourceDictionary>

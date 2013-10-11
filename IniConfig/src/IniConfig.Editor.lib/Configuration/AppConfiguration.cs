@@ -104,7 +104,6 @@ namespace IniConfig.Editor.lib.Configuration
                 exceeded = true;
             }
             return exceeded;
-
         }
 
         void OnRecentFileAdded(RecentFile addedRecentFile)

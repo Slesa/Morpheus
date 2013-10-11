@@ -3,29 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:IniConfig.Editor.lib.ViewModels"
-             xmlns:wpf="clr-namespace:IniConfig.Editor.lib.Helpers"
+             xmlns:design="clr-namespace:IniConfig.Editor.lib.DesignTime"
+             xmlns:hlp="clr-namespace:IniConfig.Editor.lib.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     
     <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resources/ImageResources.xaml"></ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-            <wpf:MenuBarViewModelLocator x:Key="ViewModelLocator" />
-        </ResourceDictionary>
+        <hlp:MenuBarViewModelLocator x:Key="ViewModelLocator" />
     </UserControl.Resources>
     
     <UserControl.DataContext>
         <Binding Path="ViewModel" Source="{StaticResource ViewModelLocator}" />
     </UserControl.DataContext>
-    
+
+    <d:UserControl.DataContext>
+        <design:DesignTimeMenuBarViewModel />
+    </d:UserControl.DataContext>
+
     <UserControl.InputBindings>
-        <KeyBinding Key="X" Modifiers="Control" Command="{Binding QuitCommand}"/>
+        <KeyBinding Key="N" Modifiers="Control" Command="{Binding NewCommand}"/>
         <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"/>
-        <!--<KeyBinding Key="S" Modifiers="Control,Shift" Command="{Binding SaveCommand}"/>-->
         <KeyBinding Key="O" Modifiers="Control" Command="{Binding LoadCommand}"/>
+        <KeyBinding Key="Q" Modifiers="Control" Command="{Binding QuitCommand}"/>
     </UserControl.InputBindings>
 
     <StackPanel Background="Beige" DockPanel.Dock="Top" Orientation="Horizontal">
@@ -34,6 +33,9 @@
         
         <ComboBox Width="160" Height="40" Style="{DynamicResource ComboBox-Sketch}" ItemsSource="{Binding RecentFiles}" ItemTemplate="{DynamicResource RecentFileDataTemplate}"/>
         
+        <Button Style="{DynamicResource Button-Sketch}" Height="40" Command="{Binding NewCommand}">
+            <Image Source="{DynamicResource Images.New}" />
+        </Button>
         <Button Style="{DynamicResource Button-Sketch}" Height="40" Command="{Binding LoadCommand}">
             <Image Source="{DynamicResource Images.Load}" />
         </Button>
@@ -43,7 +45,7 @@
         <Button Style="{DynamicResource Button-Sketch}" Height="40" Command="{Binding SaveAsCommand}">
             <Image Source="{DynamicResource Images.SaveAs}" />
         </Button>
-        <Button Style="{DynamicResource Button-Sketch}" Height="40" Command="{Binding ExitCommand}">
+        <Button Style="{DynamicResource Button-Sketch}" Height="40" Command="{Binding QuitCommand}">
             <Image Source="{DynamicResource Images.Exit}" />
         </Button>
     </StackPanel>
