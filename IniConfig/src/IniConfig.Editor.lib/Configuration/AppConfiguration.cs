@@ -36,6 +36,12 @@ namespace IniConfig.Editor.lib.Configuration
             set { _settingsProvider.LastOpenLocation = value; }
         }
 
+        public int LastFilterIndex
+        {
+            get { return _settingsProvider.LastFilterIndex; }
+            set { _settingsProvider.LastFilterIndex = value; }
+        }
+
         List<RecentFile> _recentFiles;
         
         public event EventHandler<RecentFileEvent> RecentFileAdded;

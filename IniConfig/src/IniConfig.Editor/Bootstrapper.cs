@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
-using System.Windows;
+﻿using System.Windows;
 using IniConfig.Editor.lib;
 using IniConfig.Editor.lib.Configuration;
+using IniConfig.Editor.lib.Helpers;
 using IniConfig.Editor.lib.ViewModels;
 using IniConfig.Editor.lib.Views;
 using Microsoft.Practices.Prism.Regions;
@@ -37,6 +37,7 @@ namespace IniConfig.Editor
             RegisterTypeIfMissing(typeof (IRegionManager), typeof (RegionManager), true);
             RegisterTypeIfMissing(typeof (IProvideSettings), typeof (SettingsProvider), true);
             RegisterTypeIfMissing(typeof (IProvideRecentFiles), typeof (RecentFileHistory), true);
+            RegisterTypeIfMissing(typeof (IProvideFileSource), typeof (ObtainFileSource), true);
             RegisterTypeIfMissing(typeof (AppConfiguration), typeof (AppConfiguration), true);
 
             DoViewModelRegistrations();

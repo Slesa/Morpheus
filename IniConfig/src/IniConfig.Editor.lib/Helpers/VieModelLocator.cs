@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using IniConfig.Editor.lib.Contracts;
 using IniConfig.Editor.lib.ViewModels;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;

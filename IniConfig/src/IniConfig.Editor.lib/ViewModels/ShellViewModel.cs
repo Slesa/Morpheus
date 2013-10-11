@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Shell;
 using IniConfig.Editor.lib.Configuration;
+using IniConfig.Editor.lib.Contracts;
 using IniConfig.Editor.lib.Helpers;
 
 namespace IniConfig.Editor.lib.ViewModels

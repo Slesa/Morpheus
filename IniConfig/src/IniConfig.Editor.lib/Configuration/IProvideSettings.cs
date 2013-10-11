@@ -4,5 +4,6 @@
     {
         int MaxRecentFiles { get; set; }
         string LastOpenLocation { get; set; }
+        int LastFilterIndex { get; set; }
     }
 }

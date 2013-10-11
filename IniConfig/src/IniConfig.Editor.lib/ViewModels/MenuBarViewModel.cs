@@ -5,14 +5,19 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using IniConfig.Editor.lib.Configuration;
+using IniConfig.Editor.lib.Contracts;
 using IniConfig.Editor.lib.Helpers;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Unity;
 
 namespace IniConfig.Editor.lib.ViewModels
 {
     public class MenuBarViewModel : IViewModel
     {
         readonly AppConfiguration _appConfiguration;
+
+        [Dependency]
+        public IProvideFileSource FileSourceProvider { get; set; }
 
         public MenuBarViewModel(AppConfiguration appConfiguration)
         {
@@ -38,7 +43,22 @@ namespace IniConfig.Editor.lib.ViewModels
 
         void OnLoad()
         {
+            var obtainFileSettings = new ObtainFileSettings
+            {
+                LastLocation = _appConfiguration.LastOpenLocation,
+                FileFilterIndex = _appConfiguration.LastFilterIndex,
+                FileFilter = "Configuration files (*.ini)|All files (*.*)",
+                DialogTitle = "Select a configuration file...",
+            };
 
+            var fileName = FileSourceProvider.ObtainFileName(obtainFileSettings);
+            if (string.IsNullOrEmpty(fileName)) return;
+
+            _appConfiguration.LastOpenLocation = obtainFileSettings.LastLocation;
+            _appConfiguration.LastFilterIndex = obtainFileSettings.FileFilterIndex;
+
+            //CurrentInputFile = fileName;
+            //_eventAggregator.GetEvent<HandleInputFileEvent>().Publish(CurrentInputFile);
         }
 
         public ICommand SaveCommand { get; private set; }

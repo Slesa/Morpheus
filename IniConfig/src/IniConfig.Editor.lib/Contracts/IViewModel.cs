@@ -1,4 +1,4 @@
-﻿namespace IniConfig.Editor.lib.Helpers
+﻿namespace IniConfig.Editor.lib.Contracts
 {
     public interface IViewModel
     {

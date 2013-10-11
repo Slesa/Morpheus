@@ -32,5 +32,15 @@ namespace IniConfig.Editor.lib.Configuration
                 _settings.Save();
             }
         }
+
+        public int LastFilterIndex
+        {
+            get { return _settings.LastFilterIndex; }
+            set
+            {
+                _settings.LastFilterIndex = value;
+                _settings.Save();
+            }
+        }
     }
 }
