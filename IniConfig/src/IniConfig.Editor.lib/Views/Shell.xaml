@@ -16,6 +16,13 @@
         <Binding Path="ViewModel" Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
 
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Control" Command="{Binding MenuBar.NewCommand}"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding MenuBar.SaveCommand}"/>
+        <KeyBinding Key="O" Modifiers="Control" Command="{Binding MenuBar.LoadCommand}"/>
+        <KeyBinding Key="Q" Modifiers="Control" Command="{Binding MenuBar.QuitCommand}"/>
+    </Window.InputBindings>
+
     <DockPanel Style="{DynamicResource Style.Shell.DockPanel}">
         
         <ContentControl DockPanel.Dock="Top" regions:RegionManager.RegionName="{x:Static local:Regions.MenuBarRegion}"/>

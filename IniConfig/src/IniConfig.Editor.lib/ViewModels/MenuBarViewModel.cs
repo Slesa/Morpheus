@@ -8,6 +8,7 @@ using IniConfig.Editor.lib.Configuration;
 using IniConfig.Editor.lib.Contracts;
 using IniConfig.Editor.lib.Helpers;
 using IniConfig.Editor.lib.Models;
+using IniConfig.Editor.lib.Resources;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
 
@@ -57,12 +58,15 @@ namespace IniConfig.Editor.lib.ViewModels
 
         void OnLoad()
         {
+            var fileFilter = string.Format("{0} (*.ini)|*.ini|{1} (*.*)|*.*",
+                                           Strings.MenuBarViewModel_ConfigurationFiles,
+                                           Strings.MenuBarViewModel_AllFiles);
             var obtainFileSettings = new ObtainFileSettings
                 {
                     LastLocation = _appConfiguration.LastOpenLocation,
                     FileFilterIndex = _appConfiguration.LastFilterIndex,
-                    FileFilter = "Configuration files (*.ini)|*.ini|All files (*.*)|*.*",
-                    DialogTitle = "Select a configuration file...",
+                    FileFilter = fileFilter,
+                    DialogTitle = Strings.MenuBarViewModel_SelectConfigurationFile,
                 };
 
             var fileName = FileSourceProvider.ObtainFileName(obtainFileSettings);

@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Shell;
 using IniConfig.Editor.lib.Configuration;
 using IniConfig.Editor.lib.Contracts;
-using IniConfig.Editor.lib.Helpers;
+using Microsoft.Practices.Unity;
 
 namespace IniConfig.Editor.lib.ViewModels
 {
@@ -17,6 +17,9 @@ namespace IniConfig.Editor.lib.ViewModels
             _appConfiguration = appConfiguration;
             FillRecentFiles();
         }
+
+        [Dependency]
+        public MenuBarViewModel MenuBar { get; set; }
 
         void FillRecentFiles()
         {
@@ -35,5 +38,6 @@ namespace IniConfig.Editor.lib.ViewModels
             }
             JumpList.SetJumpList(Application.Current, jumpList);
         }
+
     }
 }
