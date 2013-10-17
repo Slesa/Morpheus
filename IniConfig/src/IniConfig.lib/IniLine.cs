@@ -18,6 +18,16 @@
             }
         }
 
+        public string Section
+        {
+            get
+            {
+                var start = Content.IndexOf('[');
+                var end = Content.IndexOf(']');
+                return (start>=0) && (end>start) ? Content.Substring(start+1, end-1) : string.Empty;
+            }
+        }
+
         public bool IsComment
         {
             get { return Content.Trim().StartsWith(";"); }

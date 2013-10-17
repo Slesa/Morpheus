@@ -466,11 +466,6 @@
 
     public:
         void		clear();
-        void		load(const QString& file)
-        {
-            clear();
-            append(file, true);
-        }
         void		append(const QString& file, bool orig);
         void		append(TInifile& file, bool orig);
         void		save(const QString& file=QString::null);
@@ -542,28 +537,16 @@ namespace Basics
 
     void TInifile::append(const QString& file, bool save/*=false*/)
     {
-        InifileAssert(file!=QString::null, errParameter, errIniAppend);
-        m_Filename = file;
-
-        if( !QFile::exists(file) )
-            return;
-        TFile fh(file);
-        fh.open(IO_ReadOnly);
-        QTextStream st(&fh);
-
         QString tmp;
         TSection* sect = NULL;
 
-//		while( !st.atEnd() )
         for( ;; )
         {
             tmp = st.readLine();
-            if( tmp.isEmpty() && st.atEnd() )
-                break;
-            TLine* line = new TLine(tmp,save);
-            InifileAssert(line!=NULL, errMemory, errIniAppend);
 
+            TLine* line = new TLine(tmp,save);
             m_Lines.append(line);
+
             if( line->isInclude() )
             {
                 append(line->getInclude(), false);
@@ -575,7 +558,6 @@ namespace Basics
                 if( sect )
                     continue;
                 sect = new TSection(m_Lines, line);
-                InifileAssert(sect!=NULL, errMemory, errIniAppend);
                 m_Sects.insert(sect->getName(), sect);
                 continue;
             }
@@ -592,46 +574,6 @@ namespace Basics
         }
     }
 
-    void TInifile::append(TInifile& file, bool save/*=false*/)
-    {
-        TLineIt it(file.m_Lines);
-        for( TLine* line=it.toFirst(); line; line=++it )
-        {
-            TLine* l = new TLine(line->getLine(), save);
-            InifileAssert(l!=NULL, errMemory, errIniAppend);
-            m_Lines.append(l);
-        }
-    }
-
-    bool TInifile::isSection(const QString& line)
-    {
-        int len = line.length();
-        for( int i=0; i<len; i++ )
-        {
-            if( line[i]=='[' )
-            {
-                if( line.find(']', i+1)==-1 )
-                    return false;
-                return true;
-            }
-            if( line[i]!=' ' || line[i]!='\t' )
-                break;
-        }
-        return false;
-    }
-
-    bool TInifile::isComment(const QString& line)
-    {
-        int len = strlen(line);
-        for( int i=0; i<len; i++ )
-        {
-            if( line[i]==';' )
-                return true;
-            if( line[i]!=' ' || line[i]!='\t' )
-                break;
-        }
-        return false;
-    }
 
     bool TInifile::isEntry(const QString& line)
     {
@@ -775,12 +717,6 @@ namespace Basics
         line = left.stripWhiteSpace() + " = " + value.stripWhiteSpace();
     }
 
-    QString TInifile::setInclude(const QString& include)
-    {
-        QString str;
-        str = "<" + include + ">";
-        return str;
-    }
 
     bool TInifile::delSection(const QString& name)
     {

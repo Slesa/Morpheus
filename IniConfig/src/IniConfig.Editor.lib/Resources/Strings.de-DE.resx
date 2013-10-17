@@ -135,6 +135,9 @@
   <data name="MenuBarView_QuitCommandTooltip" xml:space="preserve">
     <value>Programm beenden</value>
   </data>
+  <data name="MenuBarView_RecentFilesTooltip" xml:space="preserve">
+    <value>Zuletzt benutzte Konfigurationsdatei laden</value>
+  </data>
   <data name="MenuBarView_SaveAsCommandTooltip" xml:space="preserve">
     <value>Aktuelle Konfiguration in anderer Konfigurationsdatei speichern</value>
   </data>
