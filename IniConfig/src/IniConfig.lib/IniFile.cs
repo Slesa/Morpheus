@@ -38,16 +38,21 @@ namespace IniConfig.lib
 
         internal void LoadFromText(string buffer)
         {
+            var remarks = new List<string>();
             IniSection currentSection = null;
 
             foreach (var line in buffer.Split('\n'))
             {
                 var iniLine = new IniLine(line);
                 Lines.Add(iniLine);
-
+                if (iniLine.IsEmpty)
+                {
+                    remarks.Clear();
+                    continue;
+                }
                 if (iniLine.IsComment)
                 {
-                    //currentSection.Remarks.Add(line);
+                    remarks.Add(iniLine.Comment);
                     continue;
                 }
                 if (iniLine.IsSection)
@@ -55,6 +60,8 @@ namespace IniConfig.lib
                     var sectionName = iniLine.Section;
                     if (Sections.Any(x=>x.Name.Equals(sectionName))) continue;
                     currentSection = new IniSection() {Name = sectionName};
+                    currentSection.Remarks.AddRange(remarks);
+                    remarks.Clear();
                     Sections.Add(currentSection);
                 }
             }

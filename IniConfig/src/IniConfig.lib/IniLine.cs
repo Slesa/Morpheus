@@ -9,6 +9,12 @@
 
         public string Content { get; set; }
 
+
+        public bool IsEmpty
+        {
+            get { return string.IsNullOrWhiteSpace(Content); }
+        }
+
         public bool IsSection
         {
             get
@@ -31,6 +37,15 @@
         public bool IsComment
         {
             get { return Content.Trim().StartsWith(";"); }
+        }
+
+        public string Comment
+        {
+            get
+            {
+                var start = Content.IndexOf(';');
+                return (start >= 0) ? Content.Substring(start + 1).Trim() : string.Empty;
+            }
         }
     }
 }

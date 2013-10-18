@@ -552,54 +552,15 @@ namespace Basics
                 append(line->getInclude(), false);
                 continue;
             }
-            if( line->isSection() )
-            {
-                sect = m_Sects.find(line->getSection());
-                if( sect )
-                    continue;
-                sect = new TSection(m_Lines, line);
-                m_Sects.insert(sect->getName(), sect);
-                continue;
-            }
             if( line->isEntry() || line->isComment() )
             {
                 if( !sect )
                     continue;
-//				TEntry* entry = sect->findEntry(line->getEntry());
-//				if( !entry )
-                    sect->addEntry(line);
-//				else
-//					entry->setValue(line->getValue());
+                sect->addEntry(line);
             }
         }
     }
 
-
-    bool TInifile::isEntry(const QString& line)
-    {
-        int len = line.length();
-        for( int i=0; i<len; i++ )
-        {
-            if( line[i]==';' || line[i]=='[' || line[i]=='<' )
-                return false;
-            if( line[i]!=' ' && line[i]!='\t' )
-                break;
-        }
-        return true;
-    }
-
-    bool TInifile::isEmpty(const QString& line)
-    {
-        int len = line.length();
-        if( len==0 )
-            return true;
-        for( int i=0; i<len; i++ )
-        {
-            if( line[i]!=' ' || line[i]!='\t' )
-                return false;
-        }
-        return true;
-    }
 
     bool TInifile::isInclude(const QString& line)
     {
@@ -645,16 +606,6 @@ namespace Basics
             return comment;
         QString str = "; ";
         return str + comment;
-    }
-
-    QString TInifile::getSection(const QString& line)
-    {
-        int left = line.find('[');
-        InifileAssert(left>=0, errSyntax, errIniGetsection);
-        int right = line.find(']', left);
-        InifileAssert(right>=0, errSyntax, errIniGetsection);
-        QString ret = line.mid(left+1, right-1);
-        return ret;
     }
 
     QString	TInifile::setSection(const QString& section)
