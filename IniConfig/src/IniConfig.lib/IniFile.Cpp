@@ -589,15 +589,6 @@ namespace Basics
         return line.mid(left+1, right-1);
     }
 
-    QString TInifile::getComment(const QString& line)
-    {
-        if( line.isEmpty() )
-            return QString();
-        if( line[0]!=';' && line[0]!='#' )
-            return QString();
-        return line.right(1);
-    }
-
     QString TInifile::setComment(const QString& comment)
     {
         if( comment.isEmpty() )
