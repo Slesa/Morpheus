@@ -141,7 +141,7 @@ namespace IniConfig.lib.Specs
     [Subject(typeof (IniElement))]
     class When_reading_ini_element_as_double_for_positive : WithSubject<IniElement>
     {
-        Establish context = () => Subject.Value = "42,42";
+        Establish context = () => Subject.Value = "42.42";
         Because of = () => _value = Subject.AsDouble;
         It should_mark_as_double = () => Subject.IsDouble.ShouldBeTrue();
         It should_return_value = () => _value.ShouldEqual(42.42);
@@ -151,7 +151,7 @@ namespace IniConfig.lib.Specs
     [Subject(typeof (IniElement))]
     class When_reading_ini_element_as_double_for_negative : WithSubject<IniElement>
     {
-        Establish context = () => Subject.Value = "-42,42";
+        Establish context = () => Subject.Value = "-42.42";
         Because of = () => _value = Subject.AsDouble;
         It should_mark_as_double = () => Subject.IsDouble.ShouldBeTrue();
         It should_return_value = () => _value.ShouldEqual(-42.42);
@@ -193,7 +193,7 @@ namespace IniConfig.lib.Specs
     [Subject(typeof (IniElement))]
     class When_reading_ini_element_as_decimal_for_positive : WithSubject<IniElement>
     {
-        Establish context = () => Subject.Value = "42,42";
+        Establish context = () => Subject.Value = "42.42";
         Because of = () => _value = Subject.AsDecimal;
         It should_mark_as_decimal = () => Subject.IsDecimal.ShouldBeTrue();
         It should_return_value = () => _value.ShouldEqual(42.42m);
@@ -203,7 +203,7 @@ namespace IniConfig.lib.Specs
     [Subject(typeof (IniElement))]
     class When_reading_ini_element_as_decimal_for_negative : WithSubject<IniElement>
     {
-        Establish context = () => Subject.Value = "-42,42";
+        Establish context = () => Subject.Value = "-42.42";
         Because of = () => _value = Subject.AsDecimal;
         It should_mark_as_decimal = () => Subject.IsDecimal.ShouldBeTrue();
         It should_return_value = () => _value.ShouldEqual(-42.42m);

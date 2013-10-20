@@ -72,7 +72,7 @@ namespace IniConfig.Editor.lib.ViewModels
             var fileName = FileSourceProvider.ObtainFileName(obtainFileSettings);
             if (string.IsNullOrEmpty(fileName)) return;
 
-            Document = new Document {FilePath = fileName};
+            Document = new Document(fileName);
 
             _appConfiguration.LastOpenLocation = obtainFileSettings.LastLocation;
             _appConfiguration.LastFilterIndex = obtainFileSettings.FileFilterIndex;

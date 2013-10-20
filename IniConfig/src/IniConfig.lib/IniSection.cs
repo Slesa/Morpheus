@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace IniConfig.lib
 {
@@ -13,9 +14,23 @@ namespace IniConfig.lib
         }
 
         List<IniElement> _elements;
-        public List<IniElement> Elements
+        public IEnumerable<IniElement> Elements
         {
             get { return _elements ?? (_elements = new List<IniElement>()); }
+        }
+
+        public IniElement FindElement(string name)
+        {
+            return Elements.FirstOrDefault(s => s.Attribute.ToLower().Equals(name.ToLower()));
+        }
+
+        public void AddElement(string attribute, string value)
+        {
+            var element = FindElement(attribute);
+            if (element != null)
+                element.Value = value;
+            else
+                ((List<IniElement>)Elements).Add(new IniElement(attribute, value));
         }
     }
 }

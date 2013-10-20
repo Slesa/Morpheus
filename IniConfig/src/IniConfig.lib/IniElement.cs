@@ -5,6 +5,12 @@ namespace IniConfig.lib
 {
     public class IniElement
     {
+        public IniElement(string entry, string value)
+        {
+            Attribute = entry;
+            Value = value;
+        }
+
         public string Attribute { get; set; }
         public string Value { get; set; }
 
@@ -60,7 +66,7 @@ namespace IniConfig.lib
             get
             {
                 double result;
-                return double.TryParse(Value, out result) ? result : 0.0;
+                return double.TryParse(Value, NumberStyles.Any, CultureInfo.InvariantCulture, out result) ? result : 0.0;
             }
             set { Value = value.ToString(CultureInfo.InvariantCulture); }
         }
@@ -79,7 +85,7 @@ namespace IniConfig.lib
             get
             {
                 decimal result;
-                return decimal.TryParse(Value, out result) ? result : 0.0m;
+                return decimal.TryParse(Value, NumberStyles.Any, CultureInfo.InvariantCulture, out result) ? result : 0.0m;
             }
             set { Value = value.ToString(CultureInfo.InvariantCulture); }
         }

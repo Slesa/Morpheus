@@ -28,6 +28,10 @@ namespace IniConfig.lib
             get { return _sections ?? (_sections = new List<IniSection>()); }
         }
 
+        public IniSection FindSection(string name)
+        {
+            return Sections.FirstOrDefault(s => s.Name.ToLower().Equals(name.ToLower()));
+        }
 
         void Load(string fileName)
         {
@@ -58,11 +62,19 @@ namespace IniConfig.lib
                 if (iniLine.IsSection)
                 {
                     var sectionName = iniLine.Section;
-                    if (Sections.Any(x=>x.Name.Equals(sectionName))) continue;
-                    currentSection = new IniSection() {Name = sectionName};
-                    currentSection.Remarks.AddRange(remarks);
+                    currentSection = FindSection(sectionName);
+                    if (currentSection == null)
+                    {
+                        currentSection = new IniSection() {Name = sectionName};
+                        currentSection.Remarks.AddRange(remarks);
+                        Sections.Add(currentSection);
+                    }
                     remarks.Clear();
-                    Sections.Add(currentSection);
+                    continue;
+                }
+                if (currentSection != null)
+                {
+                    currentSection.AddElement(iniLine.Entry, iniLine.Value);
                 }
             }
         }
