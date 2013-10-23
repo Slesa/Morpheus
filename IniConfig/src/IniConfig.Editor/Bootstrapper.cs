@@ -25,6 +25,7 @@ namespace IniConfig.Editor
             var regionManager = (IRegionManager)Container.Resolve(typeof(IRegionManager));
             regionManager.RegisterViewWithRegion(Regions.StatusBarRegion, typeof(StatusBarView));
             regionManager.RegisterViewWithRegion(Regions.MenuBarRegion, typeof(MenuBarView));
+            regionManager.RegisterViewWithRegion(Regions.DocumentRegion, typeof(DocumentView));
 
             Application.Current.MainWindow = (Window) Shell;
             Application.Current.MainWindow.Show();
@@ -47,6 +48,7 @@ namespace IniConfig.Editor
         {
             RegisterTypeIfMissing(typeof(ShellViewModel), typeof(ShellViewModel), true);
             RegisterTypeIfMissing(typeof(MenuBarViewModel), typeof(MenuBarViewModel), true);
+            RegisterTypeIfMissing(typeof(DocumentViewModel), typeof(DocumentViewModel), true);
         }
     }
 }

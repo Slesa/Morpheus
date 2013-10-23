@@ -69,6 +69,7 @@
     <Compile Include="Configuration\IProvideSettings.cs" />
     <Compile Include="Configuration\SettingsProvider.cs" />
     <Compile Include="Contracts\IProvideFileSource.cs" />
+    <Compile Include="DesignTime\DesignDocumentViewModel.cs" />
     <Compile Include="DesignTime\DesignTimeMenuBarViewModel.cs" />
     <Compile Include="DesignTime\DesignTimeStatusBarViewModel.cs" />
     <Compile Include="Configuration\IProvideRecentFiles.cs" />
@@ -92,9 +93,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DocumentViewModel.cs" />
     <Compile Include="ViewModels\MenuBarViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\StatusBarViewModel.cs" />
+    <Compile Include="Views\DocumentView.xaml.cs">
+      <DependentUpon>DocumentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MenuBarView.xaml.cs">
       <DependentUpon>MenuBarView.xaml</DependentUpon>
     </Compile>
@@ -115,6 +120,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\ImageResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DocumentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

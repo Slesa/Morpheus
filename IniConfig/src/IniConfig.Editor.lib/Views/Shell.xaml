@@ -27,7 +27,7 @@
         
         <ContentControl DockPanel.Dock="Top" regions:RegionManager.RegionName="{x:Static local:Regions.MenuBarRegion}"/>
         <ContentControl DockPanel.Dock="Bottom" regions:RegionManager.RegionName="{x:Static local:Regions.StatusBarRegion}"/>
-        <ContentControl regions:RegionManager.RegionName="{x:Static local:Regions.MainRegion}"/>
+        <ContentControl regions:RegionManager.RegionName="{x:Static local:Regions.DocumentRegion}"/>
         
     </DockPanel>
 </Window>

@@ -33,5 +33,6 @@ namespace IniConfig.Editor.lib.Helpers
     public class ShellViewModelLocator : ViewModelLocator<ShellViewModel> { }
     public class MenuBarViewModelLocator : ViewModelLocator<MenuBarViewModel> { }
     public class StatusBarViewModelLocator : ViewModelLocator<StatusBarViewModel> { }
+    public class DocumentViewModelLocator : ViewModelLocator<DocumentViewModel> { }
 
 }

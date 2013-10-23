@@ -13,7 +13,7 @@ namespace IniConfig.Editor.lib.Models
             _iniFile = IniFile.LoadFrom(filePath);
         }
 
-string _filePath;
+        string _filePath;
         public string FilePath
         {
             get { return _filePath; }
