@@ -13,14 +13,16 @@ namespace IniConfig.Console
 
     class ConsoleOutput : IOutput
     {
-        public void WriteLine(string text)
+        public IOutput WriteLine(string text)
         {
             System.Console.WriteLine(text);
+            return this;
         }
 
-        public void Write(string text)
+        public IOutput Write(string text)
         {
             System.Console.Write(text);
+            return this;
         }
     }
 

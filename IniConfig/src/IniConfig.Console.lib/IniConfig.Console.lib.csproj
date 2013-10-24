@@ -35,9 +35,13 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppEnvironment.cs" />
+    <Compile Include="Commands\LoadCommand.cs" />
     <Compile Include="Contracts\IInput.cs" />
     <Compile Include="Contracts\IOutput.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="MainMenu.cs" />
+    <Compile Include="Contracts\IMenuCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
