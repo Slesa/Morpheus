@@ -35,6 +35,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="AppEnvironment.cs" />
     <Compile Include="Commands\LoadCommand.cs" />
     <Compile Include="Contracts\IInput.cs" />

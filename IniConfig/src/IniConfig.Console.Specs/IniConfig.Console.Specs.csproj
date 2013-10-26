@@ -50,16 +50,29 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="LoadCommandSpecs.cs" />
     <Compile Include="MainMenuSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecOutput.cs" />
+    <Compile Include="SpecTestFile.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="data\config.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IniConfig.Console.lib\IniConfig.Console.lib.csproj">
       <Project>{ad5a823c-379c-4d05-995d-f755bb1bc38b}</Project>
       <Name>IniConfig.Console.lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IniConfig.lib\IniConfig.lib.csproj">
+      <Project>{9e96e435-b678-4e84-b4d1-eb63bb9dd00f}</Project>
+      <Name>IniConfig.lib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

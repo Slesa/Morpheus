@@ -65,6 +65,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Configuration\AppConfiguration.cs" />
     <Compile Include="Configuration\IProvideSettings.cs" />
     <Compile Include="Configuration\SettingsProvider.cs" />

@@ -1,4 +1,5 @@
 ﻿using IniConfig.Console.lib.Contracts;
+using IniConfig.lib;
 
 namespace IniConfig.Console.lib
 {
@@ -14,5 +15,6 @@ namespace IniConfig.Console.lib
         public IOutput Out { get; set; }
         public string FileName { get; set; }
         internal bool InTestMode { get; set; }
+        public IniFile IniFile { get; set; }
     }
 }
