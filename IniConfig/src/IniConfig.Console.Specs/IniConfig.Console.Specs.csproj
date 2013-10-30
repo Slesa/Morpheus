@@ -53,6 +53,7 @@
     <Compile Include="..\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="CreateSectionCommandSpecs.cs" />
     <Compile Include="ListEntriesCommandSpecs.cs" />
     <Compile Include="ListSectionsCommandSpecs.cs" />
     <Compile Include="LoadCommandSpecs.cs" />

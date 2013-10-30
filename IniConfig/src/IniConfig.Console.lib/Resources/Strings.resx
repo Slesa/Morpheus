@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateSectionCommand_Description" xml:space="preserve">
+    <value>Create a new section</value>
+  </data>
   <data name="Error_DirectoryNotFound" xml:space="preserve">
     <value>Part of the file path not found</value>
   </data>
@@ -139,6 +142,9 @@
     <value>No config file loaded</value>
   </data>
   <data name="Warning_NoFilenameGiven" xml:space="preserve">
-    <value>No filename given</value>
+    <value>No file name given</value>
+  </data>
+  <data name="Warning_NoSectionNameGiven" xml:space="preserve">
+    <value>No section name given</value>
   </data>
 </root>

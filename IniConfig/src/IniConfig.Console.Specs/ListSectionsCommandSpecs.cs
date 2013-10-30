@@ -39,7 +39,7 @@ namespace IniConfig.Console.Specs
                 Environment.IniFile = _inifile;
             };
         Because of = () => Subject.Execute(_tokens, Environment);
-        It should_not_print = () => OutputLines/*.Where(x=>!string.IsNullOrEmpty(x))*/.ShouldBeEmpty();
+        It should_not_print = () => OutputLines.ShouldBeEmpty();
         static List<string> _tokens;
         static IIniFile _inifile;
     }
@@ -53,9 +53,9 @@ namespace IniConfig.Console.Specs
                 _inifile = An<IIniFile>();
                 _inifile.WhenToldTo(x=>x.Sections).Return(new List<IniSection>
                     {
-                        new IniSection{Name="Log"},
-                        new IniSection{Name="Printer"},
-                        new IniSection{Name="Display"},
+                        IniSection.CreateSection("Log"),
+                        IniSection.CreateSection("Printer"),
+                        IniSection.CreateSection("Display"),
                     });
                 _tokens = new List<string>();
                 Environment.IniFile = _inifile;
@@ -64,9 +64,40 @@ namespace IniConfig.Console.Specs
         Because of = () => Subject.Execute(_tokens, Environment);
 
         It should_print_sections = () => OutputLines.Count().ShouldEqual(4);
-        It should_print_log_section = () => OutputLines.FirstOrDefault(x=>x.Equals("[Log]")).ShouldNotBeNull();
-        It should_print_printer_section = () => OutputLines.FirstOrDefault(x=>x.Equals("[Printer]")).ShouldNotBeNull();
-        It should_print_display_section = () => OutputLines.FirstOrDefault(x=>x.Equals("[Display]")).ShouldNotBeNull();
+        It should_print_log_section = () => OutputLines[0].ShouldEqual("[Log]");
+        It should_print_printer_section = () => OutputLines[1].ShouldEqual("[Printer]");
+        It should_print_display_section = () => OutputLines[2].ShouldEqual("[Display]");
+        
+        static List<string> _tokens;
+        static IIniFile _inifile;
+    }
+
+
+    [Subject(typeof(ListSectionsCommand))]
+    internal class When_executing_list_sections_command_with_config_file_and_remarks : ListSectionsCommandSpecsBase
+    {
+        Establish context = () =>
+            {
+                _inifile = An<IIniFile>();
+                _inifile.WhenToldTo(x=>x.Sections).Return(new List<IniSection>
+                    {
+                        IniSection.CreateSection("Log").AddRemark("Remark 1a").AddRemark("Remark 1b"),
+                        IniSection.CreateSection("Printer"),
+                        IniSection.CreateSection("Display").AddRemark("Remarks"),
+                        });
+                _tokens = new List<string>();
+                Environment.IniFile = _inifile;
+            };
+
+        Because of = () => Subject.Execute(_tokens, Environment);
+
+        It should_print_sections = () => OutputLines.Count().ShouldEqual(7);
+        It should_print_log_remark1 = () => OutputLines[0].ShouldEqual("// Remark 1a");
+        It should_print_log_remark2 = () => OutputLines[1].ShouldEqual("// Remark 1b");
+        It should_print_log_section = () => OutputLines[2].ShouldEqual("[Log]");
+        It should_print_printer_section = () => OutputLines[3].ShouldEqual("[Printer]");
+        It should_print_display_remark = () => OutputLines[4].ShouldEqual("// Remarks");
+        It should_print_display_section = () => OutputLines[5].ShouldEqual("[Display]");
         
         static List<string> _tokens;
         static IIniFile _inifile;

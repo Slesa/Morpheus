@@ -61,6 +61,15 @@ namespace IniConfig.Console.lib.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a new section.
+        /// </summary>
+        public static string CreateSectionCommand_Description {
+            get {
+                return ResourceManager.GetString("CreateSectionCommand_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Part of the file path not found.
         /// </summary>
         public static string Error_DirectoryNotFound {
@@ -124,11 +133,20 @@ namespace IniConfig.Console.lib.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No filename given.
+        ///   Looks up a localized string similar to No file name given.
         /// </summary>
         public static string Warning_NoFilenameGiven {
             get {
                 return ResourceManager.GetString("Warning_NoFilenameGiven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No section name given.
+        /// </summary>
+        public static string Warning_NoSectionNameGiven {
+            get {
+                return ResourceManager.GetString("Warning_NoSectionNameGiven", resourceCulture);
             }
         }
     }

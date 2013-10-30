@@ -39,6 +39,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="AppEnvironment.cs" />
+    <Compile Include="Commands\CreateSectionCommand.cs" />
     <Compile Include="Commands\ListEntriesCommand.cs" />
     <Compile Include="Commands\ListSectionsCommand.cs" />
     <Compile Include="Commands\LoadCommand.cs" />

@@ -5,12 +5,23 @@ namespace IniConfig.lib
 {
     public class IniSection
     {
+        public static IniSection CreateSection(string name)
+        {
+            return new IniSection {Name = name};
+        }
+
         public string Name { get; set; }
 
         List<string> _remarks;
         public List<string> Remarks
         {
             get { return _remarks ?? (_remarks = new List<string>()); }
+        }
+
+        public IniSection AddRemark(string remark)
+        {
+            Remarks.Add(remark);
+            return this;
         }
 
         List<IniElement> _elements;

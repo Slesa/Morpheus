@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IniConfig.Console.Specs;
 using IniConfig.Editor.lib.Configuration;
 using IniConfig.Editor.lib.Helpers;
 using IniConfig.Editor.lib.ViewModels;
@@ -57,16 +58,21 @@ namespace IniConfig.Editor.specs.ViewModels
     {
         Establish context = () =>
             {
+                _specOutput = new SpecTestFile(typeof (When_loading_file_into_menubar_viewmodel));
+                _specOutput.Create();
+
                 var fileSourceProvider = An<IProvideFileSource>();
-                fileSourceProvider.WhenToldTo(x=>x.ObtainFileName(Param.IsAny<ObtainFileSettings>())).Return(FilePath);
+                fileSourceProvider.WhenToldTo(x=>x.ObtainFileName(Param.IsAny<ObtainFileSettings>())).Return(_specOutput.FileName);
 
                 _subject = new MenuBarViewModel(AppConfiguration) {FileSourceProvider = fileSourceProvider};
             };
 
+        Cleanup teardown = () => _specOutput.Remove();
+
         Because of = () => _subject.LoadCommand.Execute(null);
 
         It should_have_active_document = () => _subject.Document.ShouldNotBeNull();
-        It should_have_document_loaded = () => _subject.Document.FilePath.ShouldEqual(FilePath);
+        It should_have_document_loaded = () => _subject.Document.FilePath.ShouldEqual(_specOutput.FileName);
         It should_have_recent_files = () => _subject.RecentFiles.Count.ShouldEqual(1);
 
         It should_allow_new_command = () => _subject.NewCommand.CanExecute(null).ShouldBeTrue();
@@ -76,7 +82,7 @@ namespace IniConfig.Editor.specs.ViewModels
         It should_allow_quit_command = () => _subject.QuitCommand.CanExecute(null).ShouldBeTrue();
 
         static MenuBarViewModel _subject;
-        const string FilePath = "file.txt";
+        static SpecTestFile _specOutput;
     }
 
 
