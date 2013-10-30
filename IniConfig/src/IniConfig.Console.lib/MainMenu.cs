@@ -60,6 +60,9 @@ namespace IniConfig.Console.lib
         void RegisterCommands()
         {
             _commands.Add(new LoadCommand());
+            _commands.Add(new SaveCommand());
+            _commands.Add(new ListSectionsCommand());
+            _commands.Add(new ListEntriesCommand());
         }
 
 
@@ -70,7 +73,7 @@ namespace IniConfig.Console.lib
 
         void PrintPrompt()
         {
-            var fileName = string.IsNullOrEmpty(_environment.FileName) ? "<no file>" : _environment.FileName;
+            var fileName = _environment.IniFile == null ? "<no file>" : _environment.IniFile.FileName;
             _environment.Out.Write(string.Format("[{0}] ? ", fileName));
         }
 

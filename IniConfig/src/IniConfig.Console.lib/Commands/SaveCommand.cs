@@ -1,19 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using IniConfig.Console.lib.Contracts;
-using IniConfig.Console.lib.Extensions;
 using IniConfig.Console.lib.Resources;
-using IniConfig.lib;
 
 namespace IniConfig.Console.lib.Commands
 {
-    public class LoadCommand : IMenuCommand
+    public class SaveCommand : IMenuCommand
     {
-        public LoadCommand()
+        public SaveCommand()
         {
-            Shortcut = "l";
-            Description = Strings.LoadCommand_Description;
+            Shortcut = "s";
+            Description = Strings.SaveCommand_Description;
         }
 
         public string Shortcut { get; private set; }
@@ -21,9 +18,10 @@ namespace IniConfig.Console.lib.Commands
 
         public List<string> Execute(List<string> nextToken, AppEnvironment environment)
         {
-            var fileName = nextToken.Head();
-            var result = nextToken.Tail().ToList();
-            
+            //var fileName = nextToken.Head();
+            var result = nextToken; //.Tail().ToList();
+
+/*
             if (environment.InTestMode && fileName == "q")
             {
                 result.Add(fileName);
@@ -32,23 +30,25 @@ namespace IniConfig.Console.lib.Commands
 
             if (string.IsNullOrEmpty(fileName))
             {
-                environment.Out.WriteLine(Strings.Warning_NoFilenameGiven);
+                environment.Out.WriteLine("No filename given");
                 return result;
             }
+*/
 
             try
             {
-                var inifile = IniFile.LoadFrom(fileName);
-                environment.IniFile = inifile;
+                //environment.IniFile.Save();
             }
+/*
             catch (FileNotFoundException)
             {
-                environment.Out.WriteLine(Strings.Error_FileNotFound);
+                environment.Out.WriteLine("File not found");
                 return result;
             }
+*/
             catch (DirectoryNotFoundException)
             {
-                environment.Out.WriteLine(Strings.Error_DirectoryNotFound);
+                environment.Out.WriteLine("Part of the file path not found");
                 return result;
             }
             return result;

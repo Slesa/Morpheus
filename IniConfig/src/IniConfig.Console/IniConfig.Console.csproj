@@ -51,6 +51,10 @@
       <Project>{ad5a823c-379c-4d05-995d-f755bb1bc38b}</Project>
       <Name>IniConfig.Console.lib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IniConfig.lib\IniConfig.lib.csproj">
+      <Project>{9e96e435-b678-4e84-b4d1-eb63bb9dd00f}</Project>
+      <Name>IniConfig.lib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

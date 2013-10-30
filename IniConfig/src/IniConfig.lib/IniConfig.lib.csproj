@@ -39,6 +39,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="AppVersion.cs" />
+    <Compile Include="IIniFile.cs" />
     <Compile Include="IniElement.cs" />
     <Compile Include="IniFile.cs" />
     <Compile Include="IniLine.cs" />
@@ -46,6 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="data\TestFile.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

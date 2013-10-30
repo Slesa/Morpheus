@@ -13,8 +13,7 @@ namespace IniConfig.Console.lib
 
         public IInput In { get; set; }
         public IOutput Out { get; set; }
-        public string FileName { get; set; }
         internal bool InTestMode { get; set; }
-        public IniFile IniFile { get; set; }
+        public IIniFile IniFile { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using IniConfig.Console.lib;
 using IniConfig.Console.lib.Contracts;
+using IniConfig.Console.lib.Resources;
 using Machine.Fakes;
 using Machine.Specifications;
 
@@ -23,7 +24,7 @@ namespace IniConfig.Console.Specs
     {
         Establish context = () => Input.WhenToldTo(x => x.ReadLine()).Return("? q");
         Because of = () => Subject.Run();
-        It should_print_the_lines = () => OutputLines.Count().ShouldEqual(7);
+        It should_print_the_lines = () => OutputLines.Count().ShouldEqual(10);
         It should_print_current_version = () => OutputLines[0].ShouldStartWith("IniConfig console interface, version");
         It should_print_prompt = () => OutputLines[1].ShouldEqual("[<no file>] ? ");
         It should_print_syntax_line = () => OutputLines.FirstOrDefault(x => x.Contains("Syntax:")).ShouldNotBeNull();
@@ -56,7 +57,7 @@ namespace IniConfig.Console.Specs
                 Subject.Run();
                 _output = OutputLines.ToArray();
             };
-        It should_print_error = () => _output.FirstOrDefault(x => x.Equals("No filename given")).ShouldNotBeNull();
+        It should_print_error = () => _output.FirstOrDefault(x => x.Equals(Strings.Warning_NoFilenameGiven)).ShouldNotBeNull();
 
         static string[] _output;
     }

@@ -5,9 +5,8 @@ using System.Text;
 
 namespace IniConfig.lib
 {
-    public class IniFile
+    public class IniFile : IIniFile
     {
-        string _fileName;
 
         public static IniFile LoadFrom(string fileName)
         {
@@ -15,6 +14,8 @@ namespace IniConfig.lib
             iniFile.Load(fileName);
             return iniFile;
         }
+
+        public string FileName { get; private set; }
 
         List<IniLine> _lines;
         public List<IniLine> Lines
@@ -35,8 +36,8 @@ namespace IniConfig.lib
 
         void Load(string fileName)
         {
-            _fileName = fileName;
-            var buffer = File.ReadAllText(_fileName, Encoding.UTF8);
+            FileName = fileName;
+            var buffer = File.ReadAllText(FileName, Encoding.UTF8);
             LoadFromText(buffer);
         }
 
