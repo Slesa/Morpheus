@@ -22,8 +22,8 @@ namespace IniConfig.lib.Specs
         Because of = () => Subject.LoadFromText(IniText);
 
         It should_contain_the_lines = () => Subject.Lines.Count().ShouldEqual(2);
-        It should_contain_the_element = () => Subject.FindSection("Section").Elements.Count().ShouldEqual(1);
-        It should_find_the_element = () => Subject.FindSection("Section").FindElement("entry").Value.ShouldEqual("value");
+        It should_contain_the_element = () => Subject.FindSection("Section").Entries.Count().ShouldEqual(1);
+        It should_find_the_element = () => Subject.FindSection("Section").FindEntry("entry").Value.ShouldEqual("value");
     }
 
 
@@ -37,9 +37,9 @@ namespace IniConfig.lib.Specs
         Because of = () => Subject.LoadFromText(IniText);
 
         It should_contain_all_lines = () => Subject.Lines.Count().ShouldEqual(4);
-        It should_contain_the_elements = () => Subject.FindSection("Section").Elements.Count().ShouldEqual(3);
-        It should_find_first_element = () => Subject.FindSection("Section").FindElement("1").AsBool.ShouldBeTrue();
-        It should_find_second_element = () => Subject.FindSection("Section").FindElement("two").AsInt.ShouldEqual(42);
-        It should_find_third_element = () => Subject.FindSection("Section").FindElement("3three").AsDouble.ShouldEqual(42.0);
+        It should_contain_the_elements = () => Subject.FindSection("Section").Entries.Count().ShouldEqual(3);
+        It should_find_first_element = () => Subject.FindSection("Section").FindEntry("1").AsBool.ShouldBeTrue();
+        It should_find_second_element = () => Subject.FindSection("Section").FindEntry("two").AsInt.ShouldEqual(42);
+        It should_find_third_element = () => Subject.FindSection("Section").FindEntry("3three").AsDouble.ShouldEqual(42.0);
     }
 }

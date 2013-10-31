@@ -30,24 +30,24 @@ namespace IniConfig.lib
             return this;
         }
 
-        List<IniElement> _elements;
-        public IEnumerable<IniElement> Elements
+        List<IniEntry> _entries;
+        public IEnumerable<IniEntry> Entries
         {
-            get { return _elements ?? (_elements = new List<IniElement>()); }
+            get { return _entries ?? (_entries = new List<IniEntry>()); }
         }
 
-        public IniElement FindElement(string name)
+        public IniEntry FindEntry(string name)
         {
-            return Elements.FirstOrDefault(s => s.Attribute.ToLower().Equals(name.ToLower()));
+            return Entries.FirstOrDefault(s => s.Attribute.ToLower().Equals(name.ToLower()));
         }
 
         public IniSection AddElement(string attribute, string value)
         {
-            var element = FindElement(attribute);
+            var element = FindEntry(attribute);
             if (element != null)
                 element.Value = value;
             else
-                ((List<IniElement>)Elements).Add(new IniElement(attribute, value));
+                ((List<IniEntry>)Entries).Add(new IniEntry(attribute, value));
             return this;
         }
     }

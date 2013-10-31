@@ -1,7 +1,10 @@
-﻿using IniConfig.Console.lib;
+﻿using System.Collections.Generic;
+using System.Linq;
+using IniConfig.Console.lib;
 using IniConfig.Console.lib.Commands;
 using IniConfig.Console.lib.Contracts;
 using IniConfig.Console.lib.Resources;
+using IniConfig.lib;
 using Machine.Fakes;
 using Machine.Specifications;
 
@@ -13,6 +16,75 @@ namespace IniConfig.Console.Specs
         It should_have_shortcut = () => Subject.Shortcut.ShouldEqual("le");
         It should_have_description = () => Subject.Description.ShouldEqual(Strings.ListEntriesCommand_Description);
     }
+
+
+    [Subject(typeof(ListEntriesCommand))]
+    internal class When_executing_list_entries_command_without_config_file : ListEntriesCommandSpecsBase
+    {
+        Establish context = () => _tokens = new List<string>();
+        Because of = () => Subject.Execute(_tokens, Environment);
+        It should_print_error = () => OutputLines.FirstOrDefault(x => x.Equals(Strings.Warning_NoFileLoaded)).ShouldNotBeNull();
+        static List<string> _tokens;
+    }
+
+
+    [Subject(typeof(ListEntriesCommand))]
+    internal class When_executing_list_entries_command_without_section_name : ListEntriesCommandSpecsBase
+    {
+        Establish context = () =>
+            {
+                _tokens = new List<string>();
+                _inifile = An<IIniFile>();
+                Environment.IniFile = _inifile;
+            };
+        Because of = () => Subject.Execute(_tokens, Environment);
+        It should_print_error = () => OutputLines.FirstOrDefault(x => x.Equals(Strings.Warning_NoSectionNameGiven)).ShouldNotBeNull();
+        static List<string> _tokens;
+        static IIniFile _inifile;
+    }
+
+
+    [Subject(typeof(ListEntriesCommand))]
+    internal class When_executing_list_entries_command_with_empty_config_file : ListEntriesCommandSpecsBase
+    {
+        Establish context = () =>
+        {
+            _tokens = new List<string>{"Section"};
+            _inifile = An<IIniFile>();
+            _inifile.WhenToldTo(x => x.Sections).Return(new List<IniSection>());
+            Environment.IniFile = _inifile;
+        };
+        Because of = () => Subject.Execute(_tokens, Environment);
+        It should_print_error = () => OutputLines.FirstOrDefault(x => x.Equals(Strings.Error_SectionNotFound)).ShouldNotBeNull();
+        static List<string> _tokens;
+        static IIniFile _inifile;
+    }
+
+
+    [Subject(typeof(ListEntriesCommand))]
+    internal class When_executing_list_entries_command_with_config_file : ListEntriesCommandSpecsBase
+    {
+        Establish context = () =>
+        {
+            _inifile = new IniFile();
+            var section = _inifile.AddSection("Log");
+            section.AddElement("Level", "All").AddElement("MaxSize", "512");
+
+            _tokens = new List<string>{"log"};
+            Environment.IniFile = _inifile;
+        };
+
+        Because of = () => Subject.Execute(_tokens, Environment);
+
+        It should_print_sections = () => OutputLines.Count().ShouldEqual(3);
+        It should_print_level_entry = () => OutputLines[0].ShouldEqual("Level = All");
+        It should_print_maxsize_entry = () => OutputLines[1].ShouldEqual("MaxSize = 512");
+
+        static List<string> _tokens;
+        static IIniFile _inifile;
+    }
+
+
 
 
     class ListEntriesCommandSpecsBase : WithFakes

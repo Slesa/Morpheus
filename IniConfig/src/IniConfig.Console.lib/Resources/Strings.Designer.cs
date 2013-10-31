@@ -88,6 +88,15 @@ namespace IniConfig.Console.lib.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Section not found.
+        /// </summary>
+        public static string Error_SectionNotFound {
+            get {
+                return ResourceManager.GetString("Error_SectionNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List entries of a section.
         /// </summary>
         public static string ListEntriesCommand_Description {

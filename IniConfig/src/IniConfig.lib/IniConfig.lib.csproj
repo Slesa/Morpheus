@@ -40,7 +40,7 @@
     </Compile>
     <Compile Include="AppVersion.cs" />
     <Compile Include="IIniFile.cs" />
-    <Compile Include="IniElement.cs" />
+    <Compile Include="IniEntry.cs" />
     <Compile Include="IniFile.cs" />
     <Compile Include="IniLine.cs" />
     <Compile Include="IniSection.cs" />

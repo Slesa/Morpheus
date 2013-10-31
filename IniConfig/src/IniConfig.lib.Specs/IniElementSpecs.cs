@@ -7,8 +7,8 @@ namespace IniConfig.lib.Specs
 {
     #region Boolean
 
-    [Subject(typeof (IniElement))]
-    class When_setting_ini_element_to_bool_for_true : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_setting_ini_element_to_bool_for_true : WithSubject<IniEntry>
     {
         Establish context = () => Subject.AsBool = true;
         Because of = () => _value = Subject.Value;
@@ -16,8 +16,8 @@ namespace IniConfig.lib.Specs
         static string _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_setting_ini_element_to_bool_for_false : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_setting_ini_element_to_bool_for_false : WithSubject<IniEntry>
     {
         Establish context = () => Subject.AsBool = false;
         Because of = () => _value = Subject.Value;
@@ -25,8 +25,8 @@ namespace IniConfig.lib.Specs
         static string _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_bool_for_true : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_bool_for_true : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "TRUe";
         Because of = () => _value = Subject.AsBool;
@@ -35,8 +35,8 @@ namespace IniConfig.lib.Specs
         static bool _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_bool_for_false : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_bool_for_false : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "False";
         Because of = () => _value = Subject.AsBool;
@@ -45,8 +45,8 @@ namespace IniConfig.lib.Specs
         static bool _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_bool_for_garbage : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_bool_for_garbage : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "garbage";
         Because of = () => _value = Subject.AsBool;
@@ -59,8 +59,8 @@ namespace IniConfig.lib.Specs
 
     #region Integer
 
-    [Subject(typeof(IniElement))]
-    class When_setting_ini_element_to_int_for_positive : WithSubject<IniElement>
+    [Subject(typeof(IniEntry))]
+    class When_setting_ini_element_to_int_for_positive : WithSubject<IniEntry>
     {
         Establish context = () => Subject.AsInt = 42;
         Because of = () => _value = Subject.Value;
@@ -68,8 +68,8 @@ namespace IniConfig.lib.Specs
         static string _value;
     }
 
-    [Subject(typeof(IniElement))]
-    class When_setting_ini_element_to_int_for_negative : WithSubject<IniElement>
+    [Subject(typeof(IniEntry))]
+    class When_setting_ini_element_to_int_for_negative : WithSubject<IniEntry>
     {
         Establish context = () => Subject.AsInt = -42;
         Because of = () => _value = Subject.Value;
@@ -77,8 +77,8 @@ namespace IniConfig.lib.Specs
         static string _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_int_for_positive : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_int_for_positive : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "42";
         Because of = () => _value = Subject.AsInt;
@@ -87,8 +87,8 @@ namespace IniConfig.lib.Specs
         static int _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_int_for_negative : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_int_for_negative : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "-42";
         Because of = () => _value = Subject.AsInt;
@@ -97,8 +97,8 @@ namespace IniConfig.lib.Specs
         static int _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_int_for_garbage : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_int_for_garbage : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "garbage";
         Because of = () => _value = Subject.AsInt;
@@ -107,8 +107,8 @@ namespace IniConfig.lib.Specs
         static int _value;
     }
 
-    [Subject(typeof(IniElement))]
-    class When_reading_ini_element_as_int_for_double : WithSubject<IniElement>
+    [Subject(typeof(IniEntry))]
+    class When_reading_ini_element_as_int_for_double : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "42.3";
         Because of = () => _value = Subject.AsInt;
@@ -120,8 +120,8 @@ namespace IniConfig.lib.Specs
 
     #region Double
 
-    [Subject(typeof(IniElement))]
-    class When_setting_ini_element_to_double_for_positive : WithSubject<IniElement>
+    [Subject(typeof(IniEntry))]
+    class When_setting_ini_element_to_double_for_positive : WithSubject<IniEntry>
     {
         Establish context = () => Subject.AsDouble = 42.42;
         Because of = () => _value = Subject.Value;
@@ -129,8 +129,8 @@ namespace IniConfig.lib.Specs
         static string _value;
     }
 
-    [Subject(typeof(IniElement))]
-    class When_setting_ini_element_to_double_for_negative : WithSubject<IniElement>
+    [Subject(typeof(IniEntry))]
+    class When_setting_ini_element_to_double_for_negative : WithSubject<IniEntry>
     {
         Establish context = () => Subject.AsDouble = -42.42;
         Because of = () => _value = Subject.Value;
@@ -138,8 +138,8 @@ namespace IniConfig.lib.Specs
         static string _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_double_for_positive : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_double_for_positive : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "42.42";
         Because of = () => _value = Subject.AsDouble;
@@ -148,8 +148,8 @@ namespace IniConfig.lib.Specs
         static double _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_double_for_negative : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_double_for_negative : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "-42.42";
         Because of = () => _value = Subject.AsDouble;
@@ -158,8 +158,8 @@ namespace IniConfig.lib.Specs
         static double _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_double_for_garbage : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_double_for_garbage : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "garbage";
         Because of = () => _value = Subject.AsDouble;
@@ -172,8 +172,8 @@ namespace IniConfig.lib.Specs
 
     #region Decimal
 
-    [Subject(typeof(IniElement))]
-    class When_setting_ini_element_to_decimal_for_positive : WithSubject<IniElement>
+    [Subject(typeof(IniEntry))]
+    class When_setting_ini_element_to_decimal_for_positive : WithSubject<IniEntry>
     {
         Establish context = () => Subject.AsDecimal = 42.42m;
         Because of = () => _value = Subject.Value;
@@ -181,8 +181,8 @@ namespace IniConfig.lib.Specs
         static string _value;
     }
 
-    [Subject(typeof(IniElement))]
-    class When_setting_ini_element_to_decimal_for_negative : WithSubject<IniElement>
+    [Subject(typeof(IniEntry))]
+    class When_setting_ini_element_to_decimal_for_negative : WithSubject<IniEntry>
     {
         Establish context = () => Subject.AsDecimal = -42.42m;
         Because of = () => _value = Subject.Value;
@@ -190,8 +190,8 @@ namespace IniConfig.lib.Specs
         static string _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_decimal_for_positive : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_decimal_for_positive : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "42.42";
         Because of = () => _value = Subject.AsDecimal;
@@ -200,8 +200,8 @@ namespace IniConfig.lib.Specs
         static decimal _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_decimal_for_negative : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_decimal_for_negative : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "-42.42";
         Because of = () => _value = Subject.AsDecimal;
@@ -210,8 +210,8 @@ namespace IniConfig.lib.Specs
         static decimal _value;
     }
 
-    [Subject(typeof (IniElement))]
-    class When_reading_ini_element_as_decimal_for_garbage : WithSubject<IniElement>
+    [Subject(typeof (IniEntry))]
+    class When_reading_ini_element_as_decimal_for_garbage : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "garbage";
         Because of = () => _value = Subject.AsDecimal;
@@ -224,8 +224,8 @@ namespace IniConfig.lib.Specs
 
     #region StringList
 
-    [Subject(typeof(IniElement))]
-    class When_setting_ini_element_to_stringlist : WithSubject<IniElement>
+    [Subject(typeof(IniEntry))]
+    class When_setting_ini_element_to_stringlist : WithSubject<IniEntry>
     {
         Establish context = () => Subject.AsStringList = new List<string> {"Dark Red", "Green", "Blue"};
         Because of = () => _value = Subject.Value;
@@ -233,8 +233,8 @@ namespace IniConfig.lib.Specs
         static string _value;
     }
 
-    [Subject(typeof(IniElement))]
-    class When_reading_ini_element_as_stringlist : WithSubject<IniElement>
+    [Subject(typeof(IniEntry))]
+    class When_reading_ini_element_as_stringlist : WithSubject<IniEntry>
     {
         Establish context = () => Subject.Value = "Dark Red;Green;Blue";
         Because of = () => _value = Subject.AsStringList;

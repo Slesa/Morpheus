@@ -126,6 +126,9 @@
   <data name="Error_FileNotFound" xml:space="preserve">
     <value>Datei nicht gefunden</value>
   </data>
+  <data name="Error_SectionNotFound" xml:space="preserve">
+    <value>Sektion nicht gefunden</value>
+  </data>
   <data name="ListEntriesCommand_Description" xml:space="preserve">
     <value>Liste Elemente einer Sektion</value>
   </data>

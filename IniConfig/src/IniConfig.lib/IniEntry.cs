@@ -3,9 +3,9 @@ using System.Globalization;
 
 namespace IniConfig.lib
 {
-    public class IniElement
+    public class IniEntry
     {
-        public IniElement(string entry, string value)
+        public IniEntry(string entry, string value)
         {
             Attribute = entry;
             Value = value;
