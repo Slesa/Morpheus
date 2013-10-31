@@ -18,20 +18,45 @@ namespace IniConfig.lib
         public string FileName { get; private set; }
 
         List<IniLine> _lines;
-        public List<IniLine> Lines
+        public IEnumerable<IniLine> Lines
         {
             get { return _lines ?? (_lines = new List<IniLine>()); }
         }
+        List<IniLine> LineList
+        {
+            get { return (List<IniLine>)Lines; }
+        }
             
         List<IniSection> _sections;
-        public List<IniSection> Sections
+        public IEnumerable<IniSection> Sections
         {
             get { return _sections ?? (_sections = new List<IniSection>()); }
+        }
+        List<IniSection> SectionList
+        {
+            get { return (List<IniSection>) Sections; }
         }
 
         public IniSection FindSection(string name)
         {
             return Sections.FirstOrDefault(s => s.Name.ToLower().Equals(name.ToLower()));
+        }
+
+        public IniSection AddSection(string name, IEnumerable<string> remarks = null)
+        {
+            var section = IniSection.CreateSection(name);
+            SectionList.Add(section);
+
+            if (remarks != null)
+            {
+                foreach (var remark in remarks)
+                {
+                    LineList.Add(new IniLine {Comment = remark});
+                    section = section.AddRemark(remark);
+                }
+            }
+            LineList.Add(new IniLine{Section = name});
+            return section;
         }
 
         void Load(string fileName)
@@ -49,7 +74,7 @@ namespace IniConfig.lib
             foreach (var line in buffer.Split('\n'))
             {
                 var iniLine = new IniLine(line);
-                Lines.Add(iniLine);
+                LineList.Add(iniLine);
                 if (iniLine.IsEmpty)
                 {
                     remarks.Clear();
@@ -66,9 +91,8 @@ namespace IniConfig.lib
                     currentSection = FindSection(sectionName);
                     if (currentSection == null)
                     {
-                        currentSection = new IniSection() {Name = sectionName};
-                        currentSection.Remarks.AddRange(remarks);
-                        Sections.Add(currentSection);
+                        currentSection = IniSection.CreateSection(sectionName).AddRemarks(remarks);
+                        SectionList.Add(currentSection);
                     }
                     remarks.Clear();
                     continue;

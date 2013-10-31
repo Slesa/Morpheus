@@ -53,6 +53,8 @@
     <Compile Include="..\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="IniFile.Entries.Specs.cs" />
+    <Compile Include="IniFile.Section.Specs.cs" />
     <Compile Include="IniLine.Value.Specs.cs" />
     <Compile Include="IniLine.Entry.Specs.cs" />
     <Compile Include="IniLine.Section.Specs.cs" />

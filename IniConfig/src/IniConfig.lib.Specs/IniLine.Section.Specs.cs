@@ -52,4 +52,13 @@ namespace IniConfig.lib.Specs
         It should_evaluate_section_name = () => _subject.Section.ShouldEqual("   A section");
         static IniLine _subject;
     }
+
+    [Subject(typeof(IniLine))]
+    class When_line_is_set_to_section : WithFakes
+    {
+        Because of = () => _subject = new IniLine{Section="A section"};
+        It should_see_section = () => _subject.IsSection.ShouldBeTrue();
+        It should_set_content_to_section = () => _subject.Content.ShouldEqual("[A section]");
+        static IniLine _subject;
+    }
 }

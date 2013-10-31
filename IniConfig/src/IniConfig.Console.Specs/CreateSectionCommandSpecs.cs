@@ -48,16 +48,15 @@ namespace IniConfig.Console.Specs
         Establish context = () =>
             {
                 _sections = new List<IniSection>();
-                _inifile = An<IIniFile>();
-                _inifile.WhenToldTo(x => x.Sections).Return(_sections);
+                _inifile = new IniFile();
                 _tokens = new List<string>{"Section"};
                 Environment.IniFile = _inifile;
             };
 
         Because of = () => Subject.Execute(_tokens, Environment);
 
-        It should_create_any_section = () => _sections.Count.ShouldEqual(1);
-        It should_create_section = () => _sections[0].Name.ShouldEqual("Section");
+        It should_create_any_section = () => _inifile.Sections.Count().ShouldEqual(1);
+        It should_create_section = () => _inifile.Sections.ToArray()[0].Name.ShouldEqual("Section");
 
         static List<string> _tokens;
         static IIniFile _inifile;

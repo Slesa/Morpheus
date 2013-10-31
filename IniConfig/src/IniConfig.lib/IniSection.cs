@@ -24,6 +24,12 @@ namespace IniConfig.lib
             return this;
         }
 
+        public IniSection AddRemarks(IEnumerable<string> remarks)
+        {
+            Remarks.AddRange(remarks);
+            return this;
+        }
+
         List<IniElement> _elements;
         public IEnumerable<IniElement> Elements
         {
@@ -35,13 +41,14 @@ namespace IniConfig.lib
             return Elements.FirstOrDefault(s => s.Attribute.ToLower().Equals(name.ToLower()));
         }
 
-        public void AddElement(string attribute, string value)
+        public IniSection AddElement(string attribute, string value)
         {
             var element = FindElement(attribute);
             if (element != null)
                 element.Value = value;
             else
                 ((List<IniElement>)Elements).Add(new IniElement(attribute, value));
+            return this;
         }
     }
 }

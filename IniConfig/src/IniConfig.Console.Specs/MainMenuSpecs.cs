@@ -24,7 +24,7 @@ namespace IniConfig.Console.Specs
     {
         Establish context = () => Input.WhenToldTo(x => x.ReadLine()).Return("? q");
         Because of = () => Subject.Run();
-        It should_print_the_lines = () => OutputLines.Count().ShouldEqual(10);
+        It should_print_the_lines = () => OutputLines.Count().ShouldEqual(11);
         It should_print_current_version = () => OutputLines[0].ShouldStartWith("IniConfig console interface, version");
         It should_print_prompt = () => OutputLines[1].ShouldEqual("[<no file>] ? ");
         It should_print_syntax_line = () => OutputLines.FirstOrDefault(x => x.Contains("Syntax:")).ShouldNotBeNull();

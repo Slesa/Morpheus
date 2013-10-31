@@ -9,6 +9,11 @@ namespace IniConfig.lib
         const string TagComment = ";";
         const string TagPreserve = "\"";
 
+        public IniLine()
+        {
+            Content = string.Empty;
+        }
+
         public IniLine(string content)
         {
             Content = content.Trim();
@@ -39,6 +44,7 @@ namespace IniConfig.lib
                 var end = Content.IndexOf(TagCloseSection, StringComparison.InvariantCulture);
                 return (start>=0) && (end>start) ? Content.Substring(start+1, end-1) : string.Empty;
             }
+            set { Content = TagOpenSection + value + TagCloseSection; }
         }
 
         public bool IsComment
@@ -53,6 +59,7 @@ namespace IniConfig.lib
                 var start = Content.IndexOf(TagComment, StringComparison.InvariantCulture);
                 return (start >= 0) ? Content.Substring(start + 1).Trim() : string.Empty;
             }
+            set { Content = TagComment + " " + value; }
         }
 
         public string Entry

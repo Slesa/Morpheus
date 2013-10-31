@@ -35,7 +35,7 @@ namespace IniConfig.Console.lib.Commands
                 return result;
             }
 
-            environment.IniFile.Sections.Add(IniSection.CreateSection(sectionName));
+            environment.IniFile.AddSection(sectionName);
 
             return result;
         }

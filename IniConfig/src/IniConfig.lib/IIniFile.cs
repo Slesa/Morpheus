@@ -5,6 +5,7 @@ namespace IniConfig.lib
     public interface IIniFile
     {
         string FileName { get; }
-        List<IniSection> Sections { get; }
+        IEnumerable<IniSection> Sections { get; }
+        IniSection AddSection(string name, IEnumerable<string> remarks = null);
     }
 }

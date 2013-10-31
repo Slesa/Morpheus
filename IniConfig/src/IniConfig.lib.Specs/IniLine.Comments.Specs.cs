@@ -34,4 +34,13 @@ namespace IniConfig.lib.Specs
         It should_not_evaluate_comment = () => _subject.Comment.ShouldBeEmpty();
         static IniLine _subject;
     }
+
+    [Subject(typeof(IniLine))]
+    class When_line_is_set_to_comment : WithFakes
+    {
+        Because of = () => _subject = new IniLine { Comment = "A comment" };
+        It should_see_comment = () => _subject.IsComment.ShouldBeTrue();
+        It should_set_content_to_comment = () => _subject.Content.ShouldEqual("; A comment");
+        static IniLine _subject;
+    }
 }
