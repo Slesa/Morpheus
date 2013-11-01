@@ -70,6 +70,7 @@ namespace IniConfig.lib
                 CheckEntryOrValue(entry);
                 return entry;
             }
+            set { Content = value + " = " + Value; }
         }
 
         public string Value
@@ -82,6 +83,7 @@ namespace IniConfig.lib
                     value = value.Substring(1, value.Length - 2);
                 return value;
             }
+            set { Content = Entry + " = " + value; }
         }
 
         void CheckEntryOrValue(string entry)

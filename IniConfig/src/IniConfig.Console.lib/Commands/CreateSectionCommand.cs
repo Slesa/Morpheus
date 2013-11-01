@@ -3,7 +3,6 @@ using System.Linq;
 using IniConfig.Console.lib.Contracts;
 using IniConfig.Console.lib.Extensions;
 using IniConfig.Console.lib.Resources;
-using IniConfig.lib;
 
 namespace IniConfig.Console.lib.Commands
 {

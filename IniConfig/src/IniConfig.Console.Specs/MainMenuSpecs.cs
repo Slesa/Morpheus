@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using IniConfig.Console.lib;
+using IniConfig.Console.lib.Commands;
 using IniConfig.Console.lib.Contracts;
 using IniConfig.Console.lib.Resources;
 using Machine.Fakes;
@@ -24,12 +24,20 @@ namespace IniConfig.Console.Specs
     {
         Establish context = () => Input.WhenToldTo(x => x.ReadLine()).Return("? q");
         Because of = () => Subject.Run();
-        It should_print_the_lines = () => OutputLines.Count().ShouldEqual(11);
+        //It should_print_the_lines = () => OutputLines.Count().ShouldEqual(12);
         It should_print_current_version = () => OutputLines[0].ShouldStartWith("IniConfig console interface, version");
         It should_print_prompt = () => OutputLines[1].ShouldEqual("[<no file>] ? ");
-        It should_print_syntax_line = () => OutputLines.FirstOrDefault(x => x.Contains("Syntax:")).ShouldNotBeNull();
-        It should_print_help_line = () => OutputLines.FirstOrDefault(x => x.Contains("  ?")).ShouldNotBeNull();
-        It should_print_quit_line = () => OutputLines.FirstOrDefault(x => x.Contains("  q")).ShouldNotBeNull();
+        It should_print_syntax_line = () => OutputLines.FirstOrDefault(x => x.StartsWith("Syntax:")).ShouldNotBeNull();
+        It should_print_help_line = () => OutputLines.FirstOrDefault(x => x.StartsWith("  ?")).ShouldNotBeNull();
+        It should_print_quit_line = () => OutputLines.FirstOrDefault(x => x.StartsWith("  q")).ShouldNotBeNull();
+        It should_print_load = () => OutputLines.FirstOrDefault(x => x.StartsWith("  "+new LoadCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_save = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new SaveCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_list_sections = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new ListSectionsCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_create_section = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new CreateSectionCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_remove_section = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new RemoveSectionCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_list_entries = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new ListEntriesCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_create_entry = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new CreateEntryCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_remove_entry = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new RemoveEntryCommand().Shortcut)).ShouldNotBeNull();
     }
 
 

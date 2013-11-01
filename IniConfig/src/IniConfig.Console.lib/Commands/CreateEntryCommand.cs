@@ -6,12 +6,12 @@ using IniConfig.Console.lib.Resources;
 
 namespace IniConfig.Console.lib.Commands
 {
-    public class ListEntriesCommand : IMenuCommand
+    public class CreateEntryCommand : IMenuCommand
     {
-        public ListEntriesCommand()
+        public CreateEntryCommand()
         {
-            Shortcut = "le";
-            Description = Strings.ListEntriesCommand_Description;
+            Shortcut = "ce";
+            Description = Strings.CreateEntryCommand_Description;
         }
 
         public string Shortcut { get; private set; }
@@ -21,34 +21,44 @@ namespace IniConfig.Console.lib.Commands
         {
             var sectionName = nextToken.Head();
             var result = nextToken.Tail().ToList();
+            var attribute = result.Head();
+            result = result.Tail().ToList();
+            var value = result.Head();
+            result = result.Tail().ToList();
 
             if (environment.IniFile == null)
             {
                 environment.Out.WriteLine(Strings.Warning_NoFileLoaded);
                 return result;
             }
-
+            
             if (string.IsNullOrEmpty(sectionName))
             {
                 environment.Out.WriteLine(Strings.Warning_NoSectionNameGiven);
                 return result;
             }
+            
+            if (string.IsNullOrEmpty(attribute))
+            {
+                environment.Out.WriteLine(Strings.Warning_NoAttributeGiven);
+                return result;
+            }
+            
+            if (string.IsNullOrEmpty(value))
+            {
+                environment.Out.WriteLine(Strings.Warning_NoValueGiven);
+                return result;
+            }
 
             var section = environment.IniFile.FindSection(sectionName);
-            if (section==null)
+            if (section == null)
             {
                 environment.Out.WriteLine(Strings.Error_SectionNotFound);
                 return result;
             }
-
-            environment.Out.WriteLine(string.Format(Strings.ListEntriesCommand_Header, section.Name));
-            foreach (var entry in section.Entries)
-            {
-                //foreach (var remark in entry.Remarks)
-                //    environment.Out.WriteLine(string.Format("// {0}", remark));
-                environment.Out.WriteLine(string.Format("{0} = {1}", entry.Attribute, entry.Value));
-            }
-            environment.Out.WriteLine().WriteLine();
+            
+            environment.IniFile.AddEntry(sectionName, attribute, value);
+            
             return result;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using IniConfig.Console.lib.Contracts;
 using IniConfig.Console.lib.Resources;
 
@@ -25,12 +26,20 @@ namespace IniConfig.Console.lib.Commands
                 return result;
             }
 
+            if (!environment.IniFile.Sections.Any())
+            {
+                environment.Out.WriteLine(Strings.Warning_NoSectionsFound);
+                return result;
+            }
+
+            environment.Out.WriteLine(Strings.ListSectionsCommand_Header);
             foreach (var section in environment.IniFile.Sections)
             {
                 foreach(var remark in section.Remarks)
                     environment.Out.WriteLine(string.Format("// {0}", remark));
                 environment.Out.WriteLine(string.Format("[{0}]", section.Name));
             }
+            environment.Out.WriteLine().WriteLine();
             return result;
         }
     }

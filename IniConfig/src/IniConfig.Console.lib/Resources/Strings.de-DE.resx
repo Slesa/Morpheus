@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateEntryCommand_Description" xml:space="preserve">
+    <value>Neuen Eintrag in einer Sektion anlegen</value>
+  </data>
   <data name="CreateSectionCommand_Description" xml:space="preserve">
     <value>Neue Sektion anlegen</value>
   </data>
@@ -132,19 +135,43 @@
   <data name="ListEntriesCommand_Description" xml:space="preserve">
     <value>Liste Elemente einer Sektion</value>
   </data>
+  <data name="ListEntriesCommand_Header" xml:space="preserve">
+    <value>Gefundene Einträge in Sektion {0}:</value>
+  </data>
   <data name="ListSectionsCommand_Description" xml:space="preserve">
     <value>Liste Sektionen der Konfigurationsdatei</value>
+  </data>
+  <data name="ListSectionsCommand_Header" xml:space="preserve">
+    <value>Gefundene Sektionen:</value>
   </data>
   <data name="LoadCommand_Description" xml:space="preserve">
     <value>Konfigationsdatei laden</value>
   </data>
+  <data name="RemoveEntryCommand_Description" xml:space="preserve">
+    <value>Eintrag löschen</value>
+  </data>
+  <data name="RemoveSectionCommand_Description" xml:space="preserve">
+    <value>Sektion löschen</value>
+  </data>
   <data name="SaveCommand_Description" xml:space="preserve">
     <value>Konfigurationsdatei abspeichern</value>
+  </data>
+  <data name="Warning_NoAttributeGiven" xml:space="preserve">
+    <value>Kein Attribut angegeben</value>
+  </data>
+  <data name="Warning_NoFileLoaded" xml:space="preserve">
+    <value>Keine Konfigurationsdatei geladen</value>
   </data>
   <data name="Warning_NoFilenameGiven" xml:space="preserve">
     <value>Kein Dateiname angegeben</value>
   </data>
   <data name="Warning_NoSectionNameGiven" xml:space="preserve">
     <value>Kein Sektionsname angegeben</value>
+  </data>
+  <data name="Warning_NoSectionsFound" xml:space="preserve">
+    <value>Keine Sektionen gefunden</value>
+  </data>
+  <data name="Warning_NoValueGiven" xml:space="preserve">
+    <value>Kein Wert angegeben</value>
   </data>
 </root>

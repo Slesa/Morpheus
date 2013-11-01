@@ -63,7 +63,10 @@ namespace IniConfig.Console.lib
             _commands.Add(new SaveCommand());
             _commands.Add(new ListSectionsCommand());
             _commands.Add(new CreateSectionCommand());
+            _commands.Add(new RemoveSectionCommand());
             _commands.Add(new ListEntriesCommand());
+            _commands.Add(new CreateEntryCommand());
+            _commands.Add(new RemoveEntryCommand());
         }
 
 

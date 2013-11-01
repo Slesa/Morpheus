@@ -57,12 +57,43 @@ namespace IniConfig.lib.Specs
 
 
     [Subject(typeof(IniFile))]
+    internal class When_searching_unexisting_section : WithSubject<IniFile>
+    {
+        Because of = () => _section = Subject.FindSection("Section");
+        It should_return_null = () => _section.ShouldBeNull();
+        static IniSection _section;
+    }
+
+
+    [Subject(typeof(IniFile))]
+    internal class When_searching_existing_section : WithSubject<IniFile>
+    {
+        Establish context = () => Subject.AddSection("Section");
+        Because of = () => _section = Subject.FindSection("Section");
+        It should_return_section = () => _section.ShouldNotBeNull();
+        static IniSection _section;
+    }
+
+
+    [Subject(typeof(IniFile))]
     internal class When_adding_section_to_empty_inifile : WithSubject<IniFile>
     {
         Because of = () => _section = Subject.AddSection("Section");
         It should_contain_one_line = () => Subject.Lines.Count().ShouldEqual(1);
         It should_contain_section = () => Subject.FindSection("Section").ShouldEqual(_section);
         static IniSection _section;
+    }
+
+
+    [Subject(typeof(IniFile))]
+    internal class When_adding_an_existing_section : WithSubject<IniFile>
+    {
+        Establish context = () => _oldSection = Subject.AddSection("Section");
+        Because of = () => _newSection = Subject.AddSection("Section");
+        It should_still_contain_one_line = () => Subject.Lines.Count().ShouldEqual(1);
+        It should_return_old_section = () => _newSection.ShouldBeTheSameAs(_oldSection);
+        static IniSection _oldSection;
+        static IniSection _newSection;
     }
 
 

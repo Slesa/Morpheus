@@ -5,14 +5,25 @@ namespace IniConfig.lib
 {
     public class IniEntry
     {
-        public IniEntry(string entry, string value)
+        readonly IniLine _iniLine;
+
+        public IniEntry(IniLine iniLine)
         {
-            Attribute = entry;
-            Value = value;
+            _iniLine = iniLine;
+            
         }
 
-        public string Attribute { get; set; }
-        public string Value { get; set; }
+        public string Attribute
+        {
+            get { return _iniLine.Entry; }
+            set { _iniLine.Entry = value; }
+        }
+
+        public string Value
+        {
+            get { return _iniLine.Value; }
+            set { _iniLine.Value = value; }
+        }
 
         public bool IsBool
         {

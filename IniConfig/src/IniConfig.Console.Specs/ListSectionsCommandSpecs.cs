@@ -39,7 +39,7 @@ namespace IniConfig.Console.Specs
                 Environment.IniFile = _inifile;
             };
         Because of = () => Subject.Execute(_tokens, Environment);
-        It should_not_print = () => OutputLines.ShouldBeEmpty();
+        It should_print_error = () => OutputLines.FirstOrDefault(x => x.Equals(Strings.Warning_NoSectionsFound)).ShouldNotBeNull();
         static List<string> _tokens;
         static IIniFile _inifile;
     }
@@ -63,10 +63,11 @@ namespace IniConfig.Console.Specs
 
         Because of = () => Subject.Execute(_tokens, Environment);
 
-        It should_print_sections = () => OutputLines.Count().ShouldEqual(4);
-        It should_print_log_section = () => OutputLines[0].ShouldEqual("[Log]");
-        It should_print_printer_section = () => OutputLines[1].ShouldEqual("[Printer]");
-        It should_print_display_section = () => OutputLines[2].ShouldEqual("[Display]");
+        It should_print_sections = () => OutputLines.Count().ShouldEqual(7);
+        It should_print_header = () => OutputLines[0].ShouldEqual(Strings.ListSectionsCommand_Header);
+        It should_print_log_section = () => OutputLines[1].ShouldEqual("[Log]");
+        It should_print_printer_section = () => OutputLines[2].ShouldEqual("[Printer]");
+        It should_print_display_section = () => OutputLines[3].ShouldEqual("[Display]");
         
         static List<string> _tokens;
         static IIniFile _inifile;
@@ -91,13 +92,14 @@ namespace IniConfig.Console.Specs
 
         Because of = () => Subject.Execute(_tokens, Environment);
 
-        It should_print_sections = () => OutputLines.Count().ShouldEqual(7);
-        It should_print_log_remark1 = () => OutputLines[0].ShouldEqual("// Remark 1a");
-        It should_print_log_remark2 = () => OutputLines[1].ShouldEqual("// Remark 1b");
-        It should_print_log_section = () => OutputLines[2].ShouldEqual("[Log]");
-        It should_print_printer_section = () => OutputLines[3].ShouldEqual("[Printer]");
-        It should_print_display_remark = () => OutputLines[4].ShouldEqual("// Remarks");
-        It should_print_display_section = () => OutputLines[5].ShouldEqual("[Display]");
+        It should_print_sections = () => OutputLines.Count().ShouldEqual(10);
+        It should_print_header = () => OutputLines[0].ShouldEqual(Strings.ListSectionsCommand_Header);
+        It should_print_log_remark1 = () => OutputLines[1].ShouldEqual("// Remark 1a");
+        It should_print_log_remark2 = () => OutputLines[2].ShouldEqual("// Remark 1b");
+        It should_print_log_section = () => OutputLines[3].ShouldEqual("[Log]");
+        It should_print_printer_section = () => OutputLines[4].ShouldEqual("[Printer]");
+        It should_print_display_remark = () => OutputLines[5].ShouldEqual("// Remarks");
+        It should_print_display_section = () => OutputLines[6].ShouldEqual("[Display]");
         
         static List<string> _tokens;
         static IIniFile _inifile;

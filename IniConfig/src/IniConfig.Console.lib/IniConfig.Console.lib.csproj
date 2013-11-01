@@ -39,10 +39,13 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="AppEnvironment.cs" />
+    <Compile Include="Commands\CreateEntryCommand.cs" />
     <Compile Include="Commands\CreateSectionCommand.cs" />
     <Compile Include="Commands\ListEntriesCommand.cs" />
     <Compile Include="Commands\ListSectionsCommand.cs" />
     <Compile Include="Commands\LoadCommand.cs" />
+    <Compile Include="Commands\RemoveEntryCommand.cs" />
+    <Compile Include="Commands\RemoveSectionCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Contracts\IInput.cs" />
     <Compile Include="Contracts\IOutput.cs" />

@@ -35,6 +35,10 @@ namespace IniConfig.lib
         {
             get { return _entries ?? (_entries = new List<IniEntry>()); }
         }
+        List<IniEntry> EntryList
+        {
+            get { return (List<IniEntry>)Entries; }
+        }
 
         public IniEntry FindEntry(string name)
         {
@@ -47,8 +51,13 @@ namespace IniConfig.lib
             if (element != null)
                 element.Value = value;
             else
-                ((List<IniEntry>)Entries).Add(new IniEntry(attribute, value));
+                EntryList.Add(new IniEntry(new IniLine{Entry=attribute, Value=value}));
             return this;
+        }
+
+        public void AddElementLine(IniLine iniLine)
+        {
+            EntryList.Add(new IniEntry(iniLine));
         }
     }
 }

@@ -28,7 +28,7 @@ namespace IniConfig.Console.Specs
     }
 
 
-    [Subject(typeof(ListSectionsCommand))]
+    [Subject(typeof(CreateSectionCommand))]
     internal class When_executing_create_section_command_without_section_name : CreateSectionCommandSpecsBase
     {
         Establish context = () =>
@@ -42,12 +42,11 @@ namespace IniConfig.Console.Specs
     }
 
 
-    [Subject(typeof(ListSectionsCommand))]
+    [Subject(typeof(CreateSectionCommand))]
     internal class When_executing_create_section_command : CreateSectionCommandSpecsBase
     {
         Establish context = () =>
             {
-                _sections = new List<IniSection>();
                 _inifile = new IniFile();
                 _tokens = new List<string>{"Section"};
                 Environment.IniFile = _inifile;
@@ -60,7 +59,6 @@ namespace IniConfig.Console.Specs
 
         static List<string> _tokens;
         static IIniFile _inifile;
-        static List<IniSection> _sections;
     }
 
 

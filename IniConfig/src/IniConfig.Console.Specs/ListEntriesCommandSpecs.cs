@@ -67,7 +67,7 @@ namespace IniConfig.Console.Specs
         Establish context = () =>
         {
             _inifile = new IniFile();
-            var section = _inifile.AddSection("Log");
+            var section = _inifile.AddSection(LogSection);
             section.AddElement("Level", "All").AddElement("MaxSize", "512");
 
             _tokens = new List<string>{"log"};
@@ -76,10 +76,11 @@ namespace IniConfig.Console.Specs
 
         Because of = () => Subject.Execute(_tokens, Environment);
 
-        It should_print_sections = () => OutputLines.Count().ShouldEqual(3);
-        It should_print_level_entry = () => OutputLines[0].ShouldEqual("Level = All");
-        It should_print_maxsize_entry = () => OutputLines[1].ShouldEqual("MaxSize = 512");
-
+        It should_print_sections = () => OutputLines.Count().ShouldEqual(6);
+        It should_print_header = () => OutputLines[0].ShouldEqual(string.Format(Strings.ListEntriesCommand_Header,LogSection));
+        It should_print_level_entry = () => OutputLines[1].ShouldEqual("Level = All");
+        It should_print_maxsize_entry = () => OutputLines[2].ShouldEqual("MaxSize = 512");
+        const string LogSection = "Log";
         static List<string> _tokens;
         static IIniFile _inifile;
     }

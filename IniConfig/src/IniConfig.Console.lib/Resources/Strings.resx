@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateEntryCommand_Description" xml:space="preserve">
+    <value>Create a new entry in a section</value>
+  </data>
   <data name="CreateSectionCommand_Description" xml:space="preserve">
     <value>Create a new section</value>
   </data>
@@ -132,14 +135,29 @@
   <data name="ListEntriesCommand_Description" xml:space="preserve">
     <value>List entries of a section</value>
   </data>
+  <data name="ListEntriesCommand_Header" xml:space="preserve">
+    <value>Found entries in section {0}:</value>
+  </data>
   <data name="ListSectionsCommand_Description" xml:space="preserve">
     <value>List sections of configuration file</value>
+  </data>
+  <data name="ListSectionsCommand_Header" xml:space="preserve">
+    <value>Found sections:</value>
   </data>
   <data name="LoadCommand_Description" xml:space="preserve">
     <value>Load configuration file</value>
   </data>
+  <data name="RemoveEntryCommand_Description" xml:space="preserve">
+    <value>Remove entry</value>
+  </data>
+  <data name="RemoveSectionCommand_Description" xml:space="preserve">
+    <value>Remove section</value>
+  </data>
   <data name="SaveCommand_Description" xml:space="preserve">
     <value>Save configuration file</value>
+  </data>
+  <data name="Warning_NoAttributeGiven" xml:space="preserve">
+    <value>No attribute given</value>
   </data>
   <data name="Warning_NoFileLoaded" xml:space="preserve">
     <value>No config file loaded</value>
@@ -149,5 +167,11 @@
   </data>
   <data name="Warning_NoSectionNameGiven" xml:space="preserve">
     <value>No section name given</value>
+  </data>
+  <data name="Warning_NoSectionsFound" xml:space="preserve">
+    <value>No sections found</value>
+  </data>
+  <data name="Warning_NoValueGiven" xml:space="preserve">
+    <value>No value given</value>
   </data>
 </root>

@@ -6,7 +6,11 @@ namespace IniConfig.lib
     {
         string FileName { get; }
         IEnumerable<IniSection> Sections { get; }
-        IniSection AddSection(string name, IEnumerable<string> remarks = null);
+
         IniSection FindSection(string name);
+        IniSection AddSection(string name, IEnumerable<string> remarks = null);
+
+        IniEntry FindEntry(string sectionName, string entryName);
+        IniEntry AddEntry(string sectionName, string attribute, string value);
     }
 }

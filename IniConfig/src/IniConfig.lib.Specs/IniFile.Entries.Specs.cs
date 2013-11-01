@@ -42,4 +42,56 @@ namespace IniConfig.lib.Specs
         It should_find_second_element = () => Subject.FindSection("Section").FindEntry("two").AsInt.ShouldEqual(42);
         It should_find_third_element = () => Subject.FindSection("Section").FindEntry("3three").AsDouble.ShouldEqual(42.0);
     }
+
+
+    [Subject(typeof(IniFile))]
+    internal class When_searching_entry_in_unexisting_section : WithSubject<IniFile>
+    {
+        Because of = () => _entry = Subject.FindEntry("Section", "Entry");
+        It should_return_null = () => _entry.ShouldBeNull();
+        static IniEntry _entry;
+    }
+
+
+    [Subject(typeof(IniFile))]
+    internal class When_searching_unexisting_entry_in_existing_section : WithSubject<IniFile>
+    {
+        Establish context = () => Subject.AddSection("Section");
+        Because of = () => _entry = Subject.FindEntry("Section", "Entry");
+        It should_return_null = () => _entry.ShouldBeNull();
+        static IniEntry _entry;
+    }
+
+
+    [Subject(typeof(IniFile))]
+    internal class When_searching_existing_entry : WithSubject<IniFile>
+    {
+        Establish context = () => Subject.AddSection("Section").AddElement("Entry","Value");
+        Because of = () => _entry = Subject.FindEntry("Section","Entry");
+        It should_return_section = () => _entry.ShouldNotBeNull();
+        static IniEntry _entry;
+    }
+
+
+    [Subject(typeof(IniFile))]
+    internal class When_adding_entry_to_unexisting_section : WithSubject<IniFile>
+    {
+        Because of = () => _entry = Subject.AddEntry("Section", "Attribute", "Value");
+        It should_return_null = () => _entry.ShouldBeNull();
+        static IniEntry _entry;
+    }
+
+
+    [Subject(typeof(IniFile))]
+    internal class When_adding_entry_to_empty_section : WithSubject<IniFile>
+    {
+        Establish context = ()=> Subject.AddSection(SectionName);
+        Because of = () => _entry = Subject.AddEntry(SectionName, Attribute, Value);
+        It should_contain_two_lines = () => Subject.Lines.Count().ShouldEqual(2);
+        It should_contain_entry = () => Subject.FindEntry(SectionName, Attribute).ShouldEqual(_entry);
+        static IniEntry _entry;
+        const string SectionName = "Section";
+        const string Attribute = "Attribute";
+        const string Value = "Value";
+    }
 }
