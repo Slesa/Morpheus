@@ -2,6 +2,9 @@
 
 namespace IniConfig.lib
 {
+    /// <summary>
+    /// An instance represents one single line within a configuration file.
+    /// </summary>
     public class IniLine
     {
         const string TagOpenSection = "[";
@@ -9,24 +12,39 @@ namespace IniConfig.lib
         const string TagComment = ";";
         const string TagPreserve = "\"";
 
+        /// <summary>
+        /// Create an instance of an empty line.
+        /// </summary>
         public IniLine()
         {
             Content = string.Empty;
         }
 
+        /// <summary>
+        /// Create an instance of a line containing content .
+        /// </summary>
+        /// <param name="content">The content of the line</param>
         public IniLine(string content)
         {
             Content = content.Trim();
         }
 
+        /// <summary>
+        /// The content of the configuration line.
+        /// </summary>
         public string Content { get; set; }
 
-
+        /// <summary>
+        /// True, if the line contains only whitespaces.
+        /// </summary>
         public bool IsEmpty
         {
             get { return string.IsNullOrWhiteSpace(Content); }
         }
 
+        /// <summary>
+        /// True, if the configuration line contains a section definition.
+        /// </summary>
         public bool IsSection
         {
             get
@@ -36,6 +54,9 @@ namespace IniConfig.lib
             }
         }
 
+        /// <summary>
+        /// If the line consist of a section definition, the name of the section. An empty string otherwise.
+        /// </summary>
         public string Section
         {
             get
@@ -47,11 +68,17 @@ namespace IniConfig.lib
             set { Content = TagOpenSection + value + TagCloseSection; }
         }
 
+        /// <summary>
+        /// True, if the line contains a comment
+        /// </summary>
         public bool IsComment
         {
             get { return Content.Trim().StartsWith(TagComment); }
         }
 
+        /// <summary>
+        /// If the line consists of a comment, the text of the comment. An empty string otherwise.
+        /// </summary>
         public string Comment
         {
             get
@@ -62,32 +89,54 @@ namespace IniConfig.lib
             set { Content = TagComment + " " + value; }
         }
 
+        public bool IsEntry
+        {
+            get
+            {
+                var entry = Content.TrimStart();
+                if (entry.StartsWith(TagComment) || entry.StartsWith(TagOpenSection) || entry.StartsWith(TagCloseSection))
+                    return false;
+                return !string.IsNullOrEmpty(GetEntry());
+            }
+        }
+
+        /// <summary>
+        /// The entry of the configuration line, if the line consists of an attribute/value pair.
+        /// InvalidOperationException can be thrown, if the line is a section or a comment.
+        /// </summary>
         public string Entry
         {
             get
             {
+                CheckInvalidOperation();
                 var entry = GetEntry();
-                CheckEntryOrValue(entry);
                 return entry;
             }
-            set { Content = value + " = " + Value; }
+            set { Content = value + " = " + GetValue(); }
         }
 
+        /// <summary>
+        /// The value of the configuration line, if the line consists of an attribute/value pair.
+        /// InvalidOperationException can be thrown, if the line is a section or a comment.
+        /// </summary>
         public string Value
         {
             get
             {
-                CheckEntryOrValue(Content.TrimStart());
+                CheckInvalidOperation();
                 var value = GetValue();
-                if (value.StartsWith(TagPreserve) && value.EndsWith(TagPreserve))
-                    value = value.Substring(1, value.Length - 2);
                 return value;
             }
-            set { Content = Entry + " = " + value; }
+            set
+            {
+                //if (value.StartsWith(TagPreserve) && value.EndsWith(TagPreserve))
+                Content = GetEntry() + " = " + value;
+            }
         }
 
-        void CheckEntryOrValue(string entry)
+        void CheckInvalidOperation()
         {
+            var entry = Content.TrimStart();
             if (entry.StartsWith(TagComment) || entry.StartsWith(TagOpenSection) || entry.StartsWith(TagCloseSection))
                 throw new InvalidOperationException(string.Format("'{0}': entry has invalid format", Content));
         }
@@ -101,8 +150,11 @@ namespace IniConfig.lib
         string GetValue()
         {
             var index = Content.IndexOf('=');
-            return index > 0 ? Content.Substring(index+1).Trim() : string.Empty;
+            if( index < 0 ) return string.Empty;
+            var value = Content.Substring(index + 1).Trim();
+            if (value.StartsWith(TagPreserve) && value.EndsWith(TagPreserve))
+                value = value.Substring(1, value.Length - 2);
+            return value;
         }
-
     }
 }

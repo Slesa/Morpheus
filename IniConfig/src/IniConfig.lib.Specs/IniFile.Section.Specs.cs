@@ -24,7 +24,7 @@ namespace IniConfig.lib.Specs
                                "[Section]";
         Because of = () => Subject.LoadFromText(IniText);
 
-        It should_contain_two_lines = () => Subject.Lines.Count().ShouldEqual(2);
+        It should_contain_two_lines = () => Subject.Lines.Count().ShouldEqual(1);
         It should_contain_one_section = () => Subject.Sections.Count().ShouldEqual(1);
     }
 
@@ -52,7 +52,7 @@ namespace IniConfig.lib.Specs
         Because of = () => Subject.LoadFromText(IniText);
 
         It should_contain_four_lines = () => Subject.Lines.Count().ShouldEqual(4);
-        It should_contain_remarks_only = () => Subject.Sections.First().Remarks.ShouldContainOnly("Remarks");
+        It should_contain_remark_lines = () => Subject.Sections.First().Remarks.Count().ShouldEqual(3);
     }
 
 

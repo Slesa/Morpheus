@@ -60,7 +60,7 @@
     <Compile Include="IniLine.Section.Specs.cs" />
     <Compile Include="IniLine.Comments.Specs.cs" />
     <Compile Include="IniLine.Empty.Specs.cs" />
-    <Compile Include="IniElementSpecs.cs" />
+    <Compile Include="IniEntrySpecs.cs" />
     <Compile Include="IniFileSpecs.cs" />
     <Compile Include="IniLineSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

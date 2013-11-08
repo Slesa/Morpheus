@@ -29,22 +29,18 @@ namespace IniConfig.lib
         public string FileName { get; private set; }
 
 
-        List<IniLine> _lines;
+        List<IniLine> _garbage;
         /// <summary>
-        /// All lines of the configuration file, not separated in sections
+        /// All lines of the configuration file
         /// </summary>
         public IEnumerable<IniLine> Lines
         {
-            get { return _lines ?? (_lines = new List<IniLine>()); }
+            get
+            {
+                return _garbage ?? Sections.SelectMany(section => section.Lines);
+            }
         }
-        /// <summary>
-        /// All lines of the configuration file as a list in order to add or remove something
-        /// </summary>
-        List<IniLine> LineList
-        {
-            get { return (List<IniLine>)Lines; }
-        }
-        
+
     
         List<IniSection> _sections;
         /// <summary>
@@ -86,15 +82,8 @@ namespace IniConfig.lib
             section = IniSection.CreateSection(name);
             SectionList.Add(section);
 
-            if (remarks != null)
-            {
-                foreach (var remark in remarks)
-                {
-                    LineList.Add(new IniLine {Comment = remark});
-                    section = section.AddRemark(remark);
-                }
-            }
-            LineList.Add(new IniLine{Section = name});
+            if (remarks != null) section = section.AddRemarks(remarks);
+
             return section;
         }
 
@@ -121,9 +110,8 @@ namespace IniConfig.lib
         public IniEntry AddEntry(string sectionName, string entryName, string value)
         {
             var section = FindSection(sectionName);
-            return section == null ? null : section.AddElement(entryName, value).FindEntry(entryName);
+            return section == null ? null : section.AddEntry(entryName, value).FindEntry(entryName);
         }
-
 
 
         void Load(string fileName)
@@ -133,42 +121,41 @@ namespace IniConfig.lib
             LoadFromText(buffer);
         }
 
+
         internal void LoadFromText(string buffer)
         {
-            var remarks = new List<string>();
+            var remarks = new List<IniLine>();
             IniSection currentSection = null;
 
             foreach (var line in buffer.Split('\n'))
             {
                 var iniLine = new IniLine(line);
-                LineList.Add(iniLine);
-                if (iniLine.IsEmpty)
-                {
-                    remarks.Clear();
-                    continue;
-                }
-                if (iniLine.IsComment)
-                {
-                    remarks.Add(iniLine.Comment);
-                    continue;
-                }
                 if (iniLine.IsSection)
                 {
                     var sectionName = iniLine.Section;
                     currentSection = FindSection(sectionName);
                     if (currentSection == null)
                     {
-                        currentSection = IniSection.CreateSection(sectionName).AddRemarks(remarks);
+                        currentSection = IniSection.CreateSection(iniLine, remarks);
                         SectionList.Add(currentSection);
                     }
-                    remarks.Clear();
+                    remarks = new List<IniLine>();
                     continue;
                 }
-                if (currentSection != null)
+                if (iniLine.IsEntry && currentSection!=null )
                 {
-                    currentSection.AddElementLine(iniLine);
+                    var entry = new IniEntry(iniLine);
+                    if (remarks.Any())
+                    {
+                        //entry.SetRemarks(remarks);
+                        remarks = new List<IniLine>();
+                    }
+                    currentSection.AddEntry(entry);
+                    continue;
                 }
+                remarks.Add(iniLine);
             }
+            if(remarks.Any()) _garbage = remarks;
         }
     }
 }

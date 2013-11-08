@@ -68,7 +68,7 @@ namespace IniConfig.Console.Specs
         {
             _inifile = new IniFile();
             var section = _inifile.AddSection(LogSection);
-            section.AddElement("Level", "All").AddElement("MaxSize", "512");
+            section.AddEntry("Level", "All").AddEntry("MaxSize", "512");
 
             _tokens = new List<string>{"log"};
             Environment.IniFile = _inifile;

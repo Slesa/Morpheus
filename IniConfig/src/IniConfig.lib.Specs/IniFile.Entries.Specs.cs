@@ -66,7 +66,7 @@ namespace IniConfig.lib.Specs
     [Subject(typeof(IniFile))]
     internal class When_searching_existing_entry : WithSubject<IniFile>
     {
-        Establish context = () => Subject.AddSection("Section").AddElement("Entry","Value");
+        Establish context = () => Subject.AddSection("Section").AddEntry("Entry","Value");
         Because of = () => _entry = Subject.FindEntry("Section","Entry");
         It should_return_section = () => _entry.ShouldNotBeNull();
         static IniEntry _entry;
