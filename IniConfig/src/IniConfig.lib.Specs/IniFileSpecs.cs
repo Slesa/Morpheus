@@ -21,7 +21,7 @@ namespace IniConfig.lib.Specs
     {
         Because of = () => Subject.LoadFromText("");
 
-        It should_contain_one_line = () => Subject.Lines.Count().ShouldEqual(0);
+        It should_contain_one_line = () => Subject.Lines.Count().ShouldEqual(1);
         It should_not_contain_sections = () => Subject.Sections.ShouldBeEmpty();
     }
 

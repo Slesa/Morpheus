@@ -76,9 +76,14 @@ namespace IniConfig.lib.Specs
     [Subject(typeof(IniFile))]
     internal class When_adding_entry_to_unexisting_section : WithSubject<IniFile>
     {
-        Because of = () => _entry = Subject.AddEntry("Section", "Attribute", "Value");
-        It should_return_null = () => _entry.ShouldBeNull();
+        Because of = () => _entry = Subject.AddEntry(SectionName, Attribute, Value);
+        It should_contain_two_lines = () => Subject.Lines.Count().ShouldEqual(2);
+        It should_create_section = () => Subject.FindSection(SectionName).ShouldNotBeNull();
+        It should_add_entry = () => Subject.FindEntry(SectionName, Attribute).ShouldEqual(_entry);
         static IniEntry _entry;
+        const string SectionName = "Section";
+        const string Attribute = "Attribute";
+        const string Value = "Value";
     }
 
 
@@ -88,7 +93,46 @@ namespace IniConfig.lib.Specs
         Establish context = ()=> Subject.AddSection(SectionName);
         Because of = () => _entry = Subject.AddEntry(SectionName, Attribute, Value);
         It should_contain_two_lines = () => Subject.Lines.Count().ShouldEqual(2);
-        It should_contain_entry = () => Subject.FindEntry(SectionName, Attribute).ShouldEqual(_entry);
+        It should_add_entry = () => Subject.FindEntry(SectionName, Attribute).ShouldEqual(_entry);
+        static IniEntry _entry;
+        const string SectionName = "Section";
+        const string Attribute = "Attribute";
+        const string Value = "Value";
+    }
+
+
+    [Subject(typeof(IniFile))]
+    internal class When_removing_unsexisting_entry : WithSubject<IniFile>
+    {
+        Establish context = () =>
+            {
+                Subject.AddSection(SectionName);
+                Subject.AddEntry(SectionName, Attribute, Value);
+            };
+        Because of = () => Subject.RemoveEntry(SectionName, UnexistingAttribute);
+        It should_still_contain_two_lines = () => Subject.Lines.Count().ShouldEqual(2);
+        It should_still_contain_section = () => Subject.FindSection(SectionName).ShouldNotBeNull();
+        It should_not_remove_existing_entry = () => Subject.FindEntry(SectionName, Attribute).ShouldNotBeNull();
+        static IniEntry _entry;
+        const string SectionName = "Section";
+        const string Attribute = "Attribute";
+        const string UnexistingAttribute = "NotExisting";
+        const string Value = "Value";
+    }
+
+
+    [Subject(typeof(IniFile))]
+    internal class When_removing_entry : WithSubject<IniFile>
+    {
+        Establish context = () =>
+            {
+                Subject.AddSection(SectionName);
+                Subject.AddEntry(SectionName, Attribute, Value);
+            };
+        Because of = () => Subject.RemoveEntry(SectionName, Attribute);
+        It should_contain_two_lines = () => Subject.Lines.Count().ShouldEqual(1);
+        It should_still_contain_section = () => Subject.FindSection(SectionName).ShouldNotBeNull();
+        It should_remove_entry = () => Subject.FindEntry(SectionName, Attribute).ShouldBeNull();
         static IniEntry _entry;
         const string SectionName = "Section";
         const string Attribute = "Attribute";

@@ -109,8 +109,14 @@ namespace IniConfig.lib
         /// <returns></returns>
         public IniEntry AddEntry(string sectionName, string entryName, string value)
         {
-            var section = FindSection(sectionName);
+            var section = AddSection(sectionName);
             return section == null ? null : section.AddEntry(entryName, value).FindEntry(entryName);
+        }
+
+        public void RemoveEntry(string sectionName, string entryName)
+        {
+            var section = FindSection(sectionName);
+            if (section == null) return;
         }
 
 
