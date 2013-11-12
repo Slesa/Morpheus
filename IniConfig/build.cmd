@@ -3,11 +3,19 @@
 :Build
 cls
 
+if not exist tools\FAKE\tools\Fake.exe ( 
+	"tools\nuget\nuget.exe" "install" "FAKE" "-OutputDirectory" "tools" "-ExcludeVersion" "-Prerelease"
+)
+if not exist tools\FSharp.Formatting\lib\net40\FSharp.CodeFormat.dll ( 
+	"tools\nuget\nuget.exe" "install" "FSharp.Formatting" "-OutputDirectory" "tools" "-ExcludeVersion"
+)
+
+
 SET TARGET="Default"
 
 IF NOT [%1]==[] (set TARGET="%1")
   
-"Tools\Fake\Fake.exe" "build.fsx" "target=%TARGET%"
+"Tools\Fake\tools\Fake.exe" "build.fsx" "target=%TARGET%"
 
 rem Bail if we're running a TeamCity build.
 if defined TEAMCITY_PROJECT_NAME goto Quit
