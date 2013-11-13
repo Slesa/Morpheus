@@ -7,6 +7,8 @@
 * Remove section in console app
 * Change entry (?)
 * Change section (?) 
+* Create setup
+
 
 #Tomorrow
 
