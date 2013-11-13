@@ -12,5 +12,6 @@ namespace IniConfig.lib
 
         IniEntry FindEntry(string sectionName, string entryName);
         IniEntry AddEntry(string sectionName, string attribute, string value);
+        void RemoveEntry(string sectionName, string entryName);
     }
 }

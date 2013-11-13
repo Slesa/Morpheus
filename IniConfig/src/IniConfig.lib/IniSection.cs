@@ -119,5 +119,12 @@ namespace IniConfig.lib
         {
             EntryList.Add(entry);
         }
+
+        public void RemoveEntry(string attribute)
+        {
+            var entry = FindEntry(attribute);
+            if (entry == null) return;
+            EntryList.Remove(entry);
+        }
     }
 }

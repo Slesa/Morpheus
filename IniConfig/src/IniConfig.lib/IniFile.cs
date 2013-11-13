@@ -113,10 +113,16 @@ namespace IniConfig.lib
             return section == null ? null : section.AddEntry(entryName, value).FindEntry(entryName);
         }
 
+        /// <summary>
+        /// Remove the entry with attribute entryName from the section sectionName.
+        /// </summary>
+        /// <param name="sectionName">The section to remove the entry from</param>
+        /// <param name="entryName">The name of the entry to remove</param>
         public void RemoveEntry(string sectionName, string entryName)
         {
             var section = FindSection(sectionName);
             if (section == null) return;
+            section.RemoveEntry(entryName);
         }
 
 
