@@ -17,12 +17,10 @@ let authors = ["J. Preiss"]
 let mail = "joerg.preiss@slesa.de"
 let homepage = "https://github.com/Slesa/Morpheus/tree/master/IniConfig"
 
-let buildNumber =
-    if hasBuildParam "version" then getBuildParam "version" else
-    if isLocalBuild then "0" else
-    buildVersion
-let version = 
-    "0.9." + buildNumber + ".0" 
+let version =
+  match buildServer with
+  | TeamCity -> buildVersion
+  | _ -> "0.1"
 
 
 // directories 
@@ -51,17 +49,20 @@ Target "SetAssemblyInfo" (fun _ ->
          Attribute.FileVersion version]
 )
 
-let solutions = 
+let buildSolutions = 
   !! "src/IniConfig.Editor.sln"
 
+let deploySolutions = 
+  !! "src/IniConfig.Setup.sln"
+
 Target "Build" (fun _ ->
-  MSBuildRelease buildDir "Build" solutions
+  MSBuildRelease buildDir "Build" buildSolutions
 
     |> Log "Build-Output: "
 ) 
 
 Target "BuildTests" (fun _ ->
-  MSBuildDebug testDir "Build" solutions
+  MSBuildDebug testDir "Build" buildSolutions
     |> Log "SpecsBuild-Output: "
 )
  
@@ -72,15 +73,29 @@ Target "Test" (fun _ ->
                     ExcludeTags = ["HTTP"]
                     HtmlOutputDir = reportDir})
 )
+
+Target "Deploy" (fun _ ->
+  let cwd = System.IO.Directory.GetCurrentDirectory() + buildDir
+  Log "Current directory: " [ cwd ]
+
+  let defines64 = "FileSource=" + buildDir + "Version=" + version 
+  deploySolutions
+    |> MSBuild deployDir "Build" (["ProductVersion", version; "Configuration","Release"; "Platform", "x86"; "DefineConstants", defines64])
+      |> Log "Deploy-Output: "
+)
+
+
+
 Target "Default" DoNothing
 
 
 // Dependencies
-"Clean"
-  ==> "SetAssemblyInfo" 
+// "Clean"
 //  =?> ("SetAssemblyInfo",not isLocalBuild ) 
-  ==> "Build" <=> "BuildTests"
-  ==> "Test"
+//  ==> "Build" <=> "BuildTests"
+//  ==> "Test"
+//  ==> "Deploy"
+"Deploy"
   ==> "Default"
 
 
