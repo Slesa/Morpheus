@@ -40,6 +40,7 @@
       <Directory Id="ProgramFiles64Folder">
         <Directory Id="SlesaSolutionsFolder" Name="Slesa Solutions">
           <Directory Id="APPLICATIONFOLDER" Name="IniConfig">
+            <Directory Id="deDEFolder" Name="de-DE" />
             <!--<Directory Id="SamplesFolder" Name="Samples" />-->
           </Directory>
         </Directory>
@@ -72,12 +73,23 @@
     <!-- Komponenten-Struktur -->
 
     <DirectoryRef Id="APPLICATIONFOLDER">
+      
+      <Component Id="C__IniConfig_Console" Guid="{CD090518-7605-44B5-A292-BD13F8E13570}" Win64="yes">
+        <File Id="INICONFIG.CONSOLE.EXE" Name="IniConfig.Console.exe" Source="$(var.FileSource)\IniConfig.Console.exe" KeyPath="yes" />
+        <File Id="INICONFIG.CONSOLE.EXE.CONFIG" Name="IniConfig.Console.exe.config" Source="$(var.FileSource)\IniConfig.Console.exe.config" />
+      </Component>
+      <Component Id="C__IniConfig_Console_Lib" Guid="{9F3F4949-6B8B-48EA-AF90-FFE9ECE90B5A}" Win64="yes">
+        <File Id="INICONFIG.CONSOLE.LIB.DLL" Name="IniConfig.Console.lib.dll" Source="$(var.FileSource)\IniConfig.Console.lib.dll" KeyPath="yes" />
+        <File Id="INICONFIG.CONSOLE.LIB.RESOURCES_DLL" Name="IniConfig.Console.lib.resources.dll" Source="$(var.FileSource)\de-DE\IniConfig.Console.lib.resources.dll" />
+      </Component>
+      
       <Component Id="C__IniConfig_Editor" Guid="{8C77DD64-E323-4810-B25C-78CCE0E7BD70}" Win64="yes">
         <File Id="INICONFIG.EDITOR.EXE" Name="IniConfig.Editor.exe" Source="$(var.FileSource)\IniConfig.Editor.exe" KeyPath="yes" />
         <File Id="INICONFIG.EDITOR.EXE.CONFIG" Name="IniConfig.Editor.exe.config" Source="$(var.FileSource)\IniConfig.Editor.exe.config" />
       </Component>
       <Component Id="C__IniConfig_Editor_Lib" Guid="{9E01C60A-77BC-4174-B927-AA03026F7553}" Win64="yes">
         <File Id="INICONFIG.EDITOR.LIB.DLL" Name="IniConfig.Editor.lib.dll" Source="$(var.FileSource)\IniConfig.Editor.lib.dll" KeyPath="yes" />
+        <File Id="INICONFIG.EDITOR.LIB.RESOURCES_DLL" Name="IniConfig.Editor.lib.resources.dll" Source="$(var.FileSource)\de-DE\IniConfig.Editor.lib.resources.dll" />
       </Component>
       <Component Id="C__IniConfig_Editor_Theme" Guid="{DB8D70F8-1699-432D-B464-2FEC800C1098}" Win64="yes">
         <File Id="INICONFIG.EDITOR.THEME.DLL" Name="IniConfig.Editor.Theme.dll" Source="$(var.FileSource)\IniConfig.Editor.Theme.dll" KeyPath="yes" />
@@ -168,6 +180,9 @@
       
       <ComponentRef Id="S__ProgramMenuComponent" />
       <ComponentRef Id="C__Fonts" />
+    
+      <ComponentRef Id="C__IniConfig_Console" />
+      <ComponentRef Id="C__IniConfig_Console_Lib" />
     
       <ComponentRef Id="C__IniConfig_Editor" />
       <ComponentRef Id="C__IniConfig_Editor_Lib" />
