@@ -1,0 +1,15 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="IniConfig.Editor.Theme.ButtonPage"
+	x:Name="UserControl"
+    FontFamily="{DynamicResource FontFamily.Standard}"
+	d:DesignWidth="640" d:DesignHeight="480">
+
+	<Grid x:Name="LayoutRoot">
+		<Button Content="Button" HorizontalAlignment="Left" Margin="96,65,0,0" VerticalAlignment="Top" Width="75" ToolTip="This is a button's tooltip" Style="{DynamicResource Button.Default}"/>
+	</Grid>
+</UserControl>

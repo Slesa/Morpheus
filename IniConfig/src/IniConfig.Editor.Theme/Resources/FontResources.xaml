@@ -1,0 +1,12 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <FontFamily x:Key="Fonts.Segoe">Fonts/#Segoe WP</FontFamily>
+    <FontFamily x:Key="Fonts.Segoe.Light">Fonts/#Segoe WP Light</FontFamily>
+    <FontFamily x:Key="Fonts.Segoe.SemiLight">Fonts/#Segoe WP SemiLight</FontFamily>
+    <FontFamily x:Key="Fonts.Segoe.SemiBold">Fonts/#Segoe WP Semibold</FontFamily>
+
+    <FontFamily x:Key="FontFamily.Standard">Segoe WP</FontFamily>
+
+</ResourceDictionary>
