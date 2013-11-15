@@ -74,6 +74,7 @@
     <DirectoryRef Id="APPLICATIONFOLDER">
       <Component Id="C__IniConfig_Editor" Guid="{8C77DD64-E323-4810-B25C-78CCE0E7BD70}" Win64="yes">
         <File Id="INICONFIG.EDITOR.EXE" Name="IniConfig.Editor.exe" Source="$(var.FileSource)\IniConfig.Editor.exe" KeyPath="yes" />
+        <File Id="INICONFIG.EDITOR.EXE.CONFIG" Name="IniConfig.Editor.exe.config" Source="$(var.FileSource)\IniConfig.Editor.exe.config" />
       </Component>
       <Component Id="C__IniConfig_Editor_Lib" Guid="{9E01C60A-77BC-4174-B927-AA03026F7553}" Win64="yes">
         <File Id="INICONFIG.EDITOR.LIB.DLL" Name="IniConfig.Editor.lib.dll" Source="$(var.FileSource)\IniConfig.Editor.lib.dll" KeyPath="yes" />

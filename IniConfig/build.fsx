@@ -24,7 +24,8 @@ let version =
 
 
 // directories 
-let binDir = "./bin"
+let cwd = System.IO.Directory.GetCurrentDirectory() 
+let binDir = cwd @@ "bin"
 let buildDir = binDir @@ "build"
 let testDir = binDir @@ "test"
 let deployDir = binDir @@ "deploy"
@@ -67,10 +68,9 @@ Target "BuildTests" (fun _ ->
 )
  
 Target "Test" (fun _ ->
-  !! (testDir @@ "*.specs.dll") 
+  !! (testDir @@ "*.Specs.dll") 
         |> MSpec (fun p -> 
                 {p with
-                    ExcludeTags = ["HTTP"]
                     HtmlOutputDir = reportDir})
 )
 
@@ -78,7 +78,9 @@ Target "Deploy" (fun _ ->
   let cwd = System.IO.Directory.GetCurrentDirectory() + buildDir
   Log "Current directory: " [ cwd ]
 
-  let defines64 = "FileSource=" + buildDir + "Version=" + version 
+  let defines64 = "FileSource=" + buildDir + ";Version=" + version 
+  Log "Current defines: " [ defines64 ]
+
   deploySolutions
     |> MSBuild deployDir "Build" (["ProductVersion", version; "Configuration","Release"; "Platform", "x86"; "DefineConstants", defines64])
       |> Log "Deploy-Output: "
@@ -90,12 +92,12 @@ Target "Default" DoNothing
 
 
 // Dependencies
-// "Clean"
-//  =?> ("SetAssemblyInfo",not isLocalBuild ) 
-//  ==> "Build" <=> "BuildTests"
-//  ==> "Test"
-//  ==> "Deploy"
-"Deploy"
+"Clean"
+  =?> ("SetAssemblyInfo",not isLocalBuild ) 
+  ==> "Build" <=> "BuildTests"
+  ==> "Test"
+  ==> "Deploy"
+//"Deploy"
   ==> "Default"
 
 
