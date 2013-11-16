@@ -5,7 +5,7 @@
 #r "FSharp.Markdown.dll"
 
 open Fake
-// open Fake.FileSystem
+open Fake.FileSystem
 open Fake.AssemblyInfoFile
 
 
@@ -54,11 +54,10 @@ let buildSolutions =
   !! "src/IniConfig.Editor.sln"
 
 let deploySolutions = 
-  !! "src/IniConfig.Setup.sln"
+  !! "setup/IniConfig.Setup.sln"
 
 Target "Build" (fun _ ->
   MSBuildRelease buildDir "Build" buildSolutions
-
     |> Log "Build-Output: "
 ) 
 

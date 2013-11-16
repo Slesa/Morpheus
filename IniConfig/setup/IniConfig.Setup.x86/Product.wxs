@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+
+  <!-- Produkt-Definition -->
+  <Product Id="*"
+      Name="!(loc.ProductName)"
+      Language="1033"
+      Version="$(var.Version)"
+      Manufacturer="Slesa Solutions"
+      UpgradeCode="{C2F9D031-F2EE-467E-962A-578B245E650E}">
+
+    <!-- Package-Definition -->
+    <Package InstallerVersion="301"
+             Compressed="yes"
+             Description="!(loc.Description)"
+             Comments="(c) 2013 J. Preiss"
+             InstallScope="perMachine"
+             Platform="x86"
+             InstallPrivileges="elevated" />
+
+    <!-- Requirements -->
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <PropertyRef Id="NETFRAMEWORK45" />
+    <Condition Message="!(loc.ErrorFramework)">NETFRAMEWORK45</Condition>
+    <Condition Message="!(loc.ErrorAdminRights)">Privileged</Condition>
+
+
+    <!-- Icons -->
+    <Icon Id="I__IniConfigIcon" SourceFile="..\IniConfig.Setup.lib\Resources\IniConfig.png" />
+    <Property Id="ARPPRODUCTICON" Value="I__XamlBoardIcon"/>
+
+
+    <!-- Media -->
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+
+    <!-- Directory-Struktur -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <!-- program files directories -->
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="SlesaSolutionsFolder" Name="Slesa Solutions">
+          <Directory Id="APPLICATIONFOLDER" Name="IniConfig">
+            <Directory Id="deDEFolder" Name="de-DE" />
+            <!--<Directory Id="SamplesFolder" Name="Samples" />-->
+          </Directory>
+        </Directory>
+      </Directory>
+      <!-- local program data directories
+      <Directory Id="LocalAppDataFolder" Name="LocalAppDataFolder">
+        <Directory Id="VendorDataFolder" Name="Centigrade">
+          <Directory Id="ProductDataFolder" Name="XamlBoard" />
+        </Directory>
+      </Directory>-->
+      <!-- roaming program data directories
+      <Directory Id="AppDataFolder" Name="AppDataFolder">
+        <Directory Id="VendorRoamingFolder" Name="Centigrade">
+          <Directory Id="ProductRoamingFolder" Name="XamlBoard" />
+        </Directory>
+      </Directory>-->
+      <!-- font directories -->
+      <Directory Id="FontsFolder"/>
+      <!-- shortcut directories -->
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ProgramMenuVendorFolder" Name="Slesa Solutions">
+          <Directory Id="ProgramMenuProductFolder" Name="IniConfig">
+            <!--<Directory Id="ProgramMenuProductSubFolder" Name="MySubFolder" />-->
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+
+    <!-- Komponenten-Struktur -->
+
+    <DirectoryRef Id="APPLICATIONFOLDER">
+
+      <Component Id="C__IniConfig_Console" Guid="{8E3129EE-9F40-48FF-9021-50D5BDE25E6D}">
+        <File Id="INICONFIG.CONSOLE.EXE" Name="IniConfig.Console.exe" Source="$(var.FileSource)\IniConfig.Console.exe" KeyPath="yes" />
+        <File Id="INICONFIG.CONSOLE.EXE.CONFIG" Name="IniConfig.Console.exe.config" Source="$(var.FileSource)\IniConfig.Console.exe.config" />
+      </Component>
+      <Component Id="C__IniConfig_Console_Lib" Guid="{CE3079C3-67DC-432C-95DA-F05133391DF6}">
+        <File Id="INICONFIG.CONSOLE.LIB.DLL" Name="IniConfig.Console.lib.dll" Source="$(var.FileSource)\IniConfig.Console.lib.dll" KeyPath="yes" />
+        <File Id="INICONFIG.CONSOLE.LIB.RESOURCES_DLL" Name="IniConfig.Console.lib.resources.dll" Source="$(var.FileSource)\de-DE\IniConfig.Console.lib.resources.dll" />
+      </Component>
+
+      <Component Id="C__IniConfig_Editor" Guid="{C6B2181D-E1DF-4956-A3FC-3AEF1EED9E8F}">
+        <File Id="INICONFIG.EDITOR.EXE" Name="IniConfig.Editor.exe" Source="$(var.FileSource)\IniConfig.Editor.exe" KeyPath="yes" />
+        <File Id="INICONFIG.EDITOR.EXE.CONFIG" Name="IniConfig.Editor.exe.config" Source="$(var.FileSource)\IniConfig.Editor.exe.config" />
+      </Component>
+      <Component Id="C__IniConfig_Editor_Lib" Guid="{632EC733-1AE7-4BB5-A282-F4894B04BDA1}">
+        <File Id="INICONFIG.EDITOR.LIB.DLL" Name="IniConfig.Editor.lib.dll" Source="$(var.FileSource)\IniConfig.Editor.lib.dll" KeyPath="yes" />
+        <File Id="INICONFIG.EDITOR.LIB.RESOURCES_DLL" Name="IniConfig.Editor.lib.resources.dll" Source="$(var.FileSource)\de-DE\IniConfig.Editor.lib.resources.dll" />
+      </Component>
+      <Component Id="C__IniConfig_Editor_Theme" Guid="{7EEA00FA-7BEB-4DD3-B793-4C92FB08FC3A}">
+        <File Id="INICONFIG.EDITOR.THEME.DLL" Name="IniConfig.Editor.Theme.dll" Source="$(var.FileSource)\IniConfig.Editor.Theme.dll" KeyPath="yes" />
+      </Component>
+
+      <Component Id="C__IniConfig_Lib" Guid="{B8196F3D-2573-4072-B9B6-857E73FF6480}">
+        <File Id="INICONFIG.LIB.DLL" Name="IniConfig.lib.dll" Source="$(var.FileSource)\IniConfig.lib.dll" KeyPath="yes" />
+      </Component>
+
+      <Component Id="C__Microsoft_Expression_Interactions" Guid="{A2B1157A-1374-4155-993F-25A3F86F4A91}">
+        <File Id="MICROSOFT.EXPRESSION.INTERACTIONS.DLL" Name="Microsoft.Expression.Interactions.dll" Source="$(var.FileSource)\Microsoft.Expression.Interactions.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="C__Prism" Guid="{4F07CF63-ECE3-423B-AEF1-087D1D111771}">
+        <File Id="MICROSOFT.PRACTICES.PRISM.DLL" Name="Microsoft.Practices.Prism.dll" Source="$(var.FileSource)\Microsoft.Practices.Prism.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="C__PrismInteractivity" Guid="{EBF7A9AA-4BBF-4D07-B8E4-0A9E20AD348A}">
+        <File Id="MICROSOFT.PRACTICES.PRISM.INTERACTIVITY.DLL" Name="Microsoft.Practices.Prism.Interactivity.dll" Source="$(var.FileSource)\Microsoft.Practices.Prism.Interactivity.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="C__PrismUnityExtensions" Guid="{5D18E6EA-BC95-42CF-B9EF-33797B1CD2C8}">
+        <File Id="MICROSOFT.PRACTICES.PRISM.UNITYEXTENSIONS.DLL" Name="Microsoft.Practices.Prism.UnityExtensions.dll" Source="$(var.FileSource)\Microsoft.Practices.Prism.UnityExtensions.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="C__ServiceLocation" Guid="{89EECB83-8CB5-4BFC-8E77-ADBFB6A80976}">
+        <File Id="MICROSOFT.PRACTICES.SERVICELOCATION.DLL" Name="Microsoft.Practices.ServiceLocation.dll" Source="$(var.FileSource)\Microsoft.Practices.ServiceLocation.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="C__Unity" Guid="{7AE3CA5B-5ACA-4DD7-8EAE-2DCE51C48C93}">
+        <File Id="MICROSOFT.PRACTICES.UNITY.DLL" Name="Microsoft.Practices.Unity.dll" Source="$(var.FileSource)\Microsoft.Practices.Unity.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="C__Unity_Configuration" Guid="{A351B2CF-2238-484E-8D4E-F0F398FD878D}">
+        <File Id="MICROSOFT.PRACTICES.UNITY.CONFIGURATION.DLL" Name="Microsoft.Practices.Unity.Configuration.dll" Source="$(var.FileSource)\Microsoft.Practices.Unity.Configuration.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="C__System_Windows_Interactivity" Guid="{48C0EB85-9704-4133-9CED-FE6385E0CDF8}">
+        <File Id="SYSTEM.WINDOWS.INTERACTIVITY.DLL" Name="System.Windows.Interactivity.dll" Source="$(var.FileSource)\System.Windows.Interactivity.dll" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+
+    <DirectoryRef Id="ProgramMenuFolder">
+      <Component Id="S__ProgramMenuComponent" Guid="{92B59138-2B11-4A9C-B582-C08C0A06D6F7}">
+
+        <!-- create folders -->
+        <CreateFolder Directory="ProgramMenuVendorFolder" />
+        <CreateFolder Directory="ProgramMenuProductFolder" />
+        <!--<CreateFolder Directory="ProgramMenuSubFolder" />-->
+
+        <!-- remove folder -->
+        <RemoveFolder Id="RemoveProgramMenuVendorFolder" Directory="ProgramMenuVendorFolder" On="uninstall" />
+        <RemoveFolder Id="RemoveProgramMenuProductFolder" Directory="ProgramMenuProductFolder" On="uninstall" />
+        <!--<RemoveFolder Id="RemoveProgramMenuProductSubFolder" Directory="ProgramMenuProductSubFolder" On="uninstall" />-->
+
+        <!-- main shortcut -->
+        <Shortcut Id="IniConfigEditorShortcut"
+                  Directory="ProgramMenuProductFolder"
+                  WorkingDirectory="APPLICATIONFOLDER"
+                  Name="INI Configuration Editor"
+                  Icon="I__IniConfigIcon"
+                  Description="!(loc.IniConfigEditorDescription)"
+                  Target="[APPLICATIONFOLDER]IniConfig.Editor.EXE"/>
+
+        <!-- registry keys -->
+        <RegistryValue Root="HKCU" Key="Software\SlesaSolutions\IniConfig" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+
+      </Component>
+    </DirectoryRef>
+
+
+    <DirectoryRef Id="FontsFolder">
+      <Component Id="C__Fonts" Guid="{23E8CD76-1BE9-4BB1-A53A-7B9D051181E2}" Permanent="yes">
+        <File Id="SegoeWP.TTF" Source="..\..\res\Fonts\SegoeWP.ttf" TrueType="yes" />
+        <File Id="SegoeWP_Bold.TTF" Source="..\..\res\Fonts\SegoeWP-Bold.ttf" TrueType="yes" />
+        <File Id="SegoeWP_Semibold.TTF" Source="..\..\res\Fonts\SegoeWP-Semibold.ttf" TrueType="yes" />
+        <File Id="SegoeWP_Light.TTF" Source="..\..\res\Fonts\SegoeWP-Light.ttf" TrueType="yes" />
+        <File Id="SegoeWP_Semilight.TTF" Source="..\..\res\Fonts\SegoeWP-Semilight.ttf" TrueType="yes" />
+      </Component>
+    </DirectoryRef>
+
+
+
+
+    <!-- Feature-Struktur -->
+    <Feature Id="SharedFiles" Level="1"
+             InstallDefault="local"
+             Absent="disallow"
+             AllowAdvertise="no"
+             TypicalDefault="install"
+             Title="!(loc.ProductFeatureTitle)"
+             ConfigurableDirectory="APPLICATIONFOLDER"
+             Description="!(loc.ProductFeatureDescription)">
+
+      <ComponentRef Id="S__ProgramMenuComponent" />
+      <ComponentRef Id="C__Fonts" />
+
+      <ComponentRef Id="C__IniConfig_Console" />
+      <ComponentRef Id="C__IniConfig_Console_Lib" />
+
+      <ComponentRef Id="C__IniConfig_Editor" />
+      <ComponentRef Id="C__IniConfig_Editor_Lib" />
+      <ComponentRef Id="C__IniConfig_Editor_Theme" />
+
+      <ComponentRef Id="C__IniConfig_Lib" />
+
+      <ComponentRef Id="C__Microsoft_Expression_Interactions" />
+      <ComponentRef Id="C__Prism" />
+      <ComponentRef Id="C__PrismInteractivity" />
+      <ComponentRef Id="C__PrismUnityExtensions" />
+      <ComponentRef Id="C__ServiceLocation" />
+      <ComponentRef Id="C__Unity" />
+      <ComponentRef Id="C__Unity_Configuration" />
+      <ComponentRef Id="C__System_Windows_Interactivity" />
+    </Feature>
+
+
+
+    <Property Id="WIXUI_INSTALLDIR" Value="APPLICATIONFOLDER" />
+
+    <UIRef Id="WixUI_ErrorProgressText" />
+    <UIRef Id="WixUI_IniConfig" />
+
+    <!--<WixVariable Id="WixUILicenseRtf" Value="License.rtf" />-->
+    <WixVariable Id="WixUIBannerBmp" Value="..\IniConfig.Setup.lib\Resources\WixUI_Banner.jpg" />
+    <WixVariable Id="WixUIDialogBmp" Value="..\IniConfig.Setup.lib\Resources\WixUI_Bitmap.jpg" />
+
+
+  </Product>
+
+</Wix>
