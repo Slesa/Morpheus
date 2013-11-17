@@ -1,13 +1,23 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:IniConfig.Editor.Theme.Controls">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/FontResources.xaml" />
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/ImageResources.xaml" />
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/ButtonResources.xaml" />
+        <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/MenuBarResources.xaml" />
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/MiscResources.xaml" />
+        <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/ShellResources.xaml" />
+        <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/StatusBarResources.xaml" />
     </ResourceDictionary.MergedDictionaries>
        
-    
+    <DataTemplate DataType="{x:Type Controls:IconButton}">
+        <StackPanel Orientation="Vertical">
+            <ContentControl Content="{Binding Content}"/>
+            <Image Source="{Binding Icon}"/>
+        </StackPanel>
+    </DataTemplate>
+
 </ResourceDictionary>

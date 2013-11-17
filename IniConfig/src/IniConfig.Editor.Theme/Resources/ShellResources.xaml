@@ -1,0 +1,22 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="BrushResources.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="Style.Shell.DockPanel" TargetType="{x:Type DockPanel}">
+        <Setter Property="Background" Value="{StaticResource Brush.Shell.Background}"/>
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource Brush.Shell.Foreground}"/>
+    </Style>
+
+    <Style x:Key="Style.Shell.StatusBar" TargetType="{x:Type ContentControl}">
+        <Setter Property="DockPanel.Dock" Value="Bottom"/>
+    </Style>
+
+    <Style x:Key="Style.Shell.MenuBar" TargetType="{x:Type ContentControl}">
+        <Setter Property="DockPanel.Dock" Value="Top"/>
+    </Style>
+
+</ResourceDictionary>

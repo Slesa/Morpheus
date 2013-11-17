@@ -6,8 +6,9 @@
              xmlns:design="clr-namespace:IniConfig.Editor.lib.DesignTime"
              xmlns:res="clr-namespace:IniConfig.Editor.lib.Resources"
              xmlns:hlp="clr-namespace:IniConfig.Editor.lib.Helpers"
+             xmlns:Controls="clr-namespace:IniConfig.Editor.Theme.Controls;assembly=IniConfig.Editor.Theme"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="800">
     
     <UserControl.Resources>
         
@@ -29,29 +30,29 @@
         <design:DesignTimeMenuBarViewModel />
     </d:UserControl.DataContext>
 
-    
-    <StackPanel Background="Beige" DockPanel.Dock="Top" Orientation="Horizontal">
+
+    <StackPanel Style="{DynamicResource Style.MenuBar.Panel}">
         
         <Image HorizontalAlignment="Left" Height="100" Width="100" Margin="10" Source="../Resources/Images/IniConfig.jpg"/>
         
-        <TextBlock Text="INI-Editor" VerticalAlignment="Center" Style="{DynamicResource TextBlock-Sketch}" Margin="20,0,20,0" FontSize="32" />
+        <TextBlock Text="INI-Editor" VerticalAlignment="Center" Margin="20,0,20,0" FontSize="32" />
         
-        <ComboBox Width="160" Height="40" Style="{DynamicResource ComboBox-Sketch}" ToolTip="{x:Static res:Strings.MenuBarView_RecentFilesTooltip}"
+        <ComboBox Width="160" Height="40" ToolTip="{x:Static res:Strings.MenuBarView_RecentFilesTooltip}"
                   ItemsSource="{Binding RecentFiles}" ItemTemplate="{StaticResource RecentFileDataTemplate}"/>
 
-        <Button Style="{DynamicResource Button-Sketch}" Height="40" Command="{Binding NewCommand}" ToolTip="{x:Static res:Strings.MenuBarView_NewCommandTooltip}">
-            <Image Source="{DynamicResource Images.New}" />
-        </Button>
-        <Button Style="{DynamicResource Button-Sketch}" Height="40" Command="{Binding LoadCommand}" ToolTip="{x:Static res:Strings.MenuBarView_LoadCommandTooltip}">
+        <Controls:IconButton Height="40" Command="{Binding NewCommand}" ToolTip="{x:Static res:Strings.MenuBarView_NewCommandTooltip}" Controls:IconButton.Icon="{DynamicResource Images.New}">
+            <!--<Image Source="{DynamicResource Images.New}" />-->
+        </Controls:IconButton>
+        <Button Height="40" Command="{Binding LoadCommand}" ToolTip="{x:Static res:Strings.MenuBarView_LoadCommandTooltip}">
             <Image Source="{DynamicResource Images.Load}" />
         </Button>
-        <Button Style="{DynamicResource Button-Sketch}" Height="40" Command="{Binding SaveCommand}" ToolTip="{x:Static res:Strings.MenuBarView_SaveCommandTooltip}">
+        <Button Height="40" Command="{Binding SaveCommand}" ToolTip="{x:Static res:Strings.MenuBarView_SaveCommandTooltip}">
             <Image Source="{DynamicResource Images.Save}"  />
         </Button>
-        <Button Style="{DynamicResource Button-Sketch}" Height="40" Command="{Binding SaveAsCommand}" ToolTip="{x:Static res:Strings.MenuBarView_SaveAsCommandTooltip}">
+        <Button Height="40" Command="{Binding SaveAsCommand}" ToolTip="{x:Static res:Strings.MenuBarView_SaveAsCommandTooltip}">
             <Image Source="{DynamicResource Images.SaveAs}" />
         </Button>
-        <Button Style="{DynamicResource Button-Sketch}" Height="40" Command="{Binding QuitCommand}" ToolTip="{x:Static res:Strings.MenuBarView_QuitCommandTooltip}">
+        <Button Height="40" Command="{Binding QuitCommand}" ToolTip="{x:Static res:Strings.MenuBarView_QuitCommandTooltip}">
             <Image Source="{DynamicResource Images.Exit}" />
         </Button>
     </StackPanel>

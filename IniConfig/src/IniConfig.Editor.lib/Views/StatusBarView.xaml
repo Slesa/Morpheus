@@ -19,9 +19,9 @@
     <d:UserControl.DataContext>
         <design:DesignTimeStatusBarViewModel />
     </d:UserControl.DataContext>
-    
-    <StackPanel Orientation="Horizontal">
-        <TextBlock Text="{Binding Message}" Style="{DynamicResource Style.StatusBar.Message}"/>
+
+    <StackPanel Orientation="Horizontal" Style="{DynamicResource Style.StatusBar.Panel}">
+        <TextBlock Text="{Binding Message}" />
     </StackPanel>
     
 </UserControl>

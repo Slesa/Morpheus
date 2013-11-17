@@ -2,9 +2,16 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Color x:Key="Color.Background.Dark">#FF363631</Color>
+    <Color x:Key="Color.Background.Light">Beige</Color>
+
+    <Color x:Key="Color.Foreground.Dark">Black</Color>
+    <Color x:Key="Color.Foreground.Light">White</Color>
+
+
     
     <Color x:Key="Color.Tooltip.Light">#FFDFD868</Color>
-    <Color x:Key="Color.Tooltip.Medium">#FFA3A073</Color>
+    <Color x:Key="Color.Tooltip.Medium">#FFE3DFA7</Color>
     <Color x:Key="Color.Tooltip.Border">#FF1D0E2A</Color>
     
     
