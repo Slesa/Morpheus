@@ -133,6 +133,15 @@ namespace IniConfig.Editor.lib.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File {0} successfully loaded.
+        /// </summary>
+        public static string MenuBarViewModel_FileLoaded {
+            get {
+                return ResourceManager.GetString("MenuBarViewModel_FileLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a configuration file....
         /// </summary>
         public static string MenuBarViewModel_SelectConfigurationFile {

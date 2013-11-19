@@ -63,9 +63,13 @@ namespace IniConfig.lib
             get
             {
                 if(_remarkLines==null) _remarkLines = new List<IniLine>();
-                return _remarkLines.Select(x=>x.Comment);
+                foreach (var line in RemarksList)
+                {
+                    yield return line.Comment;
+                }
             }
         }
+
         List<IniLine> RemarksList
         {
             get { return _remarkLines ?? (_remarkLines = new List<IniLine>()); }

@@ -5,12 +5,10 @@ namespace IniConfig.Editor.lib.Models
 {
     public class Document : NotificationObject
     {
-        IniFile _iniFile;
-
         public Document(string filePath)
         {
             _filePath = filePath;
-            _iniFile = IniFile.LoadFrom(filePath);
+            IniFile = IniFile.LoadFrom(filePath);
         }
 
         string _filePath;
@@ -34,5 +32,7 @@ namespace IniConfig.Editor.lib.Models
                 RaisePropertyChanged(() => HasChanged);
             }
         }
+
+        public IniFile IniFile { get; private set; }
     }
 }

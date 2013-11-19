@@ -10,6 +10,7 @@ using IniConfig.Editor.lib.Helpers;
 using IniConfig.Editor.lib.Models;
 using IniConfig.Editor.lib.Resources;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Unity;
 
 namespace IniConfig.Editor.lib.ViewModels
@@ -17,13 +18,15 @@ namespace IniConfig.Editor.lib.ViewModels
     public class MenuBarViewModel : IViewModel
     {
         readonly AppConfiguration _appConfiguration;
+        readonly EventAggregator _eventAggregator;
 
         [Dependency]
         public IProvideFileSource FileSourceProvider { get; set; }
 
-        public MenuBarViewModel(AppConfiguration appConfiguration)
+        public MenuBarViewModel(AppConfiguration appConfiguration, EventAggregator eventAggregator)
         {
             _appConfiguration = appConfiguration;
+            _eventAggregator = eventAggregator;
 
             RecentFiles = new ObservableCollection<RecentFile>();
             _appConfiguration.RecentFileRemoved += OnRecentFileRemoved;
@@ -36,6 +39,8 @@ namespace IniConfig.Editor.lib.ViewModels
             SaveCommand = new DelegateCommand(OnSave, CanSave);
             SaveAsCommand = new DelegateCommand(OnSaveAs, CanSaveAs);
             QuitCommand = new DelegateCommand(OnExit);
+
+            _eventAggregator.GetEvent<ShowStatusMessageEvent>().Publish("Ready");
         }
 
         public Document Document { get; private set; }
@@ -79,7 +84,8 @@ namespace IniConfig.Editor.lib.ViewModels
             _appConfiguration.UpdateRecentFiles(fileName);
 
             //CurrentInputFile = fileName;
-            //_eventAggregator.GetEvent<HandleInputFileEvent>().Publish(CurrentInputFile);
+            _eventAggregator.GetEvent<ShowStatusMessageEvent>().Publish(string.Format(Strings.MenuBarViewModel_FileLoaded, fileName));
+            _eventAggregator.GetEvent<DocumentChangedEventEvent>().Publish(Document);
         }
 
         public ICommand SaveCommand { get; private set; }

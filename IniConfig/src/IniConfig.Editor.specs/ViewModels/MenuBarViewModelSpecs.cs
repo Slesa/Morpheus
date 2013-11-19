@@ -11,7 +11,7 @@ namespace IniConfig.Editor.specs.ViewModels
     [Subject(typeof(MenuBarViewModel))]
     class When_creating_menubar_viewmodel : MenuBarViewModelSpecBase
     {
-        Because of = () => _subject = new MenuBarViewModel(AppConfiguration);
+        Because of = () => _subject = new MenuBarViewModel(AppConfiguration, null);
 
         It should_have_no_active_document = () => _subject.Document.ShouldBeNull();
         It should_have_no_recent_files = () => _subject.RecentFiles.ShouldBeEmpty();
@@ -34,7 +34,7 @@ namespace IniConfig.Editor.specs.ViewModels
                 var fileSourceProvider = An<IProvideFileSource>();
                 fileSourceProvider.WhenToldTo(x=>x.ObtainFileName(Param.IsAny<ObtainFileSettings>())).Return(string.Empty);
 
-                _subject = new MenuBarViewModel(AppConfiguration) {FileSourceProvider = fileSourceProvider};
+                _subject = new MenuBarViewModel(AppConfiguration, null) {FileSourceProvider = fileSourceProvider};
             };
 
         Because of = () => _subject.LoadCommand.Execute(null);
@@ -64,7 +64,7 @@ namespace IniConfig.Editor.specs.ViewModels
                 var fileSourceProvider = An<IProvideFileSource>();
                 fileSourceProvider.WhenToldTo(x=>x.ObtainFileName(Param.IsAny<ObtainFileSettings>())).Return(_specOutput.FileName);
 
-                _subject = new MenuBarViewModel(AppConfiguration) {FileSourceProvider = fileSourceProvider};
+                _subject = new MenuBarViewModel(AppConfiguration, null) {FileSourceProvider = fileSourceProvider};
             };
 
         Cleanup teardown = () => _specOutput.Remove();

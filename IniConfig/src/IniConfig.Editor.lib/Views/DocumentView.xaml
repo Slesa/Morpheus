@@ -5,12 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:design="clr-namespace:IniConfig.Editor.lib.DesignTime"
              xmlns:hlp="clr-namespace:IniConfig.Editor.lib.Helpers"
+             xmlns:Lib="clr-namespace:IniConfig.lib;assembly=IniConfig.lib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
 
         <hlp:DocumentViewModelLocator x:Key="ViewModelLocator" />
+
+        <DataTemplate x:Key="Sections.ItemTemplate" DataType="{x:Type Lib:IniSection}">
+            <Border ToolTip="{Binding Remarks}">
+                <TextBlock Text="{Binding Name}"/>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type Lib:IniEntry}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Attribute}"/>
+                <TextBlock Text="{Binding Value}"/>
+            </StackPanel>
+        </DataTemplate>
 
     </UserControl.Resources>
 
@@ -31,11 +45,19 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>        
         
-        <ListBox Grid.Column="0" ItemsSource="{Binding Sections}"/>
+        <ListBox Grid.Column="0" ItemsSource="{Binding Sections}" SelectedItem="{Binding CurrentSection}" 
+                 ItemTemplate="{StaticResource Sections.ItemTemplate}" 
+                 ItemContainerStyle="{DynamicResource ListBox.Sections.ItemContainer}"/>
         
-        <GridSplitter Grid.Column="1" Width="3" />
+        <GridSplitter Grid.Column="0" Width="3" />
         
-        <ListBox Grid.Column="2" ItemsSource="{Binding SectionEntries}"/>
+        <DataGrid Grid.Column="2" ItemsSource="{Binding Entries}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Attribute" Binding="{Binding Attribute}"/>
+                <DataGridTextColumn Header="Value" Binding="{Binding Value}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+                  
     </Grid>
     
 </UserControl>

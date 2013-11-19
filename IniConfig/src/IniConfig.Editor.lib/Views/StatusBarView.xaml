@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:design="clr-namespace:IniConfig.Editor.lib.DesignTime"
              xmlns:hlp="clr-namespace:IniConfig.Editor.lib.Helpers"
+             xmlns:ViewModels="clr-namespace:IniConfig.Editor.lib.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="300">
 
@@ -12,16 +13,19 @@
         <hlp:StatusBarViewModelLocator x:Key="ViewModelLocator" />
     </UserControl.Resources>
 
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <Binding Path="ViewModel" Source="{StaticResource ViewModelLocator}" />
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
 
+    <UserControl.DataContext>
+        <ViewModels:StatusBarViewModel/>
+    </UserControl.DataContext>
     <d:UserControl.DataContext>
         <design:DesignTimeStatusBarViewModel />
     </d:UserControl.DataContext>
 
-    <StackPanel Orientation="Horizontal" Style="{DynamicResource Style.StatusBar.Panel}">
-        <TextBlock Text="{Binding Message}" />
+    <StackPanel Orientation="Horizontal" Style="{DynamicResource Style.StatusBar.Panel}" Height="30">
+        <TextBlock Text="{Binding Message}" Foreground="Black" />
     </StackPanel>
     
 </UserControl>

@@ -123,6 +123,9 @@
   <data name="MenuBarViewModel_ConfigurationFiles" xml:space="preserve">
     <value>Konfigurationsdateien</value>
   </data>
+  <data name="MenuBarViewModel_FileLoaded" xml:space="preserve">
+    <value>Datei {0} erfolgreich geladen</value>
+  </data>
   <data name="MenuBarViewModel_SelectConfigurationFile" xml:space="preserve">
     <value>Konfigurationsdatei auswählen...</value>
   </data>
