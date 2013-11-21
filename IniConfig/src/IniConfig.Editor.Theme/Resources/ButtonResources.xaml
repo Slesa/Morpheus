@@ -3,21 +3,49 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Controls="clr-namespace:IniConfig.Editor.Theme.Controls">
 
-   
-    <Style TargetType="{x:Type Controls:IconButton}">
+
+    <Style x:Key="Button.Default" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" CornerRadius="5" BorderThickness="1" BorderBrush="Black" Padding="2" Margin="5,0,5,0">
+                        <ContentPresenter Width="{TemplateBinding Width}" Height="{TemplateBinding Width}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" Value="Gray" TargetName="Border" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="LightGray" TargetName="Border" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="IconButton.Default" TargetType="{x:Type Controls:IconButton}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Controls:IconButton}">
-                    <StackPanel Width="{TemplateBinding Width}" Height="{TemplateBinding Width}" x:Name="panel">
-                        <Image Source="{Binding Icon}"/>
-                        <ContentPresenter Width="{TemplateBinding Width}" Height="{TemplateBinding Width}" />
-                    </StackPanel>
+                    <Border x:Name="Border" CornerRadius="5" BorderThickness="1" BorderBrush="Black" Margin="5,0,5,0" >
+                        <DockPanel Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" LastChildFill="True">
+                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" DockPanel.Dock="Bottom" />
+                            <Image Source="{TemplateBinding Icon}" />
+                        </DockPanel>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" Value="Gray" TargetName="panel" />
+                            <Setter Property="Background" Value="Gray" TargetName="Border" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.3" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" Value="LightGray" />
+                            <Setter Property="Background" Value="LightGray" TargetName="Border" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -25,9 +53,8 @@
         </Setter>
     </Style>
     
-    <Style x:Key="Button.Default" TargetType="{x:Type Button}">
-    </Style>
     
+    <Style BasedOn="{StaticResource IconButton.Default}" TargetType="{x:Type Controls:IconButton}"/>
     <Style BasedOn="{StaticResource Button.Default}" TargetType="{x:Type Button}"/>
     
 </ResourceDictionary>
