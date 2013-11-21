@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using IniConfig.Editor.lib.Contracts;
 using IniConfig.Editor.lib.Models;
 using IniConfig.lib;

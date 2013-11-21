@@ -39,14 +39,23 @@ namespace IniConfig.Editor.lib.ViewModels
             SaveCommand = new DelegateCommand(OnSave, CanSave);
             SaveAsCommand = new DelegateCommand(OnSaveAs, CanSaveAs);
             QuitCommand = new DelegateCommand(OnExit);
-
-            _eventAggregator.GetEvent<ShowStatusMessageEvent>().Publish("Ready");
         }
 
         public Document Document { get; private set; }
         public ObservableCollection<RecentFile> RecentFiles { get; private set; }
 
-    #region Commands
+        RecentFile _currentRecentFile;
+        public RecentFile CurrentRecentFile
+        {
+            get { return _currentRecentFile; }
+            set
+            {
+                _currentRecentFile = value;
+                OpenConfigurationFile(_currentRecentFile.FilePath);
+            }
+        }
+
+        #region Commands
 
         public ICommand NewCommand { get; private set; }
 
@@ -77,15 +86,10 @@ namespace IniConfig.Editor.lib.ViewModels
             var fileName = FileSourceProvider.ObtainFileName(obtainFileSettings);
             if (string.IsNullOrEmpty(fileName)) return;
 
-            Document = new Document(fileName);
-
             _appConfiguration.LastOpenLocation = obtainFileSettings.LastLocation;
             _appConfiguration.LastFilterIndex = obtainFileSettings.FileFilterIndex;
-            _appConfiguration.UpdateRecentFiles(fileName);
 
-            //CurrentInputFile = fileName;
-            _eventAggregator.GetEvent<ShowStatusMessageEvent>().Publish(string.Format(Strings.MenuBarViewModel_FileLoaded, fileName));
-            _eventAggregator.GetEvent<DocumentChangedEventEvent>().Publish(Document);
+            OpenConfigurationFile(fileName);
         }
 
         public ICommand SaveCommand { get; private set; }
@@ -119,6 +123,25 @@ namespace IniConfig.Editor.lib.ViewModels
         }
 
     #endregion
+
+        void OpenConfigurationFile(string fileName)
+        {
+            var document = Document.CreateDocument(fileName);
+            if (document == null)
+            {
+                _appConfiguration.RemoveRecentFile(fileName);
+                _eventAggregator.GetEvent<ShowStatusMessageEvent>()
+                                .Publish(string.Format(Strings.MenuBarViewModel_CouldNotLoadFile, fileName));
+                return;
+            }
+            Document = document;
+            _appConfiguration.UpdateRecentFiles(fileName);
+
+            //CurrentInputFile = fileName;
+            _eventAggregator.GetEvent<ShowStatusMessageEvent>()
+                            .Publish(string.Format(Strings.MenuBarViewModel_FileLoaded, fileName));
+            _eventAggregator.GetEvent<DocumentChangedEventEvent>().Publish(Document);
+        }
         
         void FillRecentFiles()
         {

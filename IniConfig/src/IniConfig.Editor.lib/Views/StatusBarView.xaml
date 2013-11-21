@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:design="clr-namespace:IniConfig.Editor.lib.DesignTime"
              xmlns:hlp="clr-namespace:IniConfig.Editor.lib.Helpers"
              xmlns:ViewModels="clr-namespace:IniConfig.Editor.lib.ViewModels"
@@ -10,7 +12,18 @@
              d:DesignHeight="30" d:DesignWidth="300">
 
     <UserControl.Resources>
+        
         <hlp:StatusBarViewModelLocator x:Key="ViewModelLocator" />
+
+        <Storyboard x:Key="Storyboard1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="messageBox">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        
     </UserControl.Resources>
 
     <UserControl.DataContext>
@@ -24,8 +37,28 @@
         <design:DesignTimeStatusBarViewModel />
     </d:UserControl.DataContext>
 
-    <StackPanel Orientation="Horizontal" Style="{DynamicResource Style.StatusBar.Panel}">
-        <TextBlock Text="{Binding Message}" />
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="TextBoxBase.TextChanged" SourceName="messageBox">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    
+    <StackPanel x:Name="stackPanel" Orientation="Horizontal" Style="{DynamicResource Style.StatusBar.Panel}">
+    	
+        <!--<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="StandardGroup"/>
+    		<VisualStateGroup x:Name="ShowingTextGroup"/>
+    	</VisualStateManager.VisualStateGroups>
+        
+        <i:Interaction.Triggers>
+            <ei:DataTrigger Binding="{Binding Message}" Value="{x:Null}">
+                <ei:GoToStateAction
+                        StateName="ShowingTextGroup" />
+            </ei:DataTrigger>
+        </i:Interaction.Triggers>-->
+        
+        <TextBlock x:Name="messageBox"  Text="{Binding Message}" />
+        
     </StackPanel>
     
 </UserControl>

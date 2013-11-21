@@ -133,6 +133,15 @@ namespace IniConfig.Editor.lib.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to load {0}.
+        /// </summary>
+        public static string MenuBarViewModel_CouldNotLoadFile {
+            get {
+                return ResourceManager.GetString("MenuBarViewModel_CouldNotLoadFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File {0} successfully loaded.
         /// </summary>
         public static string MenuBarViewModel_FileLoaded {
@@ -147,6 +156,15 @@ namespace IniConfig.Editor.lib.Resources {
         public static string MenuBarViewModel_SelectConfigurationFile {
             get {
                 return ResourceManager.GetString("MenuBarViewModel_SelectConfigurationFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready.
+        /// </summary>
+        public static string Msg_Ready {
+            get {
+                return ResourceManager.GetString("Msg_Ready", resourceCulture);
             }
         }
     }

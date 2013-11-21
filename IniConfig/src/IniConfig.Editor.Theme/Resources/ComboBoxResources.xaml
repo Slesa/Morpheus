@@ -7,16 +7,13 @@
         <StackPanel IsItemsHost="True" />
     </ItemsPanelTemplate>
 
-    <Style
-        x:Key="ComboBoxItem.PickList"
-        TargetType="{x:Type ComboBoxItem}">
+    <Style x:Key="ComboBoxItem.PickList" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate
-                    TargetType="{x:Type ComboBoxItem}">
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
 
                     <Border
                         x:Name="Bd"
@@ -124,8 +121,7 @@
         <Setter Property="ItemContainerStyle" Value="{DynamicResource ComboBoxItem.PickList}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate
-                    TargetType="{x:Type ComboBox}">
+                <ControlTemplate TargetType="{x:Type ComboBox}">
                     <Grid>
                         <!--  The ToggleButton is databound to the ComboBox itself to toggle IsDropDownOpen  -->
                         <ToggleButton
@@ -201,4 +197,8 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
+    <Style x:Key="ComboBox.RecentFiles" BasedOn="{StaticResource ComboBox.Picklist}" TargetType="ComboBox">
+        <Setter Property="controls:AttachedProperties.Icon" Value="{StaticResource Images.RecentFiles}"/>
+    </Style>
+    
 </ResourceDictionary>

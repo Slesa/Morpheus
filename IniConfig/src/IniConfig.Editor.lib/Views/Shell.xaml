@@ -5,7 +5,7 @@
         xmlns:regions="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
         xmlns:wpf="clr-namespace:IniConfig.Editor.lib.Helpers"
         FontFamily="{DynamicResource FontFamily.Standard}"
-        Title="INI editor" Height="350" Width="525">
+        Title="{Binding WindowTitle}" Height="350" Width="525">
     
     <Window.Resources>
         <ResourceDictionary>

@@ -2,8 +2,10 @@
 using IniConfig.Editor.lib;
 using IniConfig.Editor.lib.Configuration;
 using IniConfig.Editor.lib.Helpers;
+using IniConfig.Editor.lib.Resources;
 using IniConfig.Editor.lib.ViewModels;
 using IniConfig.Editor.lib.Views;
+using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.UnityExtensions;
 using Microsoft.Practices.ServiceLocation;
@@ -29,6 +31,10 @@ namespace IniConfig.Editor
 
             Application.Current.MainWindow = (Window) Shell;
             Application.Current.MainWindow.Show();
+
+            var eventAggregator = Container.Resolve<IEventAggregator>();
+            eventAggregator.GetEvent<ShowStatusMessageEvent>().Publish(Strings.Msg_Ready);
+
         }
 
         protected override void ConfigureContainer()

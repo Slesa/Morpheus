@@ -8,7 +8,7 @@
              xmlns:hlp="clr-namespace:IniConfig.Editor.lib.Helpers"
              xmlns:controls="clr-namespace:IniConfig.Editor.Theme.Controls;assembly=IniConfig.Editor.Theme"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="800">
+             d:DesignHeight="100" d:DesignWidth="800">
     
     <UserControl.Resources>
         
@@ -31,19 +31,26 @@
     </d:UserControl.DataContext>
 
 
-    <StackPanel Style="{DynamicResource Style.MenuBar.Panel}">
+    <Border CornerRadius="15" BorderBrush="Black" BorderThickness="1" >
         
-        <Image HorizontalAlignment="Left" Height="100" Width="100" Margin="10" Source="../Resources/Images/IniConfig.jpg"/>
-        
-        <TextBlock Text="INI-Editor" VerticalAlignment="Center" Margin="20,0,20,0" FontSize="32" />
-        
-        <ComboBox Width="160" Height="40" ToolTip="{x:Static res:Strings.MenuBarView_RecentFilesTooltip}"
+        <StackPanel Style="{DynamicResource Style.MenuBar.Panel}">
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <Image HorizontalAlignment="Center"  Margin="10,0,10,0" Height="80" Width="80" Source="../Resources/Images/IniConfig.jpg" />
+                <TextBlock Text="INI-Editor" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="32" />
+            </StackPanel>
+
+            <!--DisplayMemberPath="{Binding Name}"-->
+            <!--controls:AttachedProperties.Icon="{DynamicResource Icon.Path.RecentFiles}"-->
+            <!--ItemTemplate="{StaticResource RecentFileDataTemplate}"-->
+            <!--Style="{DynamicResource ComboBox.RecentFiles}"-->
+            <!--ItemsPanel="{DynamicResource ComboBox.ItemsPanelTemplate}"-->
+            <ComboBox Width="160" Height="40" ToolTip="{x:Static res:Strings.MenuBarView_RecentFilesTooltip}"
                   SelectedValue="{Binding CurrentRecentFile}"
-                  Style="{DynamicResource ComboBox.Picklist}"
+                  
                   ItemsSource="{Binding RecentFiles}" 
-                  ItemsPanel="{DynamicResource ComboBox.ItemsPanelTemplate}"
-                  ItemTemplate="{StaticResource RecentFileDataTemplate}"
-                  controls:AttachedProperties.Icon="{DynamicResource Icon.Path.RecentFiles}"
+                  
+                  
                   controls:AttachedProperties.Title="Recent Files"
                    />
 
@@ -60,5 +67,6 @@
                                  controls:IconButton.Icon="{DynamicResource Images.Exit}" />
         </StackPanel>
     </StackPanel>
+        </Border>
 
 </UserControl>

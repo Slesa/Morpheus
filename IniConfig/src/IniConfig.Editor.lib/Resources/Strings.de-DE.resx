@@ -123,6 +123,9 @@
   <data name="MenuBarViewModel_ConfigurationFiles" xml:space="preserve">
     <value>Konfigurationsdateien</value>
   </data>
+  <data name="MenuBarViewModel_CouldNotLoadFile" xml:space="preserve">
+    <value>Konnte Datei {0} nicht laden</value>
+  </data>
   <data name="MenuBarViewModel_FileLoaded" xml:space="preserve">
     <value>Datei {0} erfolgreich geladen</value>
   </data>
@@ -146,5 +149,8 @@
   </data>
   <data name="MenuBarView_SaveCommandTooltip" xml:space="preserve">
     <value>Änderungen in aktueller Konfigurationsdatei speichern</value>
+  </data>
+  <data name="Msg_Ready" xml:space="preserve">
+    <value>Bereit</value>
   </data>
 </root>

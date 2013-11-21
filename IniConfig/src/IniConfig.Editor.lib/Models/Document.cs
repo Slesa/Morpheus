@@ -1,14 +1,23 @@
-﻿using IniConfig.lib;
+﻿using System;
+using IniConfig.lib;
 using Microsoft.Practices.Prism.ViewModel;
 
 namespace IniConfig.Editor.lib.Models
 {
     public class Document : NotificationObject
     {
-        public Document(string filePath)
+        public static Document CreateDocument(string filePath)
         {
-            _filePath = filePath;
-            IniFile = IniFile.LoadFrom(filePath);
+            try
+            {
+                var iniFile = IniFile.LoadFrom(filePath);
+                var document = new Document {FilePath = filePath, IniFile = iniFile};
+                return document;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         string _filePath;
