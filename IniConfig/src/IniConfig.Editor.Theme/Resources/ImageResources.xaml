@@ -10,5 +10,6 @@
     <BitmapImage x:Key="Images.New" UriSource="Images/new.png" />
     <BitmapImage x:Key="Images.Save" UriSource="Images/save.png" />
     <BitmapImage x:Key="Images.SaveAs" UriSource="Images/saveas.png" />
+    <BitmapImage x:Key="Images.RecentFiles" UriSource="Images/recentFiles.png" />
 
 </ResourceDictionary>

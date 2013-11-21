@@ -6,7 +6,7 @@
              xmlns:design="clr-namespace:IniConfig.Editor.lib.DesignTime"
              xmlns:res="clr-namespace:IniConfig.Editor.lib.Resources"
              xmlns:hlp="clr-namespace:IniConfig.Editor.lib.Helpers"
-             xmlns:Controls="clr-namespace:IniConfig.Editor.Theme.Controls;assembly=IniConfig.Editor.Theme"
+             xmlns:controls="clr-namespace:IniConfig.Editor.Theme.Controls;assembly=IniConfig.Editor.Theme"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="800">
     
@@ -38,19 +38,26 @@
         <TextBlock Text="INI-Editor" VerticalAlignment="Center" Margin="20,0,20,0" FontSize="32" />
         
         <ComboBox Width="160" Height="40" ToolTip="{x:Static res:Strings.MenuBarView_RecentFilesTooltip}"
-                  ItemsSource="{Binding RecentFiles}" ItemTemplate="{StaticResource RecentFileDataTemplate}"/>
+                  SelectedValue="{Binding CurrentRecentFile}"
+                  Style="{DynamicResource ComboBox.Picklist}"
+                  ItemsSource="{Binding RecentFiles}" 
+                  ItemsPanel="{DynamicResource ComboBox.ItemsPanelTemplate}"
+                  ItemTemplate="{StaticResource RecentFileDataTemplate}"
+                  controls:AttachedProperties.Icon="{DynamicResource Icon.Path.RecentFiles}"
+                  controls:AttachedProperties.Title="Recent Files"
+                   />
 
         <StackPanel Orientation="Horizontal">
-            <Controls:IconButton Command="{Binding NewCommand}" Content="New" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_NewCommandTooltip}"
-                                 Controls:IconButton.Icon="{DynamicResource Images.New}" />
-            <Controls:IconButton Command="{Binding LoadCommand}" Content="Load" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_LoadCommandTooltip}"
-                                 Controls:IconButton.Icon="{DynamicResource Images.Load}"/>
-            <Controls:IconButton Command="{Binding SaveCommand}" Content="Save" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_SaveCommandTooltip}"
-                                 Controls:IconButton.Icon="{DynamicResource Images.Save}" />
-            <Controls:IconButton Command="{Binding SaveAsCommand}" Content="Save as" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_SaveAsCommandTooltip}"
-                                 Controls:IconButton.Icon="{DynamicResource Images.SaveAs}" />
-            <Controls:IconButton Command="{Binding QuitCommand}" Content="Quit" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_QuitCommandTooltip}"
-                                 Controls:IconButton.Icon="{DynamicResource Images.Exit}" />
+            <controls:IconButton Command="{Binding NewCommand}" Content="New" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_NewCommandTooltip}"
+                                 controls:IconButton.Icon="{DynamicResource Images.New}" />
+            <controls:IconButton Command="{Binding LoadCommand}" Content="Load" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_LoadCommandTooltip}"
+                                 controls:IconButton.Icon="{DynamicResource Images.Load}"/>
+            <controls:IconButton Command="{Binding SaveCommand}" Content="Save" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_SaveCommandTooltip}"
+                                 controls:IconButton.Icon="{DynamicResource Images.Save}" />
+            <controls:IconButton Command="{Binding SaveAsCommand}" Content="Save as" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_SaveAsCommandTooltip}"
+                                 controls:IconButton.Icon="{DynamicResource Images.SaveAs}" />
+            <controls:IconButton Command="{Binding QuitCommand}" Content="Quit" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_QuitCommandTooltip}"
+                                 controls:IconButton.Icon="{DynamicResource Images.Exit}" />
         </StackPanel>
     </StackPanel>
 

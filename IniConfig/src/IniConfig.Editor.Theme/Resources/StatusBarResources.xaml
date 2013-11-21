@@ -13,6 +13,7 @@
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="FontSize" Value="10"/>
                 <Setter Property="Margin" Value="5, 0, 5,0" />
+                <Setter Property="Foreground" Value="Black"/>
             </Style>
         </Style.Resources>
         <Setter Property="Orientation" Value="Horizontal"/>

@@ -48,7 +48,9 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Behaviors\SelectTextOnFocusBehavior.cs" />
+    <Compile Include="Controls\AttachedProperties.cs" />
     <Compile Include="Controls\IconButton.cs" />
+    <Compile Include="Converters\DebugConverter.cs" />
     <Compile Include="DesignTime\ButtonPage.xaml.cs">
       <DependentUpon>ButtonPage.xaml</DependentUpon>
     </Compile>
@@ -75,6 +77,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\BrushResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ComboBoxResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ConverterResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -132,6 +142,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Images\recentFiles.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

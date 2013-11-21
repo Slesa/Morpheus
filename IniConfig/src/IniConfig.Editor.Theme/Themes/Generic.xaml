@@ -4,8 +4,11 @@
     xmlns:Controls="clr-namespace:IniConfig.Editor.Theme.Controls">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/ConverterResources.xaml" />
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/FontResources.xaml" />
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/ImageResources.xaml" />
+        <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/ColorResources.xaml" />
+        <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/BrushResources.xaml" />
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/ButtonResources.xaml" />
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/MenuBarResources.xaml" />
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/MiscResources.xaml" />

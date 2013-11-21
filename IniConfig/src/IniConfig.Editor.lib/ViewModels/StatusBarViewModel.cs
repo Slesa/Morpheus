@@ -22,7 +22,11 @@ namespace IniConfig.Editor.lib.ViewModels
         public string Message
         {
             get { return _message; }
-            set { _message = value; RaisePropertyChanged(); }
+            set
+            {
+                _message = value;
+                RaisePropertyChanged(() => Message);
+            }
         }
     }
 

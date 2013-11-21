@@ -13,19 +13,19 @@
         <hlp:StatusBarViewModelLocator x:Key="ViewModelLocator" />
     </UserControl.Resources>
 
-    <!--<UserControl.DataContext>
-        <Binding Path="ViewModel" Source="{StaticResource ViewModelLocator}" />
-    </UserControl.DataContext>-->
-
     <UserControl.DataContext>
-        <ViewModels:StatusBarViewModel/>
+        <Binding Path="ViewModel" Source="{StaticResource ViewModelLocator}" />
     </UserControl.DataContext>
+
+    <!--<UserControl.DataContext>
+        <ViewModels:StatusBarViewModel/>
+    </UserControl.DataContext>-->
     <d:UserControl.DataContext>
         <design:DesignTimeStatusBarViewModel />
     </d:UserControl.DataContext>
 
-    <StackPanel Orientation="Horizontal" Style="{DynamicResource Style.StatusBar.Panel}" Height="30">
-        <TextBlock Text="{Binding Message}" Foreground="Black" />
+    <StackPanel Orientation="Horizontal" Style="{DynamicResource Style.StatusBar.Panel}">
+        <TextBlock Text="{Binding Message}" />
     </StackPanel>
     
 </UserControl>
