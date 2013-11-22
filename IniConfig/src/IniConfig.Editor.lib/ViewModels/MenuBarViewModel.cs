@@ -11,11 +11,12 @@ using IniConfig.Editor.lib.Models;
 using IniConfig.Editor.lib.Resources;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
+using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Practices.Unity;
 
 namespace IniConfig.Editor.lib.ViewModels
 {
-    public class MenuBarViewModel : IViewModel
+    public class MenuBarViewModel : NotificationObject, IViewModel
     {
         readonly AppConfiguration _appConfiguration;
         readonly EventAggregator _eventAggregator;
@@ -103,11 +104,31 @@ namespace IniConfig.Editor.lib.ViewModels
         {
             return Document!=null && Document.HasChanged;
         }
-        
-        public ICommand SaveAsCommand { get; private set; }
+
+        public DelegateCommand SaveAsCommand { get; private set; }
 
         void OnSaveAs()
         {
+            if (Document == null) return;
+
+            var fileFilter = string.Format("{0} (*.ini)|*.ini|{1} (*.*)|*.*",
+                                           Strings.MenuBarViewModel_ConfigurationFiles,
+                                           Strings.MenuBarViewModel_AllFiles);
+            var obtainFileSettings = new ObtainFileSettings
+                {
+                    LastLocation = _appConfiguration.LastOpenLocation,
+                    FileFilterIndex = _appConfiguration.LastFilterIndex,
+                    FileFilter = fileFilter,
+                    DialogTitle = Strings.MenuBarViewModel_SaveConfigurationFileAs,
+                };
+
+            var fileName = FileSourceProvider.ObtainFileSaveName(obtainFileSettings);
+            if (string.IsNullOrEmpty(fileName)) return;
+
+            _appConfiguration.LastOpenLocation = obtainFileSettings.LastLocation;
+            _appConfiguration.LastFilterIndex = obtainFileSettings.FileFilterIndex;
+
+            Document.FilePath = fileName;
         }
 
         bool CanSaveAs()
@@ -141,6 +162,8 @@ namespace IniConfig.Editor.lib.ViewModels
             _eventAggregator.GetEvent<ShowStatusMessageEvent>()
                             .Publish(string.Format(Strings.MenuBarViewModel_FileLoaded, fileName));
             _eventAggregator.GetEvent<DocumentChangedEventEvent>().Publish(Document);
+
+            SaveAsCommand.RaiseCanExecuteChanged();
         }
         
         void FillRecentFiles()

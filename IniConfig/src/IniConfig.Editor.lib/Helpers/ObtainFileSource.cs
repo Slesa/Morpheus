@@ -33,6 +33,31 @@ namespace IniConfig.Editor.lib.Helpers
             return fileName;
         }
 
+
+        public string ObtainFileSaveName(ObtainFileSettings settings)
+        {
+            var saveFile = new SaveFileDialog
+                {
+                    Filter = settings.FileFilter,
+                    FilterIndex = settings.FileFilterIndex,
+                    Title = settings.DialogTitle,
+                    InitialDirectory = settings.LastLocation,
+                };
+
+            IsCurrentlyObtaining = true;
+            var result = saveFile.ShowDialog();
+            IsCurrentlyObtaining = false;
+
+            if (result == false) return string.Empty; //Warning, nullable
+
+            var fileName = saveFile.FileName;
+            var fileInfo = new FileInfo(fileName);
+            if (fileInfo.Directory != null) settings.LastLocation = fileInfo.Directory.FullName;
+            settings.FileFilterIndex = saveFile.FilterIndex;
+
+            return fileName;
+        }
+
         public bool IsCurrentlyObtaining { get; private set; }
     }
 }

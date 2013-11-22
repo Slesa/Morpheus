@@ -126,6 +126,11 @@ namespace IniConfig.lib
         }
 
 
+        public void Save(string fileName = null)
+        {
+            File.WriteAllLines(fileName??FileName, Lines.Select(x=>x.Content));    
+        }
+
         void Load(string fileName)
         {
             FileName = fileName;

@@ -6,12 +6,18 @@ namespace IniConfig.Editor.lib.Models
 {
     public class Document : NotificationObject
     {
+        Document(string filePath, IniFile iniFile)
+        {
+            _filePath = filePath;
+            IniFile = iniFile;
+        }
+
         public static Document CreateDocument(string filePath)
         {
             try
             {
                 var iniFile = IniFile.LoadFrom(filePath);
-                var document = new Document {FilePath = filePath, IniFile = iniFile};
+                var document = new Document(filePath, iniFile);
                 return document;
             }
             catch (Exception ex)
@@ -26,6 +32,7 @@ namespace IniConfig.Editor.lib.Models
             get { return _filePath; }
             set
             {
+                IniFile.Save(value);
                 _filePath = value;
                 RaisePropertyChanged(() => FilePath);
             }

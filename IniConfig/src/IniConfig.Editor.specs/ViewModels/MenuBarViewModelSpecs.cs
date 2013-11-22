@@ -19,7 +19,7 @@ namespace IniConfig.Editor.specs.ViewModels
         It should_allow_new_command = () => _subject.NewCommand.CanExecute(null).ShouldBeTrue();
         It should_allow_load_command = () => _subject.LoadCommand.CanExecute(null).ShouldBeTrue();
         It should_fobid_save_command = () => _subject.SaveCommand.CanExecute(null).ShouldBeFalse();
-        It should_fobid_save_as_command = () => _subject.SaveAsCommand.CanExecute(null).ShouldBeFalse();
+        It should_fobid_save_as_command = () => _subject.SaveAsCommand.CanExecute().ShouldBeFalse();
         It should_allow_quit_command = () => _subject.QuitCommand.CanExecute(null).ShouldBeTrue();
 
         static MenuBarViewModel _subject;
@@ -45,7 +45,7 @@ namespace IniConfig.Editor.specs.ViewModels
         It should_allow_new_command = () => _subject.NewCommand.CanExecute(null).ShouldBeTrue();
         It should_allow_load_command = () => _subject.LoadCommand.CanExecute(null).ShouldBeTrue();
         It should_fobid_save_command = () => _subject.SaveCommand.CanExecute(null).ShouldBeFalse();
-        It should_fobid_save_as_command = () => _subject.SaveAsCommand.CanExecute(null).ShouldBeFalse();
+        It should_fobid_save_as_command = () => _subject.SaveAsCommand.CanExecute().ShouldBeFalse();
         It should_allow_quit_command = () => _subject.QuitCommand.CanExecute(null).ShouldBeTrue();
 
         static MenuBarViewModel _subject;
@@ -78,7 +78,7 @@ namespace IniConfig.Editor.specs.ViewModels
         It should_allow_new_command = () => _subject.NewCommand.CanExecute(null).ShouldBeTrue();
         It should_allow_load_command = () => _subject.LoadCommand.CanExecute(null).ShouldBeTrue();
         It should_fobid_save_command = () => _subject.SaveCommand.CanExecute(null).ShouldBeFalse();
-        It should_allow_save_as_command = () => _subject.SaveAsCommand.CanExecute(null).ShouldBeTrue();
+        It should_allow_save_as_command = () => _subject.SaveAsCommand.CanExecute().ShouldBeTrue();
         It should_allow_quit_command = () => _subject.QuitCommand.CanExecute(null).ShouldBeTrue();
 
         static MenuBarViewModel _subject;
