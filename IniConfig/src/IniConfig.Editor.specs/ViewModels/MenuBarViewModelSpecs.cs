@@ -5,6 +5,7 @@ using IniConfig.Editor.lib.Helpers;
 using IniConfig.Editor.lib.ViewModels;
 using Machine.Fakes;
 using Machine.Specifications;
+using Microsoft.Practices.Prism.Events;
 
 namespace IniConfig.Editor.specs.ViewModels
 {
@@ -64,7 +65,7 @@ namespace IniConfig.Editor.specs.ViewModels
                 var fileSourceProvider = An<IProvideFileSource>();
                 fileSourceProvider.WhenToldTo(x=>x.ObtainFileName(Param.IsAny<ObtainFileSettings>())).Return(_specOutput.FileName);
 
-                _subject = new MenuBarViewModel(AppConfiguration, null) {FileSourceProvider = fileSourceProvider};
+                _subject = new MenuBarViewModel(AppConfiguration, new EventAggregator()) {FileSourceProvider = fileSourceProvider};
             };
 
         Cleanup teardown = () => _specOutput.Remove();

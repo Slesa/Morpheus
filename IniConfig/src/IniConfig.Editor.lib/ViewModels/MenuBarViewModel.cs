@@ -19,12 +19,12 @@ namespace IniConfig.Editor.lib.ViewModels
     public class MenuBarViewModel : NotificationObject, IViewModel
     {
         readonly AppConfiguration _appConfiguration;
-        readonly EventAggregator _eventAggregator;
+        readonly IEventAggregator _eventAggregator;
 
         [Dependency]
         public IProvideFileSource FileSourceProvider { get; set; }
 
-        public MenuBarViewModel(AppConfiguration appConfiguration, EventAggregator eventAggregator)
+        public MenuBarViewModel(AppConfiguration appConfiguration, IEventAggregator eventAggregator)
         {
             _appConfiguration = appConfiguration;
             _eventAggregator = eventAggregator;

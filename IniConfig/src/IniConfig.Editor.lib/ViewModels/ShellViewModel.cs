@@ -14,7 +14,6 @@ namespace IniConfig.Editor.lib.ViewModels
     public class ShellViewModel : NotificationObject, IViewModel
     {
         readonly AppConfiguration _appConfiguration;
-        string _windowTitle;
 
         public ShellViewModel(AppConfiguration appConfiguration, EventAggregator eventAggregator)
         {
@@ -25,6 +24,7 @@ namespace IniConfig.Editor.lib.ViewModels
             OnDocumentChanged(null);
         }
 
+        string _windowTitle;
         public string WindowTitle
         {
             get { return _windowTitle; }
@@ -35,8 +35,20 @@ namespace IniConfig.Editor.lib.ViewModels
             }
         }
 
+        bool _hasDocument;
+        public bool HasDocument
+        {
+            get { return _hasDocument; }
+            private set
+            {
+                _hasDocument = value;
+                RaisePropertyChanged(()=>HasDocument);
+            }
+        }
+
         void OnDocumentChanged(Document document)
         {
+            HasDocument = document!=null;
             var title = "INI Editor";
             if (document != null)
                 title += " - " + document.FilePath;
