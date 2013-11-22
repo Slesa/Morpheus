@@ -21,7 +21,7 @@ namespace IniConfig.lib.Specs
     {
         Because of = () => Subject.LoadFromText("");
 
-        It should_contain_one_line = () => Subject.Lines.Count().ShouldEqual(1);
+        It should_contain_one_line = () => Subject.Lines.Count().ShouldEqual(0);
         It should_not_contain_sections = () => Subject.Sections.ShouldBeEmpty();
     }
 
@@ -33,6 +33,17 @@ namespace IniConfig.lib.Specs
 
         It should_contain_the_line = () => Subject.Lines.Count().ShouldEqual(1);
         It should_not_contain_sections = () => Subject.Sections.ShouldBeEmpty();
+    }
+
+
+    [Subject(typeof(IniFile))]
+    internal class When_loading_inifile_with_one_section_and_trailing_empty_lines : WithSubject<IniFile>
+    {
+        Because of = () => Subject.LoadFromText("[Section]\n\n\n");
+
+        It should_contain_the_line = () => Subject.Lines.Count().ShouldEqual(4);
+        It should_not_contain_sections = () => Subject.Sections.Count().ShouldEqual(1);
+        It should_not_report_empty_lines_first = () => Subject.Lines.First().Content.ShouldNotBeEmpty();
     }
 
 

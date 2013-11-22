@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,8 @@ namespace IniConfig.lib
         public string FileName { get; private set; }
 
 
-        List<IniLine> _garbage;
+        List<IniLine> _startLines;
+        List<IniLine> _endLines;
         /// <summary>
         /// All lines of the configuration file
         /// </summary>
@@ -37,7 +39,15 @@ namespace IniConfig.lib
         {
             get
             {
-                return _garbage ?? Sections.SelectMany(section => section.Lines);
+                if (_startLines != null)
+                {
+                    foreach (var startLine in _startLines) yield return startLine;
+                }
+                foreach (var sectionLine in Sections.SelectMany(section => section.Lines)) yield return sectionLine;
+                if (_endLines != null)
+                {
+                    foreach (var endLine in _endLines) yield return endLine;
+                }
             }
         }
 
@@ -128,6 +138,9 @@ namespace IniConfig.lib
 
         public void Save(string fileName = null)
         {
+            var lines = Lines;
+            foreach(var line in lines)
+                System.Diagnostics.Debug.WriteLine("Line "+line.Content);
             File.WriteAllLines(fileName??FileName, Lines.Select(x=>x.Content));    
         }
 
@@ -141,6 +154,9 @@ namespace IniConfig.lib
 
         internal void LoadFromText(string buffer)
         {
+            if (string.IsNullOrEmpty(buffer)) return;
+
+            bool atStart = true;
             var remarks = new List<IniLine>();
             IniSection currentSection = null;
 
@@ -149,6 +165,7 @@ namespace IniConfig.lib
                 var iniLine = new IniLine(line);
                 if (iniLine.IsSection)
                 {
+                    atStart = false;
                     var sectionName = iniLine.Section;
                     currentSection = FindSection(sectionName);
                     if (currentSection == null)
@@ -172,7 +189,11 @@ namespace IniConfig.lib
                 }
                 remarks.Add(iniLine);
             }
-            if(remarks.Any()) _garbage = remarks;
+            if (remarks.Any())
+            {
+                if (atStart) _startLines = remarks;
+                else _endLines = remarks;
+            }
         }
     }
 }
