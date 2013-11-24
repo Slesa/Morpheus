@@ -147,6 +147,9 @@
   <data name="LoadCommand_Description" xml:space="preserve">
     <value>Load configuration file</value>
   </data>
+  <data name="QuitCommand_Description" xml:space="preserve">
+    <value>Quit program</value>
+  </data>
   <data name="RemoveEntryCommand_Description" xml:space="preserve">
     <value>Remove entry</value>
   </data>

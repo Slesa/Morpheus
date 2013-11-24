@@ -15,5 +15,6 @@ namespace IniConfig.Console.lib
         public IOutput Out { get; set; }
         internal bool InTestMode { get; set; }
         public IIniFile IniFile { get; set; }
+        public bool QuitProgram { get; set; }
     }
 }

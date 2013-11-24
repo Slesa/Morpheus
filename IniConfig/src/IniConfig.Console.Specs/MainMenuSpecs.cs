@@ -29,15 +29,24 @@ namespace IniConfig.Console.Specs
         It should_print_prompt = () => OutputLines[1].ShouldEqual("[<no file>] ? ");
         It should_print_syntax_line = () => OutputLines.FirstOrDefault(x => x.StartsWith("Syntax:")).ShouldNotBeNull();
         It should_print_help_line = () => OutputLines.FirstOrDefault(x => x.StartsWith("  ?")).ShouldNotBeNull();
-        It should_print_quit_line = () => OutputLines.FirstOrDefault(x => x.StartsWith("  q")).ShouldNotBeNull();
-        It should_print_load = () => OutputLines.FirstOrDefault(x => x.StartsWith("  "+new LoadCommand().Shortcut)).ShouldNotBeNull();
-        It should_print_save = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new SaveCommand().Shortcut)).ShouldNotBeNull();
-        It should_print_list_sections = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new ListSectionsCommand().Shortcut)).ShouldNotBeNull();
-        It should_print_create_section = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new CreateSectionCommand().Shortcut)).ShouldNotBeNull();
-        It should_print_remove_section = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new RemoveSectionCommand().Shortcut)).ShouldNotBeNull();
-        It should_print_list_entries = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new ListEntriesCommand().Shortcut)).ShouldNotBeNull();
-        It should_print_create_entry = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new CreateEntryCommand().Shortcut)).ShouldNotBeNull();
-        It should_print_remove_entry = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new RemoveEntryCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_quit_shortcut = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new QuitCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_quit_description = () => OutputLines.FirstOrDefault(x => x.Contains(new QuitCommand().Description)).ShouldNotBeNull();
+        It should_print_load_shortcut = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new LoadCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_load_description = () => OutputLines.FirstOrDefault(x => x.Contains(new LoadCommand().Description)).ShouldNotBeNull();
+        It should_print_save_shortcut = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new SaveCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_save_description = () => OutputLines.FirstOrDefault(x => x.Contains(new SaveCommand().Description)).ShouldNotBeNull();
+        It should_print_list_sections_shortcut = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new ListSectionsCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_list_sections_description = () => OutputLines.FirstOrDefault(x => x.Contains(new ListSectionsCommand().Description)).ShouldNotBeNull();
+        It should_print_create_section_shortcut = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new CreateSectionCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_create_section_description = () => OutputLines.FirstOrDefault(x => x.Contains(new CreateSectionCommand().Description)).ShouldNotBeNull();
+        It should_print_remove_section_shortcut = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new RemoveSectionCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_remove_section_description = () => OutputLines.FirstOrDefault(x => x.Contains(new RemoveSectionCommand().Description)).ShouldNotBeNull();
+        It should_print_list_entries_shortcut = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new ListEntriesCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_list_entries_description = () => OutputLines.FirstOrDefault(x => x.Contains(new ListEntriesCommand().Description)).ShouldNotBeNull();
+        It should_print_create_entry_shortcut = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new CreateEntryCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_create_entry_description = () => OutputLines.FirstOrDefault(x => x.Contains(new CreateEntryCommand().Description)).ShouldNotBeNull();
+        It should_print_remove_entry_shortcut = () => OutputLines.FirstOrDefault(x => x.StartsWith("  " + new RemoveEntryCommand().Shortcut)).ShouldNotBeNull();
+        It should_print_remove_entry_description = () => OutputLines.FirstOrDefault(x => x.Contains(new RemoveEntryCommand().Description)).ShouldNotBeNull();
     }
 
 

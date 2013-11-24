@@ -22,8 +22,8 @@ namespace IniConfig.Console.lib
         {
             _environment.Out.WriteLine(string.Format("IniConfig console interface, version {0}", AppVersion.Version));
 
-            var quit = false;
-            while (!quit)
+            _environment.QuitProgram = false;
+            while (!_environment.QuitProgram)
             {
                 PrintPrompt();
                 var input = _environment.In.ReadLine();
@@ -46,8 +46,6 @@ namespace IniConfig.Console.lib
                     {
                         case "?":
                             PrintHelp(); continue;
-                        case "q":
-                            quit = true; continue;
                     }
                     _environment.Out.WriteLine(string.Format("Unknown command {0}", token));
                 }
@@ -59,6 +57,7 @@ namespace IniConfig.Console.lib
 
         void RegisterCommands()
         {
+            _commands.Add(new QuitCommand());
             _commands.Add(new LoadCommand());
             _commands.Add(new SaveCommand());
             _commands.Add(new ListSectionsCommand());
@@ -90,7 +89,6 @@ namespace IniConfig.Console.lib
             {
                 PrintHelpLine(command.Shortcut, command.Description);
             }
-            PrintHelpLine("q", "Quit program");
         }
 
         void PrintHelpLine(string shortcut, string description)

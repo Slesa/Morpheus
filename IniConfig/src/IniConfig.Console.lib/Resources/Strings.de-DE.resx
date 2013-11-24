@@ -147,6 +147,9 @@
   <data name="LoadCommand_Description" xml:space="preserve">
     <value>Konfigationsdatei laden</value>
   </data>
+  <data name="QuitCommand_Description" xml:space="preserve">
+    <value>Programm beenden</value>
+  </data>
   <data name="RemoveEntryCommand_Description" xml:space="preserve">
     <value>Eintrag löschen</value>
   </data>

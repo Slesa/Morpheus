@@ -44,6 +44,7 @@
     <Compile Include="Commands\ListEntriesCommand.cs" />
     <Compile Include="Commands\ListSectionsCommand.cs" />
     <Compile Include="Commands\LoadCommand.cs" />
+    <Compile Include="Commands\QuitCommand.cs" />
     <Compile Include="Commands\RemoveEntryCommand.cs" />
     <Compile Include="Commands\RemoveSectionCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
