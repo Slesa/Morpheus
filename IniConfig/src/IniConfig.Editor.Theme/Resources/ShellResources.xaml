@@ -18,6 +18,7 @@
     </Style>
 
     <Style x:Key="Style.Shell.DocumentView" TargetType="{x:Type ContentControl}">
+        <Setter Property="MinHeight" Value="500"/>
     </Style>
 
 </ResourceDictionary>

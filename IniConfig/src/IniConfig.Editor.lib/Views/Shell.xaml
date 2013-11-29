@@ -35,24 +35,16 @@
             <VisualStateGroup x:Name="NormalGroup"/>
             <VisualStateGroup x:Name="DocumentGroup">
 
-            	<VisualStateGroup.Transitions>
-            		<VisualTransition GeneratedDuration="0" To="DocumentLoadedState">
-            			<VisualTransition.GeneratedEasingFunction>
-            				<PowerEase EasingMode="EaseOut"/>
-            			</VisualTransition.GeneratedEasingFunction>
-            			<Storyboard>
-            				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_documentRegion">
-            					<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
-            				</DoubleAnimationUsingKeyFrames>
-            				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="_documentRegion">
-            					<EasingDoubleKeyFrame KeyTime="0" Value="500"/>
-            					<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
-            				</DoubleAnimationUsingKeyFrames>
-            			</Storyboard>
-            		</VisualTransition>
-            	</VisualStateGroup.Transitions>
-                
-            	<VisualState x:Name="DocumentLoadedState"/>
+            	<VisualState x:Name="DocumentLoadedState">
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_documentRegion">
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="_documentRegion">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
 
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
@@ -71,7 +63,7 @@
         
         <views:MenuBarView x:Name="_menuRegion" Grid.Row="0" Style="{DynamicResource Style.Shell.MenuBar}" />
         <views:StatusBarView x:Name="_statusBarRegion" Grid.Row="2" Style="{DynamicResource Style.Shell.StatusBar}" />
-        <views:DocumentView x:Name="_documentRegion" Grid.Row="1" Opacity="0" Style="{DynamicResource Style.Shell.DocumentView}" />
+        <views:DocumentView x:Name="_documentRegion" Grid.Row="1" Opacity="0" Visibility="Collapsed" Style="{DynamicResource Style.Shell.DocumentView}" />
         
     </Grid>
 </Window>

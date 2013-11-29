@@ -33,7 +33,7 @@
                 <ControlTemplate TargetType="{x:Type Controls:IconButton}">
                     <Border x:Name="Border" CornerRadius="5" BorderThickness="1" BorderBrush="Black" Margin="5,0,5,0" >
                         <DockPanel LastChildFill="True">
-                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" DockPanel.Dock="Bottom" />
+                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" DockPanel.Dock="Bottom"  />
                             <Image Source="{TemplateBinding Icon}" />
                         </DockPanel>
                     </Border>
