@@ -1,11 +1,17 @@
-﻿<Window x:Class="IniConfig.Editor.lib.Views.Shell"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:local="clr-namespace:IniConfig.Editor.lib"
         xmlns:regions="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
-        xmlns:wpf="clr-namespace:IniConfig.Editor.lib.Helpers"
+        xmlns:wpf="clr-namespace:IniConfig.Editor.lib.Helpers" 
+        xmlns:views="clr-namespace:IniConfig.Editor.lib.Views"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+        x:Class="IniConfig.Editor.lib.Views.Shell"
         FontFamily="{DynamicResource FontFamily.Standard}"
-        Title="{Binding WindowTitle}" Height="350" Width="525">
+        Background="{DynamicResource Brush.Shell.Background}"
+        SizeToContent="WidthAndHeight"
+        Title="{Binding WindowTitle}">
     
     <Window.Resources>
         <ResourceDictionary>
@@ -24,11 +30,48 @@
         <KeyBinding Key="Q" Modifiers="Control" Command="{Binding MenuBar.QuitCommand}"/>
     </Window.InputBindings>
 
-    <DockPanel Style="{DynamicResource Style.Shell.DockPanel}">
+    <Grid >
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="NormalGroup"/>
+            <VisualStateGroup x:Name="DocumentGroup">
 
-        <ContentControl x:Name="_menuRegion" Style="{DynamicResource Style.Shell.MenuBar}" regions:RegionManager.RegionName="{x:Static local:Regions.MenuBarRegion}"/>
-        <ContentControl x:Name="_statusBarRegion" Style="{DynamicResource Style.Shell.StatusBar}" regions:RegionManager.RegionName="{x:Static local:Regions.StatusBarRegion}"/>
-        <ContentControl x:Name="_documentRegion" regions:RegionManager.RegionName="{x:Static local:Regions.DocumentRegion}"/>
+            	<VisualStateGroup.Transitions>
+            		<VisualTransition GeneratedDuration="0" To="DocumentLoadedState">
+            			<VisualTransition.GeneratedEasingFunction>
+            				<PowerEase EasingMode="EaseOut"/>
+            			</VisualTransition.GeneratedEasingFunction>
+            			<Storyboard>
+            				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_documentRegion">
+            					<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            				</DoubleAnimationUsingKeyFrames>
+            				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="_documentRegion">
+            					<EasingDoubleKeyFrame KeyTime="0" Value="500"/>
+            					<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+            				</DoubleAnimationUsingKeyFrames>
+            			</Storyboard>
+            		</VisualTransition>
+            	</VisualStateGroup.Transitions>
+                
+            	<VisualState x:Name="DocumentLoadedState"/>
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         
-    </DockPanel>
+        <i:Interaction.Triggers>
+            <ei:DataTrigger Binding="{Binding HasDocument}" Value="true">
+                <ei:GoToStateAction StateName="DocumentLoadedState"/>
+            </ei:DataTrigger>
+        </i:Interaction.Triggers>
+        
+        <views:MenuBarView x:Name="_menuRegion" Grid.Row="0" Style="{DynamicResource Style.Shell.MenuBar}" />
+        <views:StatusBarView x:Name="_statusBarRegion" Grid.Row="2" Style="{DynamicResource Style.Shell.StatusBar}" />
+        <views:DocumentView x:Name="_documentRegion" Grid.Row="1" Opacity="0" Style="{DynamicResource Style.Shell.DocumentView}" />
+        
+    </Grid>
 </Window>

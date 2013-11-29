@@ -24,11 +24,6 @@ namespace IniConfig.Editor
         {
             base.InitializeShell();
 
-            var regionManager = (IRegionManager)Container.Resolve(typeof(IRegionManager));
-            regionManager.RegisterViewWithRegion(Regions.StatusBarRegion, typeof(StatusBarView));
-            regionManager.RegisterViewWithRegion(Regions.MenuBarRegion, typeof(MenuBarView));
-            regionManager.RegisterViewWithRegion(Regions.DocumentRegion, typeof(DocumentView));
-
             Application.Current.MainWindow = (Window) Shell;
             Application.Current.MainWindow.Show();
 
