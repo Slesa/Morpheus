@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:design="clr-namespace:IniConfig.Editor.lib.DesignTime"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:hlp="clr-namespace:IniConfig.Editor.lib.Helpers"
              xmlns:Lib="clr-namespace:IniConfig.lib;assembly=IniConfig.lib"
+             xmlns:ViewModels="clr-namespace:IniConfig.Editor.lib.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -13,18 +15,43 @@
 
         <hlp:DocumentViewModelLocator x:Key="ViewModelLocator" />
 
-        <DataTemplate x:Key="Sections.ItemTemplate" DataType="{x:Type Lib:IniSection}">
+        <HierarchicalDataTemplate DataType="{x:Type ViewModels:IniSectionViewModel}">
             <Border ToolTip="{Binding Remarks}">
-                <TextBlock Text="{Binding Name}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.ColumnSpan="2" Background="BurlyWood">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Grid.Row="0" Text="{Binding SectionName}" FontSize="20" FontWeight="Bold" />
+                            <Button Content="+" />
+                        </StackPanel>
+                    </Border>
+                    <ListBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Entries}"/>
+                </Grid>
             </Border>
-        </DataTemplate>
+        </HierarchicalDataTemplate>
 
-        <DataTemplate DataType="{x:Type Lib:IniEntry}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Attribute}"/>
-                <TextBlock Text="{Binding Value}"/>
-            </StackPanel>
-        </DataTemplate>
+        <HierarchicalDataTemplate DataType="{x:Type ViewModels:IniEntryViewModel}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding EntryName}" Margin="2,0,2,0"/>
+                <TextBlock Grid.Column="1" Text="{Binding EntryValue}" Margin="2,0,2,0"/>
+            </Grid>
+        </HierarchicalDataTemplate>
+        
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate">
+            <StackPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
 
     </UserControl.Resources>
 
@@ -36,8 +63,10 @@
     <d:UserControl.DataContext>
         <design:DesignDocumentViewModel />
     </d:UserControl.DataContext>
-    
-    <Grid>
+
+    <TreeView ItemsSource="{Binding Sections}" ItemsPanel="{DynamicResource ItemsPanelTemplate}">
+    </TreeView>
+    <!--<Grid>
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -58,6 +87,6 @@
             </DataGrid.Columns>
         </DataGrid>
                   
-    </Grid>
-    
+    </Grid>-->
+
 </UserControl>

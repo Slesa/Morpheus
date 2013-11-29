@@ -105,6 +105,8 @@
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\DocumentViewModel.cs" />
+    <Compile Include="ViewModels\IniEntryViewModel.cs" />
+    <Compile Include="ViewModels\IniSectionViewModel.cs" />
     <Compile Include="ViewModels\MenuBarViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\StatusBarViewModel.cs" />
