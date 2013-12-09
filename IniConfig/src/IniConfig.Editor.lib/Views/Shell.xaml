@@ -1,16 +1,12 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-        xmlns:local="clr-namespace:IniConfig.Editor.lib"
-        xmlns:regions="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
         xmlns:wpf="clr-namespace:IniConfig.Editor.lib.Helpers" 
         xmlns:views="clr-namespace:IniConfig.Editor.lib.Views"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
         x:Class="IniConfig.Editor.lib.Views.Shell"
-        FontFamily="{DynamicResource FontFamily.Standard}"
-        Background="{DynamicResource Brush.Shell.Background}"
-        SizeToContent="WidthAndHeight"
+        Style="{DynamicResource Style.Shell.Window}"
         Title="{Binding WindowTitle}">
     
     <Window.Resources>

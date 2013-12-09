@@ -284,27 +284,6 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
 
-        <Style x:Key="RecentFilesStyle" TargetType="{x:Type ComboBox}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource ComboBox.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource ComboBox.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="Padding" Value="6,3,5,3"/>
-            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/>
-            <Style.Triggers>
-                <Trigger Property="IsEditable" Value="true">
-                    <Setter Property="IsTabStop" Value="false"/>
-                    <Setter Property="Padding" Value="2"/>
-                    <Setter Property="Template" Value="{StaticResource ComboBoxEditableTemplate}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
         
     </UserControl.Resources>
     
@@ -328,31 +307,34 @@
                 <TextBlock Text="INI-Editor" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="32" />
             </StackPanel>
 
-            <!--DisplayMemberPath="{Binding Name}"-->
-            <!--controls:AttachedProperties.Icon="{DynamicResource Icon.Path.RecentFiles}"-->
-            <!--ItemTemplate="{StaticResource RecentFileDataTemplate}"-->
-            <!--Style="{DynamicResource ComboBox.RecentFiles}"-->
-            <!--ItemsPanel="{DynamicResource ComboBox.ItemsPanelTemplate}"-->
-            <ComboBox Width="50" Height="70" ToolTip="{x:Static res:Strings.MenuBarView_RecentFilesTooltip}"
-                SelectedValue="{Binding CurrentRecentFile}"
-                  
-                ItemsSource="{Binding RecentFiles}" 
-                  
-                  
-                   Style="{DynamicResource RecentFilesStyle}"
-                controls:AttachedProperties.Title="Recent Files"
-                   controls:AttachedProperties.Icon="{DynamicResource Images.RecentFiles}" />
-
             <StackPanel Orientation="Horizontal">
-                <controls:IconButton Command="{Binding NewCommand}" Content="New" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_NewCommandTooltip}"
+                <!--DisplayMemberPath="{Binding Name}"-->
+                <!--controls:AttachedProperties.Icon="{DynamicResource Icon.Path.RecentFiles}"-->
+                <!--ItemTemplate="{StaticResource RecentFileDataTemplate}"-->
+                <!--Style="{DynamicResource ComboBox.RecentFiles}"-->
+                <!--ItemsPanel="{DynamicResource ComboBox.ItemsPanelTemplate}"-->
+                <ComboBox Width="50" Height="70" 
+                    SelectedValue="{Binding CurrentRecentFile}"
+                    ItemsSource="{Binding RecentFiles}" 
+                    Style="{DynamicResource ComboBox.RecentFiles}"
+                    ToolTip="{x:Static res:Strings.MenuBarView_RecentFilesTooltip}"
+                    controls:AttachedProperties.Title="Recent Files"
+                    controls:AttachedProperties.Icon="{DynamicResource Images.RecentFiles}" />
+
+                <controls:IconButton Command="{Binding NewCommand}" Content="New" Height="50" Width="70" 
+                    ToolTip="{x:Static res:Strings.MenuBarView_NewCommandTooltip}"
                     Icon="{DynamicResource Images.New}" />
-                <controls:IconButton Command="{Binding LoadCommand}" Content="Load" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_LoadCommandTooltip}"
+                <controls:IconButton Command="{Binding LoadCommand}" Content="Load" Height="50" Width="70" 
+                    ToolTip="{x:Static res:Strings.MenuBarView_LoadCommandTooltip}"
                     Icon="{DynamicResource Images.Load}"/>
-                <controls:IconButton Command="{Binding SaveCommand}" Content="Save" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_SaveCommandTooltip}"
+                <controls:IconButton Command="{Binding SaveCommand}" Content="Save" Height="50" Width="70" 
+                    ToolTip="{x:Static res:Strings.MenuBarView_SaveCommandTooltip}"
                     Icon="{DynamicResource Images.Save}" />
-                <controls:IconButton Command="{Binding SaveAsCommand}" Content="Save as" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_SaveAsCommandTooltip}"
+                <controls:IconButton Command="{Binding SaveAsCommand}" Content="Save as" Height="50" Width="70" 
+                    ToolTip="{x:Static res:Strings.MenuBarView_SaveAsCommandTooltip}"
                     Icon="{DynamicResource Images.SaveAs}" />
-                <controls:IconButton Command="{Binding QuitCommand}" Content="Quit" Height="50" Width="70" ToolTip="{x:Static res:Strings.MenuBarView_QuitCommandTooltip}"
+                <controls:IconButton Command="{Binding QuitCommand}" Content="Quit" Height="50" Width="70" 
+                    ToolTip="{x:Static res:Strings.MenuBarView_QuitCommandTooltip}"
                     Icon="{DynamicResource Images.Exit}" />
             </StackPanel>
         </StackPanel>

@@ -3,6 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:controls="clr-namespace:IniConfig.Editor.Theme.Controls">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="BrushResources.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
     <ItemsPanelTemplate x:Key="ComboBox.ItemsPanelTemplate">
         <StackPanel IsItemsHost="True" />
     </ItemsPanelTemplate>
@@ -197,8 +201,92 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
+<!--
     <Style x:Key="ComboBox.RecentFiles" BasedOn="{StaticResource ComboBox.Picklist}" TargetType="ComboBox">
         <Setter Property="controls:AttachedProperties.Icon" Value="{StaticResource Images.RecentFiles}"/>
     </Style>
-    
+-->
+
+    <Style x:Key="ComboBox.RecentFiles" TargetType="{x:Type ComboBox}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid>
+                        <ToggleButton
+                            x:Name="ToggleButton"
+                            Grid.Column="2"
+                            ClickMode="Press"
+                            Content="{TemplateBinding controls:AttachedProperties.Title}"
+                            Focusable="false"
+                            Foreground="{TemplateBinding Foreground}"
+                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            Style="{DynamicResource ToggleButton.Standard}"
+                            controls:AttachedProperties.Icon="{TemplateBinding controls:AttachedProperties.Icon}" />
+                        <!--  The Popup shows the list of items in the ComboBox. IsOpen is databound to IsDropDownOpen which is toggled via the ComboBoxToggleButton  -->
+                        <Popup
+                            x:Name="Popup"
+                            AllowsTransparency="False"
+                            Focusable="False"
+                            IsOpen="{TemplateBinding IsDropDownOpen}"
+                            Placement="Bottom"
+                            PopupAnimation="Slide">
+                            <Grid
+                                x:Name="DropDown"
+                                MinWidth="{TemplateBinding ActualWidth}"
+                                MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                SnapsToDevicePixels="True">
+                                <Border
+                                    x:Name="DropDownBorder"
+                                    Background="{DynamicResource WindowBackgroundBrush}"
+                                    BorderBrush="{DynamicResource Brush.Foreground.Inverted}"
+                                    BorderThickness="1" />
+                                <ScrollViewer
+                                    CanContentScroll="True"
+                                    HorizontalScrollBarVisibility="Auto"
+                                    SnapsToDevicePixels="True"
+                                    Style="{DynamicResource ScrollViewer.ComboBox.PickList}"
+                                    VerticalScrollBarVisibility="Auto">
+
+                                    <!--  The StackPanel is used to display the children by setting IsItemsHost to be True  -->
+                                    <StackPanel
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.DirectionalNavigation="Contained" />
+
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+                        <Trigger SourceName="Popup" Property="AllowsTransparency" Value="true">
+                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+<!--
+        <Setter Property="Background" Value="{StaticResource Brush.ComboBox.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Brush.ComboBox.Border}"/>
+        <Setter Property="Foreground" Value="{StaticResource Brush.ComboBox.Foreground}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="Padding" Value="6,3,5,3"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+-->
+        <!--<Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/>-->
+    </Style>
+
 </ResourceDictionary>

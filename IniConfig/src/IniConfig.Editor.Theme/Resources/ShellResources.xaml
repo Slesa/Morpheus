@@ -4,6 +4,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="BrushResources.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="FontResources.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="Style.Shell.DockPanel" TargetType="{x:Type DockPanel}">
@@ -21,4 +22,12 @@
         <Setter Property="MinHeight" Value="500"/>
     </Style>
 
+    <Style x:Key="Style.Shell.Window" TargetType="{x:Type Window}">
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily.Standard}" />
+        <Setter Property="Background" Value="{StaticResource Brush.Shell.Background}" />
+        <Setter Property="SizeToContent" Value="WidthAndHeight"/>
+    </Style>
+    
+    <Style TargetType="{x:Type Window}" BasedOn="{StaticResource Style.Shell.Window}"/>
+    
 </ResourceDictionary>
