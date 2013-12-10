@@ -207,6 +207,15 @@
     </Style>
 -->
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <Style x:Key="ComboBox.RecentFiles" TargetType="{x:Type ComboBox}">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -222,7 +231,7 @@
                             Focusable="false"
                             Foreground="{TemplateBinding Foreground}"
                             IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                            Style="{DynamicResource ToggleButton.Standard}"
+                            Style="{DynamicResource ToggleButton.ComboBox}"
                             controls:AttachedProperties.Icon="{TemplateBinding controls:AttachedProperties.Icon}" />
                         <!--  The Popup shows the list of items in the ComboBox. IsOpen is databound to IsDropDownOpen which is toggled via the ComboBoxToggleButton  -->
                         <Popup
@@ -259,16 +268,20 @@
                         </Popup>
                     </Grid>
                     <ControlTemplate.Triggers>
+<!--
                         <Trigger Property="HasItems" Value="false">
                             <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
                         </Trigger>
+-->
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.3" />
                         </Trigger>
+<!--
                         <Trigger SourceName="Popup" Property="AllowsTransparency" Value="true">
                             <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="4" />
                             <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0" />
                         </Trigger>
+-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

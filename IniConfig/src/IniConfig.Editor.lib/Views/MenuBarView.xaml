@@ -7,7 +7,6 @@
              xmlns:res="clr-namespace:IniConfig.Editor.lib.Resources"
              xmlns:hlp="clr-namespace:IniConfig.Editor.lib.Helpers"
              xmlns:controls="clr-namespace:IniConfig.Editor.Theme.Controls;assembly=IniConfig.Editor.Theme"
-             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
              xmlns:configuration="clr-namespace:IniConfig.Editor.lib.Configuration"
              x:Class="IniConfig.Editor.lib.Views.MenuBarView"
              mc:Ignorable="d" 
@@ -16,7 +15,8 @@
     <UserControl.Resources>
         
         <hlp:MenuBarViewModelLocator x:Key="ViewModelLocator" />
-        
+        <BitmapImage x:Key="Shell.TitleIcon" UriSource="../Resources/Images/IniConfig.jpg" x:Shared="false" />
+
         <DataTemplate DataType="{x:Type configuration:RecentFile}">
             <TextBlock Text="{Binding Name}"/>
         </DataTemplate>
@@ -174,7 +174,7 @@
                     <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
                 </Grid.ColumnDefinitions>
                 <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
-                    <Themes:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
+                    <!--<Themes:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}">-->
                         <Border x:Name="dropDownBorder" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
                             <ScrollViewer x:Name="DropDownScrollViewer">
                                 <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
@@ -185,7 +185,7 @@
                                 </Grid>
                             </ScrollViewer>
                         </Border>
-                    </Themes:SystemDropShadowChrome>
+                    <!--</Themes:SystemDropShadowChrome>-->
                 </Popup>
                 <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" 
                 BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
@@ -194,10 +194,12 @@
                 <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Grid>
             <ControlTemplate.Triggers>
+<!--
                 <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                     <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
                     <Setter Property="Color" TargetName="shadow" Value="#71000000"/>
                 </Trigger>
+-->
                 <Trigger Property="HasItems" Value="false">
                     <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
                 </Trigger>
@@ -238,7 +240,7 @@
                     <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
                 </Grid.ColumnDefinitions>
                 <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
-                    <Themes:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
+                    <!--<Themes:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}">-->
                         <Border x:Name="dropDownBorder" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
                             <ScrollViewer x:Name="DropDownScrollViewer">
                                 <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
@@ -249,7 +251,7 @@
                                 </Grid>
                             </ScrollViewer>
                         </Border>
-                    </Themes:SystemDropShadowChrome>
+                    <!--</Themes:SystemDropShadowChrome>-->
                 </Popup>
                 <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}"/>
                 <Border x:Name="border" Background="{StaticResource TextBox.Static.Background}" Margin="{TemplateBinding BorderThickness}">
@@ -263,10 +265,12 @@
                 <Trigger Property="IsKeyboardFocusWithin" Value="true">
                     <Setter Property="Foreground" Value="Black"/>
                 </Trigger>
+<!--
                 <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                     <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
                     <Setter Property="Color" TargetName="shadow" Value="#71000000"/>
                 </Trigger>
+-->
                 <Trigger Property="HasItems" Value="false">
                     <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
                 </Trigger>
@@ -300,44 +304,47 @@
 
     <Border CornerRadius="15" BorderBrush="Black" BorderThickness="1" >
         
-        <StackPanel Style="{DynamicResource Style.MenuBar.Panel}">
+        <DockPanel Style="{DynamicResource Style.MenuBar.Panel}">
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <Image HorizontalAlignment="Center"  Margin="10,0,10,0" Height="80" Width="80" Source="../Resources/Images/IniConfig.jpg" />
-                <TextBlock Text="INI-Editor" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="32" />
-            </StackPanel>
+            <Border BorderThickness="1" BorderBrush="Gray" Margin="5" CornerRadius="10" DockPanel.Dock="Left">
+                <ContentControl Style="{DynamicResource Shell.TitleControl}"
+                            controls:AttachedProperties.Icon="{StaticResource Shell.TitleIcon}"
+                            controls:AttachedProperties.Title="INI"
+                            controls:AttachedProperties.Subtitle="Editor"/>
+            </Border>
 
-            <StackPanel Orientation="Horizontal">
-                <!--DisplayMemberPath="{Binding Name}"-->
-                <!--controls:AttachedProperties.Icon="{DynamicResource Icon.Path.RecentFiles}"-->
-                <!--ItemTemplate="{StaticResource RecentFileDataTemplate}"-->
-                <!--Style="{DynamicResource ComboBox.RecentFiles}"-->
-                <!--ItemsPanel="{DynamicResource ComboBox.ItemsPanelTemplate}"-->
-                <ComboBox Width="50" Height="70" 
-                    SelectedValue="{Binding CurrentRecentFile}"
-                    ItemsSource="{Binding RecentFiles}" 
-                    Style="{DynamicResource ComboBox.RecentFiles}"
-                    ToolTip="{x:Static res:Strings.MenuBarView_RecentFilesTooltip}"
-                    controls:AttachedProperties.Title="Recent Files"
-                    controls:AttachedProperties.Icon="{DynamicResource Images.RecentFiles}" />
+            <Border BorderThickness="1" BorderBrush="Gray" Margin="5" CornerRadius="10" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <!--DisplayMemberPath="{Binding Name}"-->
+                    <!--ItemTemplate="{StaticResource RecentFileDataTemplate}"-->
+                    <!--ItemsPanel="{DynamicResource ComboBox.ItemsPanelTemplate}"-->
+                    <ComboBox Width="70" Height="70" 
+                        SelectedValue="{Binding CurrentRecentFile}"
+                        ItemsSource="{Binding RecentFiles}" 
+                        Style="{DynamicResource ComboBox.RecentFiles}"
+                        ToolTip="{x:Static res:Strings.MenuBarView_RecentFilesTooltip}"
+                        controls:AttachedProperties.Title="Recent Files"
+                        controls:AttachedProperties.Icon="{DynamicResource Images.RecentFiles}" />
 
-                <controls:IconButton Command="{Binding NewCommand}" Content="New" Height="50" Width="70" 
-                    ToolTip="{x:Static res:Strings.MenuBarView_NewCommandTooltip}"
-                    Icon="{DynamicResource Images.New}" />
-                <controls:IconButton Command="{Binding LoadCommand}" Content="Load" Height="50" Width="70" 
-                    ToolTip="{x:Static res:Strings.MenuBarView_LoadCommandTooltip}"
-                    Icon="{DynamicResource Images.Load}"/>
-                <controls:IconButton Command="{Binding SaveCommand}" Content="Save" Height="50" Width="70" 
-                    ToolTip="{x:Static res:Strings.MenuBarView_SaveCommandTooltip}"
-                    Icon="{DynamicResource Images.Save}" />
-                <controls:IconButton Command="{Binding SaveAsCommand}" Content="Save as" Height="50" Width="70" 
-                    ToolTip="{x:Static res:Strings.MenuBarView_SaveAsCommandTooltip}"
-                    Icon="{DynamicResource Images.SaveAs}" />
-                <controls:IconButton Command="{Binding QuitCommand}" Content="Quit" Height="50" Width="70" 
-                    ToolTip="{x:Static res:Strings.MenuBarView_QuitCommandTooltip}"
-                    Icon="{DynamicResource Images.Exit}" />
-            </StackPanel>
-        </StackPanel>
+                    <controls:IconButton Command="{Binding NewCommand}" Content="New" Height="50" Width="70" 
+                        ToolTip="{x:Static res:Strings.MenuBarView_NewCommandTooltip}"
+                        Icon="{DynamicResource Images.New}" />
+                    <controls:IconButton Command="{Binding LoadCommand}" Content="Load" Height="50" Width="70" 
+                        ToolTip="{x:Static res:Strings.MenuBarView_LoadCommandTooltip}"
+                        Icon="{DynamicResource Images.Load}"/>
+                    <controls:IconButton Command="{Binding SaveCommand}" Content="Save" Height="50" Width="70" 
+                        ToolTip="{x:Static res:Strings.MenuBarView_SaveCommandTooltip}"
+                        Icon="{DynamicResource Images.Save}" />
+                    <controls:IconButton Command="{Binding SaveAsCommand}" Content="Save as" Height="50" Width="70" 
+                        ToolTip="{x:Static res:Strings.MenuBarView_SaveAsCommandTooltip}"
+                        Icon="{DynamicResource Images.SaveAs}" />
+                    <controls:IconButton Command="{Binding QuitCommand}" Content="Quit" Height="50" Width="70" 
+                        ToolTip="{x:Static res:Strings.MenuBarView_QuitCommandTooltip}"
+                        Icon="{DynamicResource Images.Exit}" />
+                </StackPanel>
+            </Border>
+            
+        </DockPanel>
     </Border>
 
 </UserControl>

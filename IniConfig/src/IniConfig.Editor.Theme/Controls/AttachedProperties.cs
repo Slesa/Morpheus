@@ -30,5 +30,19 @@ namespace IniConfig.Editor.Theme.Controls
         {
             return (string) element.GetValue(TitleProperty);
         }
+
+
+        public static readonly DependencyProperty SubtitleProperty =
+            DependencyProperty.RegisterAttached("Subtitle", typeof (string), typeof (AttachedProperties), new PropertyMetadata(default(string)));
+
+        public static void SetSubtitle(UIElement element, string value)
+        {
+            element.SetValue(SubtitleProperty, value);
+        }
+
+        public static string GetSubtitle(UIElement element)
+        {
+            return (string) element.GetValue(SubtitleProperty);
+        }
     }
 }
