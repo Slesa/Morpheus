@@ -26,7 +26,8 @@
         <KeyBinding Key="Q" Modifiers="Control" Command="{Binding MenuBar.QuitCommand}"/>
     </Window.InputBindings>
 
-    <Grid >
+    <DockPanel LastChildFill="True">
+        
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="NormalGroup"/>
             <VisualStateGroup x:Name="DocumentGroup">
@@ -45,21 +46,19 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        
+       
         <i:Interaction.Triggers>
             <ei:DataTrigger Binding="{Binding HasDocument}" Value="true">
                 <ei:GoToStateAction StateName="DocumentLoadedState"/>
             </ei:DataTrigger>
         </i:Interaction.Triggers>
+
         
-        <views:MenuBarView x:Name="_menuRegion" Grid.Row="0" Style="{DynamicResource Style.Shell.MenuBar}" />
-        <views:StatusBarView x:Name="_statusBarRegion" Grid.Row="2" Style="{DynamicResource Style.Shell.StatusBar}" />
+        <views:MenuBarView x:Name="_menuRegion" DockPanel.Dock="Top" Style="{DynamicResource Style.Shell.MenuBar}" />
+        <views:StatusBarView x:Name="_statusBarRegion" DockPanel.Dock="Bottom" Style="{DynamicResource Style.Shell.StatusBar}" />
+        
         <views:DocumentView x:Name="_documentRegion" Grid.Row="1" Opacity="0" Visibility="Collapsed" Style="{DynamicResource Style.Shell.DocumentView}" />
         
-    </Grid>
+    </DockPanel>
+    
 </Window>

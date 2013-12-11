@@ -31,11 +31,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Controls:IconButton}">
-                    <Border x:Name="Border" CornerRadius="5" BorderThickness="1" BorderBrush="Black" Margin="5,0,5,0" >
-                        <DockPanel LastChildFill="True">
-                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" DockPanel.Dock="Bottom"  />
-                            <Image Source="{TemplateBinding Icon}" />
-                        </DockPanel>
+                    <Border x:Name="Border" CornerRadius="5" BorderThickness="1" BorderBrush="{x:Null}" Margin="5,0,5,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Margin="3" Source="{TemplateBinding Icon}" MaxHeight="40" />
+                            <TextBlock Grid.Row="1" Margin="3" Text="{TemplateBinding Content}" HorizontalAlignment="Center" />
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPressed" Value="true">
@@ -45,7 +49,8 @@
                             <Setter Property="Opacity" Value="0.3" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" Value="LightGray" TargetName="Border" />
+                            <Setter Property="Background" Value="Coral" TargetName="Border" />
+                            <Setter Property="BorderBrush" Value="CornflowerBlue" TargetName="Border"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -61,11 +66,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border x:Name="Border" CornerRadius="5" BorderThickness="1" BorderBrush="Black" Margin="5,0,5,0" >
-                        <DockPanel LastChildFill="True">
-                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" DockPanel.Dock="Bottom"  />
-                            <Image Source="{TemplateBinding Controls:AttachedProperties.Icon}" />
-                        </DockPanel>
+                    <Border x:Name="Border" CornerRadius="5" BorderThickness="1"  BorderBrush="{x:Null}" Margin="5,0,5,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Margin="3" Source="{TemplateBinding Controls:AttachedProperties.Icon}" MaxHeight="40" />
+                            <TextBlock Grid.Row="1" Margin="3" Text="{TemplateBinding Content}" HorizontalAlignment="Center" />
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
@@ -75,7 +84,8 @@
                             <Setter Property="Opacity" Value="0.3" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" Value="LightGray" TargetName="Border" />
+                            <Setter Property="Background" Value="Coral" TargetName="Border" />
+                            <Setter Property="BorderBrush" Value="CornflowerBlue" TargetName="Border"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

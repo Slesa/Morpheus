@@ -8,6 +8,7 @@
              xmlns:hlp="clr-namespace:IniConfig.Editor.lib.Helpers"
              xmlns:Lib="clr-namespace:IniConfig.lib;assembly=IniConfig.lib"
              xmlns:ViewModels="clr-namespace:IniConfig.Editor.lib.ViewModels"
+             x:Name="documentView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -233,7 +234,15 @@
         <design:DesignDocumentViewModel />
     </d:UserControl.DataContext>
 
-    <TreeView ItemsSource="{Binding Sections}" ItemsPanel="{DynamicResource ItemsPanelTemplate}" Style="{DynamicResource TreeViewStyle}" ItemContainerStyle="{DynamicResource TreeViewItemStyle}">
+    <TreeView ItemsSource="{Binding Sections}" 
+              ItemsPanel="{DynamicResource ItemsPanelTemplate}" Style="{DynamicResource TreeViewStyle}" ItemContainerStyle="{DynamicResource TreeViewItemStyle}">
+<!--
+        <TreeView.Triggers>
+            <DataTrigger Binding="{Binding Sections.Count}" Value="0">
+                <Setter Property="UIElement.Visibility" Value="Collapsed" TargetName="documentView" />
+            </DataTrigger>
+        </TreeView.Triggers>
+-->
     </TreeView>
     <!--<Grid>
         

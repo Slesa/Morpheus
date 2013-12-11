@@ -15,7 +15,6 @@
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/MiscResources.xaml" />
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/ShellResources.xaml" />
         <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/StatusBarResources.xaml" />
-        <ResourceDictionary Source="/IniConfig.Editor.Theme;component/Resources/TitleResources.xaml" />
     </ResourceDictionary.MergedDictionaries>
        
     <DataTemplate DataType="{x:Type Controls:IconButton}">
