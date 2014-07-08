@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{281C1A83-0C9A-4222-B70E-3BD15EF4DD06}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FracMaster</RootNamespace>
+    <AssemblyName>FracMaster</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Complex.cs" />
+    <Compile Include="EditPaletteDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditPaletteDialog.Designer.cs">
+      <DependentUpon>EditPaletteDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FractalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FractalForm.Designer.cs">
+      <DependentUpon>FractalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FractalBase.cs" />
+    <Compile Include="FractalSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FractalSettingsDialog.Designer.cs">
+      <DependentUpon>FractalSettingsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generic2DFractal.cs" />
+    <Compile Include="IFractalParameters.cs" />
+    <Compile Include="JuliaFractal.cs" />
+    <Compile Include="MandelbrotFractal.cs" />
+    <Compile Include="Generic2DFractalSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generic2DFractalSettings.Designer.cs">
+      <DependentUpon>Generic2DFractalSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIForm.Designer.cs">
+      <DependentUpon>MDIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IFractal.cs" />
+    <Compile Include="NewtonFractalByIterationsRequired.cs" />
+    <Compile Include="Parameter.cs" />
+    <Compile Include="ParameterSet.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EditPaletteDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditPaletteDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FractalForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FractalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FractalSettingsDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FractalSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generic2DFractalSettings.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Generic2DFractalSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MDIForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RenderResult.cs" />
+    <Compile Include="TestFractal.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BuildInFractals\frac_newton_01.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BuildInFractals\frac_mandel_01.xml" />
+    <EmbeddedResource Include="BuildInFractals\frac_mandel_02.xml" />
+    <EmbeddedResource Include="BuildInFractals\frac_mandel_03.xml" />
+    <EmbeddedResource Include="BuildInFractals\frac_julia_01.xml" />
+    <EmbeddedResource Include="BuildInFractals\frac_mandel_04.xml" />
+    <EmbeddedResource Include="BuildInFractals\frac_mandel_05.xml" />
+    <Content Include="info.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
