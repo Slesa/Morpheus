@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MixedApp", "MixedApp\MixedA
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial", "Tutorial\Tutorial.fsproj", "{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Library", "Library\Library.fsproj", "{D6E777C8-3C65-4863-ABA1-8B15F7E108AF}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fractals", "Fractals\Fractals.fsproj", "{8C5344F1-7684-47ED-BC3A-6D44E864898C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,10 @@ Global
 		{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D6E777C8-3C65-4863-ABA1-8B15F7E108AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6E777C8-3C65-4863-ABA1-8B15F7E108AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6E777C8-3C65-4863-ABA1-8B15F7E108AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6E777C8-3C65-4863-ABA1-8B15F7E108AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
