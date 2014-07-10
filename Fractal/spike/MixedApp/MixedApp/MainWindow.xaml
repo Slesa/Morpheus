@@ -4,9 +4,13 @@
         Title="MainWindow" Height="350" Width="525">
     <StackPanel>
         
+        <Button Content="Leaf" Click="OnLeafClick"/>
         <Button Content="Fern" Click="OnFernClick"/>
         <Button Content="Kidney" Click="OnKidneyClick"/>
+        <Button Content="Colour Tree" Click="OnColourTreeClick"/>
         <Button Content="Rainbox Feather" Click="OnRainbowFeatherClick"/>
+        <Button Content="Spiral Thing" Click="OnSpiralThingClick"/>
+        <Button Content="Circles" Click="OnCirclesClick"/>
         
     </StackPanel>
 </Window>

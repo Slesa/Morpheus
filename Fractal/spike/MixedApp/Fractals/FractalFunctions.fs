@@ -45,3 +45,6 @@ module FractalFunctions =
        let pen = new Pen(brush, (single)width)
        target.DrawLine(pen, origin, destination)
 
+    let drawCircle (target : Graphics) (brush : Brush) (x : float) (y : float) (radius : int) (height : float) =
+        target.FillEllipse(brush, (int x-radius), int (flip height y)-radius, radius*2, radius*2)
+

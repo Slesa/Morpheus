@@ -44,6 +44,10 @@
     <Content Include="Links.txt" />
     <Compile Include="Kidney.fs" />
     <Compile Include="RainbowFeather.fs" />
+    <Compile Include="ColourTree.fs" />
+    <Compile Include="Leaf.fs" />
+    <Compile Include="SpiralThing.fs" />
+    <Compile Include="Circles.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

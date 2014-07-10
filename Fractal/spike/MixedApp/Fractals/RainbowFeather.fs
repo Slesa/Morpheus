@@ -19,9 +19,8 @@ module RainbowFeather =
     let getColour x y =
         (asColour x y 2.0, asColour x y 1.5, asColour x y 2.5)
 
-       
     let rec endpoints x y angle length iteration = seq {
-        let segLength = length/float numBranches
+        let segLength = length / float numBranches
         yield endpoint x y (pi*angle) (segLength*float iteration)
         if iteration < numBranches then
             yield! endpoints x y angle length (iteration+1)
@@ -32,12 +31,12 @@ module RainbowFeather =
             let angleDegrees = (pi * angle)
             line x y angleDegrees length width colour
 
-        endpoints x y angle length 0
-        |> Seq.iteri ( fun i (nextX, nextY) -> 
-            let stageLengthMultiplier = (1.0/float numBranches*float i)
-            branch nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width+widthModifier) (getColour x y) (angle+branchAngle)
-            branch nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width+widthModifier) (getColour x y) (angle-branchAngle)
-            )
+            endpoints x y angle length 0
+            |> Seq.iteri ( fun i (nextX, nextY) -> 
+                let stageLengthMultiplier = (1.0/float numBranches*float i)
+                branch nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width+widthModifier) (getColour x y) (angle+branchAngle)
+                branch nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width+widthModifier) (getColour x y) (angle-branchAngle)
+                )
 
     let execute = 
         branch (imageCentre - startWidth/2.0) 70.0 startLength startWidth startColour 0.5

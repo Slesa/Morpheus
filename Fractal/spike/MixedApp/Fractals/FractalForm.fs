@@ -19,3 +19,6 @@ module FractalForm =
 
     let line x y angle length width colour =
         drawLine graphics (colour |> brush) x y angle length width ((double)formHeight)
+
+    let circle x y radius colour =
+        drawCircle graphics (colour |> brush) x y radius (float formHeight)
