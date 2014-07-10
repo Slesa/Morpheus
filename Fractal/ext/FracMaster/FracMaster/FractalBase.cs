@@ -1,11 +1,8 @@
 using System;
 using System.IO;
-using System.Collections.Generic;
 using System.Text;
-using System.Runtime.Serialization;
 using System.Threading;
 using System.Drawing;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 
 namespace FracMaster

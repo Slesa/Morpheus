@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Drawing;
 
@@ -8,22 +6,26 @@ namespace FracMaster
 {
     public class RenderResult : IAsyncResult
     {
-        public delegate void RenderComplete(Bitmap bmp, int ErrorCode);
+        public delegate void RenderComplete(Bitmap bmp, int errorCode);
         public delegate void RenderStatus(float pcnt);
-        
-        private bool isCompleted = false;
-        private object asyncstate = new object();
-        private WaitHandle waitHandle = new AutoResetEvent(false);
-          
+
+        private object _asyncstate = new object();
+        private readonly WaitHandle _waitHandle = new AutoResetEvent(false);
+
+        public RenderResult()
+        {
+            IsCompleted = false;
+        }
+
         public object AsyncState
         {
             get
             {
-                return asyncstate;
+                return _asyncstate;
             }
             set
             {
-                asyncstate = value;
+                _asyncstate = value;
             }
         }
 
@@ -31,7 +33,7 @@ namespace FracMaster
         {
             get
             {
-                return waitHandle;
+                return _waitHandle;
             }
         }
 
@@ -43,16 +45,6 @@ namespace FracMaster
             }
         }
 
-        public bool IsCompleted
-        {
-            get
-            {
-                return isCompleted;
-            }
-            set
-            {
-                isCompleted = value;
-            }
-        }
+        public bool IsCompleted { get; set; }
     }
 }

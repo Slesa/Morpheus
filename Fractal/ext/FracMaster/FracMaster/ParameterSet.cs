@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Collections;
  
 namespace FracMaster
@@ -9,17 +8,17 @@ namespace FracMaster
     public class ParameterSet : IFractalParameters
     {
 
-        private List<Parameter> pars = new List<Parameter>();
+        private readonly List<Parameter> _pars = new List<Parameter>();
        
         public IEnumerator GetEnumerator()
         {
-            return pars.GetEnumerator(); 
+            return _pars.GetEnumerator(); 
         }
         
         public object Clone()
         {
-            ParameterSet p = new ParameterSet();            
-            foreach(Parameter px in pars)
+            var p = new ParameterSet();            
+            foreach(var px in _pars)
             {
                 p.AddValue(px.Name,px.Value);
             }
@@ -30,13 +29,13 @@ namespace FracMaster
         {
             get
             {
-                return pars.GetEnumerator().Current;
+                return _pars.GetEnumerator().Current;
             }
         }
 
         public bool MoveNext()
         {
-            return pars.GetEnumerator().MoveNext();
+            return _pars.GetEnumerator().MoveNext();
         }
 
         public void Reset()
@@ -46,7 +45,7 @@ namespace FracMaster
 
         public bool HasValue(String name)
         {
-            foreach (Parameter p in pars)
+            foreach (var p in _pars)
             {
                 if (p.Name == name)
                 {                    
@@ -58,7 +57,7 @@ namespace FracMaster
 
         public void SetValue(String name, object value)
         {
-            foreach (Parameter p in pars)
+            foreach (var p in _pars)
             {
                 if (p.Name == name)
                 {
@@ -71,7 +70,7 @@ namespace FracMaster
 
         public object GetValue(String name)
         {
-            foreach (Parameter p in pars)
+            foreach (var p in _pars)
             {
                 if (p.Name == name)
                 {
@@ -83,7 +82,7 @@ namespace FracMaster
 
         public object GetValue(String name, object defaultValue)
         {
-            foreach (Parameter p in pars)
+            foreach (var p in _pars)
             {
                 if (p.Name == name)
                 {
@@ -95,7 +94,7 @@ namespace FracMaster
 
         public void AddValue(String name, object value)
         {
-            foreach (Parameter p in pars)
+            foreach (var p in _pars)
             {
                 if (p.Name == name)
                 {
@@ -103,15 +102,7 @@ namespace FracMaster
                 }
             }
 
-            pars.Add(new Parameter(name, value));
+            _pars.Add(new Parameter(name, value));
         }
-
-         
-
-
-
     }
-
-
-    
 }

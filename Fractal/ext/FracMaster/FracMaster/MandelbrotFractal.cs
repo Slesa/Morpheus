@@ -1,11 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.Threading;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Drawing.Imaging;
 
 namespace FracMaster
 {

@@ -1,34 +1,21 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FracMaster
 {
     public class Parameter
     {
-        private String name = String.Empty;
-        private object value = null;
-
-        public Parameter(String name, object value)
+        public Parameter(string name, object value)
         {
-            this.name = name;
-            this.value = value;
+            Name = name;
+            Value = value;
         }
 
-        public String Name
-        {
-            get { return name; }
-        }
-
-        public object Value
-        {
-            get { return value; }
-            set { this.value = value; }
-        }
+        public string Name { get; private set; }
+        public object Value { get; set; }
 
         public Type Type
         {
-            get { return this.value.GetType(); }
+            get { return Value.GetType(); }
         }
     }
 

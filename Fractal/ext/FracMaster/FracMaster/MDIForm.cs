@@ -9,8 +9,6 @@ using System.Xml;
 using System.Reflection;
 using System.IO;
 
-using ComplexMath;
-
 namespace FracMaster
 {
     public partial class MDIForm : Form
