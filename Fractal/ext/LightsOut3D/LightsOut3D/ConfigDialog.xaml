@@ -1,0 +1,18 @@
+﻿<Window x:Class="LightsOut3D.ConfigDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LightsOut3D" Height="196" Width="242" ResizeMode="NoResize" Loaded="Window_Loaded">
+  <Grid>
+    <CheckBox Name="cbAllowInteractive" Content="Spiel-Modus erlauben" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,11,0,0" Checked="cbAllowInteractive_Checked" Unchecked="cbAllowInteractive_Checked"/>
+    <GroupBox Name="gbDifficulty" Header="Schwierigkeit" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,30,0,0" Height="87" Width="117">
+      <StackPanel Margin="0,3,0,0">
+        <RadioButton Name="rbEasy" Content="Leicht" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,3,6,0" />
+        <RadioButton Name="rbMedium" Content="Schwer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6, 6, 6, 0" />
+        <RadioButton Name="rbHard" Content="Extrem" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6, 6, 6, 0" />
+      </StackPanel>
+    </GroupBox>
+    <Button Name="btnOk" Content="OK" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Margin="0,0,95, 10" IsDefault="True" Click="btnOk_Click"/>
+    <Button Name="btnCancel" Content="Abbrechen" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Margin="0,0,10,10" IsCancel="True" Click="btnCancel_Click"/>
+
+  </Grid>
+</Window>

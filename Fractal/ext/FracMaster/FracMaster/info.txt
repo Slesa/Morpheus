@@ -1,0 +1,12 @@
+This sample application was implemented to demonstarte as many .NET techniques as possible. It showes:
+
+* Use of delegate
+* Usage of Interface classes
+* Implementation of MDI applications
+* Multi Threading
+* Parallelisation
+* Madelbrot
+* Operator overloading (Complex numbers class)
+* Polymorhpic class design
+* Usage of build in ressourcs
+* Loading ( and storing) data from (and to) xml files

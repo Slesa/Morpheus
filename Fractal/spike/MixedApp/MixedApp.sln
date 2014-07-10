@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MixedApp", "MixedApp\MixedApp.csproj", "{126EB733-C13D-4077-80C9-A2807154DFBC}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial", "Tutorial\Tutorial.fsproj", "{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fractals", "Fractals\Fractals.fsproj", "{8C5344F1-7684-47ED-BC3A-6D44E864898C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{126EB733-C13D-4077-80C9-A2807154DFBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{126EB733-C13D-4077-80C9-A2807154DFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{126EB733-C13D-4077-80C9-A2807154DFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{126EB733-C13D-4077-80C9-A2807154DFBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

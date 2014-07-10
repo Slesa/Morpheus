@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<frac name='Mandelbrot Fractal' type='FracMaster.MandelbrotFractal'>
+  <parameter name='NAME' type='System.String' >Mandelbrot Fractal</parameter>
+  <parameter name='WIDTH' type='System.Int32' >1024</parameter>
+  <parameter name='HEIGHT' type='System.Int32' >1024</parameter>
+  <parameter name='VERSION' type='System.String' >1.0.0</parameter>
+  <parameter name='PALETTE' type='System.Int32[]' >-16711367,-16252867,-15728575,-15204282,-14679990,-14155697,-13631405,-13107112,-12582820,-12058528,-11534235,-11009943,-10485650,-9961358,-9437065,-8912773,-8388480,-7859832,-7331184,-6736999,-6208351,-5614166,-5085518,-4491333,-3962685,-3368500,-2839852,-2245667,-1717019,-1122834,-594186,-1,-1,-1,-1,-65794,-65794,-1,-1,-1,-1,-1,-65794,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-65794,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1</parameter>
+  <parameter name='X' type='System.Double' >-1,03105064025942</parameter>
+  <parameter name='Y' type='System.Double' >-0,395344079223106</parameter>
+  <parameter name='W' type='System.Double' >1,34050592781598E-06</parameter>
+  <parameter name='H' type='System.Double' >1,34050592770496E-06</parameter>
+  <parameter name='ITERATIONS' type='System.Int32' >255</parameter>
+  <parameter name='ZOOMABLE' type='System.Int32' >1</parameter>
+  <parameter name='SCROLLABLE' type='System.Int32' >1</parameter>
+  <parameter name='NUM_THREADS' type='System.Int32' >2</parameter>
+  <parameter name='CAN_BE_INTERPOLATED' type='System.Int32' >1</parameter>
+  <parameter name='RENDER_INTERPOLATED' type='System.Int32' >1</parameter>
+</frac>

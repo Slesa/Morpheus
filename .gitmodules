@@ -1,0 +1,3 @@
+[submodule "Fractal/ext/FractalFun"]
+	path = Fractal/ext/FractalFun
+	url = git://github.com/relentless/FractalFun.git
