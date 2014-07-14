@@ -40,6 +40,6 @@ module Leaf =
 
     let execute =
         branch (imageCentre - startWidth/2.0) 150.0 startLength startWidth startColour 0.5
-        form.ShowDialog()
+        (getForm "Leaf" image).Show() |> ignore
 
 

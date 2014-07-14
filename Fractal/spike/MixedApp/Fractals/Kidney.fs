@@ -33,5 +33,5 @@ module Kidney =
     let execute = 
         branch (imageCentre - 50.0) 200.0 startLength startWidth startColour 0.5
 
-        form.ShowDialog()
+        (getForm "Kidney" image).Show() |> ignore
 

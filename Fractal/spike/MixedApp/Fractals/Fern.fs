@@ -29,4 +29,4 @@ module Fern =
     let execute = 
         branch (imageCentre - startWidth/2.0) 100.0 startLength startWidth startColour 0.5 0.01
 
-        form.ShowDialog()
+        (getForm "Fern" image).Show() |> ignore

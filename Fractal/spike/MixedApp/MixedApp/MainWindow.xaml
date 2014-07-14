@@ -1,14 +1,24 @@
 ﻿<Window x:Class="MixedApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Fractals" Height="350" Width="525">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="3"/>
+                <Setter Property="Background" Value="BurlyWood"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <StackPanel>
         
         <Button Content="Leaf" Click="OnLeafClick"/>
         <Button Content="Fern" Click="OnFernClick"/>
         <Button Content="Kidney" Click="OnKidneyClick"/>
         <Button Content="Colour Tree" Click="OnColourTreeClick"/>
-        <Button Content="Rainbox Feather" Click="OnRainbowFeatherClick"/>
+        <Button Content="Rainbow Feather" Click="OnRainbowFeatherClick"/>
         <Button Content="Spiral Thing" Click="OnSpiralThingClick"/>
         <Button Content="Circles" Click="OnCirclesClick"/>
         

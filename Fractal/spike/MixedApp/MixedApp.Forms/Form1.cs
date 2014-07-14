@@ -1,46 +1,47 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows.Forms;
 using Fractals;
 
-namespace MixedApp
+namespace MixedApp.Forms
 {
-    public partial class MainWindow : Window
+    public partial class MainForm : Form
     {
-        public MainWindow()
+        public MainForm()
         {
             InitializeComponent();
         }
 
-        void OnLeafClick(object sender, RoutedEventArgs e)
+        void OnLeaf(object sender, EventArgs e)
         {
             var result = Leaf.execute;
         }
 
-        void OnFernClick(object sender, RoutedEventArgs e)
+        void OnFern(object sender, EventArgs e)
         {
             var result = Fern.execute;
         }
 
-        void OnKidneyClick(object sender, RoutedEventArgs e)
+        void OnKidney(object sender, EventArgs e)
         {
             var result = Kidney.execute;
         }
 
-        void OnColourTreeClick(object sender, RoutedEventArgs e)
+        void OnColourTree(object sender, EventArgs e)
         {
             var result = ColourTree.execute;
         }
 
-        void OnRainbowFeatherClick(object sender, RoutedEventArgs e)
+        void OnRainbowFeather(object sender, EventArgs e)
         {
             var result = RainbowFeather.execute;
         }
 
-        void OnSpiralThingClick(object sender, RoutedEventArgs e)
+        void OnSpiralThing(object sender, EventArgs e)
         {
             var result = SpiralThing.execute;
         }
 
-        void OnCirclesClick(object sender, RoutedEventArgs e)
+        void OnCircles(object sender, EventArgs e)
         {
             var result = Circles.execute;
         }

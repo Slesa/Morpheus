@@ -39,4 +39,4 @@ module Circles =
             200.0
             System.DateTime.Now.Millisecond
             0
-        form.Show()
+        (getForm "Circle" image).Show() |> ignore

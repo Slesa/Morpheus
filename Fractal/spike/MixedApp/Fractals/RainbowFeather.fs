@@ -41,4 +41,4 @@ module RainbowFeather =
     let execute = 
         branch (imageCentre - startWidth/2.0) 70.0 startLength startWidth startColour 0.5
 
-        form.ShowDialog()
+        (getForm "Rainbow Feather" image).Show() |> ignore

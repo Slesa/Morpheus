@@ -27,5 +27,5 @@ module ColourTree =
 
     let execute = 
         branch (imageCentre - startWidth/2.0) 50.0 100.0 startWidth startColour 0.5
-        form.ShowDialog()
+        (getForm "Colour Tree" image).Show() |> ignore
 

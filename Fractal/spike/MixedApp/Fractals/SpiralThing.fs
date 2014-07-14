@@ -24,6 +24,6 @@ module SpiralThing =
 
     let execute =
         branch (imageCentre - startWidth/2.0) 150.0 startLength startWidth (0,0,0) 0.5
-        form.ShowDialog()
+        (getForm "Spiral Thing" image).Show() |> ignore
 
 
