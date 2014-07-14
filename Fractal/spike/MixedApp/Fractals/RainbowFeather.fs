@@ -1,8 +1,9 @@
 ﻿namespace Fractals
 
 open FractalFunctions
-open FractalForm
+open FractalForms
 
+// Taken from https://github.com/relentless/FractalFun
 module RainbowFeather =
 
     let branchAngle = 0.25
@@ -12,8 +13,10 @@ module RainbowFeather =
     let startLength = 250.0
     let numBranches = 5
 
+    let fractalForm = new SizedFractalForm()
+
     let asColour x y factor =
-        let centredX = abs ((imageCentre - startWidth/2.0) - x)
+        let centredX = abs ((fractalForm.ImageCentre - startWidth/2.0) - x)
         abs ((int ((centredX+y)*factor)%510) - 255)
 
     let getColour x y =
@@ -29,7 +32,7 @@ module RainbowFeather =
     let rec branch x y length width colour angle =
         if width > 0.0 then
             let angleDegrees = (pi * angle)
-            line x y angleDegrees length width colour
+            fractalForm.Line x y angleDegrees length width colour
 
             endpoints x y angle length 0
             |> Seq.iteri ( fun i (nextX, nextY) -> 
@@ -38,7 +41,7 @@ module RainbowFeather =
                 branch nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width+widthModifier) (getColour x y) (angle-branchAngle)
                 )
 
-    let execute = 
-        branch (imageCentre - startWidth/2.0) 70.0 startLength startWidth startColour 0.5
+    let execute() = 
+        branch (fractalForm.ImageCentre - startWidth/2.0) 70.0 startLength startWidth startColour 0.5
 
-        (getForm "Rainbow Feather" image).Show() |> ignore
+        fractalForm.CreateForm("Rainbow Feather").Show() |> ignore

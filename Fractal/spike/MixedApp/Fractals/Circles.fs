@@ -1,8 +1,9 @@
 ﻿namespace Fractals
 
 open FractalFunctions
-open FractalForm
+open FractalForms
 
+// Taken from https://github.com/relentless/FractalFun
 module Circles = 
 
     let next colour =
@@ -19,11 +20,13 @@ module Circles =
         let b = rand g
         (r, g, b)
 
+    let fractalForm = new SizedFractalForm()
+
     let rec sphere x y radius seed iteration =
 
         if iteration < 5 then
 
-            circle x y (int radius) <| randCol seed
+            fractalForm.Circle x y (int radius) <| randCol seed
 
             let nextDist = radius/2.0
 
@@ -32,11 +35,11 @@ module Circles =
             sphere (x+nextDist) (y+nextDist) nextDist (seed/3) (iteration+1)
             sphere (x-nextDist) (y+nextDist) nextDist (seed*3) (iteration+1)
 
-    let execute =
+    let execute() =
         sphere
-            (float formWidth/2.0) 
-            (float formHeight/2.0)
+            (float fractalForm.FormWidth/2.0) 
+            (float fractalForm.FormHeight/2.0)
             200.0
             System.DateTime.Now.Millisecond
             0
-        (getForm "Circle" image).Show() |> ignore
+        fractalForm.CreateForm("Circle").Show() |> ignore

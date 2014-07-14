@@ -1,8 +1,9 @@
 ﻿namespace Fractals
 
 open FractalFunctions
-open FractalForm
+open FractalForms
 
+// Taken from https://github.com/relentless/FractalFun
 module Leaf =
 
     let branchAngle = 0.25
@@ -18,6 +19,8 @@ module Leaf =
     let numSteps = int (startWidth / -widthModifier)
     let step = colourStep startColour endColour numSteps
 
+    let fractalForm = new SizedFractalForm()
+
     let rec endpoints x y length angle iteration = seq {
         let segLength = length / float numBranches
         yield endpoint x y (pi*angle) (segLength*float iteration)
@@ -28,7 +31,7 @@ module Leaf =
     let rec branch x y length width colour angle =
         if width > 0.0 then
             let angleDegrees = (pi*angle)
-            line x y angleDegrees length width colour
+            fractalForm.Line x y angleDegrees length width colour
 
             endpoints x y angle length 0
             |> Seq.iteri (fun i (nextX, nextY) ->
@@ -38,8 +41,8 @@ module Leaf =
                 branch nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width*stageWidthMultiplier+widthModifier) (colour |> next step) (angle-branchAngle)
                 )
 
-    let execute =
-        branch (imageCentre - startWidth/2.0) 150.0 startLength startWidth startColour 0.5
-        (getForm "Leaf" image).Show() |> ignore
+    let execute() =
+        branch (fractalForm.ImageCentre - startWidth/2.0) 150.0 startLength startWidth startColour 0.5
+        fractalForm.CreateForm("Leaf").Show() |> ignore
 
 

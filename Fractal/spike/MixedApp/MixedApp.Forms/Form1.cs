@@ -13,37 +13,44 @@ namespace MixedApp.Forms
 
         void OnLeaf(object sender, EventArgs e)
         {
-            var result = Leaf.execute;
+            WithWaitCursor(Leaf.execute);
         }
 
         void OnFern(object sender, EventArgs e)
         {
-            var result = Fern.execute;
+            WithWaitCursor(Fern.execute);
         }
 
         void OnKidney(object sender, EventArgs e)
         {
-            var result = Kidney.execute;
+            WithWaitCursor(Kidney.execute);
         }
 
         void OnColourTree(object sender, EventArgs e)
         {
-            var result = ColourTree.execute;
+            WithWaitCursor(ColourTree.execute);
         }
 
         void OnRainbowFeather(object sender, EventArgs e)
         {
-            var result = RainbowFeather.execute;
+            WithWaitCursor(RainbowFeather.execute);
         }
 
         void OnSpiralThing(object sender, EventArgs e)
         {
-            var result = SpiralThing.execute;
+            WithWaitCursor(SpiralThing.execute);
         }
 
         void OnCircles(object sender, EventArgs e)
         {
-            var result = Circles.execute;
+            WithWaitCursor(Circles.execute);
+        }
+
+        void WithWaitCursor(Action action)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            action();
+            Cursor.Current = Cursors.Arrow;
         }
     }
 }

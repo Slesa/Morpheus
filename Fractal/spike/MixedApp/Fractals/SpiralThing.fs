@@ -1,8 +1,9 @@
 ﻿namespace Fractals
 
 open FractalFunctions
-open FractalForm
+open FractalForms
 
+// Taken from https://github.com/relentless/FractalFun
 module SpiralThing =
 
     let leftBranchAngle = 0.15
@@ -13,17 +14,19 @@ module SpiralThing =
     let startWidth = 16.0
     let startLength = 100.0
 
+    let fractalForm = new SizedFractalForm()
+
     let rec branch x y length width colour angle =
         if width > 0.4 then
             let angleDegrees = (pi*angle)
-            line x y angleDegrees length width colour
+            fractalForm.Line x y angleDegrees length width colour
             let nextX, nextY = endpoint x y angleDegrees (length-2.0)
 
             branch nextX nextY (length*lengthMultiplier) (width*widthMultiplier) colour (angle+leftBranchAngle)
             branch nextX nextY (length*0.5) (width*0.5) colour (angle-rightBranchAngle)
 
-    let execute =
-        branch (imageCentre - startWidth/2.0) 150.0 startLength startWidth (0,0,0) 0.5
-        (getForm "Spiral Thing" image).Show() |> ignore
+    let execute() =
+        branch (fractalForm.ImageCentre - startWidth/2.0) 150.0 startLength startWidth (0,0,0) 0.5
+        fractalForm.CreateForm("Spiral Thing").Show() |> ignore
 
 

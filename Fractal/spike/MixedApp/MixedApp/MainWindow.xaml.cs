@@ -12,37 +12,37 @@ namespace MixedApp
 
         void OnLeafClick(object sender, RoutedEventArgs e)
         {
-            var result = Leaf.execute;
+            Leaf.execute();
         }
 
         void OnFernClick(object sender, RoutedEventArgs e)
         {
-            var result = Fern.execute;
+            Fern.execute();
         }
 
         void OnKidneyClick(object sender, RoutedEventArgs e)
         {
-            var result = Kidney.execute;
+            Kidney.execute();
         }
 
         void OnColourTreeClick(object sender, RoutedEventArgs e)
         {
-            var result = ColourTree.execute;
+            ColourTree.execute();
         }
 
         void OnRainbowFeatherClick(object sender, RoutedEventArgs e)
         {
-            var result = RainbowFeather.execute;
+             RainbowFeather.execute();
         }
 
         void OnSpiralThingClick(object sender, RoutedEventArgs e)
         {
-            var result = SpiralThing.execute;
+            SpiralThing.execute();
         }
 
         void OnCirclesClick(object sender, RoutedEventArgs e)
         {
-            var result = Circles.execute;
+            Circles.execute();
         }
     }
 }

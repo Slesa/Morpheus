@@ -1,8 +1,9 @@
 ﻿namespace Fractals
 
 open FractalFunctions
-open FractalForm
+open FractalForms
 
+// Taken from https://github.com/relentless/FractalFun
 module Kidney =
 
     let smallBranchAngle = 0.11
@@ -21,17 +22,19 @@ module Kidney =
     let numSteps = int (startWidth / -largeWidthModifier)
     let step = colourStep startColour endColour numSteps
 
+    let fractalForm = new SizedFractalForm()
+
     let rec branch x y length width colour angle =
         if width > 0.0 then
             let angleDegrees = (pi * angle)
-            line x y angleDegrees length width colour
+            fractalForm.Line x y angleDegrees length width colour
             let nextX, nextY = endpoint x y angleDegrees length
 
             branch nextX nextY (length*smallLengthMultiplier) (width+smallWidthModifier) (colour |> next step) (angle+smallBranchAngle)
             branch nextX nextY (length*largeLengthMultiplier) (width+largeWidthModifier) (colour |> next step) (angle-largeBranchAngle)
 
-    let execute = 
-        branch (imageCentre - 50.0) 200.0 startLength startWidth startColour 0.5
+    let execute() = 
+        branch (fractalForm.ImageCentre - 50.0) 200.0 startLength startWidth startColour 0.5
 
-        (getForm "Kidney" image).Show() |> ignore
+        fractalForm.CreateForm("Kidney").Show() |> ignore
 

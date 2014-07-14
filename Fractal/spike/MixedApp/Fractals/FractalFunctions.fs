@@ -3,6 +3,7 @@
 open System
 open System.Drawing
 
+// Taken from https://github.com/relentless/FractalFun
 module FractalFunctions =
 
     // *** Colors *******************************************************
