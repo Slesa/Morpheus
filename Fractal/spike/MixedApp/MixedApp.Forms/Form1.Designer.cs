@@ -39,9 +39,10 @@
             // 
             // buttonLeaf
             // 
-            this.buttonLeaf.Location = new System.Drawing.Point(75, 30);
+            this.buttonLeaf.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonLeaf.Location = new System.Drawing.Point(0, 0);
             this.buttonLeaf.Name = "buttonLeaf";
-            this.buttonLeaf.Size = new System.Drawing.Size(75, 23);
+            this.buttonLeaf.Size = new System.Drawing.Size(629, 23);
             this.buttonLeaf.TabIndex = 0;
             this.buttonLeaf.Text = "Leaf";
             this.buttonLeaf.UseVisualStyleBackColor = true;
@@ -49,9 +50,10 @@
             // 
             // buttonFern
             // 
-            this.buttonFern.Location = new System.Drawing.Point(75, 60);
+            this.buttonFern.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonFern.Location = new System.Drawing.Point(0, 23);
             this.buttonFern.Name = "buttonFern";
-            this.buttonFern.Size = new System.Drawing.Size(75, 23);
+            this.buttonFern.Size = new System.Drawing.Size(629, 23);
             this.buttonFern.TabIndex = 1;
             this.buttonFern.Text = "Fern";
             this.buttonFern.UseVisualStyleBackColor = true;
@@ -59,9 +61,10 @@
             // 
             // buttonKidney
             // 
-            this.buttonKidney.Location = new System.Drawing.Point(75, 90);
+            this.buttonKidney.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonKidney.Location = new System.Drawing.Point(0, 46);
             this.buttonKidney.Name = "buttonKidney";
-            this.buttonKidney.Size = new System.Drawing.Size(75, 23);
+            this.buttonKidney.Size = new System.Drawing.Size(629, 23);
             this.buttonKidney.TabIndex = 2;
             this.buttonKidney.Text = "Kidney";
             this.buttonKidney.UseVisualStyleBackColor = true;
@@ -69,9 +72,10 @@
             // 
             // buttonColourTree
             // 
-            this.buttonColourTree.Location = new System.Drawing.Point(75, 120);
+            this.buttonColourTree.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonColourTree.Location = new System.Drawing.Point(0, 69);
             this.buttonColourTree.Name = "buttonColourTree";
-            this.buttonColourTree.Size = new System.Drawing.Size(75, 23);
+            this.buttonColourTree.Size = new System.Drawing.Size(629, 23);
             this.buttonColourTree.TabIndex = 3;
             this.buttonColourTree.Text = "Colour Tree";
             this.buttonColourTree.UseVisualStyleBackColor = true;
@@ -79,9 +83,10 @@
             // 
             // buttonRainbowFeather
             // 
-            this.buttonRainbowFeather.Location = new System.Drawing.Point(75, 150);
+            this.buttonRainbowFeather.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonRainbowFeather.Location = new System.Drawing.Point(0, 92);
             this.buttonRainbowFeather.Name = "buttonRainbowFeather";
-            this.buttonRainbowFeather.Size = new System.Drawing.Size(75, 23);
+            this.buttonRainbowFeather.Size = new System.Drawing.Size(629, 23);
             this.buttonRainbowFeather.TabIndex = 4;
             this.buttonRainbowFeather.Text = "Rainbow Feather";
             this.buttonRainbowFeather.UseVisualStyleBackColor = true;
@@ -89,9 +94,10 @@
             // 
             // buttonSpiralThing
             // 
-            this.buttonSpiralThing.Location = new System.Drawing.Point(75, 180);
+            this.buttonSpiralThing.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonSpiralThing.Location = new System.Drawing.Point(0, 115);
             this.buttonSpiralThing.Name = "buttonSpiralThing";
-            this.buttonSpiralThing.Size = new System.Drawing.Size(75, 23);
+            this.buttonSpiralThing.Size = new System.Drawing.Size(629, 23);
             this.buttonSpiralThing.TabIndex = 5;
             this.buttonSpiralThing.Text = "Spiral Thing";
             this.buttonSpiralThing.UseVisualStyleBackColor = true;
@@ -99,9 +105,10 @@
             // 
             // buttonCircle
             // 
-            this.buttonCircle.Location = new System.Drawing.Point(75, 210);
+            this.buttonCircle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonCircle.Location = new System.Drawing.Point(0, 138);
             this.buttonCircle.Name = "buttonCircle";
-            this.buttonCircle.Size = new System.Drawing.Size(75, 23);
+            this.buttonCircle.Size = new System.Drawing.Size(629, 23);
             this.buttonCircle.TabIndex = 6;
             this.buttonCircle.Text = "Circles";
             this.buttonCircle.UseVisualStyleBackColor = true;
@@ -120,7 +127,7 @@
             this.Controls.Add(this.buttonFern);
             this.Controls.Add(this.buttonLeaf);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Fractals";
             this.ResumeLayout(false);
 
         }
