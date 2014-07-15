@@ -46,6 +46,11 @@ namespace MixedApp.Forms
             WithWaitCursor(Circles.execute);
         }
 
+		void OnCircles2(object sender, EventArgs e)
+		{
+			WithWaitCursor(Circles2.execute);
+		}
+
         void WithWaitCursor(Action action)
         {
             Cursor.Current = Cursors.WaitCursor;
