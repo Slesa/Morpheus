@@ -24,58 +24,60 @@ namespace FracMaster
 
         public override void Configure()
         {            
-            Generic2DFractalSettings dia = new Generic2DFractalSettings();
-            dia.FractalType = "FracMaster.NewtonFractalByIterationsRequired";
-            dia.Parameters = (IFractalParameters)this.Parameters.Clone();
+            var dia = new Generic2DFractalSettings
+                {
+                    FractalType = "FracMaster.NewtonFractalByIterationsRequired",
+                    Parameters = (IFractalParameters) Parameters.Clone()
+                };
 
             if (dia.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.Parameters = dia.Parameters;
+                Parameters = dia.Parameters;
             }
         }
 
-        override protected void PartialRender(object P)
+        override protected void PartialRender(object p)
         {
-            PartialRenderIterationsNeededToReachRoot(P);
+            PartialRenderIterationsNeededToReachRoot(p);
         }
 
-        protected void PartialRenderIterationsNeededToReachRoot(object P)
+        protected void PartialRenderIterationsNeededToReachRoot(object p)
         {
 
-            object[] o = (object[])P;
-            int offset = (int)o[0];
-            int lines = (int)o[1];
-            int[] dst = (int[])o[2];
+            var o = (object[])p;
+            var offset = (int)o[0];
+            var lines = (int)o[1];
+            var dst = (int[])o[2];
              
-            RenderResult.RenderStatus status_clbk = (RenderResult.RenderStatus)o[3];
-            AutoResetEvent completed = (AutoResetEvent)o[4];
+            var status_clbk = (RenderResult.RenderStatus)o[3];
+            var completed = (AutoResetEvent)o[4];
 
-            int width = (int)pars.GetValue("WIDTH");
-            int heigth = (int)pars.GetValue("HEIGHT");
-            int iterations = (int)pars.GetValue("ITERATIONS") - 1;
-            Int32[] Palette = (Int32[])pars.GetValue("PALETTE");
+            var width = (int)pars.GetValue("WIDTH");
+            var heigth = (int)pars.GetValue("HEIGHT");
+            var iterations = (int)pars.GetValue("ITERATIONS") - 1;
+            var palette = (Int32[])pars.GetValue("PALETTE");
 
-            double a = (double)pars.GetValue("A");
-            double W = (double)pars.GetValue("W");
-            double H = (double)pars.GetValue("H");
-            double X = (double)pars.GetValue("X");
-            double Y = (double)pars.GetValue("Y");
+            var a = (double)pars.GetValue("A");
+            var W = (double)pars.GetValue("W");
+            var H = (double)pars.GetValue("H");
+            var X = (double)pars.GetValue("X");
+            var Y = (double)pars.GetValue("Y");
            
-            int iter = 0;
-            int idx = 0;
-            double xs = (X - W / 2.0);
-            double ys = (Y - H / 2.0);
-            double xd = W / (double)width;
-            double yd = H / (double)heigth;
-            double y1 = ys + yd * offset;
+            var iter = 0;
+            var idx = 0;
+            var xs = (X - W / 2.0);
+            var ys = (Y - H / 2.0);
+            var xd = W / width;
+            var yd = H / heigth;
+            var y1 = ys + yd * offset;
 
             
-            for (int y = offset; y < offset + lines; y++)
+            for (var y = offset; y < offset + lines; y++)
             {
                 idx = y * width;
-                double x1 = xs;
+                var x1 = xs;
 
-                for (int x = 0; x < width; x++)
+                for (var x = 0; x < width; x++)
                 {
                     iter = 0;
 
@@ -86,14 +88,14 @@ namespace FracMaster
                     //              z^3-1   a: 1,0 ..... 0,5
 
 
-                    Complex zn = new Complex(x1,y1);
-                    Complex pz = new Complex(1,0);
-                    Complex pzd = new Complex(1,0);
-                    Complex Att1 = new Complex(1.25992  ,  0);
-                    Complex Att2 = new Complex(-0.629961, -1.09112);
-                    Complex Att3 = new Complex(-0.629961,  1.09112);
+                    var zn = new Complex(x1,y1);
+                    var pz = new Complex(1,0);
+                    var pzd = new Complex(1,0);
+                    var Att1 = new Complex(1.25992  ,  0);
+                    var Att2 = new Complex(-0.629961, -1.09112);
+                    var Att3 = new Complex(-0.629961,  1.09112);
 
-                    if (x1 == 0 && y1 == 0)
+                    if (x1.Equals(0.0) && y1.Equals(0.0))
                     {
                         iter = 0;
                     }
@@ -108,20 +110,18 @@ namespace FracMaster
                         }
                     }
 
-                    iter = iter % Palette.Length;
-                    dst[idx++] = Palette[iter];
+                    iter = iter % palette.Length;
+                    dst[idx++] = palette[iter];
                     x1 += xd;
                 }
                 y1 += yd;
                 lines_rendered++;
                 if (lines_rendered % 40 == 0)
                 {
-                    status_clbk(100.0f * ((float)lines_rendered) / heigth);
+                    status_clbk(100.0f * lines_rendered / heigth);
                 }
             }
             completed.Set();
         }
-
-         
     }
 }

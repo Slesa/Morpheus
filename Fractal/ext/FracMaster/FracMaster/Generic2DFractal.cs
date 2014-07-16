@@ -168,7 +168,7 @@ namespace FracMaster
             }
         }
 
-        virtual protected void PartialRender(object P)
+        virtual protected void PartialRender(object p)
         {
 
         }

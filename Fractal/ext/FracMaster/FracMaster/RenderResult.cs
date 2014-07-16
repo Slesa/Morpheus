@@ -9,33 +9,16 @@ namespace FracMaster
         public delegate void RenderComplete(Bitmap bmp, int errorCode);
         public delegate void RenderStatus(float pcnt);
 
-        private object _asyncstate = new object();
-        private readonly WaitHandle _waitHandle = new AutoResetEvent(false);
-
         public RenderResult()
         {
+            AsyncWaitHandle = new AutoResetEvent(false);
+            AsyncState = new object();
             IsCompleted = false;
         }
 
-        public object AsyncState
-        {
-            get
-            {
-                return _asyncstate;
-            }
-            set
-            {
-                _asyncstate = value;
-            }
-        }
+        public object AsyncState { get; set; }
 
-        public WaitHandle AsyncWaitHandle
-        {
-            get
-            {
-                return _waitHandle;
-            }
-        }
+        public WaitHandle AsyncWaitHandle { get; private set; }
 
         public bool CompletedSynchronously
         {

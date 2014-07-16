@@ -3,8 +3,6 @@ using System.IO;
 
 namespace FracMaster
 {
-   
-
     public interface IFractal 
     {                 
         /// <summary>
@@ -30,7 +28,5 @@ namespace FracMaster
         void ReadFromXml(String filename);
 
         void ReadFromXml(Stream xmlstream);
-         
-
     }
 }

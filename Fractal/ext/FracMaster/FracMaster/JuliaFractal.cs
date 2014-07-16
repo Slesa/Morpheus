@@ -74,9 +74,9 @@ namespace FracMaster
             }
         }
 
-        override protected void PartialRender(object P)
+        override protected void PartialRender(object p)
         {
-            object[] o = (object[])P;
+            object[] o = (object[])p;
             int offset = (int)o[0];
             int lines = (int)o[1];
             int[] dst = (int[])o[2];
