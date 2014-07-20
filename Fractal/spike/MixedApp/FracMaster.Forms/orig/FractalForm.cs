@@ -10,8 +10,6 @@ namespace FracMaster
     {
         #region MEMBERS
 
-        float CalculationProgress = 0;
-        Bitmap LastFractalImage = null;
         Point dragStart = Point.Empty;
         Point dragEnd = Point.Empty;
         Rectangle r = new Rectangle();
@@ -29,58 +27,12 @@ namespace FracMaster
             splitContainer2.Panel1.SizeChanged += new System.EventHandler(this.splitContainer2_Panel1_SizeChanged);           
         }
 
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            if (isRendering && renderResult != null)
-            {
-                frac.EndRender(renderResult);
-            }
-            base.OnClosing(e);
-        }
-
         private void splitContainer2_Panel1_SizeChanged(object sender, EventArgs e)
         {
             UpdatePictureBox();
         }
 
         
-        void UpdatePictureBox()
-        {
-            if (InvokeRequired)
-            {
-                this.Invoke(new MethodInvoker(UpdatePictureBox));
-            }
-            else
-            {
-                if (LastFractalImage != null)
-                {
-                    pictureBox2.Width = LastFractalImage.Width + 20;
-                    pictureBox2.Height = LastFractalImage.Height + 20;
-
-                    Point loc = pictureBox2.Location;
-
-                    if (pictureBox2.Width < splitContainer2.Panel1.Width)
-                    {
-                        loc.X = (splitContainer2.Panel1.Width - pictureBox2.Width) / 2;
-                    }
-                    else
-                    {
-                        loc.X = -splitContainer2.Panel1.HorizontalScroll.Value;
-                    }
-
-                    if (pictureBox2.Height < splitContainer2.Panel1.Height)
-                    {
-                        loc.Y = (splitContainer2.Panel1.Height - pictureBox2.Height) / 2;
-                    }
-                    else
-                    {
-                        loc.Y = -splitContainer2.Panel1.VerticalScroll.Value;
-                    }
-
-                    pictureBox2.Location = loc;
-                }
-            }
-        }
 
         void OnImageOriginDragged(int dx, int dy)
         {
@@ -310,33 +262,7 @@ namespace FracMaster
         }
        
 
-        private void UpdateFormCaption()
-        {
-            if (InvokeRequired)
-            {
-                this.Invoke(new MethodInvoker(UpdateFormCaption));
-            }
-            else
-            {
-                int Pcnt = (int)CalculationProgress;
-                this.Text = caption + "[" + Pcnt + "%]";
-            }
-        }
 
-                
-
-
-        private void OnsaveAsToolStripMenuItemClicked(object sender, EventArgs e)
-        {
-            SaveFileDialog dia = new SaveFileDialog();
-            dia.Filter = "xml file (*.xml)|*.xml";
-
-            if ( dia.ShowDialog() == DialogResult.OK )
-            {
-                frac.WriteToXml(dia.FileName);
-            }           
-        }
-       
         private void OnsaveImageAsToolStripMenuItemClicked(object sender, EventArgs e)
         {
             if (LastFractalImage != null)

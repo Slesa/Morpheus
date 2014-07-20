@@ -33,6 +33,8 @@
             this.buttonSettings = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonSaveImage = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonRender
@@ -72,6 +74,7 @@
             this.buttonSave.TabIndex = 3;
             this.buttonSave.Text = "Save...";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.OnSave);
             // 
             // buttonSaveImage
             // 
@@ -82,11 +85,20 @@
             this.buttonSaveImage.Text = "Image...";
             this.buttonSaveImage.UseVisualStyleBackColor = true;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(13, 43);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(669, 447);
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
+            // 
             // FractalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 502);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.buttonSaveImage);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonSettings);
@@ -94,6 +106,7 @@
             this.Controls.Add(this.buttonRender);
             this.Name = "FractalForm";
             this.Text = "FractalForm";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -105,5 +118,6 @@
         private System.Windows.Forms.Button buttonSettings;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonSaveImage;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -13,6 +14,9 @@ namespace FracMaster.Forms
         DateTime renderStart = DateTime.MinValue;
         TimeSpan renderTime = new TimeSpan();
 
+        Bitmap LastFractalImage = null;
+        float CalculationProgress = 0;
+
         public FractalForm()
         {
             Fractal = null;
@@ -20,6 +24,21 @@ namespace FracMaster.Forms
         }
 
         public IFractal Fractal { get; set; }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            RenderFractal();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (isRendering && _renderResult != null)
+            {
+                Fractal.EndRender(_renderResult);
+            }
+            base.OnClosing(e);
+        }
 
         void OnStartRender(object sender, System.EventArgs e)
         {
@@ -87,6 +106,17 @@ namespace FracMaster.Forms
             catch { }
         }
 
+        void UpdateFormCaption()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(UpdateFormCaption));
+                return;
+            }
+            var pcnt = (int)CalculationProgress;
+            Text = caption + "[" + pcnt + "%]";
+        }
+
         void UpdateFormContent()
         {
             if (InvokeRequired)
@@ -97,7 +127,7 @@ namespace FracMaster.Forms
             try
             {
                     Text = caption;
-                    label1.Text = "" + LastFractalImage.Width + "x" + LastFractalImage.Height + " [pix]  rendered in  " + renderTime.TotalMilliseconds + " ms using " + Environment.ProcessorCount + " cpus";
+                    //label1.Text = "" + LastFractalImage.Width + "x" + LastFractalImage.Height + " [pix]  rendered in  " + renderTime.TotalMilliseconds + " ms using " + Environment.ProcessorCount + " cpus";
 
                     buttonStop.Enabled = false;
                     buttonRender.Enabled = true;
@@ -111,6 +141,54 @@ namespace FracMaster.Forms
             }
             catch
             { }
+        }
+
+        void UpdatePictureBox()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(UpdatePictureBox));
+                return;
+            }
+            if (LastFractalImage != null)
+            {
+                pictureBox2.Width = LastFractalImage.Width + 20;
+                pictureBox2.Height = LastFractalImage.Height + 20;
+
+/*
+                Point loc = pictureBox2.Location;
+                if (pictureBox2.Width < splitContainer2.Panel1.Width)
+                {
+                    loc.X = (splitContainer2.Panel1.Width - pictureBox2.Width) / 2;
+                }
+                else
+                {
+                    loc.X = -splitContainer2.Panel1.HorizontalScroll.Value;
+                }
+
+                if (pictureBox2.Height < splitContainer2.Panel1.Height)
+                {
+                    loc.Y = (splitContainer2.Panel1.Height - pictureBox2.Height) / 2;
+                }
+                else
+                {
+                    loc.Y = -splitContainer2.Panel1.VerticalScroll.Value;
+                }
+                pictureBox2.Location = loc;
+*/
+            }
+        }
+
+        void OnSave(object sender, EventArgs e)
+        {
+            SaveFileDialog dia = new SaveFileDialog();
+            dia.Filter = "xml file (*.xml)|*.xml";
+
+            if ( dia.ShowDialog() == DialogResult.OK )
+            {
+                Fractal.WriteToXml(dia.FileName);
+            }           
+
         }
     }
 }
