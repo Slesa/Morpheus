@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MixedApp", "MixedApp\MixedApp.csproj", "{126EB733-C13D-4077-80C9-A2807154DFBC}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial", "Tutorial\Tutorial.fsproj", "{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fractals", "Fractals\Fractals.fsproj", "{8C5344F1-7684-47ED-BC3A-6D44E864898C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MixedApp.Forms", "MixedApp.Forms\MixedApp.Forms.csproj", "{53CB5765-6304-4872-8B3F-77093878C369}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FracMaster.Forms", "FracMaster.Forms\FracMaster.Forms.csproj", "{4F474A61-DF5F-43E9-966F-AA5C131B60E4}"
+EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Fractals", "Fractals\Fractals.fsproj", "8C5344F1-7684-47ED-BC3A-6D44E864898C"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{126EB733-C13D-4077-80C9-A2807154DFBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{126EB733-C13D-4077-80C9-A2807154DFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{126EB733-C13D-4077-80C9-A2807154DFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{126EB733-C13D-4077-80C9-A2807154DFBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F474A61-DF5F-43E9-966F-AA5C131B60E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F474A61-DF5F-43E9-966F-AA5C131B60E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F474A61-DF5F-43E9-966F-AA5C131B60E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F474A61-DF5F-43E9-966F-AA5C131B60E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53CB5765-6304-4872-8B3F-77093878C369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53CB5765-6304-4872-8B3F-77093878C369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53CB5765-6304-4872-8B3F-77093878C369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53CB5765-6304-4872-8B3F-77093878C369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FAD124D-ED04-453E-BB1F-EECD439CDDBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,14 +35,9 @@ Global
 		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C5344F1-7684-47ED-BC3A-6D44E864898C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53CB5765-6304-4872-8B3F-77093878C369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53CB5765-6304-4872-8B3F-77093878C369}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53CB5765-6304-4872-8B3F-77093878C369}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53CB5765-6304-4872-8B3F-77093878C369}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F474A61-DF5F-43E9-966F-AA5C131B60E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F474A61-DF5F-43E9-966F-AA5C131B60E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F474A61-DF5F-43E9-966F-AA5C131B60E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F474A61-DF5F-43E9-966F-AA5C131B60E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MixedApp.Forms\MixedApp.Forms.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

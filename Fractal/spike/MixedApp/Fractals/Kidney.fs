@@ -22,19 +22,17 @@ module Kidney =
     let numSteps = int (startWidth / -largeWidthModifier)
     let step = colourStep startColour endColour numSteps
 
-    let fractalForm = new SizedFractalForm()
-
-    let rec branch x y length width colour angle =
+    let rec branch (drawings: IFractalDrawing) x y length width colour angle =
         if width > 0.0 then
             let angleDegrees = (pi * angle)
-            fractalForm.Line x y angleDegrees length width colour
+            drawings.Line x y angleDegrees length width colour
             let nextX, nextY = endpoint x y angleDegrees length
 
-            branch nextX nextY (length*smallLengthMultiplier) (width+smallWidthModifier) (colour |> next step) (angle+smallBranchAngle)
-            branch nextX nextY (length*largeLengthMultiplier) (width+largeWidthModifier) (colour |> next step) (angle-largeBranchAngle)
+            branch drawings nextX nextY (length*smallLengthMultiplier) (width+smallWidthModifier) (colour |> next step) (angle+smallBranchAngle)
+            branch drawings nextX nextY (length*largeLengthMultiplier) (width+largeWidthModifier) (colour |> next step) (angle-largeBranchAngle)
 
-    let execute() = 
-        branch (fractalForm.ImageCentre - 50.0) 200.0 startLength startWidth startColour 0.5
-
-        fractalForm.CreateForm("Kidney").Show() |> ignore
+    let execute(drawings: IFractalDrawing) = 
+        let centre = Helpers.ImageCentre drawings
+        branch drawings (centre - 50.0) 200.0 startLength startWidth startColour 0.5
+        drawings.Show "Kidney"
 

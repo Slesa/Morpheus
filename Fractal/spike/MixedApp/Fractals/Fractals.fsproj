@@ -35,19 +35,20 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition=" Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')" />
   <ItemGroup>
-    <Compile Include="Library1.fs" />
-    <None Include="Script.fsx" />
+    <Compile Include="IFractalDrawing.fs" />
+    <Compile Include="Helpers.fs" />
     <Compile Include="FractalFunctions.fs" />
+    <Compile Include="FormsDrawing.fs" />
     <Compile Include="FractalForms.fs" />
+    <Compile Include="Circles.fs" />
+    <Compile Include="Circles2.fs" />
+    <Compile Include="ColourTree.fs" />
     <Compile Include="Fern.fs" />
     <Content Include="Links.txt" />
     <Compile Include="Kidney.fs" />
-    <Compile Include="RainbowFeather.fs" />
-    <Compile Include="ColourTree.fs" />
     <Compile Include="Leaf.fs" />
+    <Compile Include="RainbowFeather.fs" />
     <Compile Include="SpiralThing.fs" />
-    <Compile Include="Circles.fs" />
-    <Compile Include="Circles2.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

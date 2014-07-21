@@ -14,19 +14,18 @@ module SpiralThing =
     let startWidth = 16.0
     let startLength = 100.0
 
-    let fractalForm = new SizedFractalForm()
-
-    let rec branch x y length width colour angle =
+    let rec branch (drawings: IFractalDrawing) x y length width colour angle =
         if width > 0.4 then
             let angleDegrees = (pi*angle)
-            fractalForm.Line x y angleDegrees length width colour
+            drawings.Line x y angleDegrees length width colour
             let nextX, nextY = endpoint x y angleDegrees (length-2.0)
 
-            branch nextX nextY (length*lengthMultiplier) (width*widthMultiplier) colour (angle+leftBranchAngle)
-            branch nextX nextY (length*0.5) (width*0.5) colour (angle-rightBranchAngle)
+            branch drawings nextX nextY (length*lengthMultiplier) (width*widthMultiplier) colour (angle+leftBranchAngle)
+            branch drawings nextX nextY (length*0.5) (width*0.5) colour (angle-rightBranchAngle)
 
-    let execute() =
-        branch (fractalForm.ImageCentre - startWidth/2.0) 150.0 startLength startWidth (0,0,0) 0.5
-        fractalForm.CreateForm("Spiral Thing").Show() |> ignore
+    let execute(drawings: IFractalDrawing) =
+        let centre = Helpers.ImageCentre drawings
+        branch drawings (centre - startWidth/2.0) 150.0 startLength startWidth (0,0,0) 0.5
+        drawings.Show "Spiral Thing"
 
 

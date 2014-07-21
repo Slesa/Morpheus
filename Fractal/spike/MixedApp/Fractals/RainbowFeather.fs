@@ -13,14 +13,13 @@ module RainbowFeather =
     let startLength = 250.0
     let numBranches = 5
 
-    let fractalForm = new SizedFractalForm()
-
-    let asColour x y factor =
-        let centredX = abs ((fractalForm.ImageCentre - startWidth/2.0) - x)
+    let asColour (drawings: IFractalDrawing) x y factor =
+        let centre = Helpers.ImageCentre drawings
+        let centredX = abs ((centre - startWidth/2.0) - x)
         abs ((int ((centredX+y)*factor)%510) - 255)
 
-    let getColour x y =
-        (asColour x y 2.0, asColour x y 1.5, asColour x y 2.5)
+    let getColour (drawings: IFractalDrawing) x y =
+        (asColour drawings x y 2.0, asColour drawings x y 1.5, asColour drawings x y 2.5)
 
     let rec endpoints x y angle length iteration = seq {
         let segLength = length / float numBranches
@@ -29,19 +28,19 @@ module RainbowFeather =
             yield! endpoints x y angle length (iteration+1)
     }
 
-    let rec branch x y length width colour angle =
+    let rec branch (drawings: IFractalDrawing) x y length width colour angle =
         if width > 0.0 then
             let angleDegrees = (pi * angle)
-            fractalForm.Line x y angleDegrees length width colour
+            drawings.Line x y angleDegrees length width colour
 
             endpoints x y angle length 0
             |> Seq.iteri ( fun i (nextX, nextY) -> 
                 let stageLengthMultiplier = (1.0/float numBranches*float i)
-                branch nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width+widthModifier) (getColour x y) (angle+branchAngle)
-                branch nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width+widthModifier) (getColour x y) (angle-branchAngle)
+                branch drawings nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width+widthModifier) (getColour drawings x y) (angle+branchAngle)
+                branch drawings nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width+widthModifier) (getColour drawings x y) (angle-branchAngle)
                 )
 
-    let execute() = 
-        branch (fractalForm.ImageCentre - startWidth/2.0) 70.0 startLength startWidth startColour 0.5
-
-        fractalForm.CreateForm("Rainbow Feather").Show() |> ignore
+    let execute(drawings: IFractalDrawing) = 
+        let centre = Helpers.ImageCentre drawings
+        branch drawings (centre - startWidth/2.0) 70.0 startLength startWidth startColour 0.5
+        drawings.Show "Rainbow Feather"

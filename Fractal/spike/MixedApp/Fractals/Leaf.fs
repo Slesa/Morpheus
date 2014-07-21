@@ -19,8 +19,6 @@ module Leaf =
     let numSteps = int (startWidth / -widthModifier)
     let step = colourStep startColour endColour numSteps
 
-    let fractalForm = new SizedFractalForm()
-
     let rec endpoints x y length angle iteration = seq {
         let segLength = length / float numBranches
         yield endpoint x y (pi*angle) (segLength*float iteration)
@@ -28,21 +26,22 @@ module Leaf =
             yield! endpoints x y angle length (iteration+1)
     }
 
-    let rec branch x y length width colour angle =
+    let rec branch (drawings: IFractalDrawing) x y length width colour angle =
         if width > 0.0 then
             let angleDegrees = (pi*angle)
-            fractalForm.Line x y angleDegrees length width colour
+            drawings.Line x y angleDegrees length width colour
 
             endpoints x y angle length 0
             |> Seq.iteri (fun i (nextX, nextY) ->
                 let stageLengthMultiplier = 1.0 - (0.5/float numBranches*float i)
                 let stageWidthMultiplier = 1.0 - (0.1/float numBranches*float i)
-                branch nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width*stageWidthMultiplier+widthModifier) (colour |> next step) (angle+branchAngle)
-                branch nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width*stageWidthMultiplier+widthModifier) (colour |> next step) (angle-branchAngle)
+                branch drawings nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width*stageWidthMultiplier+widthModifier) (colour |> next step) (angle+branchAngle)
+                branch drawings nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width*stageWidthMultiplier+widthModifier) (colour |> next step) (angle-branchAngle)
                 )
 
-    let execute() =
-        branch (fractalForm.ImageCentre - startWidth/2.0) 150.0 startLength startWidth startColour 0.5
-        fractalForm.CreateForm("Leaf").Show() |> ignore
+    let execute(drawings: IFractalDrawing) =
+        let centre = Helpers.ImageCentre drawings
+        branch drawings (centre - startWidth/2.0) 150.0 startLength startWidth startColour 0.5
+        drawings.Show "Leaf"
 
 

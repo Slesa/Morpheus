@@ -11,44 +11,46 @@ namespace MixedApp.Forms
             InitializeComponent();
         }
 
+		IFractalDrawing Drawing { get { return new FormsDrawing (800, 600); } }
+
         void OnLeaf(object sender, EventArgs e)
         {
-            WithWaitCursor(Leaf.execute);
+			WithWaitCursor(() => Leaf.execute(Drawing));
         }
 
         void OnFern(object sender, EventArgs e)
         {
-            WithWaitCursor(Fern.execute);
+			WithWaitCursor(() => Fern.execute(Drawing));
         }
 
         void OnKidney(object sender, EventArgs e)
         {
-            WithWaitCursor(Kidney.execute);
+			WithWaitCursor(() => Kidney.execute(Drawing));
         }
 
         void OnColourTree(object sender, EventArgs e)
         {
-            WithWaitCursor(ColourTree.execute);
+			WithWaitCursor(() => ColourTree.execute(Drawing));
         }
 
         void OnRainbowFeather(object sender, EventArgs e)
         {
-            WithWaitCursor(RainbowFeather.execute);
+			WithWaitCursor(() => RainbowFeather.execute(Drawing));
         }
 
         void OnSpiralThing(object sender, EventArgs e)
         {
-            WithWaitCursor(SpiralThing.execute);
+			WithWaitCursor(() => SpiralThing.execute(Drawing));
         }
 
         void OnCircles(object sender, EventArgs e)
         {
-            WithWaitCursor(Circles.execute);
+			WithWaitCursor(() => Circles.execute(Drawing));
         }
 
 		void OnCircles2(object sender, EventArgs e)
 		{
-			WithWaitCursor(Circles2.execute);
+			WithWaitCursor(() => Circles2.execute(Drawing));
 		}
 
         void WithWaitCursor(Action action)

@@ -1,1 +1,3 @@
 ﻿http://tomasp.net/blog/fsharp-data.aspx/
+
+// http://strangelights.com/blog/archive/2006/08/08/1312.aspx

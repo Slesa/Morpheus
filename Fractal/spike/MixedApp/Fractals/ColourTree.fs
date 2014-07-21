@@ -17,18 +17,17 @@ module ColourTree =
     let numSteps = int (startWidth / -widthModifier)
     let step = colourStep startColour endColour numSteps
 
-    let fractalForm = new SizedFractalForm()
-
-    let rec branch x y length width colour angle =
+    let rec branch (drawings: IFractalDrawing) x y length width colour angle =
         if width > 0.0 then
             let angleDegrees = (pi * angle)
-            fractalForm.Line x y angleDegrees length width colour
+            drawings.Line x y angleDegrees length width colour
             let nextX, nextY = endpoint x y angleDegrees length
 
-            branch nextX nextY (length*lengthMultiplier) (width+widthModifier) (colour |> next step) (angle+branchAngle)
-            branch nextX nextY (length*lengthMultiplier) (width+widthModifier) (colour |> next step) (angle-branchAngle)
+            branch drawings nextX nextY (length*lengthMultiplier) (width+widthModifier) (colour |> next step) (angle+branchAngle)
+            branch drawings nextX nextY (length*lengthMultiplier) (width+widthModifier) (colour |> next step) (angle-branchAngle)
 
-    let execute() = 
-        branch (fractalForm.ImageCentre - startWidth/2.0) 50.0 100.0 startWidth startColour 0.5
-        fractalForm.CreateForm("Colour Tree").Show() |> ignore
+    let execute(drawings: IFractalDrawing) = 
+        let centre = Helpers.ImageCentre drawings
+        branch drawings (centre - startWidth/2.0) 50.0 100.0 startWidth startColour 0.5
+        drawings.Show "Colour Tree"
 
