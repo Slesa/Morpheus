@@ -35,6 +35,7 @@
             this.buttonRainbowFeather = new System.Windows.Forms.Button();
             this.buttonSpiralThing = new System.Windows.Forms.Button();
             this.buttonCircle = new System.Windows.Forms.Button();
+            this.buttonCircles2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonLeaf
@@ -114,11 +115,22 @@
             this.buttonCircle.UseVisualStyleBackColor = true;
             this.buttonCircle.Click += new System.EventHandler(this.OnCircles);
             // 
+            // buttonCircles2
+            // 
+            this.buttonCircles2.Location = new System.Drawing.Point(12, 167);
+            this.buttonCircles2.Name = "buttonCircles2";
+            this.buttonCircles2.Size = new System.Drawing.Size(75, 23);
+            this.buttonCircles2.TabIndex = 7;
+            this.buttonCircles2.Text = "Circles 2";
+            this.buttonCircles2.UseVisualStyleBackColor = true;
+            this.buttonCircles2.Click += new System.EventHandler(this.OnCircles2);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 462);
+            this.Controls.Add(this.buttonCircles2);
             this.Controls.Add(this.buttonCircle);
             this.Controls.Add(this.buttonSpiralThing);
             this.Controls.Add(this.buttonRainbowFeather);
@@ -141,6 +153,7 @@
         private System.Windows.Forms.Button buttonRainbowFeather;
         private System.Windows.Forms.Button buttonSpiralThing;
         private System.Windows.Forms.Button buttonCircle;
+        private System.Windows.Forms.Button buttonCircles2;
     }
 }
 

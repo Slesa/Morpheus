@@ -4,6 +4,7 @@ open System.Drawing
 open System.Windows.Forms
 open FractalFunctions
 
+[<AbstractClass>]
 type FormsDrawing(width : int, height : int) = 
     
     let image = new Bitmap(width, height)
@@ -19,12 +20,14 @@ type FormsDrawing(width : int, height : int) =
     let drawCircle (target : Graphics) (brush : Brush) (x : float) (y : float) (radius : int) (height : float) =
         target.FillEllipse(brush, (int x-radius), int (flip height y)-radius, radius*2, radius*2)
 
-    let createForm title =
-        let form = new Form(Text=title, Width=width, Height=height)
-        let box = new PictureBox(BackColor=Color.White, Dock=DockStyle.Fill)
-        box.Image <- image
-        form.Controls.Add(box)
-        form
+//    let createForm title =
+//        let form = new Form(Text=title, Width=width, Height=height)
+//        let box = new PictureBox(BackColor=Color.White, Dock=DockStyle.Fill)
+//        box.Image <- image
+//        form.Controls.Add(box)
+//        form
+
+    abstract createForm: string -> int -> int -> Image -> Form
 
     interface IFractalDrawing with
           
@@ -38,4 +41,4 @@ type FormsDrawing(width : int, height : int) =
             drawCircle graphics (colour |> brush) x y radius (float height)
 
         member this.Show title =
-            (createForm title).Show() |> ignore
+            (this.createForm title width height image).Show() |> ignore

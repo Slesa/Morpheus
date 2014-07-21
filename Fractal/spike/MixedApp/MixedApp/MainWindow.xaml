@@ -21,6 +21,7 @@
         <Button Content="Rainbow Feather" Click="OnRainbowFeatherClick"/>
         <Button Content="Spiral Thing" Click="OnSpiralThingClick"/>
         <Button Content="Circles" Click="OnCirclesClick"/>
+        <Button Content="Circles 2" Click="OnCircles2Click"/>
         
     </StackPanel>
 </Window>

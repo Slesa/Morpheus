@@ -1,7 +1,6 @@
 ﻿namespace Fractals
 
 open FractalFunctions
-open FractalForms
 
 // Taken from https://github.com/relentless/FractalFun
 module SpiralThing =

@@ -1,7 +1,6 @@
 ﻿namespace Fractals
 
 open FractalFunctions
-open FractalForms
 
 
 module Circles2 =
