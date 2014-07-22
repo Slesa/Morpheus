@@ -3,7 +3,7 @@
 open FractalFunctions
 
 // Taken from https://github.com/relentless/FractalFun
-module ColourTree =
+type ColourTree() =
     
     let branchAngle = 0.11
     let lengthMultiplier = 5.0/6.0
@@ -25,8 +25,11 @@ module ColourTree =
             branch drawings nextX nextY (length*lengthMultiplier) (width+widthModifier) (colour |> next step) (angle+branchAngle)
             branch drawings nextX nextY (length*lengthMultiplier) (width+widthModifier) (colour |> next step) (angle-branchAngle)
 
-    let execute(drawings: IFractalDrawing) = 
-        let centre = Helpers.ImageCentre drawings
-        branch drawings (centre - startWidth/2.0) 50.0 100.0 startWidth startColour 0.5
-        drawings.Show "Colour Tree"
+    interface IFractal with
+
+        member this.Title = "Colour Tree"
+
+        member this.Calculate drawings = 
+            let centre = Helpers.ImageCentre drawings
+            branch drawings (centre - startWidth/2.0) 50.0 100.0 startWidth startColour 0.5
 

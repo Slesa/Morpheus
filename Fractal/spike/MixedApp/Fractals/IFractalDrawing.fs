@@ -12,6 +12,3 @@ type IFractalDrawing =
         -> unit
 
     abstract member Circle: float -> float -> int -> (int * int * int) -> unit
-
-    abstract member Show: string -> unit
-

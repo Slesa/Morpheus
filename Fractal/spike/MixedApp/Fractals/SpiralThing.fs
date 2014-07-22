@@ -3,7 +3,7 @@
 open FractalFunctions
 
 // Taken from https://github.com/relentless/FractalFun
-module SpiralThing =
+type SpiralThing() =
 
     let leftBranchAngle = 0.15
     let rightBranchAngle = 0.5
@@ -22,9 +22,12 @@ module SpiralThing =
             branch drawings nextX nextY (length*lengthMultiplier) (width*widthMultiplier) colour (angle+leftBranchAngle)
             branch drawings nextX nextY (length*0.5) (width*0.5) colour (angle-rightBranchAngle)
 
-    let execute(drawings: IFractalDrawing) =
-        let centre = Helpers.ImageCentre drawings
-        branch drawings (centre - startWidth/2.0) 150.0 startLength startWidth (0,0,0) 0.5
-        drawings.Show "Spiral Thing"
+    interface IFractal with
+
+        member this.Title = "Spiral Thing"
+
+        member this.Calculate drawings = 
+            let centre = Helpers.ImageCentre drawings
+            branch drawings (centre - startWidth/2.0) 150.0 startLength startWidth (0,0,0) 0.5
 
 

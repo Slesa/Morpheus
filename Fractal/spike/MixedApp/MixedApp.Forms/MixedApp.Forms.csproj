@@ -97,5 +97,9 @@
       <Project>8C5344F1-7684-47ED-BC3A-6D44E864898C</Project>
       <Name>Fractals</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fractals\Fractals.fsproj">
+      <Project>{8c5344f1-7684-47ed-bc3a-6d44e864898c}</Project>
+      <Name>Fractals</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

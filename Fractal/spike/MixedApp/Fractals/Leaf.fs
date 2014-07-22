@@ -3,7 +3,7 @@
 open FractalFunctions
 
 // Taken from https://github.com/relentless/FractalFun
-module Leaf =
+type Leaf() =
 
     let branchAngle = 0.25
     let lengthMultiplier = 1.0/2.0
@@ -38,9 +38,12 @@ module Leaf =
                 branch drawings nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width*stageWidthMultiplier+widthModifier) (colour |> next step) (angle-branchAngle)
                 )
 
-    let execute(drawings: IFractalDrawing) =
-        let centre = Helpers.ImageCentre drawings
-        branch drawings (centre - startWidth/2.0) 150.0 startLength startWidth startColour 0.5
-        drawings.Show "Leaf"
+    interface IFractal with
+
+        member this.Title = "Leaf"
+
+        member this.Calculate drawings =
+            let centre = Helpers.ImageCentre drawings
+            branch drawings (centre - startWidth/2.0) 150.0 startLength startWidth startColour 0.5
 
 

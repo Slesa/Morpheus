@@ -3,7 +3,7 @@
 open FractalFunctions
 
 // Taken from https://github.com/relentless/FractalFun
-module Circles = 
+type Circles() = 
 
     let next colour =
         let red, green, blue = colour
@@ -32,12 +32,15 @@ module Circles =
             sphere drawings (x+nextDist) (y+nextDist) nextDist (seed/3) (iteration+1)
             sphere drawings (x-nextDist) (y+nextDist) nextDist (seed*3) (iteration+1)
 
-    let execute (drawings: IFractalDrawing) =
-        Helpers.measureTime sphere 
-            drawings
-            (float drawings.Width/2.0) 
-            (float drawings.Height/2.0)
-            200.0
-            System.DateTime.Now.Millisecond
-            0
-        drawings.Show "Circles"
+    interface IFractal with
+
+        member this.Title = "Circles"
+
+        member this.Calculate drawings =
+            Helpers.measureTime sphere 
+                drawings
+                (float drawings.Width/2.0) 
+                (float drawings.Height/2.0)
+                200.0
+                System.DateTime.Now.Millisecond
+                0

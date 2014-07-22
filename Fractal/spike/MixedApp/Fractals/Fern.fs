@@ -3,11 +3,11 @@
 open FractalFunctions
 
 // Taken from https://github.com/relentless/FractalFun
-module Fern =
+type Fern() =
 
     let branchAngle = 0.45
     let startWidth = 3.5
-    let startLength = 125.0
+    let startLength = 105.0
 
     let minGreen = 80.0
     let maxGreen = 200.0
@@ -26,7 +26,10 @@ module Fern =
             branch drawings nextX nextY (length*0.8) (width*0.9) (getColour width) (angle+bendAngle) bendAngle
             branch drawings nextX nextY (length*0.3) (width*0.8) (getColour width) (angle-branchAngle) bendAngle
 
-    let execute(drawings: IFractalDrawing) = 
-        let centre = Helpers.ImageCentre drawings
-        branch drawings (centre - startWidth/2.0) 100.0 startLength startWidth startColour 0.5 0.01
-        drawings.Show "Fern"
+    interface IFractal with
+
+        member this.Title = "Fern"
+
+        member this.Calculate drawings =
+            let centre = Helpers.ImageCentre drawings
+            branch drawings (centre - startWidth/2.0) 10.0 startLength startWidth startColour 0.5 0.01

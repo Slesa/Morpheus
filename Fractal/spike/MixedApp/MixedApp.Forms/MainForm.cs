@@ -5,19 +5,6 @@ using Fractals;
 
 namespace MixedApp.Forms
 {
-    public class AppDrawing : FormsDrawing
-    {
-        public AppDrawing(int width, int height) : base(width, height)
-        {
-        }
-
-        public override Form createForm(string title, int width, int height, Image image)
-        {
-            var result = new FractalView(title, width, height, image);
-            return result;
-        }
-    }
-
     public partial class MainForm : Form
     {
         public MainForm()
@@ -25,53 +12,44 @@ namespace MixedApp.Forms
             InitializeComponent();
         }
 
-        IFractalDrawing Drawing { get { return new AppDrawing(800,600); } }
-
-        void OnLeaf(object sender, EventArgs e)
-        {
-            WithWaitCursor(() => Leaf.execute(Drawing));
-        }
-
-        void OnFern(object sender, EventArgs e)
-        {
-            WithWaitCursor(() => Fern.execute(Drawing));
-        }
-
-        void OnKidney(object sender, EventArgs e)
-        {
-            WithWaitCursor(() => Kidney.execute(Drawing));
-        }
-
-        void OnColourTree(object sender, EventArgs e)
-        {
-            WithWaitCursor(() => ColourTree.execute(Drawing));
-        }
-
-        void OnRainbowFeather(object sender, EventArgs e)
-        {
-            WithWaitCursor(() => RainbowFeather.execute(Drawing));
-        }
-
-        void OnSpiralThing(object sender, EventArgs e)
-        {
-            WithWaitCursor(() => SpiralThing.execute(Drawing));
-        }
-
         void OnCircles(object sender, EventArgs e)
         {
-            WithWaitCursor(() => Circles.execute(Drawing));
+            new FractalView(new Circles()).Show();
         }
 
         void OnCircles2(object sender, EventArgs e)
         {
-            WithWaitCursor(() => Circles2.execute(Drawing));
+            new FractalView(new Circles2()).Show();
         }
 
-        void WithWaitCursor(Action action)
+        void OnColourTree(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            action();
-            Cursor.Current = Cursors.Arrow;
+            new FractalView(new ColourTree()).Show();
+        }
+
+        void OnFern(object sender, EventArgs e)
+        {
+            new FractalView(new Fern()).Show();
+        }
+
+        void OnKidney(object sender, EventArgs e)
+        {
+            new FractalView(new Kidney()).Show();
+        }
+
+        void OnLeaf(object sender, EventArgs e)
+        {
+            new FractalView(new Leaf()).Show();
+        }
+
+        void OnRainbowFeather(object sender, EventArgs e)
+        {
+            new FractalView(new RainbowFeather()).Show();
+        }
+
+        void OnSpiralThing(object sender, EventArgs e)
+        {
+            new FractalView(new SpiralThing()).Show();
         }
     }
 }

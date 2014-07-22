@@ -4,11 +4,12 @@ open System.Drawing
 open System.Windows.Forms
 open FractalFunctions
 
-[<AbstractClass>]
-type FormsDrawing(width : int, height : int) = 
+type FormsDrawing(canvas) = 
     
-    let image = new Bitmap(width, height)
+    let image = canvas
     let graphics  = Graphics.FromImage(image)
+    let width = canvas.Width
+    let height = canvas.Height
 
     let drawLine (target: Graphics) (brush: Brush) (x: float) (y: float) (angle: float) (length: float) (width: float) (height: float) =
        let x_end, y_end = endpoint x y angle length
@@ -27,8 +28,6 @@ type FormsDrawing(width : int, height : int) =
 //        form.Controls.Add(box)
 //        form
 
-    abstract createForm: string -> int -> int -> Image -> Form
-
     interface IFractalDrawing with
           
         member this.Width = width
@@ -39,6 +38,3 @@ type FormsDrawing(width : int, height : int) =
 
         member this.Circle x y radius colour =
             drawCircle graphics (colour |> brush) x y radius (float height)
-
-        member this.Show title =
-            (this.createForm title width height image).Show() |> ignore

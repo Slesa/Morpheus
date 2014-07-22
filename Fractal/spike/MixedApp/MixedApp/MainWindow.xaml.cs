@@ -17,44 +17,44 @@ namespace MixedApp
 
         void OnLeafClick(object sender, RoutedEventArgs e)
         {
-            WithWaitCursor(() => Leaf.execute(Drawing));
+            //WithWaitCursor(() => Leaf.execute(Drawing));
         }
 
         void OnFernClick(object sender, RoutedEventArgs e)
         {
-            WithWaitCursor(() => Fern.execute(Drawing));
+            //WithWaitCursor(() => Fern.execute(Drawing));
         }
 
         void OnKidneyClick(object sender, RoutedEventArgs e)
         {
-            WithWaitCursor(() => Kidney.execute(Drawing));
+            //WithWaitCursor(() => Kidney.execute(Drawing));
         }
 
         void OnColourTreeClick(object sender, RoutedEventArgs e)
         {
-            WithWaitCursor(() => ColourTree.execute(Drawing));
+            //WithWaitCursor(() => ColourTree.execute(Drawing));
         }
 
         void OnRainbowFeatherClick(object sender, RoutedEventArgs e)
         {
-            WithWaitCursor(() => RainbowFeather.execute(Drawing));
+            //WithWaitCursor(() => RainbowFeather.execute(Drawing));
         }
 
         void OnSpiralThingClick(object sender, RoutedEventArgs e)
         {
-            WithWaitCursor(() => SpiralThing.execute(Drawing));
+            //WithWaitCursor(() => SpiralThing.execute(Drawing));
         }
 
         void OnCirclesClick(object sender, RoutedEventArgs e)
         {
-            WithWaitCursor(() => Circles.execute(Drawing));
+            //WithWaitCursor(() => Circles.execute(Drawing));
         }
 
         void OnCircles2Click(object sender, RoutedEventArgs e)
         {
-            WithWaitCursor(() => Circles2.execute(Drawing));
+            //WithWaitCursor(() => Circles2.execute(Drawing));
         }
-
+       
         void WithWaitCursor(Action action)
         {
             Mouse.OverrideCursor = Cursors.Wait;

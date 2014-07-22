@@ -36,6 +36,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition=" Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')" />
   <ItemGroup>
     <Compile Include="IFractalDrawing.fs" />
+    <Compile Include="IFractal.fs" />
     <Compile Include="Helpers.fs" />
     <Compile Include="FractalFunctions.fs" />
     <Compile Include="FormsDrawing.fs" />

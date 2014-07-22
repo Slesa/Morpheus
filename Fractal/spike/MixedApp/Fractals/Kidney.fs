@@ -3,7 +3,7 @@
 open FractalFunctions
 
 // Taken from https://github.com/relentless/FractalFun
-module Kidney =
+type Kidney() =
 
     let smallBranchAngle = 0.11
     let largeBranchAngle = 0.16
@@ -30,8 +30,11 @@ module Kidney =
             branch drawings nextX nextY (length*smallLengthMultiplier) (width+smallWidthModifier) (colour |> next step) (angle+smallBranchAngle)
             branch drawings nextX nextY (length*largeLengthMultiplier) (width+largeWidthModifier) (colour |> next step) (angle-largeBranchAngle)
 
-    let execute(drawings: IFractalDrawing) = 
-        let centre = Helpers.ImageCentre drawings
-        branch drawings (centre - 50.0) 200.0 startLength startWidth startColour 0.5
-        drawings.Show "Kidney"
+    interface IFractal with
+
+        member this.Title = "Kidney"
+
+        member this.Calculate drawings = 
+            let centre = Helpers.ImageCentre drawings
+            branch drawings (centre - 50.0) 200.0 startLength startWidth startColour 0.5
 

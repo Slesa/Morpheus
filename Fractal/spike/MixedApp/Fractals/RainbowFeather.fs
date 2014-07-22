@@ -3,7 +3,7 @@
 open FractalFunctions
 
 // Taken from https://github.com/relentless/FractalFun
-module RainbowFeather =
+type RainbowFeather() =
 
     let branchAngle = 0.25
     let lengthMultiplier = 1.3/2.0
@@ -39,7 +39,10 @@ module RainbowFeather =
                 branch drawings nextX nextY (length*lengthMultiplier*stageLengthMultiplier) (width+widthModifier) (getColour drawings x y) (angle-branchAngle)
                 )
 
-    let execute(drawings: IFractalDrawing) = 
-        let centre = Helpers.ImageCentre drawings
-        branch drawings (centre - startWidth/2.0) 70.0 startLength startWidth startColour 0.5
-        drawings.Show "Rainbow Feather"
+    interface IFractal with
+
+        member this.Title = "Rainbow Feather"
+
+        member this.Calculate drawings =
+            let centre = Helpers.ImageCentre drawings
+            branch drawings (centre - startWidth/2.0) 70.0 startLength startWidth startColour 0.5
