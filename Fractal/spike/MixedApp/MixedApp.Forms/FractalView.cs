@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
 using Fractals;
 
@@ -56,7 +58,7 @@ namespace MixedApp.Forms
 
         void OnSettings(object sender, System.EventArgs e)
         {
-
+            new SettingsView().Show();
         }
 
         void OnSave(object sender, System.EventArgs e)
@@ -66,7 +68,17 @@ namespace MixedApp.Forms
 
         void OnImage(object sender, System.EventArgs e)
         {
+            using (var dialog = new SaveFileDialog())
+            {
+                dialog.Filter = "png files (*.png)|*.png|All files (*.*)|*.*";
+                dialog.FilterIndex = 2;
+                dialog.RestoreDirectory = true;
 
+                if (dialog.ShowDialog() != DialogResult.OK) return;
+                var fn = dialog.FileName;
+                if (!fn.EndsWith(".png")) fn += ".png";
+                pictureBox.Image.Save(fn, ImageFormat.Png);
+            }
         }
 
         void WithWaitCursor(Action action)
