@@ -9,7 +9,7 @@ namespace MixedApp.Forms
         {
             InitializeComponent();
 
-			this.properties.ActiveControl = fractal.Parameters;
+			this.properties.SelectedObject = fractal.Parameters;
         }
     }
 }

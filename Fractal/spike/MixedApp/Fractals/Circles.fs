@@ -4,14 +4,15 @@ open FractalFunctions
 
 type CirclesParameters(radius: float) =
 
-    [<Literal>]
-    let DefaultRadius = 200
+    static member DefaultRadius = 200
 
+    // [<Description("The radius of the circles")>]
     member this.Radius = radius
 
     interface IParameters with
 
         member this.Name = "Circles"
+
 
 // Taken from https://github.com/relentless/FractalFun
 type Circles(parameters: CirclesParameters) = 

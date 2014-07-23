@@ -14,42 +14,42 @@ namespace MixedApp.Forms
 
         void OnCircles(object sender, EventArgs e)
         {
-			new FractalView(new Circles(new CirclesParameters())).Show();
+			new FractalView(new Circles(new CirclesParameters(CirclesParameters.DefaultRadius))).Show();
         }
 
         void OnCircles2(object sender, EventArgs e)
         {
-            new FractalView(new Circles2()).Show();
+			new FractalView(new Circles2(new Circles2Parameters(Circles2Parameters.DefaultRadius))).Show();
         }
 
         void OnColourTree(object sender, EventArgs e)
         {
-            new FractalView(new ColourTree()).Show();
+//            new FractalView(new ColourTree()).Show();
         }
 
         void OnFern(object sender, EventArgs e)
         {
-            new FractalView(new Fern()).Show();
+//            new FractalView(new Fern()).Show();
         }
 
         void OnKidney(object sender, EventArgs e)
         {
-            new FractalView(new Kidney()).Show();
+//            new FractalView(new Kidney()).Show();
         }
 
         void OnLeaf(object sender, EventArgs e)
         {
-            new FractalView(new Leaf()).Show();
+//            new FractalView(new Leaf()).Show();
         }
 
         void OnRainbowFeather(object sender, EventArgs e)
         {
-            new FractalView(new RainbowFeather()).Show();
+//            new FractalView(new RainbowFeather()).Show();
         }
 
         void OnSpiralThing(object sender, EventArgs e)
         {
-            new FractalView(new SpiralThing()).Show();
+//            new FractalView(new SpiralThing()).Show();
         }
     }
 }
