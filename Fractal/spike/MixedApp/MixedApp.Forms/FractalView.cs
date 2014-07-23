@@ -58,7 +58,7 @@ namespace MixedApp.Forms
 
         void OnSettings(object sender, System.EventArgs e)
         {
-            new SettingsView().Show();
+			new SettingsView(_fractal).Show();
         }
 
         void OnSave(object sender, System.EventArgs e)

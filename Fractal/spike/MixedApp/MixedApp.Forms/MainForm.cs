@@ -14,7 +14,7 @@ namespace MixedApp.Forms
 
         void OnCircles(object sender, EventArgs e)
         {
-            new FractalView(new Circles()).Show();
+			new FractalView(new Circles(new CirclesParameters())).Show();
         }
 
         void OnCircles2(object sender, EventArgs e)

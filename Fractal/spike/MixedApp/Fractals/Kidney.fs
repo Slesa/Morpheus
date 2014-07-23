@@ -3,7 +3,7 @@
 open FractalFunctions
 
 // Taken from https://github.com/relentless/FractalFun
-type Kidney() =
+type Kidney(parameters: IParameters) =
 
     let smallBranchAngle = 0.11
     let largeBranchAngle = 0.16
@@ -33,6 +33,7 @@ type Kidney() =
     interface IFractal with
 
         member this.Title = "Kidney"
+        member this.Parameters = parameters
 
         member this.Calculate drawings = 
             let centre = Helpers.ImageCentre drawings

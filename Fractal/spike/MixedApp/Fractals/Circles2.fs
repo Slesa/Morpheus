@@ -3,7 +3,7 @@
 open FractalFunctions
 
 
-type Circles2() =
+type Circles2(parameters: IParameters) =
 
     let next colour =
         let red, green, blue = colour
@@ -35,6 +35,7 @@ type Circles2() =
     interface IFractal with
 
         member this.Title = "Circles2"
+        member this.Parameters = parameters
 
         member this.Calculate drawings = 
             Helpers.measureTime sphere

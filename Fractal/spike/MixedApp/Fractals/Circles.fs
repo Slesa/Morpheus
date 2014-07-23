@@ -2,9 +2,21 @@
 
 open FractalFunctions
 
-// Taken from https://github.com/relentless/FractalFun
-type Circles() = 
+type CirclesParameters(radius: float) =
 
+    [<Literal>]
+    let DefaultRadius = 200
+
+    let Radius = radius
+
+    interface IParameters with
+
+        member this.Name = "Circles"
+
+// Taken from https://github.com/relentless/FractalFun
+type Circles(parameters: IParameters) = 
+
+    let Parameters = parameters :> CirclesParameters
     let next colour =
         let red, green, blue = colour
         (red, green+30, blue)
@@ -35,12 +47,13 @@ type Circles() =
     interface IFractal with
 
         member this.Title = "Circles"
+        member this.Parameters = parameters
 
         member this.Calculate drawings =
             Helpers.measureTime sphere 
                 drawings
                 (float drawings.Width/2.0) 
                 (float drawings.Height/2.0)
-                200.0
+                parameters.Radius
                 System.DateTime.Now.Millisecond
                 0

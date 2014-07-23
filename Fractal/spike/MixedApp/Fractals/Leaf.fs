@@ -3,7 +3,7 @@
 open FractalFunctions
 
 // Taken from https://github.com/relentless/FractalFun
-type Leaf() =
+type Leaf(parameters: IParameters) =
 
     let branchAngle = 0.25
     let lengthMultiplier = 1.0/2.0
@@ -41,6 +41,7 @@ type Leaf() =
     interface IFractal with
 
         member this.Title = "Leaf"
+        member this.Parameters = parameters
 
         member this.Calculate drawings =
             let centre = Helpers.ImageCentre drawings
