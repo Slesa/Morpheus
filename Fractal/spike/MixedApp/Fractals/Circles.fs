@@ -7,7 +7,7 @@ type CirclesParameters(radius: float) =
     [<Literal>]
     let DefaultRadius = 200
 
-    let Radius = radius
+    member this.Radius = radius
 
     interface IParameters with
 
@@ -16,7 +16,7 @@ type CirclesParameters(radius: float) =
 // Taken from https://github.com/relentless/FractalFun
 type Circles(parameters: IParameters) = 
 
-    let Parameters = parameters :> CirclesParameters
+    let Parameters' = parameters :?> CirclesParameters
     let next colour =
         let red, green, blue = colour
         (red, green+30, blue)
@@ -54,6 +54,6 @@ type Circles(parameters: IParameters) =
                 drawings
                 (float drawings.Width/2.0) 
                 (float drawings.Height/2.0)
-                parameters.Radius
+                Parameters'.Radius
                 System.DateTime.Now.Millisecond
                 0
