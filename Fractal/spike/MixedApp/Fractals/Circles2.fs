@@ -2,11 +2,21 @@
 
 open FractalFunctions
 
-type Circles2Parameters(radius: float) =
+type Circles2Parameters(radius, minimum) =
 
-    static member DefaultRadius = 200.0
+    let mutable _radius = radius
+    let mutable _minimum = minimum
 
-    member this.Radius = radius
+    static member Default =
+        new Circles2Parameters(200.0, 2.0)
+
+    member this.Radius  
+        with get () = _radius
+        and set (value) = _radius <- value
+
+    member this.Minimum
+        with get () = _minimum
+        and set (value) = _minimum <- value
 
     interface IParameters with
 
@@ -32,7 +42,7 @@ type Circles2(parameters: Circles2Parameters) =
 
     let rec sphere (drawings: IFractalDrawing) x y radius seed iteration =
 
-        if radius > 2.0 then
+        if radius > parameters.Minimum then
 
             drawings.Circle x y (int radius) <| randCol seed
 

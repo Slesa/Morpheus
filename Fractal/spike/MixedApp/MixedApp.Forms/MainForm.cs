@@ -14,17 +14,17 @@ namespace MixedApp.Forms
 
         void OnCircles(object sender, EventArgs e)
         {
-			new FractalView(new Circles(new CirclesParameters(CirclesParameters.DefaultRadius))).Show();
+            new FractalView(new Circles(CirclesParameters.Default)).Show();
         }
 
         void OnCircles2(object sender, EventArgs e)
         {
-			new FractalView(new Circles2(new Circles2Parameters(Circles2Parameters.DefaultRadius))).Show();
+            new FractalView(new Circles2(Circles2Parameters.Default)).Show();
         }
 
         void OnColourTree(object sender, EventArgs e)
         {
-//            new FractalView(new ColourTree()).Show();
+            new FractalView(new ColourTree(ColourTreeParameters.Default)).Show();
         }
 
         void OnFern(object sender, EventArgs e)

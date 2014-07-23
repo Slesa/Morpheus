@@ -2,8 +2,17 @@
 
 open FractalFunctions
 
+type FernParameters() =
+
+    static member Default =
+        new FernParameters()
+
+    interface IParameters with
+
+        member this.Name = "Fern"
+
 // Taken from https://github.com/relentless/FractalFun
-type Fern(parameters: IParameters) =
+type Fern(parameters: FernParameters) =
 
     let branchAngle = 0.45
     let startWidth = 3.5
@@ -29,7 +38,7 @@ type Fern(parameters: IParameters) =
     interface IFractal with
 
         member this.Title = "Fern"
-        member this.Parameters = parameters
+        member this.Parameters = parameters :> IParameters
 
         member this.Calculate drawings =
             let centre = Helpers.ImageCentre drawings

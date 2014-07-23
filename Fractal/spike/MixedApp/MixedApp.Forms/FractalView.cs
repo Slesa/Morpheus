@@ -58,7 +58,9 @@ namespace MixedApp.Forms
 
         void OnSettings(object sender, System.EventArgs e)
         {
-			new SettingsView(_fractal).Show();
+            var result = new SettingsView(_fractal).ShowDialog();
+            if (result != DialogResult.OK) return;
+            UpdateFractal();
         }
 
         void OnSave(object sender, System.EventArgs e)

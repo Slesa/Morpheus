@@ -21,12 +21,6 @@ type FormsDrawing(canvas) =
     let drawCircle (target : Graphics) (brush : Brush) (x : float) (y : float) (radius : int) (height : float) =
         target.FillEllipse(brush, (int x-radius), int (flip height y)-radius, radius*2, radius*2)
 
-//    let createForm title =
-//        let form = new Form(Text=title, Width=width, Height=height)
-//        let box = new PictureBox(BackColor=Color.White, Dock=DockStyle.Fill)
-//        box.Image <- image
-//        form.Controls.Add(box)
-//        form
 
     interface IFractalDrawing with
           

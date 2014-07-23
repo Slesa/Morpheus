@@ -9,7 +9,14 @@ namespace MixedApp.Forms
         {
             InitializeComponent();
 
-			this.properties.SelectedObject = fractal.Parameters;
+            properties.SelectedObject = fractal.Parameters;
         }
+
+        private void OnApply(object sender, System.EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
     }
 }

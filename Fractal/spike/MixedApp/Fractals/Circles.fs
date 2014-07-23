@@ -2,12 +2,22 @@
 
 open FractalFunctions
 
-type CirclesParameters(radius: float) =
+type CirclesParameters(radius, iterations) =
 
-    static member DefaultRadius = 200
+    let mutable _radius = radius
+    let mutable _iterations = iterations
+
+    static member Default = 
+        new CirclesParameters(200.0, 5)
 
     // [<Description("The radius of the circles")>]
-    member this.Radius = radius
+    member this.Radius
+        with get () = _radius
+        and set (value) = _radius <- value
+
+    member this.Iterations
+        with get () = _iterations
+        and set (value) = _iterations <- value
 
     interface IParameters with
 
@@ -33,7 +43,7 @@ type Circles(parameters: CirclesParameters) =
 
     let rec sphere (drawings : IFractalDrawing) x y radius seed iteration =
 
-        if iteration < 5 then
+        if iteration < parameters.Iterations then
 
             drawings.Circle x y (int radius) <| randCol seed
 
