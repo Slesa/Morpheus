@@ -36,6 +36,7 @@
             this.buttonSpiralThing = new System.Windows.Forms.Button();
             this.buttonCircle = new System.Windows.Forms.Button();
             this.buttonCircles2 = new System.Windows.Forms.Button();
+            this.buttonTree2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonLeaf
@@ -118,11 +119,22 @@
             this.buttonCircles2.UseVisualStyleBackColor = true;
             this.buttonCircles2.Click += new System.EventHandler(this.OnCircles2);
             // 
+            // buttonTree2
+            // 
+            this.buttonTree2.Location = new System.Drawing.Point(196, 12);
+            this.buttonTree2.Name = "buttonTree2";
+            this.buttonTree2.Size = new System.Drawing.Size(120, 23);
+            this.buttonTree2.TabIndex = 8;
+            this.buttonTree2.Text = "Tree 2";
+            this.buttonTree2.UseVisualStyleBackColor = true;
+            this.buttonTree2.Click += new System.EventHandler(this.OnTree2);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(200, 271);
+            this.ClientSize = new System.Drawing.Size(371, 271);
+            this.Controls.Add(this.buttonTree2);
             this.Controls.Add(this.buttonCircles2);
             this.Controls.Add(this.buttonCircle);
             this.Controls.Add(this.buttonSpiralThing);
@@ -147,6 +159,7 @@
         private System.Windows.Forms.Button buttonSpiralThing;
         private System.Windows.Forms.Button buttonCircle;
         private System.Windows.Forms.Button buttonCircles2;
+        private System.Windows.Forms.Button buttonTree2;
     }
 }
 

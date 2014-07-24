@@ -51,5 +51,10 @@ namespace MixedApp.Forms
         {
             new FractalView(new SpiralThing(SpiralThingParameters.Default)).Show();
         }
+
+        void OnTree2(object sender, EventArgs e)
+        {
+            new FractalView(new Tree2(SpiralThingParameters.Default)).Show();
+        }
     }
 }

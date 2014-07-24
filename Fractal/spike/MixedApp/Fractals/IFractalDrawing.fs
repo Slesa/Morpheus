@@ -7,6 +7,9 @@ type IFractalDrawing =
     abstract member Width : int
     abstract member Height : int
 
+    abstract member LineTo: float -> float -> float -> float -> float -> (int * int * int)
+        -> unit
+
     abstract member Line: float -> float -> float 
         -> float -> float -> (int * int * int ) 
         -> unit

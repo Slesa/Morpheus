@@ -51,6 +51,7 @@
     <Compile Include="Leaf.fs" />
     <Compile Include="RainbowFeather.fs" />
     <Compile Include="SpiralThing.fs" />
+    <Compile Include="Tree2.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
