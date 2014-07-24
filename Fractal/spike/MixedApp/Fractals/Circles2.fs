@@ -1,6 +1,7 @@
 ﻿namespace Fractals
 
 open FractalFunctions
+open System.ComponentModel
 
 type Circles2Parameters(radius, minimum) =
 
@@ -10,10 +11,14 @@ type Circles2Parameters(radius, minimum) =
     static member Default =
         new Circles2Parameters(200.0, 2.0)
 
+    [<Category("Parameters")>]
+    [<Description("The starting radius of the circles")>]
     member this.Radius  
         with get () = _radius
         and set (value) = _radius <- value
 
+    [<Category("Parameters")>]
+    [<Description("The minimum radius to stop with")>]
     member this.Minimum
         with get () = _minimum
         and set (value) = _minimum <- value

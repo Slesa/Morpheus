@@ -1,6 +1,7 @@
 ﻿namespace Fractals
 
 open FractalFunctions
+open System.ComponentModel
 
 type ColourTreeParameters(branchAngle, startWidth, widthModifier, startColour, endColour) =
 
@@ -13,22 +14,34 @@ type ColourTreeParameters(branchAngle, startWidth, widthModifier, startColour, e
     static member Default =
         new ColourTreeParameters(0.11, 12.0, -0.8, (60,30,0), (130,150,255))
 
+    [<Category("Parameters")>]
+    [<Description("The angle between branches")>]
     member this.BranchAngle
         with get () = _branchAngle
         and set (value) = _branchAngle <- value
 
+    [<Category("Parameters")>]
+    [<Description("The width to start with")>]
     member this.StartWidth
         with get () = _startWidth
         and set (value) = _startWidth <- value
 
+    [<Category("Parameters")>]
+    [<Description("The modifier of the width")>]
     member this.WidthModifier
         with get () = _widthModifier
         and set (value) = _widthModifier <- value
 
+    [<Category("Parameters")>]
+    [<Description("The colour to start with")>]
     member this.StartColour
         with get () = _startColour
         and set (value) = _startColour <- value
 
+
+    [<Category("Parameters")>]
+    [<Description("The colour to end with")>]
+    // [<TypeConverter(typeof(ColorConverter))>]
     member this.EndColour
         with get () = _endColour
         and set (value) = _endColour <- value

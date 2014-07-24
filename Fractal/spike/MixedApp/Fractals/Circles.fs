@@ -1,6 +1,7 @@
 ﻿namespace Fractals
 
 open FractalFunctions
+open System.ComponentModel
 
 type CirclesParameters(radius, iterations) =
 
@@ -10,11 +11,14 @@ type CirclesParameters(radius, iterations) =
     static member Default = 
         new CirclesParameters(200.0, 5)
 
-    // [<Description("The radius of the circles")>]
+    [<Category("Parameters")>]
+    [<Description("The starting radius of the circles")>]
     member this.Radius
         with get () = _radius
         and set (value) = _radius <- value
 
+    [<Category("Parameters")>]
+    [<Description("The number of iterations")>]
     member this.Iterations
         with get () = _iterations
         and set (value) = _iterations <- value

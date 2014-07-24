@@ -9,6 +9,7 @@ namespace MixedApp.Forms
         {
             InitializeComponent();
 
+			Text = "Settings of " + fractal.Title;
             properties.SelectedObject = fractal.Parameters;
         }
 

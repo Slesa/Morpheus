@@ -29,27 +29,27 @@ namespace MixedApp.Forms
 
         void OnFern(object sender, EventArgs e)
         {
-//            new FractalView(new Fern()).Show();
+            new FractalView(new Fern(FernParameters.Default)).Show();
         }
 
         void OnKidney(object sender, EventArgs e)
         {
-//            new FractalView(new Kidney()).Show();
+            new FractalView(new Kidney(KidneyParameters.Default)).Show();
         }
 
         void OnLeaf(object sender, EventArgs e)
         {
-//            new FractalView(new Leaf()).Show();
+            new FractalView(new Leaf(LeafParameters.Default)).Show();
         }
 
         void OnRainbowFeather(object sender, EventArgs e)
         {
-//            new FractalView(new RainbowFeather()).Show();
+            new FractalView(new RainbowFeather(RainbowFeatherParameters.Default)).Show();
         }
 
         void OnSpiralThing(object sender, EventArgs e)
         {
-//            new FractalView(new SpiralThing()).Show();
+            new FractalView(new SpiralThing(SpiralThingParameters.Default)).Show();
         }
     }
 }
