@@ -7,10 +7,10 @@ open System.Drawing
 module FractalFunctions =
 
     // *** Window *******************************************************
-    let xs (x, _, _, _) = x
-    let ys (_, y, _, _) = y
-    let xe (_, _, x, _) = x
-    let ye (_, _, _, y) = y
+    let wleft (x, _, _, _) = x
+    let wtop (_, y, _, _) = y
+    let wlength (x1, _, x2, _) = x2-x1
+    let wheight (_, y1, _, y2) = y2-y1
 
     // *** Colors *******************************************************
 
