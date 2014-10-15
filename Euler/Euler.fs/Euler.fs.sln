@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Euler.fs", "Euler.fs\Euler.fs.csproj", "{D7B8D5D8-4484-45C9-849B-2171D57D1351}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Aufgaben", "Aufgaben\Aufgaben.fsproj", "{73FCF906-316A-44D8-B0E6-DAAE37F2861A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specs", "Specs\Specs.csproj", "{91F38F0A-F61B-4F07-854E-13EC2EDA52F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7B8D5D8-4484-45C9-849B-2171D57D1351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B8D5D8-4484-45C9-849B-2171D57D1351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B8D5D8-4484-45C9-849B-2171D57D1351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B8D5D8-4484-45C9-849B-2171D57D1351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73FCF906-316A-44D8-B0E6-DAAE37F2861A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73FCF906-316A-44D8-B0E6-DAAE37F2861A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73FCF906-316A-44D8-B0E6-DAAE37F2861A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73FCF906-316A-44D8-B0E6-DAAE37F2861A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F38F0A-F61B-4F07-854E-13EC2EDA52F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F38F0A-F61B-4F07-854E-13EC2EDA52F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F38F0A-F61B-4F07-854E-13EC2EDA52F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F38F0A-F61B-4F07-854E-13EC2EDA52F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
