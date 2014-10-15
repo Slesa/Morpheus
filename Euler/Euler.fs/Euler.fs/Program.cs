@@ -7,7 +7,8 @@ namespace Euler.fs
     {
         private static readonly Aufgabe[] _aufgaben = new Aufgabe[]
             {
-                new Aufgabe1()
+                new Aufgabe1(),
+                new Aufgabe2()
             };
         static void Main(string[] args)
         {
