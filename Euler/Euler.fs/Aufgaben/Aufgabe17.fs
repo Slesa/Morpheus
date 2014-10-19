@@ -9,95 +9,95 @@
 
 [<Interface>]
 type Loesung17 =
-    abstract member Calculate : int -> int
+    abstract GetLineFor : int -> string
+    abstract GetLinesUntil : int -> seq<string>
+    abstract member CalculateFor : int -> int
+    abstract member CalculateUntil : int -> int
 
 type Aufgabe17() =
 
-    //                   3      3       5       4       4       3       5        5       4                                        = 36
-    let einer = [| ""; "one"; "two"; "three"; "four"; "five"; "six"; "seven"; "eight"; "nine"; |];
+    //               3      3       5       4       4       3       5        5       4                                            = 36
+    let einer = [| "one"; "two"; "three"; "four"; "five"; "six"; "seven"; "eight"; "nine"; |];
     //                3       6         6           8           8          7          7          9             8           8      = 70
     let zehner = [| "ten"; "eleven"; "twelve"; "thirteen"; "fourteen"; "fifteen"; "sixteen"; "seventeen"; "eighteen"; "nineteen" |];
-    //                    6         6         6         5        5         7          6         6                                 = 47
-    let zwanziger = [| "twenty"; "thirty"; "fourty"; "fifty"; "sixty"; "seventy"; "eighty"; "ninety" |];
-    let und = "and";
-    let hundert = "hundred";
-    let tausend = "thousand";
+    //                    6         6         6         5        5         7          6         6                                 = 46
+    let zwanziger = [| "twenty"; "thirty"; "forty"; "fifty"; "sixty"; "seventy"; "eighty"; "ninety" |];
 
-    let LimitToIndex limit =
-        match limit with
-        | 0 -> 9
-        | _ -> limit
-
-    let Calculate array limit =
-//        let index = LimitToIndex limit
-        let range = Array.sub array 0 (limit+1)
-        let sum = Array.fold (fun acc (elem:string) -> acc + elem.Length) 0 range
-        sum
-
-    // = 1..9
-    let EinerLength limit =
-        let sum = match limit with
-        | x when x < 10 || x > 20 -> Calculate einer (limit % 10)
-        | _ -> 0
-        sum
-
-    // = 10..19
-    let ZehnerLength limit =
-        let calcLimit = (limit % 100)
-        let sumEiner = match calcLimit with
-        | x when x >= 10 -> EinerLength 9
-        | _ -> 0
-        let sum = match calcLimit with
-        | x when x >= 20 -> Calculate zehner 9
-        | x when x >= 10 && x < 20 -> Calculate zehner (limit - 10)
-        | _ -> 0
-        sumEiner + sum
-
-    let ZwanzigerLength limit =
-        let calcLimit = (limit % 100)
-        let sumZehner = match calcLimit with
-        | x when x >= 20 -> ((calcLimit/10)-2) * EinerLength 9 
-        | _ -> 0
-        let range = calcLimit / 10
-        let sum = match calcLimit with
-        | x when x >= 20 -> Calculate zwanziger (range-2) // 0-9 und 11-20 schon drin
-        | _ -> 0
-        sumZehner + sum
-
-    let HunderterLength limit =
-        let calcLimit = limit / 100
-        let max = calcLimit % 10
-        let rest = calcLimit / 10
-        if max=0 then 0
+    let GetEinerLineFor value =
+        let calcValue = value % 100
+        if calcValue>=10 && calcValue<20 then ""
         else
-            let unterSum = max * ((ZwanzigerLength 99) + (ZehnerLength 99) + (EinerLength 99))
-            let hundertSum = max * (EinerLength max + hundert.Length) +          // xxx hundred      100,200
-                99 * (max-1) * (EinerLength max + hundert.Length + und.Length) + // xxx hundred and  101-199
-                rest * (EinerLength max + hundert.Length + und.Length)          // xxx hundred and  201
-                
-            unterSum + hundertSum
-
-    let TausenderLength limit =
-        let calcLimit = limit / 1000
-        if calcLimit=0 then 0
+        let index = value % 10;
+        if index.Equals(0) then ""
         else
-            let unterSum = 9 * (HunderterLength 999) // + (ZwanzigerLength 999) + (ZehnerLength 999) + (EinerLength 999)
-            tausend.Length + unterSum
+            einer.[index-1] 
 
+    let GetZehnerLineFor value =
+        let calcValue = value % 100
+        if calcValue<10 then ""
+        else
+        match calcValue with
+        | x when x>=10 && x<20 -> 
+            let index = calcValue % 10
+            zehner.[index]
+        | _ ->
+            let index = (calcValue / 10) - 2
+            zwanziger.[index]
+
+    let GetHunderterLineFor value =
+        let calcValue = value % 1000
+        if calcValue<100 then ""
+        else
+            let index = calcValue / 100
+            let result = einer.[index-1] + " hundred"
+            match calcValue % 100 with
+            | 0 -> result
+            | _ -> result + " and"
+
+    let GetTausenderLineFor value =
+        if value<1000 then ""
+        else
+            let index = value / 1000
+            let result = einer.[index-1] + " thousand"
+            result
+
+
+    let AppendText buffer text =
+        let bufferLen = String.length buffer
+        let textLen = String.length text
+        if bufferLen.Equals 0 || textLen.Equals 0 then
+            buffer + text
+        else
+            buffer + " " + text
+            
     interface Loesung17 with
 
-        member this.Calculate limit =
-            let sumEiner = EinerLength limit
-            let sumZehner = ZehnerLength limit
-            let sumZwanziger = ZwanzigerLength limit
-            let sumHundert = HunderterLength limit
-            let sumTausend = TausenderLength limit
-            sumEiner + sumZehner + sumZwanziger + sumHundert + sumTausend
+        member this.GetLineFor value = 
+            let tausender = GetTausenderLineFor value
+            let hunderter = GetHunderterLineFor value
+            let zehner = GetZehnerLineFor value
+            let einer = GetEinerLineFor value
+            AppendText tausender (AppendText hunderter (AppendText zehner einer))
 
+        member this.GetLinesUntil limit =
+            let values = Array.init 
+            seq { for value in 1..limit do yield (this :> Loesung17).GetLineFor value }
+
+        member this.CalculateFor value =
+            let line = (this :> Loesung17).GetLineFor value
+            let result = line.Replace(" ", "").Length
+            result
+
+        member this.CalculateUntil limit =
+            let lines = (this :> Loesung17).GetLinesUntil limit
+            let sumSeq sequence = Seq.fold (fun acc (elem:string) -> acc + elem.Replace(" ", "").Length) 0 sequence
+            let result = lines |> sumSeq
+            result
+            
     interface Aufgabe with
 
         member this.Title = "Aufgabe 17"
 
         member this.Run() =
-            let result = (this :> Loesung17).Calculate 1000
+            let result = (this :> Loesung17).CalculateUntil 1000
             result.ToString()
