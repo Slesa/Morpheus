@@ -10,6 +10,7 @@ namespace Euler.fs
                 new Aufgabe1(),
                 new Aufgabe2(),
                 new Aufgabe17(), 
+                new Aufgabe31(), 
             };
         static void Main(string[] args)
         {

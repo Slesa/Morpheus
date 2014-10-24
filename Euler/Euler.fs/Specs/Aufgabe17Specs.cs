@@ -6,7 +6,7 @@ using Machine.Specifications;
 namespace Specs
 {
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_line_for_1
+    internal class When_task17_creates_line_for_1
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLineFor(1);
@@ -17,7 +17,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_line_for_10
+    internal class When_task17_creates_line_for_10
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLineFor(10);
@@ -28,7 +28,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_line_for_19
+    internal class When_task17_creates_line_for_19
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLineFor(19);
@@ -39,7 +39,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_line_for_20
+    internal class When_task17_creates_line_for_20
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLineFor(20);
@@ -50,7 +50,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_line_for_21
+    internal class When_task17_creates_line_for_21
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLineFor(21);
@@ -61,7 +61,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_line_for_99
+    internal class When_task17_creates_line_for_99
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLineFor(99);
@@ -72,7 +72,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_line_for_100
+    internal class When_task17_creates_line_for_100
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLineFor(100);
@@ -83,7 +83,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_line_for_101
+    internal class When_task17_creates_line_for_101
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLineFor(101);
@@ -94,7 +94,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_line_for_111
+    internal class When_task17_creates_line_for_111
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLineFor(111);
@@ -105,7 +105,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_line_for_999
+    internal class When_task17_creates_line_for_999
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLineFor(999);
@@ -116,7 +116,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_line_for_1000
+    internal class When_task17_creates_line_for_1000
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLineFor(1000);
@@ -127,7 +127,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_lines_until_5
+    internal class When_task17_creates_lines_until_5
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLinesUntil(5);
@@ -141,7 +141,7 @@ namespace Specs
 
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_creates_lines_until_1000
+    internal class When_task17_creates_lines_until_1000
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.GetLinesUntil(1000);
@@ -153,7 +153,7 @@ namespace Specs
 
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_calculates_until_2
+    internal class When_task17_calculates_until_2
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.CalculateUntil(2);
@@ -165,7 +165,7 @@ namespace Specs
 
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_calculates_until_9
+    internal class When_task17_calculates_until_9
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.CalculateUntil(9);
@@ -176,7 +176,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_calculates_until_19
+    internal class When_task17_calculates_until_19
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.CalculateUntil(19);
@@ -187,7 +187,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_calculates_until_99
+    internal class When_task17_calculates_until_99
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.CalculateUntil(99);
@@ -198,7 +198,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_calculates_until_101
+    internal class When_task17_calculates_until_101
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.CalculateUntil(101);
@@ -209,7 +209,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_calculates_for_101
+    internal class When_task17_calculates_for_101
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.CalculateFor(101);
@@ -220,7 +220,7 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe17))]
-    public class When_task17_calculates_for_100
+    internal class When_task17_calculates_for_100
     {
         Establish context = () => _aufgabe = new Aufgabe17();
         Because of = () => _result = _aufgabe.CalculateFor(100);

@@ -47,6 +47,7 @@
     <Compile Include="Aufgabe17Specs.cs" />
     <Compile Include="Aufgabe1Specs.cs" />
     <Compile Include="Aufgabe2Specs.cs" />
+    <Compile Include="Aufgabe31Specs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
