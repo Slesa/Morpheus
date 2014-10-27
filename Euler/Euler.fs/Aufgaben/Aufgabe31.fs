@@ -10,21 +10,45 @@
 
 [<Interface>]
 type Loesung31 =
-    abstract member Calculate : int -> int list -> int
+    abstract member Calculate : int -> int list -> string list
 
 type Aufgabe31() =
 
-    let rec dispense amount coins : int =
-        let result = match coins with
-        | [] -> 1
-        | head :: tail -> 
-            let mutable sum = 0
-            let count = (int) (amount / head)
-            for i=0 to count do
-                let newAmount = amount - (count * head)
-                sum = sum + (dispense newAmount tail)
-            sum
+
+//    let rec sum count amount head tail op =
+//        match count with
+//        | 0 -> 0
+//        | _ -> 
+//            let newAmount = amount - (amount * head)
+//            sum (count-1) amount head tail
+//            op newAmount tail
+    
+    
+    let rec dispense amount coins changes : string list =
+        let result = 
+            match coins with
+            | [] -> 1
+            | [a] -> 
+                let count = (int) (amount / a)
+                let newAmount = amount - (count * a)
+                let line = sprintf "%d x %d" count a
+                List.append changes line
+//                dispense newAmount tail
+            | head :: tail -> 
+                let mutable sum = 0
+                let count = (int) (amount / head)
+                let line = sprintf "%d x %d" count head
+                let list = List.append changes line
+                
+                for i=0 to count do
+                    let newAmount = amount - (i * head)
+                    let newChanges = dispense newAmount tail changes 
+                    let newlist = List.concat list newChanges
+
+                list
         result
+
+
 
     interface Loesung31 with
         member this.Calculate amount coins =
@@ -34,7 +58,7 @@ type Aufgabe31() =
 
         member this.Title = "Aufgabe 31"
         member this.Run() = 
-            let coins = [ 200; 100; 50; 20; 10; 5; 2; ];
+            let coins = [ 200; 100; 50; 20; 10; 5; 2; 1; ];
             let result = (this :> Loesung31).Calculate 200 coins
             result.ToString()
             
