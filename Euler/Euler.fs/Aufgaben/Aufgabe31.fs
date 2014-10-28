@@ -1,5 +1,10 @@
 ﻿namespace Aufgaben
 
+module Debug = 
+    open System.Diagnostics
+    let writef fmt = Printf.ksprintf Debug.Write fmt
+    let writefn fmt = Printf.ksprintf Debug.WriteLine fmt
+
 // In England the currency is made up of pound, £, and pence, p, and there are eight coins in general circulation:
 //
 // 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p) and £2 (200p).
@@ -10,47 +15,44 @@
 
 [<Interface>]
 type Loesung31 =
-    abstract member Calculate : int -> int list -> string list
+    abstract member Calculate : int -> int list -> string seq
 
 type Aufgabe31() =
 
-
-//    let rec sum count amount head tail op =
-//        match count with
-//        | 0 -> 0
-//        | _ -> 
-//            let newAmount = amount - (amount * head)
-//            sum (count-1) amount head tail
-//            op newAmount tail
-    
-    
-    let rec dispense amount coins changes : string list =
-        let result = 
-            match coins with
-            | [] -> 1
-            | [a] -> 
-                let count = (int) (amount / a)
-                let newAmount = amount - (count * a)
-                let line = sprintf "%d x %d" count a
-                List.append changes line
+    let rec dispense amount coins : 's seq =
+        match coins with
+        | [] -> Seq.empty
+        | [a] -> 
+            let count = (int) (amount / a)
+            Debug.writefn "Single: %d : %d" count amount
+//            let newAmount = amount - (count * a)
+            let line = sprintf "%d x %d" count a
+            match count with
+            | 0 -> Seq.empty
+            | _ -> 
+                Debug.writefn "%s" line
+                seq { yield line }
+//                yield List.append changes line
 //                dispense newAmount tail
-            | head :: tail -> 
-                let mutable sum = 0
-                let count = (int) (amount / head)
-                let line = sprintf "%d x %d" count head
-                let list = List.append changes line
+        | head :: tail -> 
+            let count = (int) (amount / head)
+            Debug.writefn "List: %d : %d" count amount
+            let line = sprintf "%d x %d" count head
+//            let line = sprintf "%d x %d" count head
+//                let list = List.append changes line
                 
-                for i=0 to count do
+            seq { 
+                Debug.writefn "%s" line
+                yield line
+                for i=1 to count do
                     let newAmount = amount - (i * head)
-                    let newChanges = dispense newAmount tail changes 
-                    let newlist = List.concat list newChanges
-
-                list
-        result
-
+                    Debug.writefn "Loop: %d : %d" i newAmount
+                    let newChanges = dispense newAmount tail 
+                    yield! newChanges }
 
 
     interface Loesung31 with
+
         member this.Calculate amount coins =
             dispense amount coins
 
