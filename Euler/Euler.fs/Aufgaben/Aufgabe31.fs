@@ -24,13 +24,13 @@ type Aufgabe31() =
         | [] -> Seq.empty
         | [a] -> 
             let count = (int) (amount / a)
-            Debug.writefn "Single: %d : %d" count amount
+            Debug.writefn "Single: %d x %d = %d" count a amount
 //            let newAmount = amount - (count * a)
             let line = sprintf "%d x %d" count a
             match count with
             | 0 -> Seq.empty
             | _ -> 
-                Debug.writefn "%s" line
+                Debug.writefn "Line: %s" line
                 seq { yield line }
 //                yield List.append changes line
 //                dispense newAmount tail
@@ -42,9 +42,13 @@ type Aufgabe31() =
 //                let list = List.append changes line
                 
             seq { 
-                Debug.writefn "%s" line
+//                Debug.writefn "%s" line
                 yield line
-                for i=1 to count do
+
+                let otherCoins = dispense amount tail
+                yield! otherCoins
+
+                for i=0 to count-1 do
                     let newAmount = amount - (i * head)
                     Debug.writefn "Loop: %d : %d" i newAmount
                     let newChanges = dispense newAmount tail 
