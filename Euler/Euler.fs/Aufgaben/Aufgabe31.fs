@@ -42,17 +42,22 @@ type Aufgabe31() =
 //                let list = List.append changes line
                 
             seq { 
-//                Debug.writefn "%s" line
+                Debug.writefn "Found: %s" line
                 yield line
+
+                Debug.writefn "--- dispensing tail ---" 
 
                 let otherCoins = dispense amount tail
                 yield! otherCoins
 
-                for i=0 to count-1 do
+                Debug.writefn "--- dispensing rest ---" 
+
+                for i=1 to count-1 do
                     let newAmount = amount - (i * head)
+                    let part = sprintf "%d x %d" i head
                     Debug.writefn "Loop: %d : %d" i newAmount
                     let newChanges = dispense newAmount tail 
-                    yield! newChanges }
+                    yield! Seq.map (fun a -> part + " + " + a) newChanges }
 
 
     interface Loesung31 with
