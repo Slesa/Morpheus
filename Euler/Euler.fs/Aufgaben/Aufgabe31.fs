@@ -42,8 +42,9 @@ type Aufgabe31() =
 //                let list = List.append changes line
                 
             seq { 
-                Debug.writefn "Found: %s" line
-                yield line
+                if amount - count * head = 0 then
+                    Debug.writefn "Found: %s" line
+                    yield line
 
                 Debug.writefn "--- dispensing tail ---" 
 
@@ -69,7 +70,9 @@ type Aufgabe31() =
 
         member this.Title = "Aufgabe 31"
         member this.Run() = 
-            let coins = [ 200; 100; 50; 20; 10; 5; 2; 1; ];
+//            let coins = [ 200; 100; 50; 20; 10; 5; 2; 1; ];
+            let coins = [ 200; 100; 50; 1; ];
             let result = (this :> Loesung31).Calculate 200 coins
-            result.ToString()
+            let count = Seq.length result
+            count.ToString()
             
