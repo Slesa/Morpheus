@@ -24,41 +24,45 @@ type Aufgabe31() =
         | [] -> Seq.empty
         | [a] -> 
             let count = (int) (amount / a)
-            Debug.writefn "Single: %d x %d = %d" count a amount
+//            Debug.writefn "Single: %d x %d = %d" count a amount
 //            let newAmount = amount - (count * a)
             let line = sprintf "%d x %d" count a
             match count with
             | 0 -> Seq.empty
             | _ -> 
-                Debug.writefn "Line: %s" line
+//                Debug.writefn "Line: %s" line
                 seq { yield line }
 //                yield List.append changes line
 //                dispense newAmount tail
         | head :: tail -> 
             let count = (int) (amount / head)
-            Debug.writefn "List: %d : %d" count amount
+//            Debug.writefn "List: %d x %d : %d" count head amount
             let line = sprintf "%d x %d" count head
 //            let line = sprintf "%d x %d" count head
 //                let list = List.append changes line
                 
             seq { 
-                if amount - count * head = 0 then
-                    Debug.writefn "Found: %s" line
+                let rest = amount - (count * head)
+                if rest <> 0 then
+                    let restChange = dispense rest tail 
+                    yield! Seq.map (fun a -> line + " + " + a) restChange 
+                else
+//                    Debug.writefn "Found: %s" line
                     yield line
 
-                Debug.writefn "--- dispensing tail ---" 
+//                Debug.writefn "--- dispensing tail ---" 
 
                 let otherCoins = dispense amount tail
                 yield! otherCoins
 
-                Debug.writefn "--- dispensing rest ---" 
+//                Debug.writefn "--- dispensing rest ---" 
 
-                for i=1 to count-1 do
+                for i=count-1 downto 1 do
                     let newAmount = amount - (i * head)
                     let part = sprintf "%d x %d" i head
-                    Debug.writefn "Loop: %d : %d" i newAmount
+//                    Debug.writefn "Loop: %d : %d" i newAmount
                     let newChanges = dispense newAmount tail 
-                    yield! Seq.map (fun a -> part + " + " + a) newChanges }
+                    yield! Seq.map (fun a -> part + " + " + a) newChanges}
 
 
     interface Loesung31 with
@@ -70,8 +74,8 @@ type Aufgabe31() =
 
         member this.Title = "Aufgabe 31"
         member this.Run() = 
-//            let coins = [ 200; 100; 50; 20; 10; 5; 2; 1; ];
-            let coins = [ 200; 100; 50; 1; ];
+            let coins = [ 200; 100; 50; 20; 10; 5; 2; 1; ];
+//            let coins = [ 200; 100; 50; 1; ];
             let result = (this :> Loesung31).Calculate 200 coins
             let count = Seq.length result
             count.ToString()

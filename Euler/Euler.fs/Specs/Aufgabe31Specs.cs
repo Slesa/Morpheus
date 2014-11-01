@@ -124,6 +124,33 @@ namespace Specs
     }
 
     [Subject(typeof(Aufgabe31))]
+    internal class When_dispensing_50_with_50_and_20_and_1 
+    {
+        Establish context = () =>
+            {
+                _aufgabe = new Aufgabe31();
+                _coins = new FSharpList<int>(50, new FSharpList<int>(20 , new FSharpList<int>(1, new FSharpList<int>(0, null))));
+            };
+
+        Because of = () =>
+            {
+                _result = _aufgabe.Calculate(50, _coins).ToList();
+                System.Diagnostics.Debug.WriteLine("Result: "+string.Join("\n", _result));
+            };
+
+        It should_compute_all_ways = () => _result.Count().ShouldEqual(4);
+
+        It should_compute_1_time_50 = () => _result.ShouldContain("1 x 50");
+        It should_compute_50_times_1 = () => _result.ShouldContain("50 x 1");
+        It should_compute_2_times_20 = () => _result.ShouldContain("2 x 20 + 10 x 1");
+        It should_compute_1_time_20 = () => _result.ShouldContain("1 x 20 + 30 x 1");
+
+        static Loesung31 _aufgabe;
+        static IEnumerable<string> _result;
+        static FSharpList<int> _coins;
+    }
+
+    [Subject(typeof(Aufgabe31))]
     internal class When_dispensing_200_with_200_and_100_and_50_and_20_and_1 
     {
         Establish context = () =>
@@ -139,7 +166,7 @@ namespace Specs
                 System.Diagnostics.Debug.WriteLine("Result: "+string.Join("\n", _result));
             };
 
-        It should_compute_all_ways = () => _result.Count().ShouldEqual(10);
+        It should_compute_all_ways = () => _result.Count().ShouldEqual(41);
 
         It should_compute_1_time_100_with_50 = () => _result.ShouldContain("1 x 100 + 2 x 50");
         It should_compute_1_time_100_with_50_and_two_20 = () => _result.ShouldContain("1 x 100 + 1 x 50 + 2 x 20 + 10 x 1");
