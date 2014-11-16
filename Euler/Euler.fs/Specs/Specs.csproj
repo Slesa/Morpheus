@@ -54,6 +54,7 @@
     <Compile Include="Aufgabe31Specs.cs" />
     <Compile Include="Aufgabe3Specs.cs" />
     <Compile Include="Aufgabe4Specs.cs" />
+    <Compile Include="Aufgabe7Specs.cs" />
     <Compile Include="Aufgabe6Specs.cs" />
     <Compile Include="PrimeTestSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

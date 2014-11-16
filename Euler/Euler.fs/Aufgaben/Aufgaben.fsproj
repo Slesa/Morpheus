@@ -51,6 +51,7 @@
     <Compile Include="Aufgabe6.fs" />
     <Compile Include="PrimeTest.fs" />
     <Compile Include="Aufgabe3.fs" />
+    <Compile Include="Aufgabe7.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
