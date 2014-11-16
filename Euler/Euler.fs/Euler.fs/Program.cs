@@ -9,7 +9,9 @@ namespace Euler.fs
             {
                 new Aufgabe1(),
                 new Aufgabe2(),
+                new Aufgabe3(),
                 new Aufgabe4(),
+                new Aufgabe6(),
                 new Aufgabe17(), 
                 new Aufgabe31(), 
             };
