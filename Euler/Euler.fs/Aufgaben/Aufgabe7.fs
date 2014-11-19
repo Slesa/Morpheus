@@ -13,12 +13,8 @@ type Aufgabe7() =
 
     let numbers = new Numbers()
 
-    let isPrime value =
-        (numbers :> INumbers).IsPrime64 value
-
-    let rec findNextPrime current =
-        if isPrime current then current
-        else findNextPrime (current+1L)
+    let findNextPrime current =
+        (numbers :> INumbers).FindNextPrime64 current
 
     let rec findPrime limit current =
 //        Debug.writefn "%d: %d" limit current

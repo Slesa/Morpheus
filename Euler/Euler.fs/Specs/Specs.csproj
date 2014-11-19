@@ -48,6 +48,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aufgabe10Specs.cs" />
     <Compile Include="Aufgabe17Specs.cs" />
     <Compile Include="Aufgabe1Specs.cs" />
     <Compile Include="Aufgabe2Specs.cs" />

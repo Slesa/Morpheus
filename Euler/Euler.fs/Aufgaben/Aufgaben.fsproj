@@ -42,16 +42,19 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Debug.fs" />
+    <Compile Include="memoize.fs" />
+    <Compile Include="PrimeTest.fs" />
     <Compile Include="Aufgabe.fs" />
     <Compile Include="Aufgabe1.fs" />
     <Compile Include="Aufgabe2.fs" />
-    <Compile Include="Aufgabe17.fs" />
-    <Compile Include="Aufgabe31.fs" />
+    <Compile Include="Aufgabe3.fs" />
     <Compile Include="Aufgabe4.fs" />
     <Compile Include="Aufgabe6.fs" />
-    <Compile Include="PrimeTest.fs" />
-    <Compile Include="Aufgabe3.fs" />
     <Compile Include="Aufgabe7.fs" />
+    <Compile Include="Aufgabe10.fs" />
+    <Compile Include="Aufgabe17.fs" />
+    <Compile Include="Aufgabe31.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
