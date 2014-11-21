@@ -14,6 +14,7 @@ namespace Euler.fs
                 new Aufgabe4(),
                 new Aufgabe6(),
                 //new Aufgabe7(), // too long 2,5s
+                new Aufgabe8(),
                 //new Aufgabe10(), // 215s
                 new Aufgabe17(), 
                 new Aufgabe31(), 
