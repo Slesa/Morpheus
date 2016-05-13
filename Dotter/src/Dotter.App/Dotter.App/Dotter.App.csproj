@@ -330,6 +330,10 @@
       <Project>{921669f0-3e9c-41fb-9b00-8d0c2272ca6c}</Project>
       <Name>Dotter.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dotter.Theme\Dotter.Theme.csproj">
+      <Project>{b8fd7969-09fe-466d-9aeb-8bb80fd0f706}</Project>
+      <Name>Dotter.Theme</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

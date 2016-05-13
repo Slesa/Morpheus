@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="Color.Foreground">BlanchedAlmond</Color>
+    <Color x:Key="Color.Background">#FF445566</Color>
+    <Color x:Key="Color.Warning">#FFFF8000</Color>
+    <Color x:Key="Color.Error">#FFFF0000</Color>
+    <Color x:Key="Color.Selection">#FFB300FF</Color>
+
+
+</ResourceDictionary>
