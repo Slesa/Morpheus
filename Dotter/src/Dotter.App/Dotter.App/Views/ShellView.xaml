@@ -7,7 +7,7 @@
         xmlns:core="clr-namespace:Dotter.Core;assembly=Dotter.Core"
         xmlns:regions="http://prismlibrary.com/"
         xmlns:viewModels="clr-namespace:Dotter.App.ViewModels"
-        Title="ShellView"
+        Title="Dotter - the graph creator"
         Width="525"
         Height="350"
         mc:Ignorable="d">

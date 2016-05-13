@@ -30,7 +30,7 @@ namespace Dotter.Core.ViewModels
         }
 
 
-        private string CurrentFileName { get; set; }
+        internal string CurrentFileName { get; set; }
 
         private void OnLoadFile(string fileName)
         {
