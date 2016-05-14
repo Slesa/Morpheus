@@ -5,7 +5,9 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Dotter.Theme;component/Resources/Colors.xaml" />
         <ResourceDictionary Source="/Dotter.Theme;component/Resources/Brushes.xaml" />
+        <ResourceDictionary Source="/Dotter.Theme;component/Resources/Icons.xaml" />
         <ResourceDictionary Source="/Dotter.Theme;component/Resources/Style.Window.xaml" />
+        <ResourceDictionary Source="/Dotter.Theme;component/Resources/Style.Statusbar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

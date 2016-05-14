@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using System.Windows;
+using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -10,6 +11,7 @@ namespace Dotter.Core.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private bool _inputEmpty;
         private bool _inputDifferent;
+        string _previewFilename;
 
         public MenuViewModel(IEventAggregator eventAggregator)
         {
@@ -17,6 +19,7 @@ namespace Dotter.Core.ViewModels
             eventAggregator.GetEvent<TextInputUpdatedEvent>().Subscribe(OnInputUpdated);
             eventAggregator.GetEvent<FileSavedEvent>().Subscribe(OnInputLoadedOrSaved);
             eventAggregator.GetEvent<FileLoadedEvent>().Subscribe(OnInputLoadedOrSaved);
+            eventAggregator.GetEvent<PreviewUpdatedEvent>().Subscribe(OnPreviewUpdated);
             OnInputUpdated(string.Empty);
         }
 
@@ -74,6 +77,45 @@ namespace Dotter.Core.ViewModels
         }
         #endregion
 
+        #region Copy file name
+
+        public DelegateCommand CopyFileNameCommand
+        {
+            get { return new DelegateCommand(DoCopyFileName, CanCopyFileName).ObservesProperty(()=>this.PreviewFilename);}
+        }
+
+        void DoCopyFileName()
+        {
+            Clipboard.SetText(PreviewFilename);   
+        }
+
+        bool CanCopyFileName()
+        {
+            return !string.IsNullOrEmpty(PreviewFilename);
+        }
+
+        #endregion
+
+        #region Copy file ikmage
+
+        public DelegateCommand CopyFileContentCommand
+        {
+            get { return new DelegateCommand(DoCopyFileContent, CanCopyFileContent).ObservesProperty(() => this.PreviewFilename); }
+        }
+
+        void DoCopyFileContent()
+        {
+            _eventAggregator.GetEvent<CopyPreviewEvent>().Publish(0);
+        }
+
+        bool CanCopyFileContent()
+        {
+            return !string.IsNullOrEmpty(PreviewFilename);
+        }
+
+        #endregion
+
+
         private string FormerInput { get; set; }
 
         bool InputEmpty
@@ -98,6 +140,17 @@ namespace Dotter.Core.ViewModels
         {
             FormerInput = text;
             InputDifferent = false;
+        }
+
+        string PreviewFilename
+        {
+            get { return _previewFilename; }
+            set { _previewFilename = value; OnPropertyChanged(); }
+        }
+
+        void OnPreviewUpdated(string currentFile)
+        {
+            PreviewFilename = currentFile;
         }
     }
 }

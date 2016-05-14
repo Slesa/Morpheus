@@ -9,6 +9,6 @@
              mvvm:ViewModelLocator.AutoWireViewModel="True">
 
     <Image 
-                   Source="{Binding Preview}"
-                   Stretch="Fill" />
+                   Source="{Binding PreviewImage}"
+                   Stretch="Uniform" />
 </UserControl>

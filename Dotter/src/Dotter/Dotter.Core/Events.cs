@@ -9,4 +9,6 @@ namespace Dotter.Core
     public class SaveFileEvent : PubSubEvent<int> { }
     public class FileSavedEvent : PubSubEvent<string> { }
     public class FileLoadedEvent : PubSubEvent<string> { }
+    public class PreviewUpdatedEvent : PubSubEvent<string> { }
+    public class CopyPreviewEvent : PubSubEvent<int> { }
 }

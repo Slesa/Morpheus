@@ -10,7 +10,7 @@
              mc:Ignorable="d"
              mvvm:ViewModelLocator.AutoWireViewModel="True">
 
-    <Border x:Name="border" Style ="{DynamicResource Style.StatusBar.Border}">
+    <Border x:Name="border" Style ="{StaticResource Style.StatusBar.Border}">
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ContentAvailGroup">
@@ -33,7 +33,7 @@
 
         <TextBox x:Name="text"  Focusable="False"
                  IsReadOnly="True"
-                 Style="{DynamicResource Style.StatusBar.Message}"
+                 Style="{StaticResource Style.StatusBar.Message}"
                  Text="{Binding Message,
                                 Mode=OneWay}" />
     </Border>

@@ -32,7 +32,7 @@ namespace Dotter.Core.ViewModels
 
         internal string CurrentFileName { get; set; }
 
-        private void OnLoadFile(string fileName)
+        internal void OnLoadFile(string fileName)
         {
             var text = File.ReadAllText(fileName);
             Input = text;

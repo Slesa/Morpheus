@@ -10,6 +10,7 @@
         Title="Dotter - the graph creator"
         Width="525"
         Height="350"
+        Style="{StaticResource Style.Window}"
         mc:Ignorable="d">
 
     <Window.DataContext>

@@ -44,7 +44,7 @@ namespace Dotter.Specs.ViewModels
 
         Because of = () =>
         {
-            
+            _sut.OnLoadFile(@"data\SimpleGraph");
         };
 
         It should_publish_statusbar_event = () => _statusbarEvent.Verify(x => x.Publish(Moq.It.IsAny<string>()));

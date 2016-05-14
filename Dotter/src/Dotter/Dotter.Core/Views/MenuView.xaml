@@ -4,15 +4,38 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mvvm="http://prismlibrary.com/"
+             xmlns:App="clr-namespace:Dotter.App"
              mc:Ignorable="d" 
              Height="48"
              d:DesignHeight="300" d:DesignWidth="300"
              mvvm:ViewModelLocator.AutoWireViewModel="True">
 
-    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-        <Button Command="{Binding FileNewCommand}" Content="New" />
-        <Button Command="{Binding FileOpenCommand}" Content="Open" />
-        <Button Command="{Binding FileSaveCommand}" Content="Save" />
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Dotter.Theme;component/Resources/Style.Buttons.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Dotter.Theme;component/Resources/Icons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <StackPanel Orientation="Horizontal">
+        
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding FileNewCommand}" Content="{StaticResource Images.FileNew}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Create new file" />
+            <Button Command="{Binding FileOpenCommand}" Content="{StaticResource Images.FileOpen}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Open existing file" />
+            <Button Command="{Binding FileSaveCommand}" Content="{StaticResource Images.FileSave}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Save current content to file" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+            <Button Command="{Binding CopyFileNameCommand}" Content="{StaticResource Images.CopyFileName}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Copy file name" />
+            <Button Command="{Binding CopyFileContentCommand}" Content="{StaticResource Images.CopyFileContent}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Copy file content" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+            <Button Command="{Binding WizardCommand}" Content="{StaticResource Images.Wizard}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Create DOT graph with a little help" />
+        </StackPanel>
+
     </StackPanel>
 
 </UserControl>
