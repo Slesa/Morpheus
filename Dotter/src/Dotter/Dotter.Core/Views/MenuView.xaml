@@ -18,21 +18,21 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
-    <StackPanel Orientation="Horizontal">
-        
-        <StackPanel Orientation="Horizontal">
+
+    <StackPanel Orientation="Horizontal" Focusable="False">
+
+        <StackPanel Orientation="Horizontal" Focusable="False">
             <Button Command="{Binding FileNewCommand}" Content="{StaticResource Images.FileNew}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Create new file" />
             <Button Command="{Binding FileOpenCommand}" Content="{StaticResource Images.FileOpen}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Open existing file" />
             <Button Command="{Binding FileSaveCommand}" Content="{StaticResource Images.FileSave}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Save current content to file" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+        <StackPanel Orientation="Horizontal" Margin="10,0,0,0" Focusable="False">
             <Button Command="{Binding CopyFileNameCommand}" Content="{StaticResource Images.CopyFileName}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Copy file name" />
             <Button Command="{Binding CopyFileContentCommand}" Content="{StaticResource Images.CopyFileContent}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Copy file content" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+        <StackPanel Orientation="Horizontal" Margin="10,0,0,0" Focusable="False">
             <Button Command="{Binding WizardCommand}" Content="{StaticResource Images.Wizard}" Style="{StaticResource Buttons.RoundButton}" ToolTip="Create DOT graph with a little help" />
         </StackPanel>
 

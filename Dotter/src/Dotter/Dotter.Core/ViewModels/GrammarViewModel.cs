@@ -14,7 +14,7 @@ namespace Dotter.Core.ViewModels
 
         void OnTextUpdated(string text)
         {
-            _parser.Parse(text);
+            _parser.ParseValid(text);
         }
     }
 }

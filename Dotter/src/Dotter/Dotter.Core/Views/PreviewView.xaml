@@ -6,7 +6,8 @@
              xmlns:mvvm="http://prismlibrary.com/"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             mvvm:ViewModelLocator.AutoWireViewModel="True">
+             mvvm:ViewModelLocator.AutoWireViewModel="True"
+             Focusable="False">
 
     <UserControl.Resources>
         <ResourceDictionary>
