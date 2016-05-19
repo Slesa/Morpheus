@@ -44,6 +44,7 @@
     <Compile Include="Generated\DOTLexer.cs" />
     <Compile Include="Generated\DOTListener.cs" />
     <Compile Include="Generated\DOTParser.cs" />
+    <Compile Include="IHandleParserErrors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

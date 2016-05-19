@@ -5,6 +5,13 @@ namespace Dotter.Grammar
 {
     public class DotterParser
     {
+        readonly IHandleParserErrors _errorHandler;
+
+        public DotterParser(IHandleParserErrors errorHandler)
+        {
+            _errorHandler = errorHandler;
+        }
+
         public bool ParseValid(string text)
         {
             //var inputStream = new StreamReader(Console.OpenStandardInput());
@@ -14,7 +21,7 @@ namespace Dotter.Grammar
             var parser = new DOTParser(tokens);
             parser.RemoveErrorListeners();
 
-            var errorListener = new ErrorListener();
+            var errorListener = new ErrorListener(_errorHandler);
             parser.AddErrorListener(errorListener);
 
             IParseTree tree = parser.graph();
@@ -23,7 +30,7 @@ namespace Dotter.Grammar
 //            CalculatorVisitor visitor = new CalculatorVisitor();
 //            Console.WriteLine(visitor.Visit(tree));
 
-            return errorListener.ErrorDescriptions.Count == 0;
+            return !errorListener.HasParserErrors;
         } 
     }
 }

@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\SetFocusAction.cs" />
+    <Compile Include="Converters\CalculateWidthConverter.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Helpers\DotCaller.cs" />
     <Compile Include="Helpers\ViewModelLocator.cs" />
