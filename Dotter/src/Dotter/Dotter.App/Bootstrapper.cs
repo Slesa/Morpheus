@@ -40,6 +40,7 @@ namespace Dotter.App
             regionManager.RegisterViewWithRegion(Regions.TagMenuRegion, typeof(MenuView));
             regionManager.RegisterViewWithRegion(Regions.TagEditorRegion, typeof(TextEditorView));
             regionManager.RegisterViewWithRegion(Regions.TagPreviewRegion, typeof(PreviewView));
+            regionManager.RegisterViewWithRegion(Regions.TagGrammarRegion, typeof(GrammarView));
         }
 
         private void RegisterViews()

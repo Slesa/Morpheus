@@ -8,8 +8,8 @@
         xmlns:regions="http://prismlibrary.com/"
         xmlns:viewModels="clr-namespace:Dotter.App.ViewModels"
         Title="Dotter - the graph creator"
-        Width="525"
-        Height="350"
+        Width="1280"
+        Height="1024"
         Style="{StaticResource Style.Window}"
         mc:Ignorable="d">
 
@@ -24,9 +24,15 @@
                         DockPanel.Dock="Top"
                         regions:RegionManager.RegionName="{x:Static core:Regions.TagMenuRegion}" />
 
-            <ContentControl x:Name="Statusbar"
+
+        <ContentControl x:Name="Grammar"
+                        DockPanel.Dock="Bottom"
+                        regions:RegionManager.RegionName="{x:Static core:Regions.TagGrammarRegion}" />
+        
+        <ContentControl x:Name="Statusbar"
                         DockPanel.Dock="Bottom"
                         regions:RegionManager.RegionName="{x:Static core:Regions.TagStatusbarRegion}" />
+        
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

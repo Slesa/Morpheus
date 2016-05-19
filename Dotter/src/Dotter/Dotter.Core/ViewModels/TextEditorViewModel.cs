@@ -40,6 +40,7 @@ namespace Dotter.Core.ViewModels
 
             _eventAggregator.GetEvent<StatusbarMessageEvent>().Publish(fileName + " loaded");
             _eventAggregator.GetEvent<FileLoadedEvent>().Publish(Input);
+            _eventAggregator.GetEvent<TextInputUpdatedEvent>().Publish(Input);
         }
 
         private void OnSaveFile()

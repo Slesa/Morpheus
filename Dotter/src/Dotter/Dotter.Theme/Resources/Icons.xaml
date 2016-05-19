@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
 
     <Image x:Key="Images.FileNew" Source="Images/FileNew.png" x:Shared="false" />
     <Image x:Key="Images.FileOpen" Source="Images/FileOpen.png" x:Shared="false" />
@@ -10,5 +11,7 @@
 
     <Image x:Key="Images.Wizard" Source="Images/Wizard.png" x:Shared="false" />
 
-    
+    <!--<ImageSource x:Key="Images.PreviewEmpty">/Dotter.Theme;component/Resources/Images/PreviewEmpty.png</ImageSource>-->
+    <BitmapImage x:Key="Images.PreviewEmpty" UriSource="/Dotter.Theme;component/Resources/Images/PreviewEmpty.png" />
+
 </ResourceDictionary>

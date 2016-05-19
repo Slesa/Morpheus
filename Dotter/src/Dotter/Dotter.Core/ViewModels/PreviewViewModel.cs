@@ -14,12 +14,14 @@ namespace Dotter.Core.ViewModels
         private readonly DotCaller _dotCaller = new DotCaller();
         private Uri _preview;
 
+
         public PreviewViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
             eventAggregator.GetEvent<TextInputUpdatedEvent>().Subscribe(OnInputUpdated);
             eventAggregator.GetEvent<CopyPreviewEvent>().Subscribe(_ => OnCopyPreview());
         }
+
 
         BitmapImage _previewImage;
         public BitmapImage PreviewImage
@@ -37,7 +39,13 @@ namespace Dotter.Core.ViewModels
             get { return _preview; }
             set { 
                 _preview = value; 
-                OnPropertyChanged(); 
+                OnPropertyChanged();
+
+                if (value == null)
+                {
+                    PreviewImage = null;
+                    return;
+                }
 
                 var image = new BitmapImage();
                 image.BeginInit();
@@ -52,6 +60,12 @@ namespace Dotter.Core.ViewModels
 
         private void OnInputUpdated(string text)
         {
+            if (string.IsNullOrEmpty(text))
+            {
+                Preview = null;
+                return;
+            }
+
             var previewFile = _dotCaller.Run(text);
             if (string.IsNullOrEmpty(previewFile))
             {

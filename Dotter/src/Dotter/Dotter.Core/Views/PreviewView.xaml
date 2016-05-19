@@ -8,7 +8,20 @@
              d:DesignHeight="300" d:DesignWidth="300"
              mvvm:ViewModelLocator.AutoWireViewModel="True">
 
-    <Image 
-                   Source="{Binding PreviewImage}"
-                   Stretch="Uniform" />
+    <UserControl.Resources>
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Dotter.Theme;component/Resources/Icons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <Image x:Name="previewImage"
+                   Source="{Binding PreviewImage, TargetNullValue={StaticResource Images.PreviewEmpty}, FallbackValue={StaticResource Images.PreviewEmpty}}"
+                   Stretch="Uniform">
+    </Image>
+
 </UserControl>
