@@ -1,0 +1,12 @@
+﻿<Window x:Class="Dotter.Core.Views.WizardView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Views="clr-namespace:Dotter.Core.Views"
+        Title="Wish list" Height="300" Width="300"
+        WindowStyle="ToolWindow" Topmost="True">
+    <!--<TabPanel>-->
+        <!--<TabItem Header="General">-->
+            <Views:WizardInfoPageView />
+        <!--</TabItem>-->
+    <!--</TabPanel>-->
+</Window>

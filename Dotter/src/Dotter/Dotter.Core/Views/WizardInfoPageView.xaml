@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Dotter.Core.Views.WizardInfoPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Mvvm="http://prismlibrary.com/"
+             xmlns:Model="clr-namespace:Dotter.Core.Model"
+             xmlns:Converters="clr-namespace:Dotter.Core.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Mvvm:ViewModelLocator.AutoWireViewModel="True">
+    
+    <UserControl.Resources>
+        <Converters:RadioButtonCheckedConverter x:Key="RadioButtonCheckedConverter" />
+    </UserControl.Resources>
+    
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="I want a..." />
+            <WrapPanel Orientation="Horizontal">
+                <RadioButton GroupName="GraphType" Content="graph" 
+                             IsChecked="{Binding GraphType, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={x:Static Model:GraphType.Graph}}" />
+                <RadioButton GroupName="GraphType" Content="directed graph" 
+                             IsChecked="{Binding GraphType, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={x:Static Model:GraphType.Digraph}}" />
+            </WrapPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="called" />
+            <TextBox Text="{Binding GraphName, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        <GroupBox Header="Information flows from...">
+            <WrapPanel Orientation="Horizontal">
+                <RadioButton GroupName="GraphType" Content="top to bottom"
+                             IsChecked="{Binding FlowModel, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={x:Static Model:FlowModel.TopToBottom}}" />
+                <RadioButton GroupName="GraphType" Content="left to right"
+                             IsChecked="{Binding FlowModel, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={x:Static Model:FlowModel.LeftToRight}}" />
+                <RadioButton GroupName="GraphType" Content="right to left"
+                             IsChecked="{Binding FlowModel, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={x:Static Model:FlowModel.RightToLeft}}" />
+                <RadioButton GroupName="GraphType" Content="bottom to top"
+                             IsChecked="{Binding FlowModel, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={x:Static Model:FlowModel.BottomToTop}}" />
+            </WrapPanel>
+        </GroupBox>
+    </StackPanel>
+</UserControl>

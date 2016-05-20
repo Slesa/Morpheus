@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Dynamic;
+using System.Windows;
+using Dotter.Core.Views;
 using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Events;
@@ -38,7 +40,6 @@ namespace Dotter.Core.ViewModels
         {
             return !InputEmpty;
         }
-
         #endregion
 
         #region File Open
@@ -115,6 +116,30 @@ namespace Dotter.Core.ViewModels
 
         #endregion
 
+        #region Wizard
+
+        WizardView _wizardView;
+
+        public DelegateCommand WizardCommand
+        {
+            get { return new DelegateCommand(DoWizard); }
+        }
+
+
+        private void DoWizard()
+        {
+            if (_wizardView == null)
+            {
+                _wizardView = new WizardView();
+                _wizardView.Closed += (sender, args) => _wizardView = null;
+                _wizardView.Show();
+            }
+            else
+            {
+                _wizardView.Close();
+            }
+        }
+        #endregion
 
         private string FormerInput { get; set; }
 

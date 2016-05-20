@@ -69,6 +69,7 @@
     <Compile Include="Actions\GotoStateAction.cs" />
     <Compile Include="Actions\SetFocusAction.cs" />
     <Compile Include="Converters\CalculateWidthConverter.cs" />
+    <Compile Include="Converters\RadioButtonCheckedConverter.cs" />
     <Compile Include="Converters\StringEmptyToTrueConverter.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Helpers\ComparisonConditionType.cs" />
@@ -77,6 +78,8 @@
     <Compile Include="Helpers\DotCaller.cs" />
     <Compile Include="Helpers\TypeConverterHelper.cs" />
     <Compile Include="Helpers\VisualStateUtilities.cs" />
+    <Compile Include="Model\FlowModel.cs" />
+    <Compile Include="Model\GraphType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regions.cs" />
     <Compile Include="Triggers\DataTrigger.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="ViewModels\PreviewViewModel.cs" />
     <Compile Include="ViewModels\StatusbarViewModel.cs" />
     <Compile Include="ViewModels\TextEditorViewModel.cs" />
+    <Compile Include="ViewModels\WizardInfoPageViewModel.cs" />
     <Compile Include="Views\GrammarView.xaml.cs">
       <DependentUpon>GrammarView.xaml</DependentUpon>
     </Compile>
@@ -101,6 +105,12 @@
     </Compile>
     <Compile Include="Views\TextEditorView.xaml.cs">
       <DependentUpon>TextEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WizardInfoPageView.xaml.cs">
+      <DependentUpon>WizardInfoPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WizardView.xaml.cs">
+      <DependentUpon>WizardView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +134,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TextEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WizardInfoPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WizardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
