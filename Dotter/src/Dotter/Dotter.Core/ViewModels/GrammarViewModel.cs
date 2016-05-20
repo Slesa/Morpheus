@@ -6,10 +6,12 @@ namespace Dotter.Core.ViewModels
 {
     public class GrammarViewModel : IHandleParserErrors
     {
+        readonly IEventAggregator _eventAggregator;
         readonly DotterParser _parser;
 
         public GrammarViewModel(IEventAggregator eventAggregator)
         {
+            _eventAggregator = eventAggregator;
             ParserErrors = new ObservableCollection<ErrorDescription>();
             _parser = new DotterParser(this);
 
@@ -19,7 +21,8 @@ namespace Dotter.Core.ViewModels
         void OnTextUpdated(string text)
         {
             ParserErrors.Clear();
-            _parser.ParseValid(text);
+            if( _parser.ParseValid(text) )
+                _eventAggregator.GetEvent<TextInputValidatedEvent>().Publish(text);
         }
 
         public ObservableCollection<ErrorDescription> ParserErrors { get; private set; }

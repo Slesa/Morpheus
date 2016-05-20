@@ -18,7 +18,7 @@ namespace Dotter.Core.ViewModels
         public PreviewViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            eventAggregator.GetEvent<TextInputUpdatedEvent>().Subscribe(OnInputUpdated);
+            eventAggregator.GetEvent<TextInputValidatedEvent>().Subscribe(OnInputUpdated);
             eventAggregator.GetEvent<CopyPreviewEvent>().Subscribe(_ => OnCopyPreview());
         }
 
