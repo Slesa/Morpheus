@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mvvm="http://prismlibrary.com/"
-             xmlns:App="clr-namespace:Dotter.App"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
              mc:Ignorable="d" 
              Height="48"
              d:DesignHeight="300" d:DesignWidth="300"
@@ -19,6 +20,33 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
+    <!--<UserControl.InputBindings>
+        <KeyBinding Command="{Binding FileNewCommand}" Key="N" Modifiers="Control" />
+        <KeyBinding Command="{Binding FileOpenCommand}" Key="O" Modifiers="Control" />
+    </UserControl.InputBindings-->
+    <!--<i:Interaction.Triggers>
+        <ei:KeyTrigger Key="N" Modifiers="Control">
+            <i:InvokeCommandAction
+                Command="{Binding FileNewCommand}" />
+        </ei:KeyTrigger>
+        <ei:KeyTrigger Key="O" Modifiers="Control">
+            <i:InvokeCommandAction
+                Command="{Binding FileOpenCommand}" />
+        </ei:KeyTrigger>
+        <ei:KeyTrigger Key="S" Modifiers="Control">
+            <i:InvokeCommandAction
+                Command="{Binding FileSaveCommand}" />
+        </ei:KeyTrigger>
+        <ei:KeyTrigger Key="C" Modifiers="Control">
+            <i:InvokeCommandAction
+                Command="{Binding CopyFileContentCommand}" />
+        </ei:KeyTrigger>
+        <ei:KeyTrigger Key="C" Modifiers="Control+Shift">
+            <i:InvokeCommandAction
+                Command="{Binding CopyFileNameCommand}" />
+        </ei:KeyTrigger>
+    </i:Interaction.Triggers>-->
+    
     <StackPanel Orientation="Horizontal" Focusable="False">
 
         <StackPanel Orientation="Horizontal" Focusable="False">

@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
 
+    <ImageSource x:Key="Images.Dotter">Images/Dotter.png</ImageSource>
+    
     <Image x:Key="Images.FileNew" Source="Images/FileNew.png" x:Shared="false" />
     <Image x:Key="Images.FileOpen" Source="Images/FileOpen.png" x:Shared="false" />
     <Image x:Key="Images.FileSave" Source="Images/FileSave.png" x:Shared="false" />

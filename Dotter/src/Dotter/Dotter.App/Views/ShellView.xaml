@@ -10,6 +10,7 @@
         Width="1280"
         Height="1024"
         Style="{StaticResource Style.Window}"
+        Icon="{StaticResource Images.Dotter}"
         mc:Ignorable="d">
 
     <Window.DataContext>
