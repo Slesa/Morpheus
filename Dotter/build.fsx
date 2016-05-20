@@ -182,7 +182,7 @@ Target "Deploy" (fun _ ->
 
   let deployReferences = !! @"Setup\Setup.sln"
   let outputName = sprintf "%s-Setup.%s.msi" project currentVersion
-  let defines = "Version="+currentVersion
+  let defines = "FileSource=../../bin/build;Version="+currentVersion
 
   MSBuildReleaseExt deployDir ["ProductVersion", currentVersion; "DefineConstants", defines; "OutputName", outputName] "Build" deployReferences
     |> Log "DeployBuildOutput: "
@@ -197,7 +197,7 @@ Target "All" DoNothing
 "Clean"
   =?> ("SetAssemblyInfo",not isLocalBuild)
   ==> "Build" <=> "BuildTests"
-  ==> "RunTests"
+//  ==> "RunTests"
   ==> "Deploy"
 //  =?> ("GenerateReferenceDocs",isLocalBuild && not isMono)
   ==> "All"
