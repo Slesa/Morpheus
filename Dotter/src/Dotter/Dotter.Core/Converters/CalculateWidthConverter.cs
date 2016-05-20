@@ -16,7 +16,7 @@ namespace Dotter.Core.Converters
                 var width = (double) values[i];
                 availableWidth -= width;
             }
-            return availableWidth-10;
+            return availableWidth-20;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

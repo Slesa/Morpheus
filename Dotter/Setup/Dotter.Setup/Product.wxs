@@ -114,6 +114,9 @@
       <Component Id="C__DotterCore" Guid="{F1D54025-3807-496A-9A40-DF44F292B2C8}" Win64="yes">
         <File Id="Dotter.Core.dll" Source="$(var.FileSource)\Dotter.Core.dll" />
       </Component>
+      <Component Id="C__DotterGrammar" Guid="{D8FD5D7C-E5D2-46C5-9816-209E368168AB}" Win64="yes">
+        <File Id="Dotter.Grammar.dll" Source="$(var.FileSource)\Dotter.Grammar.dll" />
+      </Component>
       <Component Id="C__DotterTheme" Guid="{47CBF972-01B9-41DE-ACB9-53AE1376BEED}" Win64="yes">
         <File Id="Dotter.Theme.dll" Source="$(var.FileSource)\Dotter.Theme.dll" />
       </Component>
@@ -143,6 +146,60 @@
       </Component>
 
 
+    </DirectoryRef>
+
+    <DirectoryRef Id="FilesFolder">
+      <Component Id="C__DotExe" Guid="{41F3BC12-E741-4261-BDB9-809DC76A97CD}" Win64="yes">
+        <File Id="DOT.EXE" Source="$(var.FileSource)\files\dot.exe" KeyPath="yes" />
+        <File Source="$(var.FileSource)\files\ann.dll" />
+        <File Source="$(var.FileSource)\files\cdt.dll" />
+        <File Source="$(var.FileSource)\files\cgraph.dll" />
+        <File Source="$(var.FileSource)\files\config6" />
+        <File Source="$(var.FileSource)\files\fontconfig.dll" />
+        <File Source="$(var.FileSource)\files\fontconfig_fix.dll" />
+        <File Source="$(var.FileSource)\files\freetype6.dll" />
+        <File Source="$(var.FileSource)\files\glut32.dll" />
+        <File Source="$(var.FileSource)\files\gvc.dll" />
+        <File Source="$(var.FileSource)\files\gvplugin_core.dll" />
+        <File Source="$(var.FileSource)\files\gvplugin_dot_layout.dll" />
+        <File Source="$(var.FileSource)\files\gvplugin_gd.dll" />
+        <File Source="$(var.FileSource)\files\gvplugin_gdiplus.dll" />
+        <File Source="$(var.FileSource)\files\gvplugin_neato_layout.dll" />
+        <File Source="$(var.FileSource)\files\gvplugin_pango.dll" />
+        <File Source="$(var.FileSource)\files\iconv.dll" />
+        <File Source="$(var.FileSource)\files\intl.dll" />
+        <File Source="$(var.FileSource)\files\jpeg62.dll" />
+        <File Source="$(var.FileSource)\files\libatk-1.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libcairo-2.dll" />
+        <File Source="$(var.FileSource)\files\libexpat.dll" />
+        <File Source="$(var.FileSource)\files\libexpat-1.dll" />
+        <File Source="$(var.FileSource)\files\libfontconfig-1.dll" />
+        <File Source="$(var.FileSource)\files\libfreetype-6.dll" />
+        <File Source="$(var.FileSource)\files\libgdk_pixbuf-2.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libgdkglext-win32-1.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libgdk-win32-2.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libgio-2.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libglade-2.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libglib-2.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libgmodule-2.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libgobject-2.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libgthread-2.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libgtkglext-win32-1.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libgtk-win32-2.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libltdl-3.dll" />
+        <File Source="$(var.FileSource)\files\libpango-1.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libpangocairo-1.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libpangoft2-1.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libpangowin32-1.0-0.dll" />
+        <File Source="$(var.FileSource)\files\libpng12.dll" />
+        <File Source="$(var.FileSource)\files\libpng14-14.dll" />
+        <File Source="$(var.FileSource)\files\librsvg-2-2.dll" />
+        <File Source="$(var.FileSource)\files\libxml2.dll" />
+        <File Source="$(var.FileSource)\files\ltdl.dll" />
+        <File Source="$(var.FileSource)\files\Pathplan.dll" />
+        <File Source="$(var.FileSource)\files\vmalloc.dll" />
+        <File Source="$(var.FileSource)\files\zlib1.dll" />
+      </Component>
     </DirectoryRef>
 
     <DirectoryRef Id="ProgramMenuFolder">
@@ -185,9 +242,16 @@
 
         <RegistryValue Root="HKCU" Key="Software\Centigrade\Dotter" Name="documents" Type="integer" Value="1" KeyPath="yes" />
 
-        <File Id="EntityRelationship.dot" Name="EntityRelationship.dot" Source="data\EntityRelationship.dot" />
-        <File Id="ObjectInheritance.dot" Name="ObjectInheritance.dot" Source="data\ObjectInheritance.dot" />
-        <File Id="DataFlow2.dot" Name="DataFlow2.dot" Source="data\DataFlow2.dot" />
+        <File Source="data\EntityRelationship.dot" />
+        <File Source="data\ObjectInheritance.dot" />
+        <File Source="data\DataFlow2.dot" />
+        <File Source="data\DataFlow.dot" />
+        <File Source="data\FiniteMachine.dot" />
+        <File Source="data\Records.dot" />
+        <File Source="data\SavingTime.dot" />
+        <File Source="data\ShapeColour.dot" />
+        <File Source="data\Labels.dot" />
+        <File Source="data\Digraph.dot" />
 
       </Component>
     </DirectoryRef>
@@ -205,12 +269,12 @@
              ConfigurableDirectory="APPLICATIONFOLDER"
              Description="!(loc.ProductFeatureDescription)">
       <ComponentRef Id="C__Dotter" />
-      <!--<ComponentGroupRef Id="C__Samples" />-->
       <ComponentRef Id="C__SamplesFolder" />
       <ComponentRef Id="S__ProgramMenuComponent" />
       
       <ComponentRef Id="C__Antlr4Runtime" />
       <ComponentRef Id="C__DotterCore" />
+      <ComponentRef Id="C__DotterGrammar" />
       <ComponentRef Id="C__DotterTheme" />
       <ComponentRef Id="C__ServiceLocator" />
       <ComponentRef Id="C__Unity" />
@@ -220,32 +284,7 @@
       <ComponentRef Id="C__PrismUnity" />
       <ComponentRef Id="C__PrismWpf" />
       <ComponentRef Id="C__Interactivity" />
-      <ComponentRef Id="C__Files" />
-
-      <!--<ComponentRef Id="C__Castle_Core" />
-      <ComponentRef Id="C__Castle_Windsor" />
-      <ComponentRef Id="C__Centigrade_Kit_Effects" />
-      <ComponentRef Id="C__Centigrade_Kit_Icons" />
-      <ComponentRef Id="C__Centigrade_Kit_Interactivity" />
-      <ComponentRef Id="C__Centigrade_Kit_StateMachine" />
-      <ComponentRef Id="C__Centigrade_Kit_Theming" />
-      <ComponentRef Id="C__Centigrade_LiveStyleGuide" />
-      <ComponentRef Id="C__Centigrade_LiveStyleGuide_Bridge" />
-      <ComponentRef Id="C__Centigrade_LiveStyleGuide_CaptureControl" />
-      <ComponentRef Id="C__Centigrade_LiveStyleGuide_Collector_Binary" />
-      <ComponentRef Id="C__Centigrade_LiveStyleGuide_Collector_Common" />
-      <ComponentRef Id="C__Centigrade_LiveStyleGuide_Collector_Xaml" />
-      <ComponentRef Id="C__Centigrade_LiveStyleGuide_Theme" />
-      <ComponentRef Id="C__CommonServiceLocator_WindsorAdapter" />
-      <ComponentRef Id="C__log4net" />
-      <ComponentRef Id="C__Microsoft_Expression_Drawing" />
-      <ComponentRef Id="C__Microsoft_Expression_Interactions" />
-      <ComponentRef Id="C__Microsoft_Practices_Prism" />
-      <ComponentRef Id="C__Microsoft_Practices_Prism_Interactivity" />
-      <ComponentRef Id="C__Microsoft_Practices_ServiceLocation" />
-      <ComponentRef Id="C__Newtonsoft_Json" />
-      <ComponentRef Id="C__PrismContrib_WindsorExtensions" />
-      <ComponentRef Id="C__System_Windows_Interactivity" />-->
+      <ComponentRef Id="C__DotExe" />
     </Feature>
 
 
