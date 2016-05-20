@@ -40,7 +40,7 @@
                 </VisualState>
                 <VisualState x:Name="HasErrorState">
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="errorList" To="56" Duration="0:0:0.200" />
+                        <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="errorList" To="128" Duration="0:0:0.200" />
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>

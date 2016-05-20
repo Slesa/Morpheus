@@ -5,6 +5,7 @@ namespace Dotter.Core
     public class StatusbarMessageEvent : PubSubEvent<string> {}
     public class TextInputUpdatedEvent : PubSubEvent<string> { }
     public class TextInputValidatedEvent : PubSubEvent<string> { }
+    public class InvalidInputEvent : PubSubEvent<int> { }
     public class ClearTextInputEvent : PubSubEvent<int> { }
     public class LoadFileEvent : PubSubEvent<string> { }
     public class SaveFileEvent : PubSubEvent<int> { }

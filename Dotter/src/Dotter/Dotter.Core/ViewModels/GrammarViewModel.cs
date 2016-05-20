@@ -26,6 +26,8 @@ namespace Dotter.Core.ViewModels
             ParserErrors.Clear();
             if( _parser.ParseValid(text) )
                 _eventAggregator.GetEvent<TextInputValidatedEvent>().Publish(text);
+            else
+                _eventAggregator.GetEvent<InvalidInputEvent>().Publish(0);
         }
 
         public ObservableCollection<ErrorDescription> ParserErrors { get; private set; }
