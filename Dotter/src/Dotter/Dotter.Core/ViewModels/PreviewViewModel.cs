@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using Dotter.App;
+using Dotter.Core.Helpers;
 using Prism.Events;
 using Prism.Mvvm;
 

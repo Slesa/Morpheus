@@ -8,6 +8,7 @@
         <ResourceDictionary Source="/Dotter.Theme;component/Resources/Icons.xaml" />
         <ResourceDictionary Source="/Dotter.Theme;component/Resources/Style.Window.xaml" />
         <ResourceDictionary Source="/Dotter.Theme;component/Resources/Style.Statusbar.xaml" />
+        <ResourceDictionary Source="/Dotter.Theme;component/Resources/Style.Grammar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

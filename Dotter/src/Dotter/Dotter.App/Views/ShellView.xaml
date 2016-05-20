@@ -27,17 +27,23 @@
                         regions:RegionManager.RegionName="{x:Static core:Regions.TagMenuRegion}" />
 
 
-        <ContentControl x:Name="Grammar"
-                        DockPanel.Dock="Bottom"
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ContentControl x:Name="Grammar"
+                        Grid.Row="0"
                         Focusable="False"
                         TabIndex="2"
                         regions:RegionManager.RegionName="{x:Static core:Regions.TagGrammarRegion}" />
-        
-        <ContentControl x:Name="Statusbar"
-                        DockPanel.Dock="Bottom"
+
+            <ContentControl x:Name="Statusbar"
+                        Grid.Row="1"
                         Focusable="False"
                         regions:RegionManager.RegionName="{x:Static core:Regions.TagStatusbarRegion}" />
-        
+        </Grid>
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

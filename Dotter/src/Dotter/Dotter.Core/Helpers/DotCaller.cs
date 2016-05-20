@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace Dotter.App
+namespace Dotter.Core.Helpers
 {
     public class DotCaller
     {
