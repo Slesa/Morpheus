@@ -34,7 +34,7 @@ namespace Dotter.App
             p.StartInfo.CreateNoWindow = true;
             p.StartInfo.WorkingDirectory = "files";
             p.StartInfo.FileName = "files\\dot.exe";
-            p.StartInfo.Arguments = "-Tpng " + tmpInput + " -o " + tmpOutput;
+            p.StartInfo.Arguments = "-Tpng " + tmpInput + " -o " + tmpOutput; // + " -s=128";
             p.Start();
             // Do not wait for the child process to exit before
             // reading to the end of its redirected stream.

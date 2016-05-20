@@ -73,6 +73,7 @@
     <Compile Include="Helpers\ViewModelLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regions.cs" />
+    <Compile Include="Triggers\KeyTrigger.cs" />
     <Compile Include="ViewModels\GrammarViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\PreviewViewModel.cs" />
