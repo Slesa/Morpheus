@@ -14,6 +14,7 @@ namespace Dotter.Core.ViewModels
         {
             _eventAggregator = eventAggregator;
             eventAggregator.GetEvent<ClearTextInputEvent>().Subscribe(_ => Input = string.Empty);
+            eventAggregator.GetEvent<FillTextInputEvent>().Subscribe(text => Input = text);
             eventAggregator.GetEvent<LoadFileEvent>().Subscribe(OnLoadFile);
             eventAggregator.GetEvent<SaveFileEvent>().Subscribe(_ => OnSaveFile());
         }

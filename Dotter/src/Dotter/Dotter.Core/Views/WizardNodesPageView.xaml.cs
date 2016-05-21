@@ -3,11 +3,11 @@
 namespace Dotter.Core.Views
 {
     /// <summary>
-    /// Interaction logic for GrammarView.xaml
+    /// Interaction logic for WizardNodesPageView.xaml
     /// </summary>
-    public partial class GrammarView : UserControl
+    public partial class WizardNodesPageView : UserControl
     {
-        public GrammarView()
+        public WizardNodesPageView()
         {
             InitializeComponent();
         }

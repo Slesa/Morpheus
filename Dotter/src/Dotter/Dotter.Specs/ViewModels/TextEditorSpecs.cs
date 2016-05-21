@@ -1,12 +1,77 @@
 ﻿using Dotter.Core;
 using Dotter.Core.ViewModels;
 using Machine.Specifications;
-using Moq;
 using Prism.Events;
 using It = Machine.Specifications.It;
 
 namespace Dotter.Specs.ViewModels
 {
+    public static class FizzBuzzer
+    {
+        public static string Calculcate(int number)
+        {
+            var dividebleByThree = number % 3 == 0;
+            var dividebleByFive = number % 5 == 0;
+
+            if (dividebleByThree && dividebleByFive)
+                return "FizzBuzz";
+            if (dividebleByThree)
+                return "Fizz";
+            if (dividebleByFive)
+                return "Buzz";
+
+            return number.ToString();
+        }
+    }
+
+    //[Subject(typeof(FizzBuzzer), "Fizzme")]
+    //public class FizzBuzzerSpec : Spec
+    //{
+    //    int Number;
+
+    //    FizzBuzzerSpec() // ctor
+    //    {
+    //        Specify (x => FizzBuzzer.Calculcate (Number))
+    //            .Case ("Dividable by 3", _ => _
+    //                .Given ("Number is 3", x => Number = 3)
+    //                .It ("returns Fizz", x => x.Result.Should ().Be ("Fizz")));
+    //    }
+    //}
+
+        //[Subject(typeof (TextEditorViewModel), "Initialize")]
+        //public class When_texteditor_is_initialized : Spec<TextEditorViewModel>
+        //{
+        //    When_texteditor_is_initialized()
+        //    {
+        //        Specify (_ => _)
+
+        //            .DefaultCase (_ => _
+        //                .It ("should have no input", x => x.Result.Input.Should ().BeEmpty ()));
+        //    }
+
+    [Subject(typeof (TextEditorViewModel), "Initialize")]
+    public class When_texteditor_is_initialized
+    {
+
+        Establish context = () =>
+        {
+            _eventAggregator = new EventAggregator();
+        };
+
+        Because of = () =>
+        {
+            _sut = new TextEditorViewModel(_eventAggregator);
+        };
+
+        It should_have_no_input = () => _sut.Input.ShouldBeEmpty();
+        It should_have_current_filename = () => _sut.CurrentFileName.ShouldBeEmpty();
+
+
+        static EventAggregator _eventAggregator;
+        static TextEditorViewModel _sut;
+    }
+
+    /*
     [Subject(typeof (TextEditorViewModel))]
     internal class When_texteditor_is_initialized
     {
@@ -55,4 +120,5 @@ namespace Dotter.Specs.ViewModels
         static Mock<StatusbarMessageEvent> _statusbarEvent;
         static Mock<FileLoadedEvent> _fileLoadedEvent;
     }
+    */
 }

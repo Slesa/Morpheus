@@ -7,6 +7,7 @@ namespace Dotter.Core
     public class TextInputValidatedEvent : PubSubEvent<string> { }
     public class InvalidInputEvent : PubSubEvent<int> { }
     public class ClearTextInputEvent : PubSubEvent<int> { }
+    public class FillTextInputEvent : PubSubEvent<string> { }
     public class LoadFileEvent : PubSubEvent<string> { }
     public class SaveFileEvent : PubSubEvent<int> { }
     public class FileSavedEvent : PubSubEvent<string> { }

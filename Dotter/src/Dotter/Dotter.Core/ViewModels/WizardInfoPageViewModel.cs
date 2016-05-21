@@ -11,6 +11,14 @@ namespace Dotter.Core.ViewModels
             FlowModel = FlowModel.LeftToRight;
         }
 
+        public GraphDescription FillDescription(GraphDescription description)
+        {
+            description.Name = GraphName;
+            description.Type = GraphType;
+            description.FlowModel = FlowModel;
+            return description;
+        }
+
         string _graphName;
         public string GraphName
         {

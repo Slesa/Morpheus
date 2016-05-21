@@ -130,7 +130,7 @@ namespace Dotter.Core.ViewModels
         {
             if (_wizardView == null)
             {
-                _wizardView = new WizardView();
+                _wizardView = new WizardView(_eventAggregator);
                 _wizardView.Closed += (sender, args) => _wizardView = null;
                 _wizardView.Show();
             }
