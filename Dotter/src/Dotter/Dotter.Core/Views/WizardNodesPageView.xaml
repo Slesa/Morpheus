@@ -30,9 +30,10 @@
         <ListView x:Name="_nodeList" ItemsSource="{Binding Edges}" SelectedIndex="{Binding SelectedIndex}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn x:Name="_fromHeader" Header="From" 
+                    <!--DisplayMemberBinding="{Binding From}"-->
+                    <GridViewColumn x:Name="_fromHeader" Header="From"
                                     Width="{Binding Path=ActualWidth, ElementName=_nodeList, Converter={StaticResource HalfConverter}}"
-                                    DisplayMemberBinding="{Binding From}"
+                                    
                                     />
                     <GridViewColumn x:Name="_toHeader" Header="To" 
                                     Width="{Binding Path=ActualWidth, ElementName=_nodeList, Converter={StaticResource HalfConverter}}"

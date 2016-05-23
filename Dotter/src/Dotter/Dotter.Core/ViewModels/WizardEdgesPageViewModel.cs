@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using Dotter.Core.Model;
 using Prism.Commands;
@@ -8,17 +10,53 @@ namespace Dotter.Core.ViewModels
 {
     public class WizardEdgesPageViewModel
     {
-        public ObservableCollection<GraphEdge> Edges { get; set; }
+        public ObservableCollection<GraphEdgeViewModel> Edges { get; set; }
+        public ObservableCollection<string> Nodes { get; set; }
         public int SelectedIndex { get; set; }
 
         public WizardEdgesPageViewModel()
         {
-            Edges = new ObservableCollection<GraphEdge>();
+            Nodes = new ObservableCollection<string>();
+            Edges = new ObservableCollection<GraphEdgeViewModel>();
+            Edges.CollectionChanged += OnEdgesChanged;
+        }
+
+        void OnEdgesChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (GraphEdgeViewModel item in e.NewItems)
+                {
+                    item.PropertyChanged += OnEdgesPropertyChanged;
+                }
+            }
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                foreach (GraphEdgeViewModel item in e.OldItems)
+                {
+                    item.PropertyChanged -= OnEdgesPropertyChanged;
+                }
+            }
+        }
+
+        void OnEdgesPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var edgevm = sender as GraphEdgeViewModel;
+            if (e.PropertyName == "From")
+            {
+                if (!Nodes.Contains(edgevm.From)) Nodes.Add(edgevm.From);
+                
+            }
+            if (e.PropertyName == "To")
+            {
+                if (!Nodes.Contains(edgevm.To)) Nodes.Add(edgevm.To);
+            }
         }
 
         public GraphDescription FillDescription(GraphDescription description)
         {
-            description.Edges = new List<GraphEdge>(Edges);
+            description.Edges = new List<GraphEdge>();
+            description.Edges.AddRange(from edge in Edges select new GraphEdge { From = edge.From, To = edge.To });
             return description;
         }
 
@@ -30,7 +68,7 @@ namespace Dotter.Core.ViewModels
 
         void OnAdd()
         {
-            Edges.Add(new GraphEdge());
+            Edges.Add(new GraphEdgeViewModel());
         }
 
         bool CanAdd()

@@ -70,6 +70,7 @@
     <Compile Include="Actions\SetFocusAction.cs" />
     <Compile Include="Converters\CalculateWidthConverter.cs" />
     <Compile Include="Converters\HalfConverter.cs" />
+    <Compile Include="Converters\MinusConverter.cs" />
     <Compile Include="Converters\RadioButtonCheckedConverter.cs" />
     <Compile Include="Converters\StringEmptyToTrueConverter.cs" />
     <Compile Include="Events.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Triggers\KeyTrigger.cs" />
     <Compile Include="Triggers\PropertyChangedTrigger.cs" />
     <Compile Include="ViewModels\GrammarViewModel.cs" />
+    <Compile Include="ViewModels\GraphEdgeViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\PreviewViewModel.cs" />
     <Compile Include="ViewModels\StatusbarViewModel.cs" />

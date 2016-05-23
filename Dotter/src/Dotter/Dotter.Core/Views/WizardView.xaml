@@ -6,7 +6,8 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="Wish list" 
         Height="600" Width="800"
-        WindowStyle="ToolWindow" Topmost="True"
+        WindowStyle="ToolWindow" 
+        Topmost="False"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Window.Resources>

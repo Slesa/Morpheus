@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Mvvm="http://prismlibrary.com/"
              xmlns:Converters="clr-namespace:Dotter.Core.Converters"
+             xmlns:ViewModels="clr-namespace:Dotter.Core.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              Mvvm:ViewModelLocator.AutoWireViewModel="True">
@@ -17,6 +18,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <Converters:HalfConverter x:Key="HalfConverter" />
+            <Converters:MinusConverter x:Key="MinusConverter" />
 
         </ResourceDictionary>
     </UserControl.Resources>
@@ -29,14 +31,17 @@
 
         <ListView x:Name="_nodeList" ItemsSource="{Binding Edges}" SelectedIndex="{Binding SelectedIndex}">
             <ListView.View>
-                <GridView>
+                <GridView x:Name="_root">
                     <!--DisplayMemberBinding="{Binding From}"-->
                     <GridViewColumn x:Name="_fromHeader" Header="From" 
                                     Width="{Binding Path=ActualWidth, ElementName=_nodeList, Converter={StaticResource HalfConverter}}"
                                     >
                         <GridViewColumn.CellTemplate>
-                            <DataTemplate><!--Checked="AnyChange" Unchecked="AnyChange"-->
-                                <TextBox Style="{x:Null}" Text="{Binding From}" Width="{Binding Width, ElementName=_fromHeader}"/>
+                            <DataTemplate>
+                                <ComboBox Style="{x:Null}" Text="{Binding From}" Width="{Binding Width, ElementName=_fromHeader, Converter={StaticResource MinusConverter}, ConverterParameter=15}"
+                                          IsEditable="True"
+                                          ItemsSource="{Binding Nodes, RelativeSource={RelativeSource AncestorType=ViewModels:WizardEdgesPageViewModel}}" />
+                                <!--<TextBox Style="{x:Null}" Text="{Binding From}" Width="{Binding Width, ElementName=_fromHeader}"/>-->
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -46,8 +51,10 @@
                                     >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <!--Checked="AnyChange" Unchecked="AnyChange"-->
-                                <TextBox Style="{x:Null}" Text="{Binding To}" Width="{Binding Width, ElementName=_toHeader}"/>
+                                <ComboBox Style="{x:Null}" Text="{Binding To}" Width="{Binding Width, ElementName=_toHeader, Converter={StaticResource MinusConverter}, ConverterParameter=15}"
+                                          IsEditable="True"
+                                          ItemsSource="{Binding Nodes, RelativeSource={RelativeSource AncestorType=ViewModels:WizardEdgesPageViewModel}}" />
+                                <!--<TextBox Style="{x:Null}" Text="{Binding To}" Width="{Binding Width, ElementName=_toHeader}"/>-->
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
