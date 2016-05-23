@@ -1,8 +1,10 @@
 ﻿using Dotter.Core;
 using Dotter.Core.ViewModels;
-using Machine.Specifications;
+using FluentAssertions;
+using Moq;
 using Prism.Events;
-using It = Machine.Specifications.It;
+using TestFx;
+using TestFx.SpecK;
 
 namespace Dotter.Specs.ViewModels
 {
@@ -24,74 +26,78 @@ namespace Dotter.Specs.ViewModels
         }
     }
 
-    //[Subject(typeof(FizzBuzzer), "Fizzme")]
-    //public class FizzBuzzerSpec : Spec
-    //{
-    //    int Number;
+    [Subject(typeof(FizzBuzzer), "Fizzme")]
+    public class FizzBuzzerSpec : Spec
+    {
+        int Number;
 
-    //    FizzBuzzerSpec() // ctor
-    //    {
-    //        Specify (x => FizzBuzzer.Calculcate (Number))
-    //            .Case ("Dividable by 3", _ => _
-    //                .Given ("Number is 3", x => Number = 3)
-    //                .It ("returns Fizz", x => x.Result.Should ().Be ("Fizz")));
-    //    }
-    //}
-
-        //[Subject(typeof (TextEditorViewModel), "Initialize")]
-        //public class When_texteditor_is_initialized : Spec<TextEditorViewModel>
-        //{
-        //    When_texteditor_is_initialized()
-        //    {
-        //        Specify (_ => _)
-
-        //            .DefaultCase (_ => _
-        //                .It ("should have no input", x => x.Result.Input.Should ().BeEmpty ()));
-        //    }
+        FizzBuzzerSpec() // ctor
+        {
+            Specify(x => FizzBuzzer.Calculcate(Number))
+                .Case("Dividable by 3", _ => _
+                   .Given("Number is 3", x => Number = 3)
+                   .It("returns Fizz", x => x.Result.Should().Be("Fizz")));
+        }
+    }
 
     [Subject(typeof (TextEditorViewModel), "Initialize")]
-    public class When_texteditor_is_initialized
+    public class When_texteditor_is_initialized : Spec<TextEditorViewModel>
     {
+        [Injected]
+        [Default]
+        EventAggregator eventAggregator;
 
-        Establish context = () =>
+        When_texteditor_is_initialized()
         {
-            _eventAggregator = new EventAggregator();
-        };
+            Specify (_ => _)
+                .DefaultCase (_ => _
+                    .It ("should have no input", x => x.Subject.Input.Should ().BeNullOrEmpty ())
+                    .It ("should have no current file name", x => x.Subject.CurrentFileName.Should ().BeNullOrEmpty ()));
+        }
+    }
 
-        Because of = () =>
+    [Subject(typeof (TextEditorViewModel), "Loading")]
+    public class When_texteditor_loads_file : Spec<TextEditorViewModel>
+    {
+        When_texteditor_loads_file()
         {
-            _sut = new TextEditorViewModel(_eventAggregator);
-        };
+            Specify(x => x.OnLoadFile (@"data\SimpleGraph"))
+                .DefaultCase(_ => _
+                .It("should publish statusbar event", _1 => _statusbarMessageEvent.Verify(x => x.Publish(It.IsAny<string>())))
+                .It("should publish fileloaded event", _2 => _fileLoadedEvent.Verify(x => x.Publish(It.IsAny<string>()))));
+        }
 
-        It should_have_no_input = () => _sut.Input.ShouldBeEmpty();
-        It should_have_current_filename = () => _sut.CurrentFileName.ShouldBeEmpty();
+        public override TextEditorViewModel CreateSubject()
+        {
+            var _ea = new Mock<IEventAggregator>();
+            //var _clearTextInputEvent = new Mock<ClearTextInputEvent>();
+            //var _fillTextInputEvent = new Mock<FillTextInputEvent>();
+            //var _loadFileEvent = new Mock<LoadFileEvent>();
+            //var _saveFileEvent = new Mock<SaveFileEvent>();
+            _fileLoadedEvent = new Mock<FileLoadedEvent> ();
+            _statusbarMessageEvent = new Mock<StatusbarMessageEvent> ();
+            //_ea.Setup(x => x.GetEvent<ClearTextInputEvent>()).Returns(_clearTextInputEvent.Object);
+            //_ea.Setup(x => x.GetEvent<FillTextInputEvent>()).Returns(_fillTextInputEvent.Object);
+            //_ea.Setup(x => x.GetEvent<LoadFileEvent>()).Returns(_loadFileEvent.Object);
+            //_ea.Setup(x => x.GetEvent<SaveFileEvent>()).Returns(_saveFileEvent.Object);
+            _ea.Setup(x => x.GetEvent<StatusbarMessageEvent>()).Returns(_statusbarMessageEvent.Object);
+            _ea.Setup(x => x.GetEvent<FileLoadedEvent>()).Returns(_fileLoadedEvent.Object);
 
+            _sut = new TextEditorViewModel(_ea.Object);
+            return _sut;
+        }
 
-        static EventAggregator _eventAggregator;
-        static TextEditorViewModel _sut;
+        //Mock<IEventAggregator> _ea;
+        TextEditorViewModel _sut;
+        //Mock<ClearTextInputEvent> _clearTextInputEvent;
+        //Mock<FillTextInputEvent> _fillTextInputEvent;
+        //Mock<LoadFileEvent> _loadFileEvent;
+        //Mock<SaveFileEvent> _saveFileEvent;
+        Mock<StatusbarMessageEvent> _statusbarMessageEvent;
+        Mock<FileLoadedEvent> _fileLoadedEvent;
     }
 
     /*
-    [Subject(typeof (TextEditorViewModel))]
-    internal class When_texteditor_is_initialized
-    {
-        Establish context = () =>
-        {
-            _eventAggregator = new Mock<IEventAggregator>();
-        };
-
-        Because of = () =>
-        {
-            _sut = new TextEditorViewModel(_eventAggregator.Object);
-        };
-
-        It should_have_no_input = () => _sut.Input.ShouldBeEmpty();
-        It should_have_current_filename = () => _sut.CurrentFileName.ShouldBeEmpty();
-
-
-        static Mock<IEventAggregator> _eventAggregator;
-        static TextEditorViewModel _sut;
-    }
 
 
     [Subject(typeof (TextEditorViewModel))]
@@ -112,8 +118,6 @@ namespace Dotter.Specs.ViewModels
             _sut.OnLoadFile(@"data\SimpleGraph");
         };
 
-        It should_publish_statusbar_event = () => _statusbarEvent.Verify(x => x.Publish(Moq.It.IsAny<string>()));
-        It should_publish_fileloaded_event = () => _fileLoadedEvent.Verify(x => x.Publish(Moq.It.IsAny<string>()));
 
         static Mock<IEventAggregator> _eventAggregator;
         static TextEditorViewModel _sut;
