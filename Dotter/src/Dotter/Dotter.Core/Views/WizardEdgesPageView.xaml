@@ -6,6 +6,7 @@
              xmlns:Mvvm="http://prismlibrary.com/"
              xmlns:Converters="clr-namespace:Dotter.Core.Converters"
              xmlns:ViewModels="clr-namespace:Dotter.Core.ViewModels"
+             xmlns:views="clr-namespace:Dotter.Core.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              Mvvm:ViewModelLocator.AutoWireViewModel="True">
@@ -38,9 +39,10 @@
                                     >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox Style="{x:Null}" Text="{Binding From}" Width="{Binding Width, ElementName=_fromHeader, Converter={StaticResource MinusConverter}, ConverterParameter=15}"
+                                <ComboBox Style="{x:Null}" Width="{Binding Width, ElementName=_fromHeader, Converter={StaticResource MinusConverter}, ConverterParameter=15}"
                                           IsEditable="True"
-                                          ItemsSource="{Binding Nodes, RelativeSource={RelativeSource AncestorType=ViewModels:WizardEdgesPageViewModel}}" />
+                                          Text="{Binding From, UpdateSourceTrigger=LostFocus}" 
+                                          ItemsSource="{Binding DataContext.Nodes, RelativeSource={RelativeSource AncestorType=views:WizardEdgesPageView}}" />
                                 <!--<TextBox Style="{x:Null}" Text="{Binding From}" Width="{Binding Width, ElementName=_fromHeader}"/>-->
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -51,8 +53,9 @@
                                     >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox Style="{x:Null}" Text="{Binding To}" Width="{Binding Width, ElementName=_toHeader, Converter={StaticResource MinusConverter}, ConverterParameter=15}"
+                                <ComboBox Style="{x:Null}" Width="{Binding Width, ElementName=_toHeader, Converter={StaticResource MinusConverter}, ConverterParameter=15}"
                                           IsEditable="True"
+                                          Text="{Binding To, UpdateSourceTrigger=LostFocus}" 
                                           ItemsSource="{Binding Nodes, RelativeSource={RelativeSource AncestorType=ViewModels:WizardEdgesPageViewModel}}" />
                                 <!--<TextBox Style="{x:Null}" Text="{Binding To}" Width="{Binding Width, ElementName=_toHeader}"/>-->
                             </DataTemplate>

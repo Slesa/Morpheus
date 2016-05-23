@@ -14,4 +14,6 @@ namespace Dotter.Core
     public class FileLoadedEvent : PubSubEvent<string> { }
     public class PreviewUpdatedEvent : PubSubEvent<string> { }
     public class CopyPreviewEvent : PubSubEvent<int> { }
+
+    public class NewNodeInConnectAdded : PubSubEvent<string> { }
 }

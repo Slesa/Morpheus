@@ -5,17 +5,22 @@ using System.ComponentModel;
 using System.Linq;
 using Dotter.Core.Model;
 using Prism.Commands;
+using Prism.Events;
 
 namespace Dotter.Core.ViewModels
 {
     public class WizardEdgesPageViewModel
     {
+        private readonly IEventAggregator _eventAggregator;
+
         public ObservableCollection<GraphEdgeViewModel> Edges { get; set; }
         public ObservableCollection<string> Nodes { get; set; }
         public int SelectedIndex { get; set; }
 
-        public WizardEdgesPageViewModel()
+        public WizardEdgesPageViewModel(IEventAggregator eventAggregator)
         {
+            _eventAggregator = eventAggregator;
+
             Nodes = new ObservableCollection<string>();
             Edges = new ObservableCollection<GraphEdgeViewModel>();
             Edges.CollectionChanged += OnEdgesChanged;
@@ -44,13 +49,19 @@ namespace Dotter.Core.ViewModels
             var edgevm = sender as GraphEdgeViewModel;
             if (e.PropertyName == "From")
             {
-                if (!Nodes.Contains(edgevm.From)) Nodes.Add(edgevm.From);
+                if (!Nodes.Contains(edgevm.From)) AddNodeToCollection(edgevm.From);
                 
             }
             if (e.PropertyName == "To")
             {
-                if (!Nodes.Contains(edgevm.To)) Nodes.Add(edgevm.To);
+                if (!Nodes.Contains(edgevm.To)) AddNodeToCollection(edgevm.To);
             }
+        }
+
+        private void AddNodeToCollection(string node)
+        {
+            Nodes.Add(node);
+            _eventAggregator.GetEvent<NewNodeInConnectAdded>().Publish(node);
         }
 
         public GraphDescription FillDescription(GraphDescription description)

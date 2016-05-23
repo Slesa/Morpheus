@@ -97,6 +97,7 @@
     <Compile Include="ViewModels\TextEditorViewModel.cs" />
     <Compile Include="ViewModels\WizardEdgesPageViewModel.cs" />
     <Compile Include="ViewModels\WizardInfoPageViewModel.cs" />
+    <Compile Include="ViewModels\WizardNodesPageViewModel.cs" />
     <Compile Include="Views\GrammarView.xaml.cs">
       <DependentUpon>GrammarView.xaml</DependentUpon>
     </Compile>
