@@ -81,7 +81,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\TestFx.Core.0.5.0\build\net40\TestFx.Core.targets" Condition="Exists('..\packages\TestFx.Core.0.5.0\build\net40\TestFx.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
