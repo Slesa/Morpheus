@@ -7,6 +7,7 @@
 open Fake
 open Fake.AssemblyInfoFile
 open Fake.ReleaseNotesHelper
+open Fake.SonarQubeHelper
 open System
 open System.IO
 #if MONO
@@ -174,6 +175,28 @@ Target "RunTests" (fun _ ->
         HtmlOutputDir = reportDir})
 )
 
+// --------------------------------------------------------------------------------------
+Target "BeginSonarQube" (fun _ ->
+
+  SonarQube Begin (fun p ->
+    {p with
+      //ToolsPath = sonarTool
+      Key = project
+      Name = "Dotter"
+      Version = currentVersion})
+      //Settings = ["sonar.branch"; "release.target"; "debug.build"]})
+)
+
+Target "EndSonarQube" (fun _ ->
+
+  SonarQube End (fun p ->
+    {p with
+      //ToolsPath = sonarTool
+      Key = project
+      Name = "Dotter"
+      Version = currentVersion})
+      //Settings = ["sonar.branch"]})
+)
 
 // --------------------------------------------------------------------------------------
 // Release Scripts
@@ -196,7 +219,9 @@ Target "All" DoNothing
 
 "Clean"
   =?> ("SetAssemblyInfo",not isLocalBuild)
+  ==> "BeginSonarQube"
   ==> "Build" <=> "BuildTests"
+  ==> "EndSonarQube"
 //  ==> "RunTests"
   ==> "Deploy"
 //  =?> ("GenerateReferenceDocs",isLocalBuild && not isMono)
