@@ -22,4 +22,5 @@
     <!--<ImageSource x:Key="Images.PreviewEmpty">/Dotter.Theme;component/Resources/Images/PreviewEmpty.png</ImageSource>-->
     <BitmapImage x:Key="Images.PreviewEmpty" UriSource="/Dotter.Theme;component/Resources/Images/PreviewEmpty.png" />
 
+    
 </ResourceDictionary>

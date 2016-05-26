@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Mvvm="http://prismlibrary.com/"
-             xmlns:Converters="clr-namespace:Dotter.Core.Converters"
+             xmlns:ViewModels="clr-namespace:Dotter.Core.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             Mvvm:ViewModelLocator.AutoWireViewModel="True">
+             Mvvm:ViewModelLocator.AutoWireViewModel="True"
+             x:Name="root">
     <UserControl.Resources>
         <ResourceDictionary>
 
@@ -15,19 +16,67 @@
                 <ResourceDictionary Source="pack://application:,,,/Dotter.Theme;component/Resources/Icons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <Converters:HalfConverter x:Key="HalfConverter" />
+            <DataTemplate x:Key="ShapeTemplate" DataType="ViewModels:GraphShapeViewModel">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding ImageSource}" Width="32" Height="32" />
+                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="3,0,0,3" />
+                </StackPanel>
+            </DataTemplate>
 
+            <DataTemplate x:Key="ColorTemplate" DataType="ViewModels:GraphShapeViewModel">
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="{Binding}" Width="32" Height="32" />
+                    <TextBlock Text="{Binding}" VerticalAlignment="Center" Margin="3,0,0,3" />
+                </StackPanel>
+            </DataTemplate>
+
+            
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        
-        <ListBox x:Name="_nodeList" ItemsSource="{Binding Nodes}" SelectedIndex="{Binding SelectedIndex}" Width="300">
-        </ListBox>
-    </Grid>
+    <DockPanel LastChildFill="True">
+
+        <ListBox DockPanel.Dock="Left" 
+                 x:Name="_nodeList" Width="300"
+                 ItemsSource="{Binding Nodes}" 
+                 DisplayMemberPath="Name"
+                 SelectedItem="{Binding SelectedItem}"
+                 SelectedValue="{Binding SelectedValue}"
+                 IsSynchronizedWithCurrentItem="true" />
+
+        <!---->
+        <Grid DataContext="{Binding SelectedValue, ElementName=_nodeList}">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/> 
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Column="0" Grid.Row="0" Content="_Label:" Target="{Binding ElementName=_label}"  />
+            <TextBox x:Name="_label" Grid.Column="1" Grid.Row="0" Text="{Binding Label}" />
+
+            <Label Grid.Column="0" Grid.Row="1" Content="_Shape:" Target="{Binding ElementName=_shape}" />
+            <ComboBox x:Name="_shape" Grid.Column="1" Grid.Row="1" Text="{Binding Shape}" ItemsSource="{Binding AvailableShapes, ElementName=root}" ItemTemplate="{StaticResource ShapeTemplate}" />
+
+            <Label Grid.Column="0" Grid.Row="2" Content="_Color:" Target="{Binding ElementName=_color}"  />
+            <ComboBox x:Name="_color" Grid.Column="1" Grid.Row="2" Text="{Binding Color}" ItemsSource="{Binding AvailableColors, ElementName=root}" ItemTemplate="{StaticResource ColorTemplate}" />
+
+            <Label Grid.Column="0" Grid.Row="3" Content="_Font color:" Target="{Binding ElementName=_fontColor}"  />
+            <ComboBox x:Name="_fontColor" Grid.Column="1" Grid.Row="3" Text="{Binding FontColor}" ItemsSource="{Binding AvailableColors, ElementName=root}" ItemTemplate="{StaticResource ColorTemplate}" />
+
+            <Label Grid.Column="0" Grid.Row="4" Content="Font s_ize:" Target="{Binding ElementName=_fontSize}"  />
+            <TextBox x:Name="_fontSize" Grid.Column="1" Grid.Row="4" Text="{Binding FontSize}" />
+
+        </Grid>
+
+
+    </DockPanel>
 </UserControl>

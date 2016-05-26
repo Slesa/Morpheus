@@ -133,6 +133,34 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Finish.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Shape.Box.png" />
+    <Resource Include="Resources\Images\Shape.Ellipse.png" />
+    <Resource Include="Resources\Images\Shape.Polygon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Shape.Circle.png" />
+    <Resource Include="Resources\Images\Shape.Diamond.png" />
+    <Resource Include="Resources\Images\Shape.Egg.png" />
+    <Resource Include="Resources\Images\Shape.Oval.png" />
+    <Resource Include="Resources\Images\Shape.Plain.png" />
+    <Resource Include="Resources\Images\Shape.Plaintext.png" />
+    <Resource Include="Resources\Images\Shape.Point.png" />
+    <Resource Include="Resources\Images\Shape.Triangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Shape.Hexagon.png" />
+    <Resource Include="Resources\Images\Shape.House.png" />
+    <Resource Include="Resources\Images\Shape.Parallelogram.png" />
+    <Resource Include="Resources\Images\Shape.Pentagon.png" />
+    <Resource Include="Resources\Images\Shape.Trapezium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Shape.Doublecircle.png" />
+    <Resource Include="Resources\Images\Shape.Doubleoctagon.png" />
+    <Resource Include="Resources\Images\Shape.Octagon.png" />
+    <Resource Include="Resources\Images\Shape.Septagon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
