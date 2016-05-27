@@ -40,12 +40,12 @@
                  x:Name="_nodeList" Width="300"
                  ItemsSource="{Binding Nodes}" 
                  DisplayMemberPath="Name"
-                 SelectedItem="{Binding SelectedItem}"
-                 SelectedValue="{Binding SelectedValue}"
-                 IsSynchronizedWithCurrentItem="true" />
+                 IsSynchronizedWithCurrentItem="true"
+                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+        </ListBox>
 
         <!---->
-        <Grid DataContext="{Binding SelectedValue, ElementName=_nodeList}">
+        <Grid>
             
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/> 
@@ -61,19 +61,20 @@
             </Grid.RowDefinitions>
             
             <Label Grid.Column="0" Grid.Row="0" Content="_Label:" Target="{Binding ElementName=_label}"  />
-            <TextBox x:Name="_label" Grid.Column="1" Grid.Row="0" Text="{Binding Label}" />
+            <TextBox x:Name="_label" Grid.Column="1" Grid.Row="0" Text="{Binding SelectedItem.Label}" />
 
             <Label Grid.Column="0" Grid.Row="1" Content="_Shape:" Target="{Binding ElementName=_shape}" />
-            <ComboBox x:Name="_shape" Grid.Column="1" Grid.Row="1" Text="{Binding Shape}" ItemsSource="{Binding AvailableShapes, ElementName=root}" ItemTemplate="{StaticResource ShapeTemplate}" />
+            <ComboBox x:Name="_shape" Grid.Column="1" Grid.Row="1" SelectedItem="{Binding SelectedItem.Shape}"
+                      ItemsSource="{Binding AvailableShapes}" ItemTemplate="{StaticResource ShapeTemplate}" />
 
             <Label Grid.Column="0" Grid.Row="2" Content="_Color:" Target="{Binding ElementName=_color}"  />
-            <ComboBox x:Name="_color" Grid.Column="1" Grid.Row="2" Text="{Binding Color}" ItemsSource="{Binding AvailableColors, ElementName=root}" ItemTemplate="{StaticResource ColorTemplate}" />
+            <ComboBox x:Name="_color" Grid.Column="1" Grid.Row="2" Text="{Binding SelectedItem.Color}" ItemsSource="{Binding AvailableColors}" ItemTemplate="{StaticResource ColorTemplate}" />
 
             <Label Grid.Column="0" Grid.Row="3" Content="_Font color:" Target="{Binding ElementName=_fontColor}"  />
-            <ComboBox x:Name="_fontColor" Grid.Column="1" Grid.Row="3" Text="{Binding FontColor}" ItemsSource="{Binding AvailableColors, ElementName=root}" ItemTemplate="{StaticResource ColorTemplate}" />
+            <ComboBox x:Name="_fontColor" Grid.Column="1" Grid.Row="3" Text="{Binding SelectedItem.FontColor}" ItemsSource="{Binding AvailableColors}" ItemTemplate="{StaticResource ColorTemplate}" />
 
             <Label Grid.Column="0" Grid.Row="4" Content="Font s_ize:" Target="{Binding ElementName=_fontSize}"  />
-            <TextBox x:Name="_fontSize" Grid.Column="1" Grid.Row="4" Text="{Binding FontSize}" />
+            <TextBox x:Name="_fontSize" Grid.Column="1" Grid.Row="4" Text="{Binding SelectedItem.FontSize}" />
 
         </Grid>
 

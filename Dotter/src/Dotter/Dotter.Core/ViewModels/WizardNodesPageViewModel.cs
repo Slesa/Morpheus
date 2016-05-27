@@ -25,8 +25,8 @@ namespace Dotter.Core.ViewModels
                 OnPropertyChanged();}
         }
 
-        private object _selectedItem;
-        public object SelectedItem
+        private GraphNodeViewModel _selectedItem;
+        public GraphNodeViewModel SelectedItem
         {
             get { return _selectedItem; }
             set { _selectedItem = value;
@@ -146,6 +146,20 @@ namespace Dotter.Core.ViewModels
                 ImageSource = FindImageSource("Shape.DoubleCircle") };
             yield return new GraphShapeViewModel() { Name = "Double octagon", Value = "doubleoctagon",
                 ImageSource = FindImageSource("Shape.DoubleOctagon") };
+            yield return new GraphShapeViewModel() { Name = "Triple octagon", Value = "tripleoctagon",
+                ImageSource = FindImageSource("Shape.TripleOctagon") };
+            yield return new GraphShapeViewModel() { Name = "Inverted triangle", Value = "invtriangle",
+                ImageSource = FindImageSource("Shape.Invtriangle") };
+            yield return new GraphShapeViewModel() { Name = "Inverted trapezium", Value = "invtrapezium",
+                ImageSource = FindImageSource("Shape.Invtrapezium") };
+            yield return new GraphShapeViewModel() { Name = "Inverted house", Value = "invhouse",
+                ImageSource = FindImageSource("Shape.Invhouse") };
+            yield return new GraphShapeViewModel() { Name = "Mdiamond", Value = "Mdiamond",
+                ImageSource = FindImageSource("Shape.Mdiamond") };
+            yield return new GraphShapeViewModel() { Name = "Msquare", Value = "Msquare",
+                ImageSource = FindImageSource("Shape.Msquare") };
+            yield return new GraphShapeViewModel() { Name = "Mcircle", Value = "Mcircle",
+                ImageSource = FindImageSource("Shape.Mcircle") };
         }
 
         private ImageSource FindImageSource(string name)

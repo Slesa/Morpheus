@@ -28,7 +28,8 @@ namespace Dotter.Core.Model
                 {
                     sb.Append(node.Name).Append(("["));
                     sb.Append(string.Join(",", nodeText));
-                    sb.Append(node.Name).Append(("]"));
+                    sb.Append("]");
+                    sb.AppendLine();
                 }
                 //T[label = "Teacher" color = Blue, fontcolor = Red, fontsize = 24, ]      // node T
             }
@@ -49,7 +50,7 @@ namespace Dotter.Core.Model
             if (!string.IsNullOrEmpty(node.Color)) yield return "color=" + node.Color;
             if (!string.IsNullOrEmpty(node.FontColor)) yield return "fontcolor=" + node.FontColor;
             if (node.FontSize != 0) yield return "fontsize=" + node.FontSize;
-            if (!string.IsNullOrEmpty(node.Shape)) yield return "shape="+node.Shape;
+            if (node.Shape!=null) yield return "shape="+node.Shape.Value;
         }
     }
 }

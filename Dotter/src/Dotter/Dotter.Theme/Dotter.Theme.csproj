@@ -161,6 +161,15 @@
     <Resource Include="Resources\Images\Shape.Octagon.png" />
     <Resource Include="Resources\Images\Shape.Septagon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Shape.Invhouse.png" />
+    <Resource Include="Resources\Images\Shape.Invtrapezium.png" />
+    <Resource Include="Resources\Images\Shape.Invtriangle.png" />
+    <Resource Include="Resources\Images\Shape.Mcircle.png" />
+    <Resource Include="Resources\Images\Shape.Mdiamond.png" />
+    <Resource Include="Resources\Images\Shape.Msquare.png" />
+    <Resource Include="Resources\Images\Shape.Tripleoctagon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

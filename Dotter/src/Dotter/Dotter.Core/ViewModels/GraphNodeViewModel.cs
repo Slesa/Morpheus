@@ -18,8 +18,8 @@ namespace Dotter.Core.ViewModels
             set { _label = value; OnPropertyChanged(); }
         }
 
-        string _shape;
-        public string Shape
+        GraphShapeViewModel _shape;
+        public GraphShapeViewModel Shape
         {
             get { return _shape; }
             set { _shape = value; OnPropertyChanged(); }

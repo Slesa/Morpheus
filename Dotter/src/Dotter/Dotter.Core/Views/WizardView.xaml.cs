@@ -42,6 +42,8 @@ namespace Dotter.Core.Views
             description = pageVm.FillDescription(description);
             var edgesVm = _edgesPageView.DataContext as WizardEdgesPageViewModel;
             description = edgesVm.FillDescription(description);
+            var nodesVm = _nodesPageView.DataContext as WizardNodesPageViewModel;
+            description = nodesVm.FillDescription(description);
 
             _eventAggregator.GetEvent<FillTextInputEvent>().Publish(description.ToString());
 
