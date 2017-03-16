@@ -60,6 +60,7 @@
     <Compile Include="Converters\DebugConverter.cs" />
     <Compile Include="Converters\UsersToTextConverter.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserRepository.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
