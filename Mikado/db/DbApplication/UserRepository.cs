@@ -2,10 +2,48 @@
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
+using System.Linq;
 
 namespace DbApplication
 {
-    public class UserRepository
+    public interface IRepository
+    {
+        IEnumerable<User> FindAll();
+        void Create(string name, string descr);
+        void Update(long id, string name, string descr);
+    }
+
+    public class DemoRepository : IRepository
+    {
+        private readonly List<User> _users = new List<User>();
+
+        public DemoRepository()
+        {
+            Create("Captain Picard", "USS Enterprise");
+            Create("Commander Riker", "USS Enterprise");
+            Create("Lt Worf", "Deep Space Nine");
+        }
+
+        public IEnumerable<User> FindAll()
+        {
+            return _users;
+        }
+
+        public void Create(string name, string descr)
+        {
+            _users.Add(new User() { Id = _users.Count+1, Description = descr, Name = name});
+        }
+
+        public void Update(long id, string name, string descr)
+        {
+            var user = _users.FirstOrDefault(x => x.Id == id);
+            if (user==null) return;
+            user.Name = name;
+            user.Description = descr;
+        }
+    }
+
+    public class UserRepository : IRepository
     {
         string dataSource = "SQLiteDemo.db";
 

@@ -18,7 +18,7 @@ namespace DbApplication
     {
         private string _newUserName;
         private string _newUserDescr;
-        private UserRepository _userRepository;
+        private IRepository _userRepository;
 
         public ObservableCollection<User> Users { get; private set; }
 
@@ -40,14 +40,18 @@ namespace DbApplication
         public MainWindow()
         {
             Users = new ObservableCollection<User>();
+#if DEBUG
+            _userRepository = new DemoRepository();
+#else
             _userRepository = new UserRepository();
+#endif
             InitializeComponent();
         }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            _userRepository.CreateDemoDataIfNecessary();
+//            _userRepository.CreateDemoDataIfNecessary();
             ReadUsers();
         }
 
@@ -72,14 +76,14 @@ namespace DbApplication
             ReadUsers();
         }
 
-        #region INotifyPropertyChanged
+#region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion INotifyPropertyChanged
+#endregion INotifyPropertyChanged
 
         private void ButtonBase_OnAdd(object sender, RoutedEventArgs e)
         {
