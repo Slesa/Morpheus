@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DbApplication"
         xmlns:Converters="clr-namespace:DbApplication.Converters"
+        xmlns:Views="clr-namespace:DbApplication.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
@@ -29,50 +30,8 @@
     </Window.Resources>
 
     <Grid>
-        <DockPanel x:Name="_listDock">
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <TextBlock Text="Number of users:" />
-                <TextBox Margin="5,0,0,0" Text="{Binding Users.Count, Mode=OneWay}" IsReadOnly="True" Width="40" />
-                <ComboBox ItemsSource="{Binding Users}" Width="200" DisplayMemberPath="Name" />
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                <Button Content="Add" Click="ButtonBase_OnAdd" />
-                <Button Content="Edit" Click="ButtonBase_OnEdit" />
-            </StackPanel>
-
-            <ListView x:Name="_listUsers" ItemsSource="{Binding Users}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Id" Width="100" DisplayMemberBinding="{Binding Path=Id}"/>
-                        <GridViewColumn Header="Name" Width="200"  DisplayMemberBinding="{Binding Path=Name}"/>
-                        <GridViewColumn Header="Description" Width="200"  DisplayMemberBinding="{Binding Path=Description}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </DockPanel>
-
-        <DockPanel Visibility="Hidden" x:Name="_inputDock">
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                <Button Content="Ok" Click="ButtonBase_OnOk" Width="40" />
-                <Button Content="Cancel" Click="ButtonBase_OnCancel" Width="40"  />
-            </StackPanel>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="_Name:" />
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewUserName}" />
-                <Label Grid.Row="1" Content="_Description:" />
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewUserDescr}" />
-            </Grid>
-        </DockPanel>
+        <Views:UsersListView />
+        <Views:UserEditView />
 
     </Grid>
 
