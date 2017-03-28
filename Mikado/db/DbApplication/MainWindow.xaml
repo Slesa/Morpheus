@@ -4,16 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DbApplication"
-        xmlns:Converters="clr-namespace:DbApplication.Converters"
         xmlns:Views="clr-namespace:DbApplication.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Window.Resources>
-
-        <Converters:DebugConverter x:Key="DebugConverter" />
-        <Converters:UsersToTextConverter x:Key="UsersToTextConverter" />
 
         <DataTemplate DataType="{x:Type local:User}">
             <StackPanel Orientation="Horizontal">
@@ -29,9 +25,39 @@
 
     </Window.Resources>
 
-    <Grid>
-        <Views:UsersListView />
-        <Views:UserEditView />
+    <Grid x:Name="_root">
+        <!--<i:Interaction.Triggers>
+            <i:EventTrigger>
+                <ei:GoToStateAction StateName="ListState"
+                          TargetObject="{Binding ElementName=Root}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>-->
+        <!--<VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="Normal">
+                <VisualState x:Name="ListState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="_userEditView">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="_usersListView">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="EditState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="_usersListView">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="_userEditView">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>-->
+        <Views:UsersListView x:Name="_usersListView" Visibility="Hidden" />
+        <Views:UserEditView x:Name="_userEditView" Visibility="Visible" />
 
     </Grid>
 

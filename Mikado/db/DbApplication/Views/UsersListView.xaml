@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DbApplication.Views"
+             xmlns:ViewModels="clr-namespace:DbApplication.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.DataContext>
+        <ViewModels:UsersListViewModel />
+    </UserControl.DataContext>
+    
     <DockPanel x:Name="_listDock">
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
             <TextBlock Text="Number of users:" />
@@ -14,11 +19,11 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-            <Button Content="Add" Click="ButtonBase_OnAdd" />
-            <Button Content="Edit" Click="ButtonBase_OnEdit" />
+            <Button Content="Add" Command="{Binding AddCommand}" />
+            <Button Content="Edit" Command="{Binding EditCommand}" />
         </StackPanel>
 
-        <ListView x:Name="_listUsers" ItemsSource="{Binding Users}">
+        <ListView x:Name="_listUsers" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" Width="100" DisplayMemberBinding="{Binding Path=Id}"/>

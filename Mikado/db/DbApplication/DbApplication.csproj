@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\DebugConverter.cs" />
     <Compile Include="Converters\UsersToTextConverter.cs" />
+    <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ViewModels\UserEditViewModel.cs" />

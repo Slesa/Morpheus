@@ -3,13 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DbApplication.Views"
+             xmlns:ViewModels="clr-namespace:DbApplication.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <DockPanel Visibility="Hidden" x:Name="_inputDock">
+             d:DesignHeight="300" d:DesignWidth="300"
+             Visibility="{Binding Visibility}">
+    
+    <UserControl.DataContext>
+        <ViewModels:UserEditViewModel />
+    </UserControl.DataContext>
+    
+    <DockPanel x:Name="_inputDock">
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-            <Button Content="Ok" Click="ButtonBase_OnOk" Width="40" />
-            <Button Content="Cancel" Click="ButtonBase_OnCancel" Width="40"  />
+            <Button Content="Ok" Command="{Binding OkCommand}"  Width="40" />
+            <Button Content="Cancel" Command="{Binding CancelCommand}" Width="40"  />
         </StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -22,9 +28,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="_Name:" />
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewUserName}" />
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewUserName, UpdateSourceTrigger=PropertyChanged}" />
             <Label Grid.Row="1" Content="_Description:" />
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewUserDescr}" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewUserDescr, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
     </DockPanel>
 </UserControl>
