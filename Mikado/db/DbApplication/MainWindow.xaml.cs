@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace DbApplication
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         string dataSource = "SQLiteDemo.db";
@@ -74,7 +68,6 @@ namespace DbApplication
 
                 using (var reader = command.ExecuteReader())
                 {
-
                     while (reader.Read())
                     {
                         var id = reader.GetInt64(0);
@@ -82,16 +75,9 @@ namespace DbApplication
                         Users.Add(user);
                     }
 
-                    // Beenden des Readers und Freigabe aller Ressourcen.
                     reader.Close();
                 }
             }
-            /* using (var command = new SQLiteCommand(Connection))
-            {
-                command.CommandText = "SELECT COUNT(id) FROM users";
-                command.CommandType = CommandType.Text;
-                UserCount = Convert.ToInt32(command.ExecuteScalar());
-            } */
         }
 
         private void CreateDemoData()

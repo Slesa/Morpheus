@@ -4,15 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DbApplication"
-        xmlns:Converters="clr-namespace:DbApplication.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Window.Resources>
-
-        <Converters:DebugConverter x:Key="DebugConverter" />
-        <Converters:UsersToTextConverter x:Key="UsersToTextConverter" />
 
         <DataTemplate DataType="{x:Type local:User}">
             <StackPanel Orientation="Horizontal">
