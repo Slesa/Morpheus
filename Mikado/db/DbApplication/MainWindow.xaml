@@ -56,8 +56,8 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>-->
-        <Views:UsersListView x:Name="_usersListView" Visibility="Hidden" />
-        <Views:UserEditView x:Name="_userEditView" Visibility="Visible" />
+        <Views:UsersListView x:Name="_usersListView" Visibility="Visible" />
+        <Views:UserEditView x:Name="_userEditView" Visibility="Hidden" />
 
     </Grid>
 

@@ -32,6 +32,8 @@ namespace DbApplication.ViewModels
 
         private void Ok(object obj)
         {
+            CurrentUser.Name = NewUserName;
+            CurrentUser.Description = NewUserDescr;
             if (InEdit)
             {
                 EditUserEventHandler?.Invoke(this, CurrentUser);
@@ -54,16 +56,18 @@ namespace DbApplication.ViewModels
         public ICommand CancelCommand { get; set; }
 
 
+        private string _newUserName;
         public string NewUserName
         {
-            get { return CurrentUser.Name; }
-            set { CurrentUser.Name = value; OnPropertyChanged(); OkCommand.RaiseCanExecuteChanged(); }
+            get { return _newUserName; }
+            set { _newUserName = value; OnPropertyChanged(); OkCommand.RaiseCanExecuteChanged(); }
         }
 
+        private string _newUserDescr;
         public string NewUserDescr
         {
-            get { return CurrentUser.Description; }
-            set { CurrentUser.Description = value; OnPropertyChanged(); }
+            get { return _newUserDescr; }
+            set { _newUserDescr = value; OnPropertyChanged(); }
         }
 
         private User _currentUser;
@@ -74,8 +78,8 @@ namespace DbApplication.ViewModels
             {
                 _currentUser = value;
                 InEdit = _currentUser != null;
-                OnPropertyChanged("NewUserName");
-                OnPropertyChanged("NewUserDescr");
+                NewUserName = _currentUser!=null ? _currentUser.Name : string.Empty;
+                NewUserDescr = _currentUser!=null ? _currentUser.Description : string.Empty;
             }
         }
 

@@ -65,7 +65,7 @@ namespace DbApplication.ViewModels
                 command.CommandText = string.Format("INSERT INTO users (name, descr) VALUES('{0}', '{1}')", name, descr);
                 command.ExecuteNonQuery();
             }
-            //ReadUsers();
+            ReadUsers();
         }
 
         public void ChangeUser(long id, string name, string descr)
@@ -78,7 +78,7 @@ namespace DbApplication.ViewModels
                 command.Parameters.Add("id", DbType.Int64).Value = id;
                 command.ExecuteNonQuery();
             }
-            //ReadUsers();
+            ReadUsers();
         }
 
 
