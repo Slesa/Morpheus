@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Windows.Input;
-using System.Windows.Media;
 using DbApplication.Helpers;
 
 namespace DbApplication.ViewModels
@@ -108,17 +107,9 @@ namespace DbApplication.ViewModels
                         var user = new User() { Id = id, Name = reader[1].ToString(), Description = reader[2].ToString() };
                         Users.Add(user);
                     }
-
-                    // Beenden des Readers und Freigabe aller Ressourcen.
                     reader.Close();
                 }
             }
-            /* using (var command = new SQLiteCommand(Connection))
-            {
-                command.CommandText = "SELECT COUNT(id) FROM users";
-                command.CommandType = CommandType.Text;
-                UserCount = Convert.ToInt32(command.ExecuteScalar());
-            } */
         }
 
         private void CreateDemoData()
